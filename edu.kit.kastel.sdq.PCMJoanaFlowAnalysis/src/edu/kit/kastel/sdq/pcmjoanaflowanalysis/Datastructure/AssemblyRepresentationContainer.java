@@ -114,7 +114,7 @@ public abstract class AssemblyRepresentationContainer {
 	public Optional<CompositeConnectorRepresentation> searchProvidedDelegationInOuterForSigAndProvRole(OperationProvidedRole role){
 		for(CompositeConnectorRepresentation connector : compositeConnectorRepresentation) {
 			if(connector.getConnector() instanceof ProvidedDelegationConnector) {
-				ProvidedDelegationConnector castedConnector = (ProvidedDelegationConnector) connector;
+				ProvidedDelegationConnector castedConnector = (ProvidedDelegationConnector) connector.getConnector();
 				if(castedConnector.getOuterProvidedRole_ProvidedDelegationConnector().getId().equals(role.getId())) {
 					return Optional.ofNullable(connector);
 				}

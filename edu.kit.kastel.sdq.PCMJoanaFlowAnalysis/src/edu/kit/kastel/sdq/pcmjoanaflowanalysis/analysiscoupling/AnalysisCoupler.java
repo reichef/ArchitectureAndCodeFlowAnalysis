@@ -6,24 +6,19 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.Set;
 
 
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
-import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.RequiredRole;
 
 import JOANA.FlowSpecification;
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.ElementCorrespondences;
 import edu.kit.joana.ui.ifc.wala.console.console.component_based.Association;
 import edu.kit.joana.ui.ifc.wala.console.console.component_based.Flows;
 import edu.kit.joana.ui.ifc.wala.console.console.component_based.Method;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana.JOANAAnalyzer;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.PCMComposedEntityFlowAnalyzer;
 
 
 public class AnalysisCoupler {

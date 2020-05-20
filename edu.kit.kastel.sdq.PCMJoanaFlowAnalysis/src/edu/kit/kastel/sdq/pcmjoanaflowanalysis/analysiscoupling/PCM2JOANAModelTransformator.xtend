@@ -3,8 +3,6 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling
 import JOANA.JOANARoot
 import JOANA.JOANAFactory
 
-import org.palladiosimulator.pcm.repository.BasicComponent
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.ElementCorrespondences
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver
 import org.palladiosimulator.pcm.repository.OperationRequiredRole
 import JOANA.FlowSpecification

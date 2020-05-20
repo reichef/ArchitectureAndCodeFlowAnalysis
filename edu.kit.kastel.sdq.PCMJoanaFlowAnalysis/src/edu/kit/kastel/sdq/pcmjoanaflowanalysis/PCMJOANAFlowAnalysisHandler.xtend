@@ -25,6 +25,10 @@ import org.palladiosimulator.pcm.usagemodel.UsageModel
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.DataStructureBuilder
 import org.eclipse.ui.handlers.HandlerUtil
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository
+import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall
+import org.palladiosimulator.pcm.usagemodel.UsageScenario
+import org.palladiosimulator.pcm.usagemodel.AbstractUserAction
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.TopmostAssemblyEntity
 
 class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHandler{
 	
@@ -135,9 +139,19 @@ class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHandler{
 		var ecoreAnnotationRepository = resourceEcoreAnnotations.getContents().get(0) as AnnotationRepository;
 		
 		var dataStructureBuilder = new DataStructureBuilder();
-		dataStructureBuilder.buildRepresentationsForSystem(system, ecoreAnnotationRepository);
+		var systemrepresentation = dataStructureBuilder.buildRepresentationsForSystem(system, ecoreAnnotationRepository);
 	
 		var pcmAnalyzer = new PCMComposedEntityFlowAnalyzer();
+		
+		for(UsageScenario scenario : usageModel.usageScenario_UsageModel){
+			for(AbstractUserAction action : scenario.scenarioBehaviour_UsageScenario.actions_ScenarioBehaviour){
+				if(action instanceof EntryLevelSystemCall){
+					pcmAnalyzer.flowCalculationForEntryLevelSystemCall(systemrepresentation, action);
+				}
+			}
+		}
+		
+		
 		
 		
 		

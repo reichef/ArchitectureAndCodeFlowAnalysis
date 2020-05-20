@@ -49,7 +49,7 @@ public class PCMComposedEntityFlowAnalyzer {
 	}
 	
 	
-	public void flowCalculationForEntryLevelSystemCall(TopmostAssemblyEntity startingEntity, EntryLevelSystemCall call, OperationSignature sourceSignature, OperationProvidedRole sourceRole) {
+	public void flowCalculationForEntryLevelSystemCall(TopmostAssemblyEntity startingEntity, EntryLevelSystemCall call) {
 		OperationSignature startingSignature = call.getOperationSignature__EntryLevelSystemCall();
 		OperationProvidedRole startingRole = call.getProvidedRole_EntryLevelSystemCall();
 		
