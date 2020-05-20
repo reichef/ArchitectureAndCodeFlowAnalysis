@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ecoreannotations" nsURI="http://www.example.org/ecoreannotations"
+    nsPrefix="ecoreannotations">
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationRepository" eSuperTypes="../../edu.kit.ipd.sdq.composition.securityanalyses.basic/model/basic.ecore#//IdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Annotations" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Annotation" abstract="true" eSuperTypes="../../edu.kit.ipd.sdq.composition.securityanalyses.basic/model/basic.ecore#//IdentifiedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericTarget" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Target" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericTargetStringContentAnnotation"
+      eSuperTypes="#//Annotation #//GenericTarget #//StringContent #//StringAnnotationType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StringContent" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringAnnotationType" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AnnotationType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

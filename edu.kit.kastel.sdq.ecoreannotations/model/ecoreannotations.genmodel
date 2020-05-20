@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/edu.kit.kastel.sdq.ecoreannotations/src-gen" creationIcons="false"
+    editDirectory="/edu.kit.kastel.sdq.ecoreannotations.edit/src-gen" editorDirectory="/edu.kit.kastel.sdq.ecoreannotations.editor/src-gen"
+    modelPluginID="edu.kit.kastel.sdq.ecoreannotations" modelName="Ecoreannotations"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="../../edu.kit.ipd.sdq.composition.securityanalyses.basic/model/basic.genmodel#//basic"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>ecoreannotations.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Ecoreannotations" basePackage="edu.kit.kastel.sdq" disposableProviderFactory="true"
+      ecorePackage="ecoreannotations.ecore#/">
+    <genClasses ecoreClass="ecoreannotations.ecore#//AnnotationRepository">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ecoreannotations.ecore#//AnnotationRepository/Annotations"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ecoreannotations.ecore#//Annotation"/>
+    <genClasses image="false" ecoreClass="ecoreannotations.ecore#//GenericTarget">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ecoreannotations.ecore#//GenericTarget/Target"/>
+    </genClasses>
+    <genClasses ecoreClass="ecoreannotations.ecore#//GenericTargetStringContentAnnotation"/>
+    <genClasses image="false" ecoreClass="ecoreannotations.ecore#//StringContent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ecoreannotations.ecore#//StringContent/content"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ecoreannotations.ecore#//StringAnnotationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ecoreannotations.ecore#//StringAnnotationType/AnnotationType"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

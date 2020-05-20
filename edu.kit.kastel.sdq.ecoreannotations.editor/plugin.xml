@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated ecoreannotations -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.kit.kastel.sdq.ecoreannotations.presentation.EcoreannotationsModelWizardID"
+            name="%_UI_EcoreannotationsModelWizard_label"
+            class="edu.kit.kastel.sdq.ecoreannotations.presentation.EcoreannotationsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/EcoreannotationsModelFile.gif">
+         <description>%_UI_EcoreannotationsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated ecoreannotations -->
+      <editor
+            id="edu.kit.kastel.sdq.ecoreannotations.presentation.EcoreannotationsEditorID"
+            name="%_UI_EcoreannotationsEditor_label"
+            icon="icons/full/obj16/EcoreannotationsModelFile.gif"
+            extensions="ecoreannotations"
+            class="edu.kit.kastel.sdq.ecoreannotations.presentation.EcoreannotationsEditor"
+            contributorClass="edu.kit.kastel.sdq.ecoreannotations.presentation.EcoreannotationsActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

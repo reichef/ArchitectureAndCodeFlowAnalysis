@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="edu.kit.kastel.sdq.pcmjoanaflowanalysis.PCMJOANAFlowAnalysisHandler"
+            id="edu.kit.kastel.sdq.PCMJoanaFlowAnalysis.analyseflow"
+            name="Analyse PCM Flow With JOANA">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <separator
+               name="edu.kit.kastel.sdq.PCMJoanaFlowAnalysis.beforeseparator"
+               visible="true">
+         </separator>
+         <menu
+               id="pcmFlowAnalysis"
+               label="PCM Coupled Flow Analysis">
+            <command
+                  commandId="edu.kit.kastel.sdq.PCMJoanaFlowAnalysis.analyseflow"
+                  label="Analyse PCM Flow Coupled"
+                  style="push"
+                  tooltip="Analyse PCM Flow Coupled">
+            </command>
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate>
+                     <adapt
+                           type="org.eclipse.core.resources.IResource">
+                        <or>
+                           <test
+                                 property="org.eclipse.core.resources.name"
+                                 value="*.repository">
+                           </test>
+                           <test
+                                 property="org.eclipse.core.resources.name"
+                                 value="*.system">
+                           </test>
+                           <test
+                                 property="org.eclipse.core.resources.name"
+                                 value="*.usagemodel">
+                           </test>
+                           <test
+                                 property="org.eclipse.core.resources.name"
+                                 value="*.ecoreannotations">
+                           </test>
+                        </or>
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+   </extension>
+
+</plugin>
