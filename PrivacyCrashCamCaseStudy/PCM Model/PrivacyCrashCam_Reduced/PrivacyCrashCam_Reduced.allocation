@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allocation:Allocation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" id="_5S2DMI7IEeqzwdx0zkPPFA" entityName="New Allocation">
+  <targetResourceEnvironment_Allocation href="PrivacyCrashCam_Reduced.resourceenvironment#/"/>
+  <system_Allocation href="PrivacyCrashCam_Reduced.system#_ywDd4I7DEeqzwdx0zkPPFA"/>
+  <allocationContexts_Allocation id="_DSCQMI7JEeqzwdx0zkPPFA" entityName="Allocation_Assembly_AnonymizationService &lt;AnonymizationService> &lt;AnonymizationService>">
+    <resourceContainer_AllocationContext href="PrivacyCrashCam_Reduced.resourceenvironment#_ffjrUI7IEeqzwdx0zkPPFA"/>
+    <assemblyContext_AllocationContext href="PrivacyCrashCam_Reduced.system#_HRuLII7EEeqzwdx0zkPPFA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_GNcRYI7JEeqzwdx0zkPPFA" entityName="Allocation_Assembly_PersecutionWebinterface &lt;PersecutionWebinterface> &lt;PersecutionWebinterface>">
+    <resourceContainer_AllocationContext href="PrivacyCrashCam_Reduced.resourceenvironment#_oQJXMI7IEeqzwdx0zkPPFA"/>
+    <assemblyContext_AllocationContext href="PrivacyCrashCam_Reduced.system#_IsgHEI7EEeqzwdx0zkPPFA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_HM3HAI7JEeqzwdx0zkPPFA" entityName="Allocation_Assembly_AndroidApp &lt;AndroidApp> &lt;AndroidApp>">
+    <resourceContainer_AllocationContext href="PrivacyCrashCam_Reduced.resourceenvironment#_rKMtgI7IEeqzwdx0zkPPFA"/>
+    <assemblyContext_AllocationContext href="PrivacyCrashCam_Reduced.system#_5ml7EI7HEeqzwdx0zkPPFA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_JMnYQI7JEeqzwdx0zkPPFA" entityName="Allocation_Assembly_Webinterface &lt;Webinterface> &lt;Webinterface>">
+    <resourceContainer_AllocationContext href="PrivacyCrashCam_Reduced.resourceenvironment#_tRP5kI7IEeqzwdx0zkPPFA"/>
+    <assemblyContext_AllocationContext href="PrivacyCrashCam_Reduced.system#_AdceII7IEeqzwdx0zkPPFA"/>
+  </allocationContexts_Allocation>
+</allocation:Allocation>

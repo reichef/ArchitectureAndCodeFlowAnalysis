@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repository:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" id="_1SqioI4VEeqDF7FZuVpOgA" entityName="PCC_Reduced">
+  <components__Repository xsi:type="repository:BasicComponent" id="_2gxJkIiPEemd3YbtesF-Rw" entityName="UserService">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_5A_qoIiPEemd3YbtesF-Rw" entityName="IUserIdProvider" providedInterface__OperationProvidedRole="_5ENMIIiOEemd3YbtesF-Rw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_MA4cEIiQEemd3YbtesF-Rw" entityName="IUserManagement" providedInterface__OperationProvidedRole="_JGrmsIiOEemd3YbtesF-Rw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_4PeuIIiPEemd3YbtesF-Rw" entityName="IUserDB" requiredInterface__OperationRequiredRole="_Q0i00IiPEemd3YbtesF-Rw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_-LtqUKFtEemsnYu_0k9cuQ" entityName="IUserSessionDB" requiredInterface__OperationRequiredRole="_dP3UUKFtEemsnYu_0k9cuQ"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_S4bKgI6uEeqzwdx0zkPPFA" entityName="Required_CryptographicHashing_UserService" requiredInterface__OperationRequiredRole="_CsFnwm9SEeqa34g-QYI2IQ"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_SLlSoI6uEeqzwdx0zkPPFA" entityName="Required_PasswordAuthentication_UserService" requiredInterface__OperationRequiredRole="_CsEZlG9SEeqa34g-QYI2IQ"/>
+  </components__Repository>
+  <components__Repository xsi:type="repository:CompositeComponent" id="_hmihkI6qEeqzwdx0zkPPFA" entityName="AnonymizationService">
+    <assemblyContexts__ComposedStructure id="_8G-6YI6qEeqzwdx0zkPPFA" entityName="Assembly_AnonymizationService &lt;AnonymizationService>" encapsulatedComponent__AssemblyContext="_CsEZkW9SEeqa34g-QYI2IQ"/>
+    <assemblyContexts__ComposedStructure id="_PZklYI6rEeqzwdx0zkPPFA" entityName="Assembly_VideoService &lt;VideoService>" encapsulatedComponent__AssemblyContext="_Bm0mEIiSEemd3YbtesF-Rw"/>
+    <assemblyContexts__ComposedStructure id="_aq1eQI6rEeqzwdx0zkPPFA" entityName="Assembly_UserService &lt;UserService>" encapsulatedComponent__AssemblyContext="_2gxJkIiPEemd3YbtesF-Rw"/>
+    <assemblyContexts__ComposedStructure id="_hBL8UI6rEeqzwdx0zkPPFA" entityName="Assembly_AccessControl &lt;AccessControl>" encapsulatedComponent__AssemblyContext="_CsFApW9SEeqa34g-QYI2IQ"/>
+    <assemblyContexts__ComposedStructure id="_u_7nwI6uEeqzwdx0zkPPFA" entityName="Assembly_PasswordAuthenticator &lt;PasswordAuthenticator>" encapsulatedComponent__AssemblyContext="_CsEZk29SEeqa34g-QYI2IQ"/>
+    <assemblyContexts__ComposedStructure id="_snNc4I6uEeqzwdx0zkPPFA" entityName="Assembly_CryptographicHasher &lt;CryptographicHasher>" encapsulatedComponent__AssemblyContext="_CsFnwW9SEeqa34g-QYI2IQ"/>
+    <assemblyContexts__ComposedStructure id="_TiorYJUgEeq9a9_JJhpSCw" entityName="Assembly_VideoServerProxy &lt;VideoServerProxy>" encapsulatedComponent__AssemblyContext="_rYT8gJUfEeq9a9_JJhpSCw"/>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_Dge3gI6rEeqzwdx0zkPPFA" entityName="ProvDelegation Provided_VideoReceiving_AnonymizationService -> Provided_VideoReceiving_AnonymizationService" innerProvidedRole_ProvidedDelegationConnector="_YBPYoG9YEeqCJcfpuZsnYQ" outerProvidedRole_ProvidedDelegationConnector="_0UenYI6qEeqzwdx0zkPPFA" assemblyContext_ProvidedDelegationConnector="_8G-6YI6qEeqzwdx0zkPPFA"/>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_FhGEYI6rEeqzwdx0zkPPFA" entityName="ProvDelegation Provided_IUserManagement_AnonymizationService -> Provided_IUserManagement_AnonymizationService" innerProvidedRole_ProvidedDelegationConnector="_spM7IG9YEeqCJcfpuZsnYQ" outerProvidedRole_ProvidedDelegationConnector="_yLT7cI6qEeqzwdx0zkPPFA" assemblyContext_ProvidedDelegationConnector="_8G-6YI6qEeqzwdx0zkPPFA"/>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_HXiooI6rEeqzwdx0zkPPFA" entityName="ProvDelegation Provided_VideoHandling_AnonymizationService -> Provided_VideoHandling_AnonymizationService" innerProvidedRole_ProvidedDelegationConnector="_YzeG0G9YEeqCJcfpuZsnYQ" outerProvidedRole_ProvidedDelegationConnector="_1OtbAI6qEeqzwdx0zkPPFA" assemblyContext_ProvidedDelegationConnector="_8G-6YI6qEeqzwdx0zkPPFA"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_a_9YkJUgEeq9a9_JJhpSCw" entityName="Connector Assembly_VideoServerProxy &lt;VideoServerProxy> -> Assembly_AnonymizationService &lt;AnonymizationService>" requiringAssemblyContext_AssemblyConnector="_TiorYJUgEeq9a9_JJhpSCw" providingAssemblyContext_AssemblyConnector="_8G-6YI6qEeqzwdx0zkPPFA" providedRole_AssemblyConnector="_aJHrIG9YEeqCJcfpuZsnYQ" requiredRole_AssemblyConnector="_yk9JYJUfEeq9a9_JJhpSCw"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_epDmMJUgEeq9a9_JJhpSCw" entityName="Connector Assembly_VideoServerProxy &lt;VideoServerProxy> -> Assembly_AnonymizationService &lt;AnonymizationService>" requiringAssemblyContext_AssemblyConnector="_TiorYJUgEeq9a9_JJhpSCw" providingAssemblyContext_AssemblyConnector="_8G-6YI6qEeqzwdx0zkPPFA" providedRole_AssemblyConnector="_b0mVgG9YEeqCJcfpuZsnYQ" requiredRole_AssemblyConnector="_xohWUJUfEeq9a9_JJhpSCw"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_YdZWUI6rEeqzwdx0zkPPFA" entityName="Connector Assembly_AnonymizationService &lt;AnonymizationService> -> Assembly_VideoService &lt;VideoService>" requiringAssemblyContext_AssemblyConnector="_8G-6YI6qEeqzwdx0zkPPFA" providingAssemblyContext_AssemblyConnector="_PZklYI6rEeqzwdx0zkPPFA" providedRole_AssemblyConnector="_Ec0i0IiSEemd3YbtesF-Rw" requiredRole_AssemblyConnector="_3BPtAG9YEeqCJcfpuZsnYQ"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_ekvvEI6rEeqzwdx0zkPPFA" entityName="Connector Assembly_AnonymizationService &lt;AnonymizationService> -> Assembly_UserService &lt;UserService>" requiringAssemblyContext_AssemblyConnector="_8G-6YI6qEeqzwdx0zkPPFA" providingAssemblyContext_AssemblyConnector="_aq1eQI6rEeqzwdx0zkPPFA" providedRole_AssemblyConnector="_MA4cEIiQEemd3YbtesF-Rw" requiredRole_AssemblyConnector="_UsjUwG9YEeqCJcfpuZsnYQ"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_fndJQI6rEeqzwdx0zkPPFA" entityName="Connector Assembly_AnonymizationService &lt;AnonymizationService> -> Assembly_UserService &lt;UserService>" requiringAssemblyContext_AssemblyConnector="_8G-6YI6qEeqzwdx0zkPPFA" providingAssemblyContext_AssemblyConnector="_aq1eQI6rEeqzwdx0zkPPFA" providedRole_AssemblyConnector="_5A_qoIiPEemd3YbtesF-Rw" requiredRole_AssemblyConnector="_F6pKMG9ZEeqCJcfpuZsnYQ"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_i6NTcI6rEeqzwdx0zkPPFA" entityName="Connector Assembly_VideoService &lt;VideoService> -> Assembly_AccessControl &lt;AccessControl>" requiringAssemblyContext_AssemblyConnector="_PZklYI6rEeqzwdx0zkPPFA" providingAssemblyContext_AssemblyConnector="_hBL8UI6rEeqzwdx0zkPPFA" providedRole_AssemblyConnector="_PDAvUN4OEema4MmYJjR4KA" requiredRole_AssemblyConnector="_b2SNgN4OEema4MmYJjR4KA"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_2JqqkI6uEeqzwdx0zkPPFA" entityName="Connector Assembly_UserService &lt;UserService> -> Assembly_CryptographicHasher &lt;CryptographicHasher>" requiringAssemblyContext_AssemblyConnector="_aq1eQI6rEeqzwdx0zkPPFA" providingAssemblyContext_AssemblyConnector="_snNc4I6uEeqzwdx0zkPPFA" providedRole_AssemblyConnector="_-WgT4HjbEeqjvd1rHzBrVA" requiredRole_AssemblyConnector="_S4bKgI6uEeqzwdx0zkPPFA"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_1q31wI6uEeqzwdx0zkPPFA" entityName="Connector Assembly_UserService &lt;UserService> -> Assembly_PasswordAuthenticator &lt;PasswordAuthenticator>" requiringAssemblyContext_AssemblyConnector="_aq1eQI6rEeqzwdx0zkPPFA" providingAssemblyContext_AssemblyConnector="_u_7nwI6uEeqzwdx0zkPPFA" providedRole_AssemblyConnector="_YrCs8G8_EeqCJcfpuZsnYQ" requiredRole_AssemblyConnector="_SLlSoI6uEeqzwdx0zkPPFA"/>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_ZSkpsJUgEeq9a9_JJhpSCw" entityName="ProvDelegation Provided_JudgeAccessWeb_AnonymizationService -> Provided_JudgeAccessWeb_VideoServerProxy" innerProvidedRole_ProvidedDelegationConnector="_vpkWUJUfEeq9a9_JJhpSCw" outerProvidedRole_ProvidedDelegationConnector="_1I8QcJUcEeq9a9_JJhpSCw" assemblyContext_ProvidedDelegationConnector="_TiorYJUgEeq9a9_JJhpSCw"/>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_Z3J9cJUgEeq9a9_JJhpSCw" entityName="ProvDelegation Provided_PersecutionInformationProvisionWeb_AnonymizationService -> Provided_PersecutionInformationProvisionWeb_VideoServerProxy" innerProvidedRole_ProvidedDelegationConnector="_we5b0JUfEeq9a9_JJhpSCw" outerProvidedRole_ProvidedDelegationConnector="_z0lsoJUcEeq9a9_JJhpSCw" assemblyContext_ProvidedDelegationConnector="_TiorYJUgEeq9a9_JJhpSCw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_yLT7cI6qEeqzwdx0zkPPFA" entityName="Provided_IUserManagement_AnonymizationService" providedInterface__OperationProvidedRole="_JGrmsIiOEemd3YbtesF-Rw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_0UenYI6qEeqzwdx0zkPPFA" entityName="Provided_VideoReceiving_AnonymizationService" providedInterface__OperationProvidedRole="_CsAvNG9SEeqa34g-QYI2IQ"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_1OtbAI6qEeqzwdx0zkPPFA" entityName="Provided_VideoHandling_AnonymizationService" providedInterface__OperationProvidedRole="_ABzs4IiOEemd3YbtesF-Rw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_z0lsoJUcEeq9a9_JJhpSCw" entityName="Provided_PersecutionInformationProvisionWeb_AnonymizationService" providedInterface__OperationProvidedRole="_2oz20JUTEeq9a9_JJhpSCw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_1I8QcJUcEeq9a9_JJhpSCw" entityName="Provided_JudgeAccessWeb_AnonymizationService" providedInterface__OperationProvidedRole="_0oOfIJUTEeq9a9_JJhpSCw"/>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_x0dEcI4XEeqDF7FZuVpOgA" entityName="AndroidApp">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_ko7VsI7EEeqzwdx0zkPPFA" entityName="Provided_IUserManagement_AndroidApp" providedInterface__OperationProvidedRole="_JGrmsIiOEemd3YbtesF-Rw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_7Qc8MI7EEeqzwdx0zkPPFA" entityName="Provided_AndroidActions_AndroidApp" providedInterface__OperationProvidedRole="_zQFMUI7EEeqzwdx0zkPPFA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_0VVs0I4XEeqDF7FZuVpOgA" entityName="Required_VideoReceiving_AndroidApp" requiredInterface__OperationRequiredRole="_CsAvNG9SEeqa34g-QYI2IQ"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_0f0OgI7HEeqzwdx0zkPPFA" entityName="Required_IUserManagement_AndroidApp" requiredInterface__OperationRequiredRole="_JGrmsIiOEemd3YbtesF-Rw"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_ko78wI7EEeqzwdx0zkPPFA" describedService__SEFF="_0UDFQIiNEemd3YbtesF-Rw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_ko78wY7EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_ko78wo7EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_ko78wo7EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_ko78wY7EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_ko78w47EEeqzwdx0zkPPFA" describedService__SEFF="_0rWyAIiNEemd3YbtesF-Rw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_ko78xI7EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_ko78xY7EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_ko78xY7EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_ko78xI7EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_ko78xo7EEeqzwdx0zkPPFA" describedService__SEFF="_z2jQ8IiNEemd3YbtesF-Rw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_ko78x47EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_ko78yI7EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_ko78yI7EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_ko78x47EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_7QeKUI7EEeqzwdx0zkPPFA" describedService__SEFF="_0dTNYI7EEeqzwdx0zkPPFA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_7QeKUY7EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_7QeKUo7EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_7QeKUo7EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_7QeKUY7EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_7QeKU47EEeqzwdx0zkPPFA" describedService__SEFF="_4UmPEI7EEeqzwdx0zkPPFA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_7QeKVI7EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_7QeKVY7EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_7QeKVY7EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_7QeKVI7EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_CsEZkW9SEeqa34g-QYI2IQ" entityName="AnonymizationService">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_YBPYoG9YEeqCJcfpuZsnYQ" entityName="Provided_VideoReceiving_AnonymizationService" providedInterface__OperationProvidedRole="_CsAvNG9SEeqa34g-QYI2IQ"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_YzeG0G9YEeqCJcfpuZsnYQ" entityName="Provided_VideoHandling_AnonymizationService" providedInterface__OperationProvidedRole="_ABzs4IiOEemd3YbtesF-Rw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_aJHrIG9YEeqCJcfpuZsnYQ" entityName="Provided_PersecutionInformationProvision_AnonymizationService" providedInterface__OperationProvidedRole="_L_RBMM8KEemLXKRETzetgA"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_b0mVgG9YEeqCJcfpuZsnYQ" entityName="Provided_JudgeAccess_AnonymizationService" providedInterface__OperationProvidedRole="_CsAIIG9SEeqa34g-QYI2IQ"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_spM7IG9YEeqCJcfpuZsnYQ" entityName="Provided_IUserManagement_AnonymizationService" providedInterface__OperationProvidedRole="_JGrmsIiOEemd3YbtesF-Rw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_UsjUwG9YEeqCJcfpuZsnYQ" entityName="Required_IUserManagement_AnonymizationService" requiredInterface__OperationRequiredRole="_JGrmsIiOEemd3YbtesF-Rw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_3BPtAG9YEeqCJcfpuZsnYQ" entityName="Required_IVideoService_AnonymizationService" requiredInterface__OperationRequiredRole="_eRnBcIiQEemd3YbtesF-Rw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_F6pKMG9ZEeqCJcfpuZsnYQ" entityName="Required_IUserIdProvider_AnonymizationService" requiredInterface__OperationRequiredRole="_5ENMIIiOEemd3YbtesF-Rw"/>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_CsFApW9SEeqa34g-QYI2IQ" entityName="AccessControl">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_PDAvUN4OEema4MmYJjR4KA" entityName="Provided_AccessControl_AccessControl" providedInterface__OperationProvidedRole="_CsFApm9SEeqa34g-QYI2IQ"/>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_Xc7BYMpWEemVkJoNuJTOzQ" entityName="PersecutionWebinterface">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_Zp_dcJUbEeq9a9_JJhpSCw" entityName="Provided_VideoManagerInterface_PersecutionWebinterface" providedInterface__OperationProvidedRole="_J4CSgJUZEeq9a9_JJhpSCw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_3IrJAJUbEeq9a9_JJhpSCw" entityName="Provided_AccountManagerInterface_PersecutionWebinterface" providedInterface__OperationProvidedRole="_gmShMJUbEeq9a9_JJhpSCw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_vt3ysM8KEemLXKRETzetgA" entityName="Required_PersecutionInterface_PersecutionWebinterface" requiredInterface__OperationRequiredRole="_L_RBMM8KEemLXKRETzetgA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_Ibq0wNLSEemj7YE_mr27Gg" entityName="Required_JudgeAccess_PersecutionWebinterface" requiredInterface__OperationRequiredRole="_CsAIIG9SEeqa34g-QYI2IQ"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_KPMP8ILeEeqXjvnfpEBkMw" entityName="Required_IUserManagement_PersecutionWebinterface" requiredInterface__OperationRequiredRole="_JGrmsIiOEemd3YbtesF-Rw"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_Zp_dcZUbEeq9a9_JJhpSCw" describedService__SEFF="_LJZMsJUZEeq9a9_JJhpSCw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_Zp_dcpUbEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_Zp_dc5UbEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_Zp_dc5UbEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_Zp_dcpUbEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_Zp_ddJUbEeq9a9_JJhpSCw" describedService__SEFF="_M-XKQJUZEeq9a9_JJhpSCw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_Zp_ddZUbEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_Zp_ddpUbEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_Zp_ddpUbEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_Zp_ddZUbEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_3IrJAZUbEeq9a9_JJhpSCw" describedService__SEFF="_ikJVAJUbEeq9a9_JJhpSCw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_3IrJApUbEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_3IrJA5UbEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_3IrJA5UbEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_3IrJApUbEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_3IrJBJUbEeq9a9_JJhpSCw" describedService__SEFF="_m05YgJUbEeq9a9_JJhpSCw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_3IrJBZUbEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_3IrJBpUbEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_3IrJBpUbEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_3IrJBZUbEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_3IrJB5UbEeq9a9_JJhpSCw" describedService__SEFF="_sh5XkJUbEeq9a9_JJhpSCw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_3IrJCJUbEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_3IrJCZUbEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_3IrJCZUbEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_3IrJCJUbEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_3IrJCpUbEeq9a9_JJhpSCw" describedService__SEFF="_xY5iwJUbEeq9a9_JJhpSCw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_3IrJC5UbEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_3IrJDJUbEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_3IrJDJUbEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_3IrJC5UbEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_CsFnwW9SEeqa34g-QYI2IQ" entityName="CryptographicHasher">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_-WgT4HjbEeqjvd1rHzBrVA" entityName="Provided_CryptographicHashing_CryptoraphicHasher" providedInterface__OperationProvidedRole="_CsFnwm9SEeqa34g-QYI2IQ"/>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_Bm0mEIiSEemd3YbtesF-Rw" entityName="VideoService">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_Ec0i0IiSEemd3YbtesF-Rw" entityName="IVideoService" providedInterface__OperationProvidedRole="_eRnBcIiQEemd3YbtesF-Rw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_b2SNgN4OEema4MmYJjR4KA" entityName="Required_AccessControl_VideoService" requiredInterface__OperationRequiredRole="_CsFApm9SEeqa34g-QYI2IQ"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_MsWCwI6uEeqzwdx0zkPPFA" entityName="Required_VideoPersistor_VideoService" requiredInterface__OperationRequiredRole="_ONgwAI6tEeqzwdx0zkPPFA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_Y5swcI6uEeqzwdx0zkPPFA" entityName="Required_IVideoService_VideoService" requiredInterface__OperationRequiredRole="_eRnBcIiQEemd3YbtesF-Rw"/>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_TWeJYMpWEemVkJoNuJTOzQ" entityName="Webinterface">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_mPiHII7EEeqzwdx0zkPPFA" entityName="Provided_IUserManagement_Webinterface" providedInterface__OperationProvidedRole="_JGrmsIiOEemd3YbtesF-Rw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_sPNKkI7EEeqzwdx0zkPPFA" entityName="Provided_VideoHandling_Webinterface" providedInterface__OperationProvidedRole="_ABzs4IiOEemd3YbtesF-Rw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_2zT7II7HEeqzwdx0zkPPFA" entityName="Required_IUserManagement_Webinterface" requiredInterface__OperationRequiredRole="_JGrmsIiOEemd3YbtesF-Rw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_Ux4AoI7IEeqzwdx0zkPPFA" entityName="Required_VideoHandling_Webinterface" requiredInterface__OperationRequiredRole="_ABzs4IiOEemd3YbtesF-Rw"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_mPiHIY7EEeqzwdx0zkPPFA" describedService__SEFF="_0UDFQIiNEemd3YbtesF-Rw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_mPiHIo7EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_mPiHI47EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_mPiHI47EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_mPiHIo7EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_mPiHJI7EEeqzwdx0zkPPFA" describedService__SEFF="_0rWyAIiNEemd3YbtesF-Rw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_mPiHJY7EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_mPiHJo7EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_mPiHJo7EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_mPiHJY7EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_mPnmsI7EEeqzwdx0zkPPFA" describedService__SEFF="_z2jQ8IiNEemd3YbtesF-Rw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_mPnmsY7EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_mPnmso7EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_mPnmso7EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_mPnmsY7EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_sPNKkY7EEeqzwdx0zkPPFA" describedService__SEFF="_DNzHwIiOEemd3YbtesF-Rw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_sPNKko7EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_sPNKk47EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_sPNKk47EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_sPNKko7EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_sPNKlI7EEeqzwdx0zkPPFA" describedService__SEFF="_CsAvM29SEeqa34g-QYI2IQ">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_sPNKlY7EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_sPNKlo7EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_sPNKlo7EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_sPNKlY7EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_sPNKl47EEeqzwdx0zkPPFA" describedService__SEFF="_DkCdgIiOEemd3YbtesF-Rw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_sPNxoI7EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_sPNxoY7EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_sPNxoY7EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_sPNxoI7EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_sPNxoo7EEeqzwdx0zkPPFA" describedService__SEFF="_DqcngIiOEemd3YbtesF-Rw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_sPNxo47EEeqzwdx0zkPPFA" entityName="start" successor_AbstractAction="_sPNxpI7EEeqzwdx0zkPPFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_sPNxpI7EEeqzwdx0zkPPFA" entityName="stop" predecessor_AbstractAction="_sPNxo47EEeqzwdx0zkPPFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_CsEZk29SEeqa34g-QYI2IQ" entityName="PasswordAuthenticator">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_YrCs8G8_EeqCJcfpuZsnYQ" entityName="Provided_PasswordAuthentication_PasswordAuthenticator" providedInterface__OperationProvidedRole="_CsEZlG9SEeqa34g-QYI2IQ"/>
+  </components__Repository>
+  <components__Repository xsi:type="repository:CompositeComponent" id="_YrCJkJUVEeq9a9_JJhpSCw" entityName="PersecutionWebInterface">
+    <assemblyContexts__ComposedStructure id="_t7hrsJUVEeq9a9_JJhpSCw" entityName="Assembly_PersecutionWebinterface &lt;PersecutionWebinterface>" encapsulatedComponent__AssemblyContext="_Xc7BYMpWEemVkJoNuJTOzQ"/>
+    <assemblyContexts__ComposedStructure id="_45_kYJUVEeq9a9_JJhpSCw" entityName="Assembly_ServerCommunicator &lt;ServerCommunicator>" encapsulatedComponent__AssemblyContext="_g8lJAJUVEeq9a9_JJhpSCw"/>
+    <connectors__ComposedStructure xsi:type="composition:RequiredDelegationConnector" id="_BtpyYJUWEeq9a9_JJhpSCw" entityName="ReqDelegation Required_JudgeAccessWeb_ServerCommunicator -> Required_JudgeAccessWeb_PersecutionWebInterface" innerRequiredRole_RequiredDelegationConnector="_kmlVkJUVEeq9a9_JJhpSCw" outerRequiredRole_RequiredDelegationConnector="_mgPl4JUVEeq9a9_JJhpSCw" assemblyContext_RequiredDelegationConnector="_45_kYJUVEeq9a9_JJhpSCw"/>
+    <connectors__ComposedStructure xsi:type="composition:RequiredDelegationConnector" id="_CYoCAJUWEeq9a9_JJhpSCw" entityName="ReqDelegation Required_PersecutionInformationProvisionWeb_ServerCommunicator -> Required_PersecutionInformationProvisionWeb_PersecutionWebInterface" innerRequiredRole_RequiredDelegationConnector="_jsC_8JUVEeq9a9_JJhpSCw" outerRequiredRole_RequiredDelegationConnector="_nYFz4JUVEeq9a9_JJhpSCw" assemblyContext_RequiredDelegationConnector="_45_kYJUVEeq9a9_JJhpSCw"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_FBeTkJUWEeq9a9_JJhpSCw" entityName="Connector Assembly_PersecutionWebinterface &lt;PersecutionWebinterface> -> Assembly_ServerCommunicator &lt;ServerCommunicator>" requiringAssemblyContext_AssemblyConnector="_t7hrsJUVEeq9a9_JJhpSCw" providingAssemblyContext_AssemblyConnector="_45_kYJUVEeq9a9_JJhpSCw" providedRole_AssemblyConnector="_pNNicJUVEeq9a9_JJhpSCw" requiredRole_AssemblyConnector="_Ibq0wNLSEemj7YE_mr27Gg"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_GDX1cJUWEeq9a9_JJhpSCw" entityName="Connector Assembly_PersecutionWebinterface &lt;PersecutionWebinterface> -> Assembly_ServerCommunicator &lt;ServerCommunicator>" requiringAssemblyContext_AssemblyConnector="_t7hrsJUVEeq9a9_JJhpSCw" providingAssemblyContext_AssemblyConnector="_45_kYJUVEeq9a9_JJhpSCw" providedRole_AssemblyConnector="_ogDhgJUVEeq9a9_JJhpSCw" requiredRole_AssemblyConnector="_vt3ysM8KEemLXKRETzetgA"/>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_HjofkJUcEeq9a9_JJhpSCw" entityName="ProvDelegation Provided_AccountManagerInterface_PersecutionWebInterface -> Provided_AccountManagerInterface_PersecutionWebinterface" innerProvidedRole_ProvidedDelegationConnector="_3IrJAJUbEeq9a9_JJhpSCw" outerProvidedRole_ProvidedDelegationConnector="_2TueAJUbEeq9a9_JJhpSCw" assemblyContext_ProvidedDelegationConnector="_t7hrsJUVEeq9a9_JJhpSCw"/>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_IyEooJUcEeq9a9_JJhpSCw" entityName="ProvDelegation Provided_VideoManagerInterface_PersecutionWebInterface -> Provided_VideoManagerInterface_PersecutionWebinterface" innerProvidedRole_ProvidedDelegationConnector="_Zp_dcJUbEeq9a9_JJhpSCw" outerProvidedRole_ProvidedDelegationConnector="_YJmowJUbEeq9a9_JJhpSCw" assemblyContext_ProvidedDelegationConnector="_t7hrsJUVEeq9a9_JJhpSCw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_YJmowJUbEeq9a9_JJhpSCw" entityName="Provided_VideoManagerInterface_PersecutionWebInterface" providedInterface__OperationProvidedRole="_J4CSgJUZEeq9a9_JJhpSCw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_2TueAJUbEeq9a9_JJhpSCw" entityName="Provided_AccountManagerInterface_PersecutionWebInterface" providedInterface__OperationProvidedRole="_gmShMJUbEeq9a9_JJhpSCw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_mgPl4JUVEeq9a9_JJhpSCw" entityName="Required_JudgeAccessWeb_PersecutionWebInterface" requiredInterface__OperationRequiredRole="_0oOfIJUTEeq9a9_JJhpSCw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_nYFz4JUVEeq9a9_JJhpSCw" entityName="Required_PersecutionInformationProvisionWeb_PersecutionWebInterface" requiredInterface__OperationRequiredRole="_2oz20JUTEeq9a9_JJhpSCw"/>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_g8lJAJUVEeq9a9_JJhpSCw" entityName="ServerCommunicator">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_ogDhgJUVEeq9a9_JJhpSCw" entityName="Provided_PersecutionInformationProvision_ServerCommunicator" providedInterface__OperationProvidedRole="_L_RBMM8KEemLXKRETzetgA"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_pNNicJUVEeq9a9_JJhpSCw" entityName="Provided_JudgeAccess_ServerCommunicator" providedInterface__OperationProvidedRole="_CsAIIG9SEeqa34g-QYI2IQ"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_jsC_8JUVEeq9a9_JJhpSCw" entityName="Required_PersecutionInformationProvisionWeb_ServerCommunicator" requiredInterface__OperationRequiredRole="_2oz20JUTEeq9a9_JJhpSCw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_kmlVkJUVEeq9a9_JJhpSCw" entityName="Required_JudgeAccessWeb_ServerCommunicator" requiredInterface__OperationRequiredRole="_0oOfIJUTEeq9a9_JJhpSCw"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_ogDhgZUVEeq9a9_JJhpSCw" describedService__SEFF="_VEjKsM8KEemLXKRETzetgA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_ogDhgpUVEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_ogDhg5UVEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_ogDhg5UVEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_ogDhgpUVEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_ogDhhJUVEeq9a9_JJhpSCw" describedService__SEFF="_mcd4wM8KEemLXKRETzetgA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_ogDhhZUVEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_ogDhhpUVEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_ogDhhpUVEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_ogDhhZUVEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_ogDhh5UVEeq9a9_JJhpSCw" describedService__SEFF="_LFTEUNSREemO-qyae-3N9Q">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_ogDhiJUVEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_ogDhiZUVEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_ogDhiZUVEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_ogDhiJUVEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_pNNicZUVEeq9a9_JJhpSCw" describedService__SEFF="_CsAIIW9SEeqa34g-QYI2IQ">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_pNNicpUVEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_pNNic5UVEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_pNNic5UVEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_pNNicpUVEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_rYT8gJUfEeq9a9_JJhpSCw" entityName="VideoServerProxy">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_vpkWUJUfEeq9a9_JJhpSCw" entityName="Provided_JudgeAccessWeb_VideoServerProxy" providedInterface__OperationProvidedRole="_0oOfIJUTEeq9a9_JJhpSCw"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_we5b0JUfEeq9a9_JJhpSCw" entityName="Provided_PersecutionInformationProvisionWeb_VideoServerProxy" providedInterface__OperationProvidedRole="_2oz20JUTEeq9a9_JJhpSCw"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_xohWUJUfEeq9a9_JJhpSCw" entityName="Required_JudgeAccess_VideoServerProxy" requiredInterface__OperationRequiredRole="_CsAIIG9SEeqa34g-QYI2IQ"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_yk9JYJUfEeq9a9_JJhpSCw" entityName="Required_PersecutionInformationProvision_VideoServerProxy" requiredInterface__OperationRequiredRole="_L_RBMM8KEemLXKRETzetgA"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_vpkWUZUfEeq9a9_JJhpSCw" describedService__SEFF="_uj5vwJUUEeq9a9_JJhpSCw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_vpkWUpUfEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_vpkWU5UfEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_vpkWU5UfEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_vpkWUpUfEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_we5b0ZUfEeq9a9_JJhpSCw" describedService__SEFF="_ASwXIJUVEeq9a9_JJhpSCw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_we5b0pUfEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_we5b05UfEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_we5b05UfEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_we5b0pUfEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_we5b1JUfEeq9a9_JJhpSCw" describedService__SEFF="_KJvDUJUVEeq9a9_JJhpSCw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_we5b1ZUfEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_we5b1pUfEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_we5b1pUfEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_we5b1ZUfEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_we5b15UfEeq9a9_JJhpSCw" describedService__SEFF="_PD-IsJUVEeq9a9_JJhpSCw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_we5b2JUfEeq9a9_JJhpSCw" entityName="start" successor_AbstractAction="_we5b2ZUfEeq9a9_JJhpSCw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_we5b2ZUfEeq9a9_JJhpSCw" entityName="stop" predecessor_AbstractAction="_we5b2JUfEeq9a9_JJhpSCw"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_JGrmsIiOEemd3YbtesF-Rw" entityName="IUserManagement">
+    <signatures__OperationInterface id="_0UDFQIiNEemd3YbtesF-Rw" entityName="createAccount">
+      <parameters__OperationSignature parameterName="email">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="password">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_0rWyAIiNEemd3YbtesF-Rw" entityName="deleteAccount">
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_z2jQ8IiNEemd3YbtesF-Rw" entityName="login">
+      <parameters__OperationSignature parameterName="email">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="password">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_ABzs4IiOEemd3YbtesF-Rw" entityName="VideoHandling">
+    <signatures__OperationInterface id="_DNzHwIiOEemd3YbtesF-Rw" entityName="getVideoIds" returnType__OperationSignature="_VTjosIiNEemd3YbtesF-Rw">
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_CsAvM29SEeqa34g-QYI2IQ" entityName="downloadVideo" returnType__OperationSignature="_lcqaQIiNEemd3YbtesF-Rw">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_DkCdgIiOEemd3YbtesF-Rw" entityName="getMetadata" returnType__OperationSignature="_lcqaQIiNEemd3YbtesF-Rw">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_DqcngIiOEemd3YbtesF-Rw" entityName="deleteVideo">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_5ENMIIiOEemd3YbtesF-Rw" entityName="IUserIdProvider">
+    <signatures__OperationInterface id="_7xTrkIiOEemd3YbtesF-Rw" entityName="getUserId">
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_Q0i00IiPEemd3YbtesF-Rw" entityName="IUserDB">
+    <signatures__OperationInterface id="_TWmh4IiPEemd3YbtesF-Rw" entityName="createUser">
+      <parameters__OperationSignature parameterName="email">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="password">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_P_cnIKFtEemsnYu_0k9cuQ" entityName="getUserIdByMail">
+      <parameters__OperationSignature parameterName="email">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_QFHKQKFtEemsnYu_0k9cuQ" entityName="validatePassword">
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="password">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_QKNssKFtEemsnYu_0k9cuQ" entityName="deleteAccount">
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_eRnBcIiQEemd3YbtesF-Rw" entityName="IVideoService">
+    <signatures__OperationInterface id="_kYTS4IiQEemd3YbtesF-Rw" entityName="getVideoIds" returnType__OperationSignature="_VTjosIiNEemd3YbtesF-Rw">
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_khr4YIiQEemd3YbtesF-Rw" entityName="postVideo">
+      <parameters__OperationSignature dataType__Parameter="_lcqaQIiNEemd3YbtesF-Rw" parameterName="encryptedVideo"/>
+      <parameters__OperationSignature dataType__Parameter="_lcqaQIiNEemd3YbtesF-Rw" parameterName="encryptedMetadata"/>
+      <parameters__OperationSignature dataType__Parameter="_X-Vz8IiNEemd3YbtesF-Rw" parameterName="encryptedKeyData"/>
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_knQU4IiQEemd3YbtesF-Rw" entityName="getVideo" returnType__OperationSignature="_lcqaQIiNEemd3YbtesF-Rw">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_kth8AIiQEemd3YbtesF-Rw" entityName="getMetadata" returnType__OperationSignature="_lcqaQIiNEemd3YbtesF-Rw">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_k5c4IIiQEemd3YbtesF-Rw" entityName="deleteVideo">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_CsFnwm9SEeqa34g-QYI2IQ" entityName="CryptographicHashing">
+    <signatures__OperationInterface id="_CsGOwG9SEeqa34g-QYI2IQ" entityName="hash">
+      <parameters__OperationSignature parameterName="input">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature dataType__Parameter="_urInMXjbEeqjvd1rHzBrVA" parameterName="salt"/>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_CsAvNG9SEeqa34g-QYI2IQ" entityName="VideoReceiving">
+    <signatures__OperationInterface id="_CsAvNW9SEeqa34g-QYI2IQ" entityName="receiveVideo">
+      <parameters__OperationSignature dataType__Parameter="_lcqaQIiNEemd3YbtesF-Rw" parameterName="encryptedVideo"/>
+      <parameters__OperationSignature dataType__Parameter="_lcqaQIiNEemd3YbtesF-Rw" parameterName="encryptedMetadata"/>
+      <parameters__OperationSignature dataType__Parameter="_lcqaQIiNEemd3YbtesF-Rw" parameterName="encryptedKey"/>
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_dP3UUKFtEemsnYu_0k9cuQ" entityName="IUserSessionDB">
+    <signatures__OperationInterface id="_oTpx4KFtEemsnYu_0k9cuQ" entityName="storeAuthenticationToken">
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_oXa3kKFtEemsnYu_0k9cuQ" entityName="deleteTokensForUserId">
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_CsFApm9SEeqa34g-QYI2IQ" entityName="AccessControl">
+    <signatures__OperationInterface id="_CsFAp29SEeqa34g-QYI2IQ" entityName="hasPermission">
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="permissionName">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_Az6MUN4OEema4MmYJjR4KA" entityName="canAccessUnanonymized">
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_CsAIIG9SEeqa34g-QYI2IQ" entityName="JudgeAccess">
+    <signatures__OperationInterface id="_CsAIIW9SEeqa34g-QYI2IQ" entityName="getConfidentialVideo" returnType__OperationSignature="_lcqaQIiNEemd3YbtesF-Rw">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_L_RBMM8KEemLXKRETzetgA" entityName="PersecutionInformationProvision">
+    <signatures__OperationInterface id="_VEjKsM8KEemLXKRETzetgA" entityName="getMetaData" returnType__OperationSignature="_lcqaQIiNEemd3YbtesF-Rw">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="targetUserId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_mcd4wM8KEemLXKRETzetgA" entityName="getAllVideoIds" returnType__OperationSignature="_VTjosIiNEemd3YbtesF-Rw"/>
+    <signatures__OperationInterface id="_LFTEUNSREemO-qyae-3N9Q" entityName="getUserIdForVideoId">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_CsEZlG9SEeqa34g-QYI2IQ" entityName="PasswordAuthentication">
+    <signatures__OperationInterface id="_CsEZlW9SEeqa34g-QYI2IQ" entityName="authenticatePassword">
+      <parameters__OperationSignature dataType__Parameter="_-KQV4G8-EeqCJcfpuZsnYQ" parameterName="connection"/>
+      <parameters__OperationSignature parameterName="userId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="inputHash">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_ONgwAI6tEeqzwdx0zkPPFA" entityName="VideoPersistor">
+    <signatures__OperationInterface id="_YXBWoI6tEeqzwdx0zkPPFA" entityName="persistVideo">
+      <parameters__OperationSignature dataType__Parameter="_reldbY6tEeqzwdx0zkPPFA" parameterName="context"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_zQFMUI7EEeqzwdx0zkPPFA" entityName="AndroidActions">
+    <signatures__OperationInterface id="_0dTNYI7EEeqzwdx0zkPPFA" entityName="recordVideo"/>
+    <signatures__OperationInterface id="_4UmPEI7EEeqzwdx0zkPPFA" entityName="uploadVideo">
+      <parameters__OperationSignature parameterName="id">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_0oOfIJUTEeq9a9_JJhpSCw" entityName="JudgeAccessWeb">
+    <signatures__OperationInterface id="_uj5vwJUUEeq9a9_JJhpSCw" entityName="getConfidentialVideo" returnType__OperationSignature="_bNi64IiNEemd3YbtesF-Rw">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="targetUserId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_2oz20JUTEeq9a9_JJhpSCw" entityName="PersecutionInformationProvisionWeb">
+    <signatures__OperationInterface id="_ASwXIJUVEeq9a9_JJhpSCw" entityName="getMetaData" returnType__OperationSignature="_bNi64IiNEemd3YbtesF-Rw">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="targetUserId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_KJvDUJUVEeq9a9_JJhpSCw" entityName="getAllVideoIds">
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_PD-IsJUVEeq9a9_JJhpSCw" entityName="getUserIdForVideoId">
+      <parameters__OperationSignature parameterName="videoId">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="authenticationToken">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_J4CSgJUZEeq9a9_JJhpSCw" entityName="VideoManagerInterface">
+    <signatures__OperationInterface id="_LJZMsJUZEeq9a9_JJhpSCw" entityName="downloadVideo" returnType__OperationSignature="_JcBaDZUbEeq9a9_JJhpSCw">
+      <parameters__OperationSignature parameterName="videoID">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="videoName">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_M-XKQJUZEeq9a9_JJhpSCw" entityName="getVideos" returnType__OperationSignature="_R9OmHJUbEeq9a9_JJhpSCw"/>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_gmShMJUbEeq9a9_JJhpSCw" entityName="AccountManagerInterface">
+    <signatures__OperationInterface id="_ikJVAJUbEeq9a9_JJhpSCw" entityName="createAccount">
+      <parameters__OperationSignature parameterName="mail">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="password">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_m05YgJUbEeq9a9_JJhpSCw" entityName="authenticateAccount">
+      <parameters__OperationSignature parameterName="mail">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="password">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_sh5XkJUbEeq9a9_JJhpSCw" entityName="changeAccount">
+      <parameters__OperationSignature parameterName="password">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="mailNew">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <parameters__OperationSignature parameterName="passwordNew">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+    </signatures__OperationInterface>
+    <signatures__OperationInterface id="_xY5iwJUbEeq9a9_JJhpSCw" entityName="deleteAccount">
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <dataTypes__Repository xsi:type="repository:CollectionDataType" id="_VTjosIiNEemd3YbtesF-Rw" entityName="IntCollection">
+    <innerType_CollectionDataType xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+  </dataTypes__Repository>
+  <dataTypes__Repository xsi:type="repository:CollectionDataType" id="_X-Vz8IiNEemd3YbtesF-Rw" entityName="Data">
+    <innerType_CollectionDataType xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.5"/>
+  </dataTypes__Repository>
+  <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_bNi64IiNEemd3YbtesF-Rw" entityName="Response">
+    <innerDeclaration_CompositeDataType entityName="status">
+      <datatype_InnerDeclaration xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+    </innerDeclaration_CompositeDataType>
+    <innerDeclaration_CompositeDataType entityName="body" datatype_InnerDeclaration="_X-Vz8IiNEemd3YbtesF-Rw"/>
+  </dataTypes__Repository>
+  <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_lcqaQIiNEemd3YbtesF-Rw" entityName="File">
+    <innerDeclaration_CompositeDataType entityName="path">
+      <datatype_InnerDeclaration xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+    </innerDeclaration_CompositeDataType>
+  </dataTypes__Repository>
+  <dataTypes__Repository xsi:type="repository:CollectionDataType" id="_n5qoMIiNEemd3YbtesF-Rw" entityName="Key">
+    <innerType_CollectionDataType xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.5"/>
+  </dataTypes__Repository>
+  <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_qz16UIiNEemd3YbtesF-Rw" entityName="KeyPair">
+    <innerDeclaration_CompositeDataType entityName="privateKey" datatype_InnerDeclaration="_n5qoMIiNEemd3YbtesF-Rw"/>
+    <innerDeclaration_CompositeDataType entityName="publicKey" datatype_InnerDeclaration="_n5qoMIiNEemd3YbtesF-Rw"/>
+  </dataTypes__Repository>
+  <dataTypes__Repository xsi:type="repository:CollectionDataType" id="_J06pcKFrEemsnYu_0k9cuQ" entityName="FileCollection" innerType_CollectionDataType="_lcqaQIiNEemd3YbtesF-Rw"/>
+  <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_H6IIsKonEemZD4TzTudR9g" entityName="Settings"/>
+  <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_-KQV4G8-EeqCJcfpuZsnYQ" entityName="Connection">
+    <innerDeclaration_CompositeDataType entityName="URL">
+      <datatype_InnerDeclaration xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+    </innerDeclaration_CompositeDataType>
+  </dataTypes__Repository>
+  <dataTypes__Repository xsi:type="repository:CollectionDataType" id="_urInMXjbEeqjvd1rHzBrVA" entityName="ByteCollection">
+    <innerType_CollectionDataType xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.5"/>
+  </dataTypes__Repository>
+  <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_reldbY6tEeqzwdx0zkPPFA" entityName="VideoProcessingContext">
+    <innerDeclaration_CompositeDataType entityName="encryptedVideo" datatype_InnerDeclaration="_lcqaQIiNEemd3YbtesF-Rw"/>
+    <innerDeclaration_CompositeDataType entityName="encryptedMetaData" datatype_InnerDeclaration="_lcqaQIiNEemd3YbtesF-Rw"/>
+    <innerDeclaration_CompositeDataType entityName="encryptedKey" datatype_InnerDeclaration="_lcqaQIiNEemd3YbtesF-Rw"/>
+    <innerDeclaration_CompositeDataType entityName="metaData" datatype_InnerDeclaration="_lcqaQIiNEemd3YbtesF-Rw"/>
+    <innerDeclaration_CompositeDataType entityName="anonymizedVideo" datatype_InnerDeclaration="_lcqaQIiNEemd3YbtesF-Rw"/>
+    <innerDeclaration_CompositeDataType entityName="targetVideoId">
+      <datatype_InnerDeclaration xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+    </innerDeclaration_CompositeDataType>
+    <innerDeclaration_CompositeDataType entityName="userId">
+      <datatype_InnerDeclaration xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+    </innerDeclaration_CompositeDataType>
+    <innerDeclaration_CompositeDataType entityName="decryptedVideo" datatype_InnerDeclaration="_lcqaQIiNEemd3YbtesF-Rw"/>
+  </dataTypes__Repository>
+  <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_8JwW7ZUTEeq9a9_JJhpSCw" entityName="Response"/>
+  <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_8_dBHZUZEeq9a9_JJhpSCw" entityName="Session"/>
+  <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_JcBaDZUbEeq9a9_JJhpSCw" entityName="StreamResource"/>
+  <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_QvzwvZUbEeq9a9_JJhpSCw" entityName="Video"/>
+  <dataTypes__Repository xsi:type="repository:CollectionDataType" id="_R9OmHJUbEeq9a9_JJhpSCw" entityName="VideoCollection" innerType_CollectionDataType="_QvzwvZUbEeq9a9_JJhpSCw"/>
+</repository:Repository>

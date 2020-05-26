@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resourceenvironment:ResourceEnvironment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" entityName="New ResourceEnvironment">
+  <linkingResources__ResourceEnvironment id="_vEnUoI7IEeqzwdx0zkPPFA" entityName="Internet" connectedResourceContainers_LinkingResource="_ffjrUI7IEeqzwdx0zkPPFA _oQJXMI7IEeqzwdx0zkPPFA _rKMtgI7IEeqzwdx0zkPPFA _tRP5kI7IEeqzwdx0zkPPFA">
+    <communicationLinkResourceSpecifications_LinkingResource id="_vEnUoY7IEeqzwdx0zkPPFA">
+      <communicationLinkResourceType_CommunicationLinkResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_o3sScH2AEdyH8uerKnHYug"/>
+      <latency_CommunicationLinkResourceSpecification specification="1"/>
+      <throughput_CommunicationLinkResourceSpecification specification="1"/>
+    </communicationLinkResourceSpecifications_LinkingResource>
+  </linkingResources__ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_ffjrUI7IEeqzwdx0zkPPFA" entityName="Trusted-Entity-Server"/>
+  <resourceContainer_ResourceEnvironment id="_oQJXMI7IEeqzwdx0zkPPFA" entityName="Persecution-Terminal"/>
+  <resourceContainer_ResourceEnvironment id="_rKMtgI7IEeqzwdx0zkPPFA" entityName="User-Phone"/>
+  <resourceContainer_ResourceEnvironment id="_tRP5kI7IEeqzwdx0zkPPFA" entityName="User-PC"/>
+</resourceenvironment:ResourceEnvironment>

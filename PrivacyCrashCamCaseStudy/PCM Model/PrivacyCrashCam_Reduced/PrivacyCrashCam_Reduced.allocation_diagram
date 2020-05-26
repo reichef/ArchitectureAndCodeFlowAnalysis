@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//allocation http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//resourceenvironment" xmi:id="_CZKHcI7JEeqzwdx0zkPPFA" type="allocation" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_CckAwI7JEeqzwdx0zkPPFA" type="2003" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Cckn0I7JEeqzwdx0zkPPFA" type="5008"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Cckn0Y7JEeqzwdx0zkPPFA" type="7003">
+      <children xmi:type="notation:Shape" xmi:id="_D-r60I7JEeqzwdx0zkPPFA" type="3002" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_D-r60o7JEeqzwdx0zkPPFA" type="5006"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_D-r6047JEeqzwdx0zkPPFA" type="5007"/>
+        <element xmi:type="allocation:AllocationContext" href="PrivacyCrashCam_Reduced.allocation#_DSCQMI7JEeqzwdx0zkPPFA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D-r60Y7JEeqzwdx0zkPPFA" x="81" y="6"/>
+      </children>
+    </children>
+    <element xmi:type="resourceenvironment:ResourceContainer" href="PrivacyCrashCam_Reduced.resourceenvironment#_ffjrUI7IEeqzwdx0zkPPFA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CckAwY7JEeqzwdx0zkPPFA" x="45" y="320"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Cckn0o7JEeqzwdx0zkPPFA" type="2003" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Cckn1I7JEeqzwdx0zkPPFA" type="5008"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Cckn1Y7JEeqzwdx0zkPPFA" type="7003">
+      <children xmi:type="notation:Shape" xmi:id="_GmeccI7JEeqzwdx0zkPPFA" type="3002" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_Gmecco7JEeqzwdx0zkPPFA" type="5006"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_Gmecc47JEeqzwdx0zkPPFA" type="5007"/>
+        <element xmi:type="allocation:AllocationContext" href="PrivacyCrashCam_Reduced.allocation#_GNcRYI7JEeqzwdx0zkPPFA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GmeccY7JEeqzwdx0zkPPFA" x="74"/>
+      </children>
+    </children>
+    <element xmi:type="resourceenvironment:ResourceContainer" href="PrivacyCrashCam_Reduced.resourceenvironment#_oQJXMI7IEeqzwdx0zkPPFA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cckn047JEeqzwdx0zkPPFA" x="60" y="170"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Cckn1o7JEeqzwdx0zkPPFA" type="2003" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Cckn2I7JEeqzwdx0zkPPFA" type="5008"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Cckn2Y7JEeqzwdx0zkPPFA" type="7003">
+      <children xmi:type="notation:Shape" xmi:id="_H24UYI7JEeqzwdx0zkPPFA" type="3002" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_H24UYo7JEeqzwdx0zkPPFA" type="5006"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_H24UY47JEeqzwdx0zkPPFA" type="5007"/>
+        <element xmi:type="allocation:AllocationContext" href="PrivacyCrashCam_Reduced.allocation#_HM3HAI7JEeqzwdx0zkPPFA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_H24UYY7JEeqzwdx0zkPPFA" x="45" y="13"/>
+      </children>
+    </children>
+    <element xmi:type="resourceenvironment:ResourceContainer" href="PrivacyCrashCam_Reduced.resourceenvironment#_rKMtgI7IEeqzwdx0zkPPFA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cckn147JEeqzwdx0zkPPFA" x="75" y="30" width="451" height="86"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Cckn2o7JEeqzwdx0zkPPFA" type="2003" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Cckn3I7JEeqzwdx0zkPPFA" type="5008"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Cckn3Y7JEeqzwdx0zkPPFA" type="7003">
+      <children xmi:type="notation:Shape" xmi:id="_Jr-NwI7JEeqzwdx0zkPPFA" type="3002" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_Jr-Nwo7JEeqzwdx0zkPPFA" type="5006"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_Jr-Nw47JEeqzwdx0zkPPFA" type="5007"/>
+        <element xmi:type="allocation:AllocationContext" href="PrivacyCrashCam_Reduced.allocation#_JMnYQI7JEeqzwdx0zkPPFA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Jr-NwY7JEeqzwdx0zkPPFA" x="42" y="7"/>
+      </children>
+    </children>
+    <element xmi:type="resourceenvironment:ResourceContainer" href="PrivacyCrashCam_Reduced.resourceenvironment#_tRP5kI7IEeqzwdx0zkPPFA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cckn247JEeqzwdx0zkPPFA" x="620" y="65"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_CZKHcY7JEeqzwdx0zkPPFA"/>
+  <element xmi:type="allocation:Allocation" href="PrivacyCrashCam_Reduced.allocation#_5S2DMI7IEeqzwdx0zkPPFA"/>
+</notation:Diagram>
