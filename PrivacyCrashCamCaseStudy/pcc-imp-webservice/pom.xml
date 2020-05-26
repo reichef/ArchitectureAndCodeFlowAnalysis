@@ -147,11 +147,6 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4jVersion}</version>
         </dependency>
-        <dependency>
-            <groupId>edu.kit.joana</groupId>
-            <artifactId>annotations</artifactId>
-            <version>1.0</version>
-        </dependency>
     </dependencies>
 
     <build>

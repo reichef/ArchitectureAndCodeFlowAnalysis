@@ -23,6 +23,7 @@ class PCM2JOANAModelTransformator {
 	PCM2SourceCodeCorrespondenceResolver resolver;
 	
 	new(PCM2SourceCodeCorrespondenceResolver resolver){
+		this.resolver = resolver;
 		jRoot = JOANAFactory.eINSTANCE.createJOANARoot;
 	}
 	
@@ -38,7 +39,7 @@ class PCM2JOANAModelTransformator {
 		source.interface = resolver.getInterface(providedRole.providedInterface__OperationProvidedRole);
 		source.method = resolver.getMethod(signature);
 		
-		var joanaCLISource = new Method(source.class.name, source.method.name);
+		var joanaCLISource = new Method(source.class_.name, source.method.name);
 		association.associate(source.method.id, joanaCLISource);
 		
 		flowSpec.source.add(source);

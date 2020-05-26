@@ -16,14 +16,15 @@ public class JOANAAnalyzer {
 	private JOANAModelToAnalysisTransformer transformer;
 
 	
-	public JOANAAnalyzer(Association association) {
+	public JOANAAnalyzer() {
 		this.analyzer = new BasicFlowAnalyzer();
-		this.transformer = new JOANAModelToAnalysisTransformer(association);
+		this.transformer = new JOANAModelToAnalysisTransformer();
 	}
 	
-	public Flows analyzeFlow(FlowSpecification flowSpec, String classPath) {
-		List<Method> sources = transformer.transformSourcesOfFlowSpecToJOANAMethods(flowSpec);
-		List<Method> sinks = transformer.transformSinksOfFlowSpecToJOANASourcesFormat(flowSpec);
+	public Flows analyzeFlow(FlowSpecification flowSpec, Association association, String classPath) {
+		List<Method> sources = transformer.transformSourcesOfFlowSpecToJOANAMethods(flowSpec, association);
+		List<Method> sinks = transformer.transformSinksOfFlowSpecToJOANASourcesFormat(flowSpec, association);
+		analyzer = new BasicFlowAnalyzer(association, false);
 		analyzer.setClassPath(classPath);
 		
 		return analyzer.analyze(sources, sinks);

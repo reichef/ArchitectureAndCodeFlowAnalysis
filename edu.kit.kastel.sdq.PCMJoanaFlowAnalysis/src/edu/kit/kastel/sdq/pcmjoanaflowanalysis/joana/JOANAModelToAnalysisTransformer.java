@@ -12,13 +12,7 @@ import edu.kit.joana.ui.ifc.wala.console.console.component_based.Method;
 
 public class JOANAModelToAnalysisTransformer {
 
-	private Association association;
-	
-	public JOANAModelToAnalysisTransformer(Association association) {
-		this.association = association;
-	}
-
-	public List<Method> transformSourcesOfFlowSpecToJOANAMethods(FlowSpecification flowSpec) {
+	public List<Method> transformSourcesOfFlowSpecToJOANAMethods(FlowSpecification flowSpec, Association association) {
 		List<Method> sources = new ArrayList<Method>();
 		
 		for(Source source : flowSpec.getSource()) {
@@ -28,7 +22,7 @@ public class JOANAModelToAnalysisTransformer {
 		return sources;
 	}
 	
-	public List<Method> transformSinksOfFlowSpecToJOANASourcesFormat(FlowSpecification flowSpec){
+	public List<Method> transformSinksOfFlowSpecToJOANASourcesFormat(FlowSpecification flowSpec, Association association){
 		List<Method> sinks = new ArrayList<Method>();
 		
 		for(Sink sink : flowSpec.getSink()) {

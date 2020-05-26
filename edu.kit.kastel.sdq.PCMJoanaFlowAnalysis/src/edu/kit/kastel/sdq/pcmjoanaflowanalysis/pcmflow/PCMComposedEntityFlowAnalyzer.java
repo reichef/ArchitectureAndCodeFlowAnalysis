@@ -76,7 +76,7 @@ public class PCMComposedEntityFlowAnalyzer {
 
 		AssemblyContext representationContext = representation.getContext();
 		//Call JOANA via coupler
-		Collection<String> methodIDsOfFlows = coupler.analyzeIntraComponentFlow(representationContext.getEncapsulatedComponent__AssemblyContext(), sourceFlowRole, sourceSignature, "");
+		Collection<String> methodIDsOfFlows = coupler.analyzeIntraComponentFlow(representationContext.getEncapsulatedComponent__AssemblyContext(), sourceFlowRole, sourceSignature, representation.getClassPath().orElseThrow());
 		
 		SignatureIdentifyingRoleElement<OperationProvidedRole> sourceIdentifying = new SignatureIdentifyingRoleElement<OperationProvidedRole>(representationContext.getEncapsulatedComponent__AssemblyContext(), sourceFlowRole, sourceSignature);
 		IntraComponentFlow intraComponentFlow = new IntraComponentFlow(sourceIdentifying);

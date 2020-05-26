@@ -15,6 +15,7 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import JOANA.FlowSpecification;
 import edu.kit.joana.ui.ifc.wala.console.console.component_based.Association;
+import edu.kit.joana.ui.ifc.wala.console.console.component_based.FlowAnalyzer;
 import edu.kit.joana.ui.ifc.wala.console.console.component_based.Flows;
 import edu.kit.joana.ui.ifc.wala.console.console.component_based.Method;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
@@ -33,6 +34,7 @@ public class AnalysisCoupler {
 	public AnalysisCoupler() {
 		Map<Method, Set<Method>> flows = new HashMap<Method, Set<Method>>();
 		this.pcm2SourceCode = new StructuralModelGeneratorPCMToSourceCode();
+		sourceCodeAnalyzer = new JOANAAnalyzer();
 	}
 	
 	public Set<String> analyzeIntraComponentFlow(RepositoryComponent component, OperationProvidedRole sourceRole, OperationSignature sourceSignature,  String classPath) {
@@ -47,7 +49,8 @@ public class AnalysisCoupler {
 		Pair<FlowSpecification,Association> flowInformation = pcm2Joana.generateFlowForProvidedOperationAndComponent(sourceRole, sourceSignature, component);
 		
 		//run JOANA-Analysis
-		Flows joanaFlowsResults = sourceCodeAnalyzer.analyzeFlow(flowInformation.getFirst(), classPath);
+		
+		Flows joanaFlowsResults = sourceCodeAnalyzer.analyzeFlow(flowInformation.getFirst(), flowInformation.getSecond(), classPath);
 		
 		//transform SourceCode Analysis Results back to PCM-Information
 		//TODO: Potentially also possible to already create here SignatureIdentifying

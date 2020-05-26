@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecoreannotations:AnnotationRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecoreannotations="http://www.example.org/ecoreannotations" id="1">
-  <Annotations xsi:type="ecoreannotations:GenericTargetStringContentAnnotation" id="_HetJ4JkaEeqezeCtCoXZqw" content="C:\Users\Frederik Reiche\git\KASTEL_SVI\kastel-svi-methodik-demonstrator\pcc-imp-webservice" AnnotationType="ClassPath">
+  <Annotations xsi:type="ecoreannotations:GenericTargetStringContentAnnotation" id="_HetJ4JkaEeqezeCtCoXZqw" content="C:\Users\Frederik Reiche\git\Diss\ArchitectureAndCodeFlowAnalysis\PrivacyCrashCamCaseStudy\pcc-imp-webservice\" AnnotationType="ClassPath">
     <Target href="PrivacyCrashCam_Reduced.repository#_hmihkI6qEeqzwdx0zkPPFA"/>
   </Annotations>
-  <Annotations xsi:type="ecoreannotations:GenericTargetStringContentAnnotation" id="_da5UYJkaEeqezeCtCoXZqw" content="C:\Users\Frederik Reiche\git\KASTEL_SVI\kastel-svi-methodik-demonstrator\pcc-imp-webinterface-prosecution" AnnotationType="ClassPath">
+  <Annotations xsi:type="ecoreannotations:GenericTargetStringContentAnnotation" id="_da5UYJkaEeqezeCtCoXZqw" content="C:\Users\Frederik Reiche\git\Diss\ArchitectureAndCodeFlowAnalysis\PrivacyCrashCamCaseStudy\pcc-imp-webinterface-prosecution\target\pcc-interface-prosecution-1.0-SNAPSHOT\WEB-INF\classes" AnnotationType="ClassPath">
     <Target href="PrivacyCrashCam_Reduced.repository#_YrCJkJUVEeq9a9_JJhpSCw"/>
   </Annotations>
 </ecoreannotations:AnnotationRepository>

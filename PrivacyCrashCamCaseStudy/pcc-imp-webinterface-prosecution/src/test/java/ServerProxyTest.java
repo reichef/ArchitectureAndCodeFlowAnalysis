@@ -31,24 +31,24 @@ public class ServerProxyTest {
 
     // Tests with a wrong Account
 
-    @Test
-    public void authenticateWrongAccountTest() {
-        assertEquals(ServerProxy.authenticateUser(account), NOTEXISTING);
-    }
-
-    @Test
-    public void createAccountFailTest() {
-        assertEquals(ServerProxy.createAccount(account), FAILURE);
-    }
-
-    @Test
-    public void changeAccountWrongAccountTest() {
-        assertEquals(ServerProxy.changeAccount(account, account), WRONGACCOUNT);
-    }
-
-    @Test
-    public void deleteAccountWrongAccountTest() {
-        assertEquals(ServerProxy.deleteAccount(token), WRONGACCOUNT);
-    }
+//    @Test
+//    public void authenticateWrongAccountTest() {
+//        assertEquals(ServerProxy.authenticateUser(account), NOTEXISTING);
+//    }
+//
+//    @Test
+//    public void createAccountFailTest() {
+//        assertEquals(ServerProxy.createAccount(account), FAILURE);
+//    }
+//
+//    @Test
+//    public void changeAccountWrongAccountTest() {
+//        assertEquals(ServerProxy.changeAccount(account, account), WRONGACCOUNT);
+//    }
+//
+//    @Test
+//    public void deleteAccountWrongAccountTest() {
+//        assertEquals(ServerProxy.deleteAccount(token), WRONGACCOUNT);
+//    }
 
 }
