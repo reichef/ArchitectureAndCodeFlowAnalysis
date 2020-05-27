@@ -143,7 +143,7 @@ public class DataStructureBuilder {
 			for (AssemblyConnector connector : connectors) {
 
 				AssemblyComponent target = getEncapsulatingComponent(
-						connector.getProvidingAssemblyContext_AssemblyConnector()).orElseThrow();
+						connector.getProvidingAssemblyContext_AssemblyConnector()).get();
 				if (!representation.getId().equals(target.getId())) {
 					AssemblyConnectorRepresentation connectorRepresentation = new AssemblyConnectorRepresentation(
 							connector, representation, target);
@@ -159,7 +159,7 @@ public class DataStructureBuilder {
 
 			for (AssemblyConnector connector : connectors) {
 				AssemblyComponent target = getEncapsulatingComponent(
-						connector.getProvidingAssemblyContext_AssemblyConnector()).orElseThrow();
+						connector.getProvidingAssemblyContext_AssemblyConnector()).get();
 
 				if (!representation.getId().equals(target.getId())) {
 					AssemblyConnectorRepresentation connectorRepresentation = new AssemblyConnectorRepresentation(
@@ -177,7 +177,7 @@ public class DataStructureBuilder {
 				if (connector instanceof ProvidedDelegationConnector) {
 					ProvidedDelegationConnector tmp = (ProvidedDelegationConnector) connector;
 					AssemblyComponent innerRepresentation = getEncapsulatingComponent(
-							tmp.getAssemblyContext_ProvidedDelegationConnector()).orElseThrow();
+							tmp.getAssemblyContext_ProvidedDelegationConnector()).get();
 
 					CompositeConnectorRepresentation connectorRepresentation = new CompositeConnectorRepresentation(tmp,
 							representation, innerRepresentation);
@@ -188,7 +188,7 @@ public class DataStructureBuilder {
 				if (connector instanceof RequiredDelegationConnector) {
 					RequiredDelegationConnector tmp = (RequiredDelegationConnector) connector;
 					AssemblyComponent innerRepresentation = getEncapsulatingComponent(
-							tmp.getAssemblyContext_RequiredDelegationConnector()).orElseThrow();
+							tmp.getAssemblyContext_RequiredDelegationConnector()).get();
 
 					CompositeConnectorRepresentation connectorRepresentation = new CompositeConnectorRepresentation(tmp,
 							representation, innerRepresentation);

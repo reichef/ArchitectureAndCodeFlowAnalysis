@@ -14,10 +14,8 @@ import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import JOANA.FlowSpecification;
-import edu.kit.joana.ui.ifc.wala.console.console.component_based.Association;
-import edu.kit.joana.ui.ifc.wala.console.console.component_based.FlowAnalyzer;
-import edu.kit.joana.ui.ifc.wala.console.console.component_based.Flows;
-import edu.kit.joana.ui.ifc.wala.console.console.component_based.Method;
+import edu.kit.joana.component.connector.Flows;
+import edu.kit.joana.component.connector.Method;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana.JOANAAnalyzer;
 

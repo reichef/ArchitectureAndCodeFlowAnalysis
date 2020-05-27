@@ -11,10 +11,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.palladiosimulator.pcm.repository.OperationSignature
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.palladiosimulator.pcm.repository.RepositoryComponent
-import edu.kit.joana.ui.ifc.wala.console.console.component_based.Association
-import edu.kit.joana.ui.ifc.wala.console.console.component_based.Method
 import java.util.Collection
 import java.util.HashSet
+import edu.kit.joana.component.connector.Method
 
 class PCM2JOANAModelTransformator {
 	

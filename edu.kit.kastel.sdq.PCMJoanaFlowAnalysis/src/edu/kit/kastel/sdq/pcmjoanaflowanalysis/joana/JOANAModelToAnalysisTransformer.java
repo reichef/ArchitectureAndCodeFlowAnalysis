@@ -7,8 +7,8 @@ import JOANA.FlowSpecification;
 import JOANA.ParameterSink;
 import JOANA.Sink;
 import JOANA.Source;
-import edu.kit.joana.ui.ifc.wala.console.console.component_based.Association;
-import edu.kit.joana.ui.ifc.wala.console.console.component_based.Method;
+import edu.kit.joana.component.connector.Method;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.Association;
 
 public class JOANAModelToAnalysisTransformer {
 

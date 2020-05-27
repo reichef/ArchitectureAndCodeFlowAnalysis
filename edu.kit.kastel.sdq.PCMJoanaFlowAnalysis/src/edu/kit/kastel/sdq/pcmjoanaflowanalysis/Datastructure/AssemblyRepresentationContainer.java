@@ -71,7 +71,7 @@ public abstract class AssemblyRepresentationContainer {
 	
 	public Optional<String> getClassPath() {
 		String classPath = getAnnotation("ClassPath");
-		if(classPath.isBlank()) {
+		if(classPath.isEmpty()) {
 			return Optional.empty();
 		}
 		

@@ -45,7 +45,7 @@ class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHandler{
 		val list = getFilteredList(selection);
 		
 		if(list.present){
-			executeFlowAnalysis(list.orElseThrow);
+			executeFlowAnalysis(list.get);
 		}
 	}
 	
