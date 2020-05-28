@@ -56,9 +56,9 @@ public class VideoDataManager{
            
 		
 			int userId = communicator.getUserIdForVideoId(videoID, token);
-				if(userId == -1) {
-					return null;
-				}		
+			if(userId == -1) {
+				return null;
+			}		
 				InputStream stream = communicator.getConfidentialVideo(videoID, userId, token);
 		
 

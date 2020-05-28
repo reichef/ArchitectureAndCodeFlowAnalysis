@@ -9,9 +9,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+
 import JOANA.FlowSpecification;
 import edu.kit.joana.component.connector.Flows;
 import edu.kit.joana.component.connector.JoanaCall;
+import edu.kit.joana.component.connector.JoanaCallReturn;
 import edu.kit.joana.component.connector.Method;
 
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.Association;
@@ -44,50 +51,75 @@ public class JOANAAnalyzer {
 		}
 		
 		call.storeWithClassPath(tmpFile);
-		
-		System.out.println(tmpFile.toAbsolutePath());
-		//Runtime runtime = Runtime.getRuntime();
-		boolean isWindows = System.getProperty("os.name")
-				  .toLowerCase().startsWith("windows");
-		
-		
+		System.out.println(tmpFile);
 		ProcessBuilder processBuilder = new ProcessBuilder();
-		processBuilder.directory(new File("C:\\Users\\Frederik Reiche\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\edu.kit.kastel.sdq.PCMJoanaFlowAnalysis"));
+		processBuilder.directory(new File("C:\\Users\\Frederik Reiche\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\edu.kit.kastel.sdq.PCMJoanaFlowAnalysis\\"));
+		
+		System.out.println(processBuilder.directory().getAbsolutePath());
+		
 		try {
 		processBuilder.command(
-				"java", "-cp", "joana.ui.ifc.wala.console.jar" , "edu.kit.joana.ui.ifc.wala.console.console.component_based.CLI analyze", tmpFile.toAbsolutePath().toString(), "helloWorld");
+//				"cmd.exe",
+//				"/c",
+//				"dir"
+				"java",
+				"-cp", 
+				"joana.ui.ifc.wala.console.jar" , 
+				"edu.kit.joana.ui.ifc.wala.console.console.component_based.CLI",
+				"analyze", 
+				tmpFile.toAbsolutePath().toString(), 
+				"helloWorld.json"
+				);
+		
 		Process process = processBuilder.start();
 		
-
-		StringBuilder output = new StringBuilder();
-		BufferedReader reader = new BufferedReader(
+		BufferedReader errorReader = new BufferedReader(
+				new InputStreamReader(process.getErrorStream()));
+		
+		BufferedReader inputReader = new BufferedReader(
 				new InputStreamReader(process.getInputStream()));
 		
-		String line;
-		while ((line = reader.readLine()) != null) {
-			output.append(line + "\n");
-		}
+		new Thread(() -> {
+			  String line = null;
+			  while (true) {
+			    try {
+			      if (!((line = errorReader.readLine()) != null))
+			        break;
+			    } catch (IOException e) {
+			      e.printStackTrace();
+			    }
+			    System.err.println(line);
+			  }
+			}).run();
+			new Thread(() -> {
+			  String line = null;
+			  while (true) {
+			    try {
+			      if (!((line = inputReader.readLine()) != null))
+			        break;
+			    } catch (IOException e) {
+			      e.printStackTrace();
+			    }
+			    System.out.println(line);
+			  }
+			}).run();
 
 		int exitVal = process.waitFor();
 		
-		if (exitVal == 0) {
-			System.out.println("Success!");
-			System.out.println(output);
-			System.exit(0);
-		} else {
-			//abnormal...
-		}
-		
 		
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("IOException");
 			e.printStackTrace();
 		} catch (InterruptedException e) {
+			System.out.println("InterruptedException");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			
 		}
+		
+//		JoanaCallReturn callReturn = new JoanaCallReturn(new Flows());
+//		JoanaCallReturn.load(Paths.get("helloWorld.json"));
 		
 		
 //		analyzer = new BasicFlowAnalyzer(association, false);

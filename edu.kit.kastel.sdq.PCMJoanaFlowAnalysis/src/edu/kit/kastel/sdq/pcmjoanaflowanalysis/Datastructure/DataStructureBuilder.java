@@ -44,7 +44,7 @@ public class DataStructureBuilder {
 		
 		fillRepresentationWithCompositeConnectors(systemRepresentation, system);
 		systemRepresentation.fillWithClassPath(annotationRepository, Optional.empty());
-		systemRepresentation.printRepresentation();
+//		systemRepresentation.printRepresentation();
 		
 		
 		
