@@ -14,13 +14,14 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.eclipse.core.runtime.IPath;
 
 import JOANA.FlowSpecification;
 import edu.kit.joana.component.connector.Flows;
 import edu.kit.joana.component.connector.JoanaCall;
 import edu.kit.joana.component.connector.JoanaCallReturn;
 import edu.kit.joana.component.connector.Method;
-
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.Association;
 
 
@@ -29,13 +30,21 @@ public class JOANAAnalyzer {
 
 	
 	private JOANAModelToAnalysisTransformer transformer;
-
+	private Config config;
+	private static final String EXECTUING_JOANA_JAR_NAME = "joana.ui.ifc.wala.console.jar";
 	
-	public JOANAAnalyzer() {
+	public JOANAAnalyzer(Config config) {
 		this.transformer = new JOANAModelToAnalysisTransformer();
+		this.config = config;
 	}
 	
 	public Flows analyzeFlow(FlowSpecification flowSpec, Association association, String classPath) {
+		
+		if(!Paths.get(config.getJoanaCLIFolderPath() + IPath.SEPARATOR + EXECTUING_JOANA_JAR_NAME).toFile().exists()) {
+			throw new RuntimeException("JOANA jar not on specified location");
+		}
+		
+		
 		List<Method> sources = transformer.transformSourcesOfFlowSpecToJOANAMethods(flowSpec, association);
 		List<Method> sinks = transformer.transformSinksOfFlowSpecToJOANASourcesFormat(flowSpec, association);
 	
@@ -53,9 +62,11 @@ public class JOANAAnalyzer {
 		call.storeWithClassPath(tmpFile);
 		System.out.println(tmpFile);
 		ProcessBuilder processBuilder = new ProcessBuilder();
-		processBuilder.directory(new File("C:\\Users\\Frederik Reiche\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\edu.kit.kastel.sdq.PCMJoanaFlowAnalysis\\"));
+		processBuilder.directory(Paths.get(config.getJoanaCLIFolderPath()).toFile());
 		
 		System.out.println(processBuilder.directory().getAbsolutePath());
+		
+		
 		
 		try {
 		processBuilder.command(
@@ -64,11 +75,11 @@ public class JOANAAnalyzer {
 //				"dir"
 				"java",
 				"-cp", 
-				"joana.ui.ifc.wala.console.jar" , 
+				EXECTUING_JOANA_JAR_NAME , 
 				"edu.kit.joana.ui.ifc.wala.console.console.component_based.CLI",
 				"analyze", 
 				tmpFile.toAbsolutePath().toString(), 
-				"helloWorld.json"
+				config.getJoanaOutputFolderPath() + "helloWorld.json"
 				);
 		
 		Process process = processBuilder.start();

@@ -16,6 +16,7 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import JOANA.FlowSpecification;
 import edu.kit.joana.component.connector.Flows;
 import edu.kit.joana.component.connector.Method;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana.JOANAAnalyzer;
 
@@ -29,10 +30,10 @@ public class AnalysisCoupler {
 	
 	
 	
-	public AnalysisCoupler() {
+	public AnalysisCoupler(Config config) {
 		Map<Method, Set<Method>> flows = new HashMap<Method, Set<Method>>();
 		this.pcm2SourceCode = new StructuralModelGeneratorPCMToSourceCode();
-		sourceCodeAnalyzer = new JOANAAnalyzer();
+		sourceCodeAnalyzer = new JOANAAnalyzer(config);
 	}
 	
 	public Set<String> analyzeIntraComponentFlow(RepositoryComponent component, OperationProvidedRole sourceRole, OperationSignature sourceSignature,  String classPath) {

@@ -1,0 +1,5 @@
+{
+    "@type": "edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config",
+    "joanaCLIFolderPath": "C:\\Users\\Frederik Reiche\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\edu.kit.kastel.sdq.PCMJoanaFlowAnalysis",
+    "joanaOutputFolderPath": "C:\\Users\\Frederik Reiche\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\edu.kit.kastel.sdq.PCMJoanaFlowAnalysis"
+}

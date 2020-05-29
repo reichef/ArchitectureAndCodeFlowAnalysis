@@ -26,6 +26,7 @@ import JOANA.MethodIdentifying;
 
 import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.ElementCorrespondences;
 import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.SourceCodeRoot;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.AssemblyComponent;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.AssemblyConnectorRepresentation;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.AssemblyRepresentationContainer;
@@ -42,8 +43,8 @@ public class PCMComposedEntityFlowAnalyzer {
 	private Collection<IntraComponentFlow> completeFlows;
 	private Collection<AssemblyComponent> representation;
 	
-	public PCMComposedEntityFlowAnalyzer() {
-		this.coupler = new AnalysisCoupler();
+	public PCMComposedEntityFlowAnalyzer(Config config) {
+		this.coupler = new AnalysisCoupler(config);
 		this.completeFlows = new HashSet<IntraComponentFlow>();
 	}
 	
