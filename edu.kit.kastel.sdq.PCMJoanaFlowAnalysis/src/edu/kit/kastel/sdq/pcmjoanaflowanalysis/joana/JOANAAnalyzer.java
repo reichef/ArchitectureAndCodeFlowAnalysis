@@ -9,11 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
 import org.eclipse.core.runtime.IPath;
 
 import JOANA.FlowSpecification;
@@ -31,7 +26,7 @@ public class JOANAAnalyzer {
 	
 	private JOANAModelToAnalysisTransformer transformer;
 	private Config config;
-	private static final String EXECTUING_JOANA_JAR_NAME = "joana.ui.ifc.wala.console.jar";
+	private static final String EXECUTING_JOANA_JAR_NAME = "joana.ui.ifc.wala.console.jar";
 	
 	public JOANAAnalyzer(Config config) {
 		this.transformer = new JOANAModelToAnalysisTransformer();
@@ -40,7 +35,7 @@ public class JOANAAnalyzer {
 	
 	public Flows analyzeFlow(FlowSpecification flowSpec, Association association, String classPath) {
 		
-		if(!Paths.get(config.getJoanaCLIFolderPath() + IPath.SEPARATOR + EXECTUING_JOANA_JAR_NAME).toFile().exists()) {
+		if(!Paths.get(config.getJoanaCLIFolderPath() + IPath.SEPARATOR + EXECUTING_JOANA_JAR_NAME).toFile().exists()) {
 			throw new RuntimeException("JOANA jar not on specified location");
 		}
 		
@@ -66,20 +61,19 @@ public class JOANAAnalyzer {
 		
 		System.out.println(processBuilder.directory().getAbsolutePath());
 		
-		
+		String joanaResultReturnPath = config.getJoanaOutputFolderPath() 
+				+ IPath.SEPARATOR  
+				+ sources.get(0).className + "." + sources.get(0).methodName + JoanaCallReturn.FILE_ENDING;
 		
 		try {
 		processBuilder.command(
-//				"cmd.exe",
-//				"/c",
-//				"dir"
 				"java",
 				"-cp", 
-				EXECTUING_JOANA_JAR_NAME , 
+				EXECUTING_JOANA_JAR_NAME , 
 				"edu.kit.joana.ui.ifc.wala.console.console.component_based.CLI",
 				"analyze", 
 				tmpFile.toAbsolutePath().toString(), 
-				config.getJoanaOutputFolderPath() + "helloWorld.json"
+				joanaResultReturnPath
 				);
 		
 		Process process = processBuilder.start();
