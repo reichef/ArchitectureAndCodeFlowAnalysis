@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.eclipse.core.runtime.IPath;
 
@@ -45,7 +46,7 @@ public class JOANAAnalyzer {
 	
 		
 		
-		JoanaCall call = new JoanaCall(classPath, new Flows(), sources, sinks);
+		JoanaCall call = new JoanaCall(classPath, new Flows(), sources, sinks, Level.ALL);
 		Path tmpFile = null;
 		try {
 			tmpFile = Files.createTempFile("", ".zip");
