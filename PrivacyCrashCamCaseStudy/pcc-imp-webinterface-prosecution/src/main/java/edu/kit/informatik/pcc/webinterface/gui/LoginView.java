@@ -2,11 +2,15 @@ package edu.kit.informatik.pcc.webinterface.gui;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.PasswordField;
+import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
 import de.steinwedel.messagebox.MessageBox;
-import edu.kit.informatik.pcc.webinterface.datamanagement.AccountDataManager;
-
 import java.util.ResourceBundle;
 
 /**

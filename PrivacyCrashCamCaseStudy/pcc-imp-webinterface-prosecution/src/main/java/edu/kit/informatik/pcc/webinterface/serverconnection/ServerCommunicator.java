@@ -8,15 +8,8 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
-
 import javax.ws.rs.core.Response;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import de.steinwedel.messagebox.MessageBox;
-import edu.kit.informatik.pcc.webinterface.datamanagement.Video;
-import edu.kit.informatik.pcc.webinterface.serverconnection.ServerProxy.AuthenticateResult;
 
 public class ServerCommunicator implements JudgeAccess, PersecutionInformationProvision, IUserManagement{
 	private static final String FAILURE = "FAILURE";
@@ -26,7 +19,6 @@ public class ServerCommunicator implements JudgeAccess, PersecutionInformationPr
     public static final String NOTEXISTING = "NOT EXISTING";
     public static final String WRONGPASSWORD = "WRONG PASSWORD";
     private static ResourceBundle errors = ResourceBundle.getBundle("ErrorMessages");
-    private static ResourceBundle messages = ResourceBundle.getBundle("MessageBundle");
 
     
     
@@ -95,20 +87,6 @@ public class ServerCommunicator implements JudgeAccess, PersecutionInformationPr
 		
 	}
 	
-	 private int getUserId(String userIds) {
-	    	try {
-	    		JSONArray jsonArray = new JSONArray(userIds);
-	    		
-	    		if(jsonArray.length() != 0) {
-	    			return jsonArray.getInt(0);
-	    		}
-	    	} catch (JSONException e) {
-	            	e.printStackTrace();
-	        }
-	    	
-			return -1;
-	    }
-
 	@Override
 	public Boolean createAccount(String email, String password) {
 		

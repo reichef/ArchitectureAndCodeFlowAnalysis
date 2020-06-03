@@ -8,6 +8,7 @@ import edu.kit.informatik.pcc.webinterface.serverconnection.ServerCommunicator;
 import edu.kit.informatik.pcc.webinterface.serverconnection.ServerProxy;
 import edu.kit.informatik.pcc.webinterface.serverconnection.ServerProxy.AuthenticateResult;
 
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -36,7 +37,6 @@ public class AccountDataManager{
     private ServerCommunicator communicator;
     // message bundles
     private static ResourceBundle errors = ResourceBundle.getBundle("ErrorMessages");
-    private static ResourceBundle messages = ResourceBundle.getBundle("MessageBundle");
 
     //methods
 
@@ -48,7 +48,7 @@ public class AccountDataManager{
      * @param password password
      * @return true on success false else
      */
-    public boolean createAccount(String mail, String password, VaadinSession session) {
+    public boolean createAccount(String mail, String password) {
 
         if (!MailService.isValidEmailAddress(mail)) {
             MessageBox.createInfo()
@@ -64,14 +64,13 @@ public class AccountDataManager{
             return false;
         }
 
-        Account account = new Account(mail, password);
         Boolean accountCreated = communicator.createAccount(mail, password);
         
         if(accountCreated) {
-        	session.setAttribute("account", account);
-        }
+        	return true;
+        } 
         
-        return accountCreated;
+        return false;
     }
 
 
@@ -83,9 +82,8 @@ public class AccountDataManager{
      * @param password password
      * @return true on success false else
      */
-    public boolean authenticateAccount(String mail, String password, VaadinSession session) {
-        Account account = new Account(mail, password);
-        String token = communicator.login(account.getMail(), account.getPassword());
+    public Optional<String> authenticateAccount(String mail, String password) {
+        String token = communicator.login(mail, password);
 
         switch (token) {
             case NOTEXISTING:
@@ -105,91 +103,10 @@ public class AccountDataManager{
                            .open();
                    break;
             default:
-            	session.setAttribute(MyUI.SESSION_KEY_ACCOUNT, account);
-                session.setAttribute(MyUI.SESSION_TOKEN, token);
-                return true;
+                return Optional.ofNullable(token);
         }
 
-        return false;
-    }
-
-    /**
-     * This method checks if the password is correct and then changes the account data
-     * via the ServerProxy.
-     *
-     * @param mailNew new mail address
-     * @param passwordNew new password
-     * @param password password
-     * @return true on success false else
-     */
-    public boolean changeAccount(String password, String mailNew,
-                                        String passwordNew, VaadinSession session) {
-
-        if (passwordNew.length() == 0 && mailNew.length() == 0) {
-            MessageBox.createInfo()
-                    .withMessage(errors.getString("noChanges"))
-                    .open();
-            return false;
-        }
-
-        Account account = (Account) session.getAttribute("account");
-        Account newAccount = new Account(mailNew, passwordNew);
-
-        if (passwordNew.length() == 0) {
-            newAccount = new Account(mailNew, account.getPassword());
-        } else if (mailNew.length() == 0) {
-            newAccount = new Account(account.getMail(), passwordNew);
-        }
-
-        if (!MailService.isValidEmailAddress(newAccount.getMail())) {
-            MessageBox.createInfo()
-                    .withMessage(errors.getString("noLegitMail"))
-                    .open();
-            return false;
-        }
-
-        if (newAccount.getPassword().length() < PASSWORDMIN) {
-            MessageBox.createInfo()
-                    .withMessage(errors.getString("toShortPassword"))
-                    .open();
-            return false;
-        }
-
-        if (!password.equals(account.getPassword())) {
-            MessageBox.createInfo()
-                    .withMessage(errors.getString("wrongPassword"))
-                    .open();
-            return false;
-        }
-
-
-        return changeAccount(newAccount, session);
-
-        
-    }
-    
-    private boolean changeAccount(Account newAccount, VaadinSession session) {
-    	String changeResult = communicator.login(newAccount.getMail(), newAccount.getPassword());
-    	switch (changeResult) {
-        case WRONGACCOUNT:
-            MessageBox.createInfo()
-                    .withMessage(errors.getString("wrongAccount"))
-                    .open();
-            break;
-        case FAILURE:
-        	MessageBox.createInfo()
-            .withMessage(errors.getString("changeFail"))
-            .open();
-        	break;
-        default:
-            session.setAttribute(MyUI.SESSION_KEY_ACCOUNT, newAccount);
-        	session.setAttribute(MyUI.SESSION_TOKEN, changeResult);
-            MessageBox.createInfo()
-                    .withMessage(errors.getString("accountChanged"))
-                    .open();
-            return true;
-    }
-    return false;
+        return Optional.empty();
     }
 
     /**
@@ -197,14 +114,8 @@ public class AccountDataManager{
      *
      * @return true on success false else
      */
-    public boolean deleteAccount(VaadinSession session) {
-
-    	String token = (String) session.getAttribute(MyUI.SESSION_TOKEN);
-        Boolean accountDeleted = communicator.deleteAccount(token);
-        if(accountDeleted) {
-        	session.setAttribute("account", null);
-        }
-        return false;
+    public boolean deleteAccount(String sessionToken) {
+        return communicator.deleteAccount(sessionToken);
     }
 
 }

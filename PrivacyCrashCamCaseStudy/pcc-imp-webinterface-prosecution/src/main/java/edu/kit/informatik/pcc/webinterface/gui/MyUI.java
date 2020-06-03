@@ -9,6 +9,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import edu.kit.informatik.pcc.webinterface.datamanagement.Account;
+import edu.kit.informatik.pcc.webinterface.datamanagement.PersecutionWebinterface;
 import edu.kit.informatik.pcc.webinterface.gui.navigation.Menu;
 import edu.kit.informatik.pcc.webinterface.serverconnection.ServerCommunicator;
 

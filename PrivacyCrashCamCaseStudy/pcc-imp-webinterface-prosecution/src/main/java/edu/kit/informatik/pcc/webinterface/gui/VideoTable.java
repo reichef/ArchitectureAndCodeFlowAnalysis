@@ -6,8 +6,9 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Table;
 import de.steinwedel.messagebox.MessageBox;
+import edu.kit.informatik.pcc.webinterface.datamanagement.NamedInputStream;
+import edu.kit.informatik.pcc.webinterface.datamanagement.PersecutionWebinterface;
 import edu.kit.informatik.pcc.webinterface.datamanagement.Video;
-import edu.kit.informatik.pcc.webinterface.datamanagement.VideoDataManager;
 
 
 import java.util.LinkedList;
@@ -58,8 +59,10 @@ public class VideoTable extends Table {
         for (Video v : videos) {
           webInterface.setCurrentSession(getSession());
           Button confidentialVideoDownload = new Button(FontAwesome.DOWNLOAD);
-          FileDownloader confidentialVideoDownloader = new FileDownloader(
-                  webInterface.downloadVideo(v.getId(), v.getName()));
+          
+          NamedInputStream inputStream = webInterface.downloadVideo(v.getId(), v.getName());
+          
+          FileDownloader confidentialVideoDownloader = new FileDownloader(inputStream.toStreamResource());
           confidentialVideoDownloader.extend(confidentialVideoDownload);
 
             Button info = new Button(FontAwesome.INFO);

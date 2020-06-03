@@ -6,16 +6,19 @@ public class Config {
 	
 	private String joanaCLIFolderPath;
 	private String joanaOutputFolderPath;
+	private boolean usePersistedFlows;
 
 
-	public Config(String joanaCLIFolderString, String joanaOutputFolderString) {
+	public Config(String joanaCLIFolderString, String joanaOutputFolderString, boolean usePersistedFlows) {
 		this.setJoanaCLIFolderPath(joanaCLIFolderString);
 		this.setJoanaOutputFolderPath(joanaOutputFolderString);
+		this.setUsingPersistedFlows(usePersistedFlows);
 	}
 	
-	public Config(Path joanaCLIFolderString, Path joanaOutputFolderString) {
+	public Config(Path joanaCLIFolderString, Path joanaOutputFolderString, boolean usePersistedFlows) {
 		this.setJoanaCLIFolderPath(joanaCLIFolderString);
 		this.setJoanaOutputFolderPath(joanaOutputFolderString);
+		this.setUsingPersistedFlows(usePersistedFlows);
 	}
 
 
@@ -44,5 +47,13 @@ public class Config {
 	
 	public void setJoanaOutputFolderPath(Path joanaOutputFolderPath) {
 		this.joanaOutputFolderPath = joanaOutputFolderPath.toAbsolutePath().toString();
+	}
+
+	public boolean usingPersistedFlows() {
+		return usePersistedFlows;
+	}
+
+	public void setUsingPersistedFlows(boolean isUsingPersistedFlows) {
+		this.usePersistedFlows = isUsingPersistedFlows;
 	}
 }

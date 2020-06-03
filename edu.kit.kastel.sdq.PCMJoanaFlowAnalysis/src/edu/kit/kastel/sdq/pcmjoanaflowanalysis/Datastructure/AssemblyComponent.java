@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.RequiredDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
@@ -81,9 +82,9 @@ public class AssemblyComponent extends AssemblyRepresentationContainer {
 		Collection<AssemblyConnectorRepresentation> assemblyConnectors = new HashSet<AssemblyConnectorRepresentation>();
 		
 		for(IntraComponentFlow flow : flows) {
-			if(flow.getSource().identyfyingEquals(source.getComponent(), source.getRole(), source.getSignature())) {
+			if(flow.getSource().identyfyingEquals(source)) {
 				for(SignatureIdentifyingRoleElement<OperationRequiredRole> sink : flow.getSinks()) {
-					Optional<AssemblyConnectorRepresentation> sinkRepresentation = findAssemblyConnectorRepresentationForSink(sink);
+					Optional<AssemblyConnectorRepresentation> sinkRepresentation = getAssemblyConnectorRepresentationForSink(sink);
 					if(sinkRepresentation.isPresent()) {
 						assemblyConnectors.add(sinkRepresentation.get());
 					}
@@ -94,7 +95,7 @@ public class AssemblyComponent extends AssemblyRepresentationContainer {
 		return assemblyConnectors;
 	}
 	
-	private Optional<AssemblyConnectorRepresentation> findAssemblyConnectorRepresentationForSink(SignatureIdentifyingRoleElement<OperationRequiredRole> sink) {
+	public Optional<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentationForSink(SignatureIdentifyingRoleElement<OperationRequiredRole> sink) {
 		for(AssemblyConnectorRepresentation connectorRepresentation : assemblyConnectorRepresentation) {
 			if(sink.identyfyingEquals(connectorRepresentation.getRequiringContext().getEncapsulatedComponent__AssemblyContext(),
 					connectorRepresentation.getRequiredRole())) {
@@ -104,6 +105,14 @@ public class AssemblyComponent extends AssemblyRepresentationContainer {
 		
 		return Optional.empty();
 	}
+	
+//	public Optional<CompositeConnectorRepresentation> getDelegationConnectorRepresentationForRequiredRoleIdentifyingFromInnerRole(SignatureIdentifyingRoleElement<OperationRequiredRole> requiredIdentifying){
+//		for(CompositeConnectorRepresentation connectorRepresentation : compositeConnectorRepresentation) {
+//			if(requiredIdentifying.identyfyingEquals(connectorRepresentation.getInner().getContext().getEncapsulatedComponent__AssemblyContext(), ((RequiredDelegationConnector)connectorRepresentation.getConnector()).getInnerRequiredRole_RequiredDelegationConnector())) {
+//				
+//			}
+//		}
+//	}
 	
 	public boolean encapsulatedContextProvidesRole(OperationProvidedRole searchedRole) {
 		return context.getEncapsulatedComponent__AssemblyContext().getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(searchedRole.getId()));

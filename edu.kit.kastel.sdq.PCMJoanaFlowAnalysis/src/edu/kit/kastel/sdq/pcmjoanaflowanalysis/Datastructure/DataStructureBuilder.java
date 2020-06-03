@@ -183,6 +183,7 @@ public class DataStructureBuilder {
 							representation, innerRepresentation);
 					
 					representation.addCompositeConnector(connectorRepresentation);
+					innerRepresentation.addCompositeConnector(connectorRepresentation);
 				}
 
 				if (connector instanceof RequiredDelegationConnector) {
@@ -194,6 +195,7 @@ public class DataStructureBuilder {
 							representation, innerRepresentation);
 				
 					representation.addCompositeConnector(connectorRepresentation);
+					innerRepresentation.addCompositeConnector(connectorRepresentation);
 				}
 			
 		}

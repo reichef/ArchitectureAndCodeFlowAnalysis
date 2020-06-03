@@ -28,12 +28,16 @@ public class SignatureIdentifyingRoleElement<ConcreteRole extends Role> {
 	}
 	
 	
-	public boolean identyfyingEquals(RepositoryComponent component, ConcreteRole role) {
+	public boolean identyfyingEquals(RepositoryComponent component, Role role) {
 		return this.component.getId().equals(component.getId()) && this.role.getId().equals(role.getId());
 	}
 	
-	public boolean identyfyingEquals(RepositoryComponent component, ConcreteRole role, OperationSignature signature) {
+	public boolean identyfyingEquals(RepositoryComponent component, Role role, OperationSignature signature) {
 		return identyfyingEquals(component, role) && this.signature.getId().equals(signature.getId());
+	}
+	
+	public boolean identyfyingEquals(SignatureIdentifyingRoleElement signatureIdentifying) {
+		return identyfyingEquals(signatureIdentifying.getComponent(), signatureIdentifying.getRole(), signatureIdentifying.getSignature());
 	}
 	
 }

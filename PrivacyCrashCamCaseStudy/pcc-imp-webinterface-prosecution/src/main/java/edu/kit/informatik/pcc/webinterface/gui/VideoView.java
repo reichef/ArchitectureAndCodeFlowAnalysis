@@ -4,6 +4,8 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.VerticalLayout;
 
+import edu.kit.informatik.pcc.webinterface.datamanagement.PersecutionWebinterface;
+
 /**
  * This view shows the video table.
  *

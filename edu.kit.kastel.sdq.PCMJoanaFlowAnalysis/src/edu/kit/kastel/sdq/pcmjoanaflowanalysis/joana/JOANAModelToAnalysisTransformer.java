@@ -9,10 +9,11 @@ import JOANA.Sink;
 import JOANA.Source;
 import edu.kit.joana.component.connector.Method;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.Association;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.Associations;
 
 public class JOANAModelToAnalysisTransformer {
 
-	public List<Method> transformSourcesOfFlowSpecToJOANAMethods(FlowSpecification flowSpec, Association association) {
+	public List<Method> transformSourcesOfFlowSpecToJOANAMethods(FlowSpecification flowSpec, Associations association) {
 		List<Method> sources = new ArrayList<Method>();
 		
 		for(Source source : flowSpec.getSource()) {
@@ -22,7 +23,7 @@ public class JOANAModelToAnalysisTransformer {
 		return sources;
 	}
 	
-	public List<Method> transformSinksOfFlowSpecToJOANASourcesFormat(FlowSpecification flowSpec, Association association){
+	public List<Method> transformSinksOfFlowSpecToJOANASourcesFormat(FlowSpecification flowSpec, Associations association){
 		List<Method> sinks = new ArrayList<Method>();
 		
 		for(Sink sink : flowSpec.getSink()) {

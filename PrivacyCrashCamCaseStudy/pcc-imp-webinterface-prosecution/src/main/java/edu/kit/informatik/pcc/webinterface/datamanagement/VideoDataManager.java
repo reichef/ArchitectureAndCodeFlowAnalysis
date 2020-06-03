@@ -1,9 +1,7 @@
 package edu.kit.informatik.pcc.webinterface.datamanagement;
 
-import com.vaadin.server.StreamResource;
-import com.vaadin.server.VaadinSession;
 import de.steinwedel.messagebox.MessageBox;
-import edu.kit.informatik.pcc.webinterface.gui.MyUI;
+import edu.kit.informatik.pcc.webinterface.serverconnection.JudgeAccess;
 import edu.kit.informatik.pcc.webinterface.serverconnection.ServerCommunicator;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,7 +21,7 @@ import java.util.ResourceBundle;
  *
  * @author chris
  */
-public class VideoDataManager{
+public class VideoDataManager {
 
     private static final String SUCCESS = "SUCCESS";
     private static final String FAILURE = "FAILURE";
@@ -32,9 +30,11 @@ public class VideoDataManager{
     //attributes
     private static ResourceBundle errors = ResourceBundle.getBundle("ErrorMessages");
     private ServerCommunicator communicator;
+    private JudgeAccess judgeAccess;
     
     public VideoDataManager() {
     	this.communicator = new ServerCommunicator();
+    	this.judgeAccess = this.communicator;
     }
     
     public VideoDataManager(ServerCommunicator communicator) {
@@ -49,17 +49,13 @@ public class VideoDataManager{
      * @param videoName Video name of the file to download.
      * @return Returns a StreamResources used for the downloader.
      */
-    public StreamResource downloadVideo(int videoID, String videoName, VaadinSession session) {
-        return new StreamResource((StreamResource.StreamSource) () -> {
-            String token = (String) session.getAttribute(MyUI.SESSION_TOKEN);
-
-           
-		
-			int userId = communicator.getUserIdForVideoId(videoID, token);
+    public NamedInputStream downloadVideo(int videoID, String videoName, String sessionToken) {
+        
+			int userId = communicator.getUserIdForVideoId(videoID, sessionToken);
 			if(userId == -1) {
 				return null;
 			}		
-				InputStream stream = communicator.getConfidentialVideo(videoID, userId, token);
+				InputStream stream = judgeAccess.getConfidentialVideo(videoID, userId, sessionToken);
 		
 
             if (stream == null) {
@@ -68,20 +64,19 @@ public class VideoDataManager{
                         .open();
                 return null;
             }
-            return stream;
-        }, videoName + Video.EXTENSION);
+           
+            return new NamedInputStream(stream, videoName + Video.EXTENSION);
     }
 
     /**
      * This method updates the videos attribute by using methods to fetch
      * the data from the Server and parsing it.
      */
-    public LinkedList<Video> getVideos(VaadinSession session) {
-        String videoString = getVideosFromServer(session);
+    public LinkedList<Video> getVideos(String emailAddress, String sessionToken) {
+        String videoString = getVideosFromServer(sessionToken);
         if (videoString != null) {
-        	Account account = (Account) session.getAttribute(MyUI.SESSION_KEY_ACCOUNT);
-            LinkedList<Video> videos = createVideoList(videoString, account.getMail());
-            return addInfoToVideoList(videos, session);
+            LinkedList<Video> videos = createVideoList(videoString, emailAddress);
+            return addInfoToVideoList(videos, sessionToken);
         }
         return null;
     }
@@ -93,9 +88,9 @@ public class VideoDataManager{
      *
      * @return the videos as json string
      */
-    private String getVideosFromServer(VaadinSession session) {
-    	String token = (String) session.getAttribute(MyUI.SESSION_TOKEN);
-    	String ret = communicator.getAllVideoIds(token);
+    private String getVideosFromServer(String sessionToken) {
+    	//String token = (String) session.getAttribute(MyUI.SESSION_TOKEN);
+    	String ret = communicator.getAllVideoIds(sessionToken);
 
         switch (ret) {
             case WRONGACCOUNT:
@@ -141,7 +136,7 @@ public class VideoDataManager{
     /**
      * This method adds the meta-info to every video object in the list.
      */
-    private LinkedList<Video> addInfoToVideoList(LinkedList<Video> videos, VaadinSession session) {
+    private LinkedList<Video> addInfoToVideoList(LinkedList<Video> videos, String sessionToken) {
         LinkedList<Video> ret = new LinkedList<>();
 
         if (videos == null) {
@@ -152,7 +147,7 @@ public class VideoDataManager{
         }
 
         for (Video v : videos) {
-            String info = getMetaInfFromServer(v.getId(), session);
+            String info = getMetaInfFromServer(v.getId(), sessionToken);
             v.setInfo(info);
             ret.add(v);
         }
@@ -165,16 +160,15 @@ public class VideoDataManager{
      * @param videoID the id of the video to fetch the info from
      * @return the metainfo as string
      */
-    private String getMetaInfFromServer(int videoID, VaadinSession session) {
-    	String token = (String) session.getAttribute(MyUI.SESSION_TOKEN);
+    private String getMetaInfFromServer(int videoID, String sessionToken) {
     	
-    	int userId = communicator.getUserIdForVideoId(videoID, token);
+    	int userId = communicator.getUserIdForVideoId(videoID, sessionToken);
 	
 		if(userId == -1) {
 			return null;
 		}		
     	
-		String response = communicator.getMetaData(videoID, userId, token);
+		String response = communicator.getMetaData(videoID, userId, sessionToken);
         String ret;
 
         switch (response) {

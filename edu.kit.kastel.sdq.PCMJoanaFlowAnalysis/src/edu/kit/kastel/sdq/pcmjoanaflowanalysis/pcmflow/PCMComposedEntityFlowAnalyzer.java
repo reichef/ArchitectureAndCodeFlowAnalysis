@@ -75,6 +75,9 @@ public class PCMComposedEntityFlowAnalyzer {
 	private void analyzeIntraComponentFlow(AssemblyComponent representation, OperationProvidedRole sourceFlowRole, OperationSignature sourceSignature) {
 
 		AssemblyContext representationContext = representation.getContext();
+		
+		System.out.println("Analysis of Intracomponentflow of: " + representation.getName());
+		
 		//Call JOANA via coupler
 		Collection<String> methodIDsOfFlows = coupler.analyzeIntraComponentFlow(representationContext.getEncapsulatedComponent__AssemblyContext(), sourceFlowRole, sourceSignature, representation.getClassPath().get());
 		
@@ -87,20 +90,49 @@ public class PCMComposedEntityFlowAnalyzer {
 			for(RequiredRole role : representationContext.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity()) {
 				if(role instanceof OperationRequiredRole) {
 					OperationRequiredRole opRole = (OperationRequiredRole) role;
-					Optional<OperationSignature> opSig = getOperationSignatureOfInterfaceById(opRole.getRequiredInterface__OperationRequiredRole(), id);
+					Optional<OperationSignature> requiredOpSig = getOperationSignatureOfInterfaceById(opRole.getRequiredInterface__OperationRequiredRole(), id);
 					
-					if(opSig.isPresent()) {
-						SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying = new SignatureIdentifyingRoleElement<OperationRequiredRole>(representationContext.getEncapsulatedComponent__AssemblyContext(), opRole, opSig.get());		
+					if(requiredOpSig.isPresent()) {
+						SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying = new SignatureIdentifyingRoleElement<OperationRequiredRole>(representationContext.getEncapsulatedComponent__AssemblyContext(), opRole, requiredOpSig.get());		
 						intraComponentFlow.addSink(sinkIdentifying);
 						
-						Collection<AssemblyConnectorRepresentation> assemblyConnectors = representation.getAssemblyConnectorRepresentationsForSourceFromFlows(sourceIdentifying);
-						Collection<CallInformation> callInfos = new HashSet<CallInformation>();
-						assemblyConnectors.forEach(connector -> callInfos.add(new CallInformation(connector, opSig.get())));
-						callInfos.forEach(callInformation -> processCallInformation(callInformation));
+						
+						boolean couldMakeAssemblyStep = tryAssemblyStepFromSink(representation, sinkIdentifying, requiredOpSig.get());
+						
+						if(!couldMakeAssemblyStep) {
+							
+						}
 					}
 				}
 			}
 		}
+	}
+	
+	private boolean tryAssemblyStepFromSink(AssemblyComponent representation, SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying, OperationSignature signature) {
+			Optional<AssemblyConnectorRepresentation> assemblyConnector = representation.getAssemblyConnectorRepresentationForSink(sinkIdentifying);
+			boolean stepPossible = false;
+			if(assemblyConnector.isPresent()) {
+				stepPossible = true;
+				CallInformation callInfo = new CallInformation(assemblyConnector.get(), signature);
+				processCallInformation(callInfo);
+			} 
+			
+			return stepPossible;
+	}
+	
+	private boolean tryDelegationStepFromSink(AssemblyComponent representation, SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying, OperationSignature signature) {
+		
+		
+		
+		
+		return false;
+	}
+	
+	private void generateNextComponentCallFromSource(AssemblyComponent representation, SignatureIdentifyingRoleElement<OperationProvidedRole> sourceIdentifying, OperationSignature signature) {
+		Collection<AssemblyConnectorRepresentation> assemblyConnectors = representation.getAssemblyConnectorRepresentationsForSourceFromFlows(sourceIdentifying);
+		Collection<CallInformation> callInfos = new HashSet<CallInformation>();
+		assemblyConnectors.forEach(connector -> callInfos.add(new CallInformation(connector, signature)));
+		callInfos.forEach(callInformation -> processCallInformation(callInformation));
 	}
 
 	private Optional<OperationSignature> getOperationSignatureOfInterfaceById(OperationInterface operationInterface, String operationSignatureId) {

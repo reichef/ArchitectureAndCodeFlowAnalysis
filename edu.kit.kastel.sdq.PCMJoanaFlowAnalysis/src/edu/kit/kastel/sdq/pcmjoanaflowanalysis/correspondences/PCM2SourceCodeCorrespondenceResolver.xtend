@@ -82,7 +82,7 @@ class PCM2SourceCodeCorrespondenceResolver {
 	
 	def OperationSignature2Method lookupCorrespondence(Method method){
 		for (correspondence : correspondences.operationsignature2method){
-			if(correspondence.method.id.equals(method)){
+			if(correspondence.method.id.equals(method.id)){
 				return correspondence;
 			}
 		}
