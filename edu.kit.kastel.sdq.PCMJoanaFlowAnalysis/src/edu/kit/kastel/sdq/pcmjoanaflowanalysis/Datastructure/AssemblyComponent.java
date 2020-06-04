@@ -95,25 +95,17 @@ public class AssemblyComponent extends AssemblyRepresentationContainer {
 		return assemblyConnectors;
 	}
 	
-	public Optional<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentationForSink(SignatureIdentifyingRoleElement<OperationRequiredRole> sink) {
-		for(AssemblyConnectorRepresentation connectorRepresentation : assemblyConnectorRepresentation) {
-			if(sink.identyfyingEquals(connectorRepresentation.getRequiringContext().getEncapsulatedComponent__AssemblyContext(),
-					connectorRepresentation.getRequiredRole())) {
+	
+	public Optional<CompositeConnectorRepresentation> getDelegationConnectorRepresentationForRequiredRoleIdentifyingFromInnerRole(SignatureIdentifyingRoleElement<OperationRequiredRole> requiredIdentifying){
+		for(CompositeConnectorRepresentation connectorRepresentation : compositeConnectorRepresentation) {
+			if(requiredIdentifying.identyfyingEquals(connectorRepresentation.getInner().getContext().getEncapsulatedComponent__AssemblyContext(), ((RequiredDelegationConnector)connectorRepresentation.getConnector()).getInnerRequiredRole_RequiredDelegationConnector())) {
 				return Optional.ofNullable(connectorRepresentation);
 			}
 		}
 		
 		return Optional.empty();
 	}
-	
-//	public Optional<CompositeConnectorRepresentation> getDelegationConnectorRepresentationForRequiredRoleIdentifyingFromInnerRole(SignatureIdentifyingRoleElement<OperationRequiredRole> requiredIdentifying){
-//		for(CompositeConnectorRepresentation connectorRepresentation : compositeConnectorRepresentation) {
-//			if(requiredIdentifying.identyfyingEquals(connectorRepresentation.getInner().getContext().getEncapsulatedComponent__AssemblyContext(), ((RequiredDelegationConnector)connectorRepresentation.getConnector()).getInnerRequiredRole_RequiredDelegationConnector())) {
-//				
-//			}
-//		}
-//	}
-	
+
 	public boolean encapsulatedContextProvidesRole(OperationProvidedRole searchedRole) {
 		return context.getEncapsulatedComponent__AssemblyContext().getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(searchedRole.getId()));
 	}

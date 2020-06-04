@@ -1,5 +1,8 @@
 {
-    "@type": "edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config",
-    "joanaCLIFolderPath": "C:\\Users\\Frederik Reiche\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\edu.kit.kastel.sdq.PCMJoanaFlowAnalysis",
-    "joanaOutputFolderPath": "C:\\Users\\Frederik Reiche\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\edu.kit.kastel.sdq.PCMJoanaFlowAnalysis"
+  "@type":"edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config",
+  "joanaCLIFolderPath": "C:\\Users\\Frederik Reiche\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\edu.kit.kastel.sdq.PCMJoanaFlowAnalysis",
+  "joanaOutputFolderPath": "C:\\Users\\Frederik Reiche\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\edu.kit.kastel.sdq.PCMJoanaFlowAnalysis\\JOANAResults",
+  "usePersistedFlows": true,
+  "useLocalJOANAComputation":false,
+  "joanaServerIP":"141.3.52.136"
 }

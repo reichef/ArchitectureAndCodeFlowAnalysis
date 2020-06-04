@@ -9,9 +9,11 @@ import java.util.Optional;
 
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.SignatureIdentifyingRoleElement;
 
 public abstract class AssemblyRepresentationContainer {
 	protected Collection<AssemblyConnectorRepresentation> assemblyConnectorRepresentation;
@@ -81,6 +83,18 @@ public abstract class AssemblyRepresentationContainer {
 	public boolean isClassPathAvailable() {
 		return getClassPath().isPresent();
 	}
+	
+	public Optional<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentationForSink(SignatureIdentifyingRoleElement<OperationRequiredRole> sink) {
+		for(AssemblyConnectorRepresentation connectorRepresentation : assemblyConnectorRepresentation) {
+			if(sink.identyfyingEquals(connectorRepresentation.getRequiringContext().getEncapsulatedComponent__AssemblyContext(),
+					connectorRepresentation.getRequiredRole())) {
+				return Optional.ofNullable(connectorRepresentation);
+			}
+		}
+		
+		return Optional.empty();
+	}
+	
 	
 	public void printRepresentation() {
 		System.out.println(String.format("----Representation Name: %s, Id: %s ----", name, id));

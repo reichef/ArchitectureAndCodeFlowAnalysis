@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -45,17 +48,21 @@ public class JOANAAnalyzer {
 		Path joanaResultReturnPath = Paths.get(config.getJoanaOutputFolderPath() + IPath.SEPARATOR
 				+ sources.get(0).className + "_" + sources.get(0).methodName + JoanaCallReturn.FILE_ENDING);
 
-		//if we either do not use persisted flows or the flow was not yet analyzed, we call JOANA
+		// if we either do not use persisted flows or the flow was not yet analyzed, we
+		// call JOANA
 		if (!(config.usingPersistedFlows() && joanaResultReturnPath.toFile().exists())) {
-			callJoana(classPath, joanaResultReturnPath, sources, sinks);
-		} 
+			if (config.isUseLocalJOANAComputation()) {
+				callJoanaLocal(classPath, joanaResultReturnPath, sources, sinks);
+			} else {
+				callJoanaRemote(classPath, joanaResultReturnPath, sources, sinks);
+			}
+		}
 
 		return JoanaCallReturn.load(joanaResultReturnPath).flows;
 	}
-	
-	
-	
-	private void callJoana(String classPath, Path joanaResultReturnPath ,List<Method> sources, List<Method> sinks) {
+
+	private void callJoanaLocal(String classPath, Path joanaResultReturnPath, List<Method> sources,
+			List<Method> sinks) {
 		JoanaCall call = new JoanaCall(classPath, new Flows(), sources, sinks, Level.ALL);
 		Path tmpFile = null;
 		try {
@@ -116,8 +123,19 @@ public class JOANAAnalyzer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			//TODO: Normally clean up tmp file here, but in case we need to send it manually to the server, not yet implemented.
-			//tmpFile.toFile().delete();
+			// TODO: Normally clean up tmp file here, but in case we need to send it
+			// manually to the server, not yet implemented.
+			// tmpFile.toFile().delete();
 		}
+	}
+
+	private void callJoanaRemote(String classPath, Path joanaResultReturnPath, List<Method> sources,
+			List<Method> sinks) {
+
+		JoanaCall call = new JoanaCall(classPath, new Flows(), sources, sinks, Arrays.asList("edu.kit"), Level.ALL);
+
+		JoanaCallReturn callReturn = call.processOnServer(config.getJoanaServerIP());
+
+		callReturn.store(joanaResultReturnPath);
 	}
 }

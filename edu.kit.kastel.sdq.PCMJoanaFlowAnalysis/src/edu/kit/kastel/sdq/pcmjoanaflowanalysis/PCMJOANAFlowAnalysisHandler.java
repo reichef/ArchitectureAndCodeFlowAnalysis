@@ -129,7 +129,7 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		Config config = null;
 		
 		if(configPath.isEmpty()) {
-			config = new Config(Paths.get(""), Paths.get(""), false);
+			config = new Config(Paths.get(""), Paths.get(""), true, true, "");
 			String path = systemPath.removeFileExtension().removeLastSegments(1).makeAbsolute().toString();
 			Util.store(Paths.get(path + IPath.SEPARATOR + CONFIG_NAME), config);
 			java.lang.System.out.println("Default paths used, errors may occure");
