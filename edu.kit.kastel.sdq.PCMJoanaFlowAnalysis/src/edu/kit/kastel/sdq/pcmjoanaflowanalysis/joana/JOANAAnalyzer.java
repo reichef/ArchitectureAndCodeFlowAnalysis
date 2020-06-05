@@ -46,7 +46,7 @@ public class JOANAAnalyzer {
 		List<Method> sinks = transformer.transformSinksOfFlowSpecToJOANASourcesFormat(flowSpec, association);
 
 		String joanaResultFileName = sources.get(0).className + "_" + sources.get(0).methodName + JoanaCallReturn.FILE_ENDING;
-		
+		System.out.println("Analysing:" + joanaResultFileName);
 		Path joanaResultReturnPath = Paths.get(config.getJoanaOutputFolderPath() + IPath.SEPARATOR + joanaResultFileName);
 
 		//System.out.println(String.format("Analysis Method %s in Class %s", sources.get(0).methodName, sources.get(0).className));

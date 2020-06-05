@@ -10,8 +10,6 @@ import java.util.Optional;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
-import org.palladiosimulator.pcm.repository.OperationSignature;
-
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.SignatureIdentifyingRoleElement;
 

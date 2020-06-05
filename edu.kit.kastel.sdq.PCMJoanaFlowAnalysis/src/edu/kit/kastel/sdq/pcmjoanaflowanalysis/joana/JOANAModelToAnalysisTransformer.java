@@ -8,7 +8,6 @@ import JOANA.ParameterSink;
 import JOANA.Sink;
 import JOANA.Source;
 import edu.kit.joana.component.connector.Method;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.Association;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.Associations;
 
 public class JOANAModelToAnalysisTransformer {

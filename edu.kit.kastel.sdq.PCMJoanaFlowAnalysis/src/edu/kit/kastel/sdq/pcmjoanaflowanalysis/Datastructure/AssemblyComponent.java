@@ -4,14 +4,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 
-import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.RequiredDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.CallInformation;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.SignatureIdentifyingRoleElement;
 
