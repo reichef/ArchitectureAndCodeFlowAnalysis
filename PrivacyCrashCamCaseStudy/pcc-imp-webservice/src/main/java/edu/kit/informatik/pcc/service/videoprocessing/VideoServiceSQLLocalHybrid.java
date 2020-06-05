@@ -102,7 +102,7 @@ public class VideoServiceSQLLocalHybrid extends VideoService{
 				video = super.getFileHierarchyManager().getExistingFile(super.videoFileName(videoId), super.videoDirectory(videoOwnerId));
 				break;
 			case UNANONYMIZED:
-				
+				if(accessControl.canAccessUnanonymized(accessorId)) {
 					video = super.getTemporaryFileManager().getOrCreateFile("decVid.mp4");
 					File encVid = super.getFileHierarchyManager().getExistingFile(videoFileName(videoId), encVideoDirectory(videoOwnerId));
 					File encKey = super.getFileHierarchyManager().getExistingFile(encKeyFileName(videoId), encKeyDirectory(videoOwnerId));
@@ -115,6 +115,7 @@ public class VideoServiceSQLLocalHybrid extends VideoService{
 					
 				
 				break;
+				}
 		}
 		return video;
 	}

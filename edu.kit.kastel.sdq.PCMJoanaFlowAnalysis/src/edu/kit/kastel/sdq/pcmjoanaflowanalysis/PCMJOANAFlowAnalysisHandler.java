@@ -23,8 +23,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.PCMComposedEntityFlowAnalyzer;
-import java.util.Set;
-import java.util.HashSet;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.DataStructureBuilder;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -36,7 +34,6 @@ import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 import org.palladiosimulator.pcm.usagemodel.AbstractUserAction;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.TopmostAssemblyEntity;
 import com.cedarsoftware.util.io.JsonReader;
-import com.cedarsoftware.util.io.JsonWriter;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -48,7 +45,6 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 	private static final String PCM_USAGEMODEL_FILE_ENDING = "usagemodel";
 	private static final String ECORE_ANNOTATIONS_FILE_ENDING = "ecoreannotations";
 	private static final String CONFIG_NAME = "config.json";
-	private Set<String> fileEndings;
 	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -65,16 +61,7 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		}
 		return list;
 	}
-	
-	
-	
-	private void generateFileEndingSet() {
-		fileEndings = new HashSet();
-		fileEndings.add(PCM_REPOSITORY_FILE_ENDING);
-		fileEndings.add(PCM_SYSTEM_FILE_ENDING);
-		fileEndings.add(PCM_USAGEMODEL_FILE_ENDING);
-		fileEndings.add(ECORE_ANNOTATIONS_FILE_ENDING);
-	}
+
 	
 	private Optional<List<IFile>> getFilteredList(ISelection selection){
 		if (selection instanceof IStructuredSelection) {

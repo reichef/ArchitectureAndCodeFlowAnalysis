@@ -17,7 +17,7 @@ import edu.kit.informatik.pcc.core.crypto.IVideoDecryptor;
 import edu.kit.informatik.pcc.core.data.IFileHierarchyManager;
 import edu.kit.informatik.pcc.core.data.IFileManager;
 
-public class VideoServiceLocalRetrieve extends VideoService implements IVideoService {
+public class VideoServiceLocalRetrieve extends VideoService{
 
 	
 

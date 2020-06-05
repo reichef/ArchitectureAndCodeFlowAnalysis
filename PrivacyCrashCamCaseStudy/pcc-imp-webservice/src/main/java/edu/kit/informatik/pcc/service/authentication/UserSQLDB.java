@@ -14,7 +14,6 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import edu.kit.informatik.pcc.service.data.SQLDB;
-import edu.kit.informatik.pcc.service.hashing.CryptographicHasher;
 import edu.kit.informatik.pcc.service.hashing.CryptographicHashing;
 
 public class UserSQLDB extends SQLDB implements IUserDB, IUserSessionDB {

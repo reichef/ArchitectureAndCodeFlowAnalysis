@@ -83,8 +83,6 @@ public class PCMComposedEntityFlowAnalyzer {
 
 		AssemblyContext representationContext = representation.getContext();
 
-		System.out.println("Analysis of Intracomponentflow of: " + representation.getName());
-
 		// Call JOANA via coupler
 		Collection<String> methodIDsOfFlows = coupler.analyzeIntraComponentFlow(
 				representationContext.getEncapsulatedComponent__AssemblyContext(), sourceFlowRole, sourceSignature,
@@ -119,7 +117,7 @@ public class PCMComposedEntityFlowAnalyzer {
 						}
 						
 						if(!couldMakeRequiredDelegationSep) {
-							System.out.println("Flow Finished");
+							System.out.println(String.format("Flow Finished in Component %s, Method %s", sinkIdentifying.getComponent().getEntityName(), sinkIdentifying.getSignature().getEntityName()));
 						}
 					}
 				}
@@ -163,13 +161,6 @@ public class PCMComposedEntityFlowAnalyzer {
 
 		return stepPossible;
 	}
-
-//	private void generateNextComponentCallFromSource(AssemblyRepresentationContainer representation, SignatureIdentifyingRoleElement<OperationProvidedRole> sourceIdentifying, OperationSignature signature) {
-//		Collection<AssemblyConnectorRepresentation> assemblyConnectors = representation.getAssemblyConnectorRepresentationsForSourceFromFlows(sourceIdentifying);
-//		Collection<CallInformation> callInfos = new HashSet<CallInformation>();
-//		assemblyConnectors.forEach(connector -> callInfos.add(new CallInformation(connector, signature)));
-//		callInfos.forEach(callInformation -> processCallInformation(callInformation));
-//	}
 
 	private Optional<OperationSignature> getOperationSignatureOfInterfaceById(OperationInterface operationInterface,
 			String operationSignatureId) {

@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherOutputStream;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 
 public class JavaCryptoAES implements ISymmetricDecryptor{

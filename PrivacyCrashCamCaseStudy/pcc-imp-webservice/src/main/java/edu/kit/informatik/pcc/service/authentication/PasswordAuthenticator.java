@@ -1,24 +1,13 @@
 package edu.kit.informatik.pcc.service.authentication;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Base64;
 import java.util.logging.Logger;
 
-import edu.kit.informatik.pcc.service.authentication.intAuth.IPasswordAuthentication;
-
 public class PasswordAuthenticator implements PasswordAuthentication{
-	
-	private IPasswordAuthentication authentication;
-	
-	public PasswordAuthenticator() {
-		this.authentication = authentication;
-	}
-	
+
 	@Override
 	public boolean authenticatePassword(Connection connection, int userId, String inputHash) {
         String passwordHash = null;
@@ -42,7 +31,6 @@ public class PasswordAuthenticator implements PasswordAuthentication{
         	return false;
         }
         
-        //return inputHash.equals(passwordHash);
-        return authentication.authenticatePassword(userId, inputHash);
+        return inputHash.equals(passwordHash);
 	}
 }

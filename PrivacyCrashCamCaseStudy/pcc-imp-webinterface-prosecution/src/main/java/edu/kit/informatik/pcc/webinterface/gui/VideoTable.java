@@ -6,6 +6,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Table;
 import de.steinwedel.messagebox.MessageBox;
+import edu.kit.informatik.pcc.webinterface.datamanagement.Account;
 import edu.kit.informatik.pcc.webinterface.datamanagement.NamedInputStream;
 import edu.kit.informatik.pcc.webinterface.datamanagement.PersecutionWebinterface;
 import edu.kit.informatik.pcc.webinterface.datamanagement.Video;
@@ -38,7 +39,8 @@ public class VideoTable extends Table {
      */
     public void update() {
     	webInterface.setCurrentSession(getSession());
-        videos = webInterface.getVideos();
+        videos = webInterface.getVideos(((Account)getSession().getAttribute(MyUI.SESSION_KEY_ACCOUNT)).getMail(),
+        		(String)getSession().getAttribute(MyUI.SESSION_TOKEN));
         this.addContainerProperty(messages.getString(tableId + "Name"), String.class, null);
         this.addContainerProperty(messages.getString(tableId + "DownloadConfidentialVideo"), Button.class, null);
         this.addContainerProperty(messages.getString(tableId + "Info"), Button.class, null);
@@ -60,7 +62,7 @@ public class VideoTable extends Table {
           webInterface.setCurrentSession(getSession());
           Button confidentialVideoDownload = new Button(FontAwesome.DOWNLOAD);
           
-          NamedInputStream inputStream = webInterface.downloadVideo(v.getId(), v.getName());
+          NamedInputStream inputStream = webInterface.downloadVideo(v.getId(), v.getName(), (String) getSession().getAttribute(MyUI.SESSION_TOKEN));
           
           FileDownloader confidentialVideoDownloader = new FileDownloader(inputStream.toStreamResource());
           confidentialVideoDownloader.extend(confidentialVideoDownload);

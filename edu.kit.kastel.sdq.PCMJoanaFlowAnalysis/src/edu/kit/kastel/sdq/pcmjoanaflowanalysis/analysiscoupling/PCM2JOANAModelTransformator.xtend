@@ -26,6 +26,7 @@ class PCM2JOANAModelTransformator {
 		jRoot = JOANAFactory.eINSTANCE.createJOANARoot;
 	}
 	
+	
 	def Pair<FlowSpecification, Associations> generateFlowForProvidedOperationAndComponent(OperationProvidedRole providedRole, OperationSignature signature, RepositoryComponent component){
 
 		val association = new Associations();

@@ -41,6 +41,8 @@ public class AnalysisCoupler {
 			this.pcm2Joana = new PCM2JOANAModelTransformator(this.resolver);
 		}
 
+		//TODO in Prinicple every potential sink in a component should be provided by the analyses, speaking: is there a flow from op A to op B, op C ...., 
+		//the coupler should only parse this.
 		Pair<FlowSpecification, Associations> flowInformation = pcm2Joana
 				.generateFlowForProvidedOperationAndComponent(sourceRole, sourceSignature, component);
 

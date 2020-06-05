@@ -45,9 +45,13 @@ public class JOANAAnalyzer {
 		List<Method> sources = transformer.transformSourcesOfFlowSpecToJOANAMethods(flowSpec, association);
 		List<Method> sinks = transformer.transformSinksOfFlowSpecToJOANASourcesFormat(flowSpec, association);
 
-		Path joanaResultReturnPath = Paths.get(config.getJoanaOutputFolderPath() + IPath.SEPARATOR
-				+ sources.get(0).className + "_" + sources.get(0).methodName + JoanaCallReturn.FILE_ENDING);
+		String joanaResultFileName = sources.get(0).className + "_" + sources.get(0).methodName + JoanaCallReturn.FILE_ENDING;
+		
+		Path joanaResultReturnPath = Paths.get(config.getJoanaOutputFolderPath() + IPath.SEPARATOR + joanaResultFileName);
 
+		//System.out.println(String.format("Analysis Method %s in Class %s", sources.get(0).methodName, sources.get(0).className));
+	
+		
 		// if we either do not use persisted flows or the flow was not yet analyzed, we
 		// call JOANA
 		if (!(config.usingPersistedFlows() && joanaResultReturnPath.toFile().exists())) {

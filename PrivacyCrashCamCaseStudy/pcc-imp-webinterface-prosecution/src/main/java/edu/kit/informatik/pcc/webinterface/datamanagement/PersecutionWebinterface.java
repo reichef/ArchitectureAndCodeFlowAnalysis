@@ -27,14 +27,13 @@ public class PersecutionWebinterface implements VideoManagerInterface, AccountMa
 	}
 
 	@Override
-	public NamedInputStream downloadVideo(int videoID, String videoName) {
-		return videoDataManager.downloadVideo(videoID, videoName, (String) currentSession.getAttribute(MyUI.SESSION_TOKEN));
+	public NamedInputStream downloadVideo(int videoID, String videoName, String sessionToken) {
+		return videoDataManager.downloadVideo(videoID, videoName, sessionToken);
 	}
 
 	@Override
-	public LinkedList<Video> getVideos() {
-		return videoDataManager.getVideos(((Account)currentSession.getAttribute(MyUI.SESSION_KEY_ACCOUNT)).getMail(),
-				(String)currentSession.getAttribute(MyUI.SESSION_TOKEN));
+	public LinkedList<Video> getVideos(String emailAddress, String sessionToken) {
+		return videoDataManager.getVideos(emailAddress, sessionToken);
 	}
 
 	@Override
