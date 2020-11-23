@@ -1,0 +1,8 @@
+{
+  "@type":"edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config",
+  "joanaCLIFolderPath": "C:\\Users\\Freddy\\git\\Tools\\joana\\dist",
+  "joanaOutputFolderPath": "C:\\Users\\Freddy\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\edu.kit.kastel.sdq.PCMJoanaFlowAnalysis\\JOANAResults",
+  "usePersistedFlows": true,
+  "useLocalJOANAComputation":false,
+  "joanaServerIP":"127.0.1.1"
+}
