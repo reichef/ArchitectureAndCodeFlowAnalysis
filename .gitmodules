@@ -5,3 +5,9 @@
 [submodule "edu.kit.kastel.sdq.PCMJoanaFlowAnalysis/src/edu/kit/joana/component/connector"]
 	path = edu.kit.kastel.sdq.PCMJoanaFlowAnalysis/src/edu/kit/joana/component/connector
 	url = https://github.com/reichef/JOANAConnector
+[submodule "MDSDBasics"]
+	path = MDSDBasics
+	url = https://github.com/reichef/MDSDBasics
+[submodule "compositionofsecurityanalayses"]
+	path = compositionofsecurityanalayses
+	url = https://git.scc.kit.edu/dv9597/compositionofsecurityanalayses
