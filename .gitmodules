@@ -1,6 +1,0 @@
-[submodule "bundles/compositionofsecurityanalayses"]
-	path = bundles/compositionofsecurityanalayses
-	url = https://git.scc.kit.edu/dv9597/compositionofsecurityanalayses
-[submodule "bundles/MDSDBasics"]
-	path = bundles/MDSDBasics
-	url = https://github.com/reichef/MDSDBasics
