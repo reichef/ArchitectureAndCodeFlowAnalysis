@@ -3,11 +3,5 @@
 	url = https://github.com/joana-team/joana
 	branch = component_based
 [submodule "edu.kit.kastel.sdq.PCMJoanaFlowAnalysis/src/edu/kit/joana/component/connector"]
-	path = bundles/edu.kit.kastel.sdq.PCMJoanaFlowAnalysis/src/edu/kit/joana/component/connector
+	path = edu.kit.kastel.sdq.PCMJoanaFlowAnalysis/src/edu/kit/joana/component/connector
 	url = https://github.com/reichef/JOANAConnector
-[submodule "bundles/compositionofsecurityanalayses"]
-	path = bundles/compositionofsecurityanalayses
-	url = https://git.scc.kit.edu/dv9597/compositionofsecurityanalayses
-[submodule "bundles/MDSDBasics"]
-	path = bundles/MDSDBasics
-	url = https://github.com/reichef/MDSDBasics
