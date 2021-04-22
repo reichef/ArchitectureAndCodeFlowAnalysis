@@ -5,46 +5,34 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.Collection;
+
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.system.System;
-import org.palladiosimulator.pcm.PcmPackage;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyComponent;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.DataStructureBuilder;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.SystemRepresentation;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.PCMComposedEntityFlowAnalyzer;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.DataStructureBuilder;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import edu.kit.joana.component.connector.Util;
+
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 import org.palladiosimulator.pcm.usagemodel.AbstractUserAction;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.TopmostAssemblyEntity;
-import com.cedarsoftware.util.io.JsonReader;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHandler{
-	private static final String PCM_REPOSITORY_FILE_ENDING = "repository";
-	private static final String PCM_SYSTEM_FILE_ENDING = "system"; 
-	private static final String PCM_USAGEMODEL_FILE_ENDING = "usagemodel";
-	private static final String ECORE_ANNOTATIONS_FILE_ENDING = "ecoreannotations";
-	private static final String CONFIG_NAME = "config.json";
+	
 	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -86,100 +74,39 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 	
 	private boolean executeFlowAnalysis(List<IFile> files) throws IOException{
 		
-		//TODO: Using this to ease testing with only 3 models, potentially 2 systems at once are strange 
-		//	  	except for design-purposes :-\ 
+
+		Models models = Models.extractFromFiles(files);
 		
-		IPath systemPath = null; 
-		IPath repositoryPath = null;
-		IPath usageModelPath = null;
-		IPath ecoreAnnotationsPath= null; 
-		String configPath = "";
-		
-		for(IFile file : files){
-			switch (file.getFileExtension()) {
-				case PCM_REPOSITORY_FILE_ENDING: repositoryPath = file.getLocation(); break;
-				case PCM_SYSTEM_FILE_ENDING: systemPath = file.getLocation(); break;
-				case PCM_USAGEMODEL_FILE_ENDING: usageModelPath = file.getLocation();break;
-				case ECORE_ANNOTATIONS_FILE_ENDING: ecoreAnnotationsPath = file.getLocation(); break;
-				default: break;
-			}
-			
-			if((file.getName()).equals(CONFIG_NAME)){
-				configPath = file.getLocation().makeAbsolute().toString();
-			}
-		}
-		
-		if(systemPath == null || ecoreAnnotationsPath == null || usageModelPath == null) {
+		if(!models.isSuccess()) {
 			return false;
 		}
 		
-		Config config = null;
+		SystemRepresentation systemrepresentation = buildDataStructure(models.getSystem(), models.getAnnotationRepository());
 		
-		if(configPath.isEmpty()) {
-			config = new Config(Paths.get(""), Paths.get(""), true, true, "");
-			String path = systemPath.removeFileExtension().removeLastSegments(1).makeAbsolute().toString();
-			Util.store(Paths.get(path + IPath.SEPARATOR + CONFIG_NAME), config);
-			java.lang.System.out.println("Default paths used, errors may occure");
-		} else {
-			config = (Config) JsonReader.jsonToJava(String.join("\n", Files.readAllLines(Paths.get(configPath))));
-		}
+		PCMComposedEntityFlowAnalyzer pcmAnalyzer = new PCMComposedEntityFlowAnalyzer(models.getConfig());
+		analyseFlowsFromEntryLevelSystemCalls(models.getUsageModel(), pcmAnalyzer, systemrepresentation);
 		
-		Registry registry = Resource.Factory.Registry.INSTANCE;
-		Map<String, Object> map = registry.getExtensionToFactoryMap();
-
-		PcmPackage.eINSTANCE.eClass();
+		Repository repo = models.getRepository();
 		
 		
-		map.put("repository", new XMIResourceFactoryImpl());
-		map.put("system", new XMIResourceFactoryImpl());
-		map.put("usagemodel", new XMIResourceFactoryImpl());
-		map.put("ecoreannotations", new XMIResourceFactoryImpl());
-		
-		ResourceSetImpl resSet = new ResourceSetImpl();
-		
-		URI systemUri = URI.createFileURI(systemPath.toString());
-		URI repositoryUri = URI.createFileURI(repositoryPath.toString());
-		URI usageModelUri = URI.createFileURI(usageModelPath.toString());
-		URI ecoreannotationsUri = URI.createFileURI(ecoreAnnotationsPath.toString());
+		return true;
+	}
 	
-		Resource resourceSystem = resSet.getResource(systemUri, true);
-		Resource resourceRepository = resSet.getResource(repositoryUri, true);
-		Resource resourceUsageModel = resSet.getResource(usageModelUri, true);
-		Resource resourceEcoreAnnotations = resSet.getResource(ecoreannotationsUri, true);
-		
-		EcoreUtil.resolveAll(resourceRepository);
-		EcoreUtil.resolveAll(resourceSystem);
-		EcoreUtil.resolveAll(resourceUsageModel);
-		EcoreUtil.resolveAll(resourceEcoreAnnotations);
-		
-		resourceRepository.load(null);
-		resourceSystem.load(null);
-		resourceUsageModel.load(null);
-		resourceEcoreAnnotations.load(null);
-		
-		Repository repository = (Repository) resourceRepository.getContents().get(0);
-		System system = (System) resourceSystem.getContents().get(0);
-		UsageModel usageModel = (UsageModel) resourceUsageModel.getContents().get(0);
-		AnnotationRepository ecoreAnnotationRepository = (AnnotationRepository) resourceEcoreAnnotations.getContents().get(0);
-		
+	private SystemRepresentation buildDataStructure(System system, AnnotationRepository annotationRepository) {
 		DataStructureBuilder dataStructureBuilder = new DataStructureBuilder();
-		TopmostAssemblyEntity systemrepresentation = dataStructureBuilder.buildRepresentationsForSystem(system, ecoreAnnotationRepository);
-	
-		PCMComposedEntityFlowAnalyzer pcmAnalyzer = new PCMComposedEntityFlowAnalyzer(config);
+		SystemRepresentation systemrepresentation = dataStructureBuilder.buildRepresentationsForSystem(system, annotationRepository);
 		
+		return systemrepresentation;
+	}
+	
+	private void analyseFlowsFromEntryLevelSystemCalls(UsageModel usageModel, PCMComposedEntityFlowAnalyzer analyser, SystemRepresentation systemrepresentation){
 		for(UsageScenario scenario : usageModel.getUsageScenario_UsageModel()){
 			for(AbstractUserAction action : scenario.getScenarioBehaviour_UsageScenario().getActions_ScenarioBehaviour()){
 				if(action instanceof EntryLevelSystemCall){
-					pcmAnalyzer.flowCalculationForEntryLevelSystemCall(systemrepresentation, (EntryLevelSystemCall)action);
+					analyser.flowCalculationForEntryLevelSystemCall(systemrepresentation, (EntryLevelSystemCall)action);
 				}
 			}
 		}
-		
-		
-		
-		
-		
-		return false;
 	}
 
 }
