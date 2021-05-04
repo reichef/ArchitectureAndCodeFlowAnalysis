@@ -1,11 +1,13 @@
-package edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure;
+package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Map.Entry;
 import java.util.Optional;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.RequiredDelegationConnector;
+import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
@@ -13,15 +15,25 @@ import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.SignatureIdentifyingRoleElement;
 
-public class AssemblyComponent extends AssemblyRepresentationContainer {
+public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 
 	private AssemblyContext context;
-	private Collection<IntraComponentFlow> flows;
+	private Collection<IntraComponentFlow> systemInducedFlows;
+	private FlowBasicComponent component;
 	
-	public AssemblyComponent(AssemblyContext context) {
+	public void setComponent(FlowBasicComponent component) {
+		this.component = component;
+	}
+
+	public AssemblyComponentContext(AssemblyContext context) {
 		super(context.getId(), context.getEncapsulatedComponent__AssemblyContext().getEntityName());
 		this.context = context;
-		this.flows = new HashSet<IntraComponentFlow>();
+		this.systemInducedFlows = new HashSet<IntraComponentFlow>();
+	}
+	
+	public AssemblyComponentContext(AssemblyContext context, FlowBasicComponent component) {
+		this(context);
+		this.component = component;
 	}
 	
 	public boolean encapsulatesContext(AssemblyContext context) {
@@ -33,22 +45,37 @@ public class AssemblyComponent extends AssemblyRepresentationContainer {
 	}
 	
 	public void addIntraComponentFlow(IntraComponentFlow flow) {
-		flows.add(flow);
+		systemInducedFlows.add(flow);
 	}
 	
 	
 	
-	public Collection<AssemblyComponent> getAssemblyComponentsRecursive() {
-		Collection<AssemblyComponent> components = new HashSet<AssemblyComponent>();
+	public Collection<AssemblyComponentContext> getAssemblyComponentsRecursive() {
+		Collection<AssemblyComponentContext> components = new HashSet<AssemblyComponentContext>();
 		components.add(this);
 		if(isComposite()) {
-			for(AssemblyComponent component : containedRepresentations) {
-				Collection<AssemblyComponent> innerComponents = component.getAssemblyComponentsRecursive();
+			for(AssemblyComponentContext component : containedRepresentations) {
+				Collection<AssemblyComponentContext> innerComponents = component.getAssemblyComponentsRecursive();
 				innerComponents.forEach(innerComponent -> components.add(innerComponent));				
 			}
 		}
 		return components;
 	}
+	
+	public Optional<String> getClassPath() {
+		String classPath = getAnnotation("ClassPath");
+		if(classPath.isEmpty()) {
+			System.err.println("No ClassPath Available for Component");
+			return Optional.empty();
+		}
+		
+		return Optional.ofNullable(classPath);
+	}
+	
+	public boolean isClassPathAvailable() {
+		return getClassPath().isPresent();
+	}
+	
 
 	@Override
 	public void fillWithClassPath(AnnotationRepository repository, Optional<String> latestClassPath) {
@@ -65,7 +92,7 @@ public class AssemblyComponent extends AssemblyRepresentationContainer {
 		}
 		
 		if(isComposite()) {
-			for(AssemblyComponent representation : containedRepresentations) {
+			for(AssemblyComponentContext representation : containedRepresentations) {
 				if(isClassPathAvailable) {
 					representation.fillWithClassPath(repository, getClassPath());
 				} else {
@@ -79,7 +106,7 @@ public class AssemblyComponent extends AssemblyRepresentationContainer {
 			SignatureIdentifyingRoleElement<OperationProvidedRole> source) {
 		Collection<AssemblyConnectorRepresentation> assemblyConnectors = new HashSet<AssemblyConnectorRepresentation>();
 		
-		for(IntraComponentFlow flow : flows) {
+		for(IntraComponentFlow flow : systemInducedFlows) {
 			if(flow.getSource().identyfyingEquals(source)) {
 				for(SignatureIdentifyingRoleElement<OperationRequiredRole> sink : flow.getSinks()) {
 					Optional<AssemblyConnectorRepresentation> sinkRepresentation = getAssemblyConnectorRepresentationForSink(sink);
@@ -106,5 +133,38 @@ public class AssemblyComponent extends AssemblyRepresentationContainer {
 
 	public boolean encapsulatedContextProvidesRole(OperationProvidedRole searchedRole) {
 		return context.getEncapsulatedComponent__AssemblyContext().getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(searchedRole.getId()));
+	}
+
+	public FlowBasicComponent getComponent() {
+		return component;
+	}
+
+	@Override
+	public void printRepresentation() {
+		System.out.println(String.format("----Representation Name: %s, Id: %s ----", name, id));
+		System.out.println("----Inner Representations----");
+		for(AssemblyComponentContext representation : containedRepresentations) {
+			System.out.println(String.format("InnerRepresentation Name: %s, Id: %s", representation.getName(), representation.getId()));
+		}
+		System.out.println("----Connector Representations----");
+		for(AssemblyConnectorRepresentation assemblyConnector : assemblyConnectorRepresentation) {
+			System.out.println(assemblyConnector.connectorRepresentation());
+		}
+		
+		for(CompositeConnectorRepresentation compositeConnector : compositeConnectorRepresentation) {
+			System.out.println(compositeConnector.connectorRepresentation());
+		}
+		
+		System.out.println("---- Annotations ----");
+		
+		for(Entry<String, String> entry : annotations.entrySet()) {
+			System.out.println(String.format("Type: %s, Content: %s", entry.getKey(), entry.getValue()));
+		}
+		
+		if(isComposite()) {
+			for(AssemblyComponentContext representation : containedRepresentations) {
+				representation.printRepresentation();
+			}
+		}
 	}
 }

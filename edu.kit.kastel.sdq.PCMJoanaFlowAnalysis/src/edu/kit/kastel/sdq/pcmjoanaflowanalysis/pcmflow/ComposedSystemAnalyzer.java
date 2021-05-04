@@ -4,53 +4,44 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.core.composition.RequiredDelegationConnector;
-import org.palladiosimulator.pcm.core.entity.ComposedProvidingRequiringEntity;
 import org.palladiosimulator.pcm.core.entity.InterfaceProvidingRequiringEntity;
-import org.palladiosimulator.pcm.core.entity.InterfaceRequiringEntity;
-import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
-import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
+import org.palladiosimulator.pcm.system.System;
 
-import JOANA.FlowSpecification;
-import JOANA.JOANAFactory;
-import JOANA.JOANARoot;
-import JOANA.MethodIdentifying;
-
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.ElementCorrespondences;
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.SourceCodeRoot;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.AssemblyComponent;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.AssemblyConnectorRepresentation;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.AssemblyRepresentationContainer;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.CompositeConnectorRepresentation;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.TopmostAssemblyEntity;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.AnalysisCoupler;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyComponentContext;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyConnectorRepresentation;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyRepresentationContainer;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.CompositeConnectorRepresentation;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.FlowBasicComponent;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.SystemRepresentation;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMRepositoryElementResolver;
 
-import org.palladiosimulator.pcm.core.composition.Connector;
 
-public class PCMComposedEntityFlowAnalyzer {
+//TODO: Only Resolve IntraComponentFlows here and calculate complete flows through fixpoint iteration
+public class ComposedSystemAnalyzer {
 
 	private AnalysisCoupler coupler;
-	private Collection<IntraComponentFlow> completeFlows;
-	private Collection<AssemblyComponent> representation;
 
-	public PCMComposedEntityFlowAnalyzer(Config config) {
+	public ComposedSystemAnalyzer(Config config) {
 		this.coupler = new AnalysisCoupler(config);
-		this.completeFlows = new HashSet<IntraComponentFlow>();
+	}
+	
+	public ComposedSystemAnalyzer(AnalysisCoupler coupler) {
+		this.coupler = coupler;
 	}
 
-	public void flowCalculationForEntryLevelSystemCall(TopmostAssemblyEntity startingEntity,
+	public void flowCalculationForEntryLevelSystemCall(SystemRepresentation startingEntity,
 			EntryLevelSystemCall call) {
 		OperationSignature startingSignature = call.getOperationSignature__EntryLevelSystemCall();
 		OperationProvidedRole startingRole = call.getProvidedRole_EntryLevelSystemCall();
@@ -58,6 +49,7 @@ public class PCMComposedEntityFlowAnalyzer {
 		traverseProvidedDelegation(startingEntity, startingRole, startingSignature);
 
 	}
+	
 
 	private void traverseProvidedDelegation(AssemblyRepresentationContainer representation, OperationProvidedRole role,
 			OperationSignature operationSignature) {
@@ -67,7 +59,7 @@ public class PCMComposedEntityFlowAnalyzer {
 				.searchProvidedDelegationInOuterForSigAndProvRole(role);
 
 		if (connector.isPresent()) {
-			AssemblyComponent inner = connector.get().getInner();
+			AssemblyComponentContext inner = connector.get().getInner();
 			OperationProvidedRole innerRole = ((ProvidedDelegationConnector) connector.get().getConnector())
 					.getInnerProvidedRole_ProvidedDelegationConnector();
 			if (inner.isComposite()) {
@@ -78,7 +70,7 @@ public class PCMComposedEntityFlowAnalyzer {
 		}
 	}
 
-	private void analyzeIntraComponentFlow(AssemblyComponent representation, OperationProvidedRole sourceFlowRole,
+	private void analyzeIntraComponentFlow(AssemblyComponentContext representation, OperationProvidedRole sourceFlowRole,
 			OperationSignature sourceSignature) {
 
 		AssemblyContext representationContext = representation.getContext();
@@ -92,6 +84,14 @@ public class PCMComposedEntityFlowAnalyzer {
 				representationContext.getEncapsulatedComponent__AssemblyContext(), sourceFlowRole, sourceSignature);
 		IntraComponentFlow intraComponentFlow = new IntraComponentFlow(sourceIdentifying);
 		representation.addIntraComponentFlow(intraComponentFlow);
+		
+		if(methodIDsOfFlows.isEmpty()) {
+			//System.out.printf("Flow Finished in Component %s, Method %s\n", sourceIdentifying.getComponent().getEntityName(), sourceIdentifying.getSignature().getEntityName());
+		}
+		
+		
+		//System.out.println("!!!!");
+		//System.out.printf("From Source %s.%s \n", sourceIdentifying.getComponent().getEntityName(), sourceIdentifying.getSignature().getEntityName());
 
 		// fill Sinks
 		for (String id : methodIDsOfFlows) {
@@ -99,13 +99,16 @@ public class PCMComposedEntityFlowAnalyzer {
 					.getRequiredRoles_InterfaceRequiringEntity()) {
 				if (role instanceof OperationRequiredRole) {
 					OperationRequiredRole opRole = (OperationRequiredRole) role;
-					Optional<OperationSignature> requiredOpSig = getOperationSignatureOfInterfaceById(
+					Optional<OperationSignature> requiredOpSig = PCMRepositoryElementResolver.getOperationSignatureOfInterfaceById(
 							opRole.getRequiredInterface__OperationRequiredRole(), id);
 
 					if (requiredOpSig.isPresent()) {
 						SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying = new SignatureIdentifyingRoleElement<OperationRequiredRole>(
 								representationContext.getEncapsulatedComponent__AssemblyContext(), opRole,
 								requiredOpSig.get());
+						
+						//System.out.printf("To Sink %s.%s \n", sinkIdentifying.getComponent().getEntityName(), sinkIdentifying.getSignature().getEntityName());
+						
 						intraComponentFlow.addSink(sinkIdentifying);
 
 						boolean couldMakeAssemblyStep = tryAssemblyStepFromSink(representation, sinkIdentifying,
@@ -117,7 +120,7 @@ public class PCMComposedEntityFlowAnalyzer {
 						}
 						
 						if(!couldMakeRequiredDelegationSep) {
-							System.out.println(String.format("Flow Finished in Component %s, Method %s", sinkIdentifying.getComponent().getEntityName(), sinkIdentifying.getSignature().getEntityName()));
+							//System.out.printf("Flow Finished in Component %s, Method %s\n", sinkIdentifying.getComponent().getEntityName(), sinkIdentifying.getSignature().getEntityName());
 						}
 					}
 				}
@@ -138,7 +141,7 @@ public class PCMComposedEntityFlowAnalyzer {
 		return stepPossible;
 	}
 
-	private boolean tryDelegationStepFromSink(AssemblyComponent representation,
+	private boolean tryDelegationStepFromSink(AssemblyComponentContext representation,
 			SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying, OperationSignature signature) {
 
 		Optional<CompositeConnectorRepresentation> compositeConnector = representation
@@ -160,18 +163,6 @@ public class PCMComposedEntityFlowAnalyzer {
 		}
 
 		return stepPossible;
-	}
-
-	private Optional<OperationSignature> getOperationSignatureOfInterfaceById(OperationInterface operationInterface,
-			String operationSignatureId) {
-		Optional<OperationSignature> opSig = Optional.empty();
-		for (OperationSignature sig : operationInterface.getSignatures__OperationInterface()) {
-			if (sig.getId().equals(operationSignatureId)) {
-				opSig = Optional.ofNullable(sig);
-				return opSig;
-			}
-		}
-		return opSig;
 	}
 
 	private void processCallInformation(CallInformation callInformation) {

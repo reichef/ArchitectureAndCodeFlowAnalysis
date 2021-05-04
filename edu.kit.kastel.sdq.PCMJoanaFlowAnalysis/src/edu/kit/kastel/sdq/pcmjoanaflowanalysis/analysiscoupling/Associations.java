@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import edu.kit.joana.component.connector.Method;
+import edu.kit.joana.component.connector.ProgramPart;
 
 public class Associations {
 	private final Collection<Association> associations;
@@ -21,9 +22,9 @@ public class Associations {
 	    }
 	    return null;
 	  }
-	  public String getId(Method method){
+	  public String getId(ProgramPart joanaCLIMethod){
 		  for(Association association : associations) {
-		    	if(association.equals(method)) {
+		    	if(association.equals(joanaCLIMethod.getOwningMethod())) {
 		    		return association.getId();
 		    	}
 		    }

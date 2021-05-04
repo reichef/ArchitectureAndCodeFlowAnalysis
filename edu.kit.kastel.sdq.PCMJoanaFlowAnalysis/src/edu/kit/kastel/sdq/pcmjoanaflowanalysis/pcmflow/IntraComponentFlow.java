@@ -10,10 +10,13 @@ import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.Role;
 
+import edu.kit.joana.component.connector.Flows;
+
 public class IntraComponentFlow {
 	
 	private final SignatureIdentifyingRoleElement<OperationProvidedRole> source;
 	private List<SignatureIdentifyingRoleElement<OperationRequiredRole>> sinks;
+	private Flows joanaFlow;
 	
 	public IntraComponentFlow(SignatureIdentifyingRoleElement<OperationProvidedRole> source){
 		this.source = source;
@@ -32,5 +35,12 @@ public class IntraComponentFlow {
 		sinks.add(sink);
 	}
 	
+	public void setFlows(Flows joanaFlow) {
+		this.joanaFlow = joanaFlow;
+	}
+	
+	public Flows getFlows() {
+		return joanaFlow;
+	}
 	
 }

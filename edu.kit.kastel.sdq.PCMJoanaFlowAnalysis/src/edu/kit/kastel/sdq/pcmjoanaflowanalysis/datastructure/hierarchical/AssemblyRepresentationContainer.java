@@ -1,4 +1,4 @@
-package edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure;
+package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -6,19 +6,23 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
+
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.SignatureIdentifyingRoleElement;
 
 public abstract class AssemblyRepresentationContainer {
-	protected Collection<AssemblyConnectorRepresentation> assemblyConnectorRepresentation;
 	protected String id;
 	protected String name;
-	protected Collection<AssemblyComponent> containedRepresentations;
+	protected Collection<AssemblyComponentContext> containedRepresentations;
 	protected Collection<CompositeConnectorRepresentation> compositeConnectorRepresentation;
+	protected Collection<AssemblyConnectorRepresentation> assemblyConnectorRepresentation;
 	protected Map<String, String> annotations;
 	
 	protected AssemblyRepresentationContainer(String id, String name) {
@@ -27,9 +31,10 @@ public abstract class AssemblyRepresentationContainer {
 		
 		this.assemblyConnectorRepresentation = new HashSet<AssemblyConnectorRepresentation>();
 		this.compositeConnectorRepresentation = new HashSet<CompositeConnectorRepresentation>();
-		this.containedRepresentations = new HashSet<AssemblyComponent> ();
+		this.containedRepresentations = new HashSet<AssemblyComponentContext> ();
 		this.annotations = new HashMap<String, String>();
 	}
+	
 	
 	public void addAssemblyConnector(AssemblyConnectorRepresentation connector) {
 		this.assemblyConnectorRepresentation.add(connector);
@@ -39,7 +44,7 @@ public abstract class AssemblyRepresentationContainer {
 		this.compositeConnectorRepresentation.add(connector);
 	}
 	
-	public void addContainedComponentRepresentation(AssemblyComponent representation) {
+	public void addContainedComponentRepresentation(AssemblyComponentContext representation) {
 		this.containedRepresentations.add(representation);
 	}
 	
@@ -63,25 +68,10 @@ public abstract class AssemblyRepresentationContainer {
 		return "";
 	}
 	
-	public boolean isComposite() {
-		return containedRepresentations.size() > 0;
-	}
-	
+
 	public abstract void fillWithClassPath(AnnotationRepository repository, Optional<String> latestClassPath);
 	
-	public Optional<String> getClassPath() {
-		String classPath = getAnnotation("ClassPath");
-		if(classPath.isEmpty()) {
-			return Optional.empty();
-		}
-		
-		return Optional.ofNullable(classPath);
-	}
-	
-	public boolean isClassPathAvailable() {
-		return getClassPath().isPresent();
-	}
-	
+
 	public Optional<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentationForSink(SignatureIdentifyingRoleElement<OperationRequiredRole> sink) {
 		for(AssemblyConnectorRepresentation connectorRepresentation : assemblyConnectorRepresentation) {
 			if(sink.identyfyingEquals(connectorRepresentation.getRequiringContext().getEncapsulatedComponent__AssemblyContext(),
@@ -94,34 +84,7 @@ public abstract class AssemblyRepresentationContainer {
 	}
 	
 	
-	public void printRepresentation() {
-		System.out.println(String.format("----Representation Name: %s, Id: %s ----", name, id));
-		System.out.println("----Inner Representations----");
-		for(AssemblyComponent representation : containedRepresentations) {
-			System.out.println(String.format("InnerRepresentation Name: %s, Id: %s", representation.getName(), representation.getId()));
-		}
-		System.out.println("----Connector Representations----");
-		for(AssemblyConnectorRepresentation assemblyConnector : assemblyConnectorRepresentation) {
-			System.out.println(assemblyConnector.connectorRepresentation());
-		}
-		
-		for(CompositeConnectorRepresentation compositeConnector : compositeConnectorRepresentation) {
-			System.out.println(compositeConnector.connectorRepresentation());
-		}
-		
-		System.out.println("---- Annotations ----");
-		
-		for(Entry<String, String> entry : annotations.entrySet()) {
-			System.out.println(String.format("Type: %s, Content: %s", entry.getKey(), entry.getValue()));
-		}
-		
-		if(isComposite()) {
-			for(AssemblyComponent representation : containedRepresentations) {
-				representation.printRepresentation();
-			}
-		}
-		
-	}
+	public abstract void printRepresentation();
 
 	public Optional<CompositeConnectorRepresentation> searchProvidedDelegationInOuterForSigAndProvRole(OperationProvidedRole role){
 		for(CompositeConnectorRepresentation connector : compositeConnectorRepresentation) {
@@ -135,4 +98,30 @@ public abstract class AssemblyRepresentationContainer {
 		
 		return Optional.empty();
 	}
+	
+	public Collection<CompositeConnectorRepresentation> getProvidedDelegationConectors(){
+		return compositeConnectorRepresentation.stream().filter(connector -> connector.getOuter().getId().equals(this.getId())).collect(Collectors.toUnmodifiableSet());
+	}
+	
+	public Collection<CompositeConnectorRepresentation> getRequiredDelegationConnectors(){
+		return compositeConnectorRepresentation.stream().filter(connector -> connector.getInner().getId().equals(this.getId())).collect(Collectors.toUnmodifiableSet());
+	}
+	
+	public Collection<AssemblyComponentContext> getContainedRepresentations() {
+		return containedRepresentations;
+	}
+	
+	protected void collectFlowBasicComponents(Set<FlowBasicComponent> components) {
+		if(this.isComposite()) {
+			containedRepresentations.forEach(representation -> collectFlowBasicComponents(components));
+		} else {
+			components.add(((AssemblyComponentContext)this).getComponent());
+		}
+	}
+	
+	public boolean isComposite() {
+		return containedRepresentations.size() > 0;
+	}
+
+	
 }

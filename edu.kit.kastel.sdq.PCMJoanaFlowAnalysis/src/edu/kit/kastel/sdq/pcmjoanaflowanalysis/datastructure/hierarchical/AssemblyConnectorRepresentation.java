@@ -1,17 +1,17 @@
-package edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure;
+package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
-public class AssemblyConnectorRepresentation{
-	private AssemblyComponent providing;
-	private AssemblyComponent requiring;
+public class AssemblyConnectorRepresentation {
+	private AssemblyComponentContext providing;
+	private AssemblyComponentContext requiring;
 	private AssemblyConnector assemblyConnector;
 
 	
-	public AssemblyConnectorRepresentation(AssemblyConnector connector, AssemblyComponent requiring,AssemblyComponent providing) {
+	public AssemblyConnectorRepresentation(AssemblyConnector connector, AssemblyComponentContext requiring,AssemblyComponentContext providing) {
 		this.assemblyConnector = connector;
 		this.providing = providing;
 		this.requiring = requiring;
@@ -46,15 +46,15 @@ public class AssemblyConnectorRepresentation{
 		return assemblyConnector.getEntityName();
 	}
 	
-	public AssemblyComponent getRequring() {
+	public AssemblyComponentContext getRequring() {
 		return requiring;
 	}
 	
-	public AssemblyComponent getProviding() {
+	public AssemblyComponentContext getProviding() {
 		return providing;
 	}
 	
-	public boolean fitting(AssemblyComponent providing, AssemblyComponent requiring) {
+	public boolean fitting(AssemblyComponentContext providing, AssemblyComponentContext requiring) {
 		return this.providing.getId().equals(providing.getId()) && this.requiring.getId().equals(requiring.getId());
 	}
 	

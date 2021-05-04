@@ -1,4 +1,4 @@
-package edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure;
+package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical;
 
 import org.palladiosimulator.pcm.core.composition.DelegationConnector;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
@@ -8,9 +8,9 @@ public class CompositeConnectorRepresentation{
 	
 	private DelegationConnector delegationConnector;
 	private AssemblyRepresentationContainer outer;
-	private AssemblyComponent inner;
+	private AssemblyComponentContext inner;
 	
-	public CompositeConnectorRepresentation(DelegationConnector connector, AssemblyRepresentationContainer outer,AssemblyComponent inner) {
+	public CompositeConnectorRepresentation(DelegationConnector connector, AssemblyRepresentationContainer outer, AssemblyComponentContext inner) {
 		this.delegationConnector = connector;
 		this.inner = inner;
 		this.outer = outer;
@@ -24,7 +24,7 @@ public class CompositeConnectorRepresentation{
 		return outer;
 	}
 	
-	public AssemblyComponent getInner() {
+	public AssemblyComponentContext getInner() {
 		return inner;
 	}
 	
@@ -36,7 +36,7 @@ public class CompositeConnectorRepresentation{
 		return delegationConnector.getEntityName();
 	}
 	
-	public boolean fitting(AssemblyComponent outer,AssemblyComponent inner) {
+	public boolean fitting(AssemblyComponentContext outer,AssemblyComponentContext inner) {
 		return this.outer.getId().equals(outer.getId()) && this.inner.getId().equals(inner.getId());
 	}
 	

@@ -2,7 +2,7 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow;
 
 import org.palladiosimulator.pcm.repository.OperationSignature;
 
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure.AssemblyConnectorRepresentation;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyConnectorRepresentation;
 
 public class CallInformation {
 	private final AssemblyConnectorRepresentation assemblyConnector;

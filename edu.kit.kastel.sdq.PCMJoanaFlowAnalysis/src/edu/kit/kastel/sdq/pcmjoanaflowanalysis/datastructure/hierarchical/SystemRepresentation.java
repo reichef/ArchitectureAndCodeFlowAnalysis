@@ -1,19 +1,20 @@
-package edu.kit.kastel.sdq.pcmjoanaflowanalysis.Datastructure;
+package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.palladiosimulator.pcm.core.entity.ComposedProvidingRequiringEntity;
 
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
 
-public class TopmostAssemblyEntity extends AssemblyRepresentationContainer {
+public class SystemRepresentation extends AssemblyRepresentationContainer {
 
 	private ComposedProvidingRequiringEntity entity;
 
 	
-	public TopmostAssemblyEntity(ComposedProvidingRequiringEntity topMostEntity) {
+	public SystemRepresentation(ComposedProvidingRequiringEntity topMostEntity) {
 		super(topMostEntity.getId(), topMostEntity.getEntityName());
 		this.entity = topMostEntity;
 	}
@@ -23,19 +24,30 @@ public class TopmostAssemblyEntity extends AssemblyRepresentationContainer {
 		return entity;
 	}
 	
-	public Collection<AssemblyComponent> getAllAssemblyComponentsFlatList() {
-		Collection<AssemblyComponent> components = new HashSet<AssemblyComponent>();
-		for(AssemblyComponent component : containedRepresentations) {
+	public Collection<AssemblyComponentContext> getAllAssemblyComponentsFlatList() {
+		Collection<AssemblyComponentContext> components = new HashSet<AssemblyComponentContext>();
+		for(AssemblyComponentContext component : containedRepresentations) {
 			components.addAll(component.getAssemblyComponentsRecursive());
 		}
 		return components;
 	}
 
 
+	public Collection<FlowBasicComponent> collectFlowBasicComponents(){
+		Set<FlowBasicComponent> components = new HashSet<>();
+		collectFlowBasicComponents(components);
+		return components;
+	}
+	
 	@Override
 	public void fillWithClassPath(AnnotationRepository repository, Optional<String> latestClassPath) {
-		for(AssemblyComponent representation : containedRepresentations) {
+		for(AssemblyComponentContext representation : containedRepresentations) {
 			representation.fillWithClassPath(repository, latestClassPath);
 		}
+	}
+	
+	@Override
+	public void printRepresentation() {
+		containedRepresentations.forEach(a -> a.printRepresentation());
 	}
 }

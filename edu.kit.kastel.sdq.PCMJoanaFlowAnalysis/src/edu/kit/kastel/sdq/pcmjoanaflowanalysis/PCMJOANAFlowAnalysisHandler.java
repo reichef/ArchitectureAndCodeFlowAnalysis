@@ -16,10 +16,12 @@ import java.util.Collection;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.system.System;
 
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyComponent;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.AnalysisCoupler;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyComponentContext;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.DataStructureBuilder;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.SystemRepresentation;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.PCMComposedEntityFlowAnalyzer;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.BasicComponentFlowAnalyzer;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.ComposedSystemAnalyzer;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -83,7 +85,12 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		
 		SystemRepresentation systemrepresentation = buildDataStructure(models.getSystem(), models.getAnnotationRepository());
 		
-		PCMComposedEntityFlowAnalyzer pcmAnalyzer = new PCMComposedEntityFlowAnalyzer(models.getConfig());
+		AnalysisCoupler coupler = new AnalysisCoupler(models.getConfig());
+		
+		BasicComponentFlowAnalyzer basicAnalyzer = new BasicComponentFlowAnalyzer(coupler);
+		basicAnalyzer.analyseAllComponents(systemrepresentation.collectFlowBasicComponents());
+		
+		ComposedSystemAnalyzer pcmAnalyzer = new ComposedSystemAnalyzer(coupler);
 		analyseFlowsFromEntryLevelSystemCalls(models.getUsageModel(), pcmAnalyzer, systemrepresentation);
 		
 		Repository repo = models.getRepository();
@@ -99,7 +106,7 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		return systemrepresentation;
 	}
 	
-	private void analyseFlowsFromEntryLevelSystemCalls(UsageModel usageModel, PCMComposedEntityFlowAnalyzer analyser, SystemRepresentation systemrepresentation){
+	private void analyseFlowsFromEntryLevelSystemCalls(UsageModel usageModel, ComposedSystemAnalyzer analyser, SystemRepresentation systemrepresentation){
 		for(UsageScenario scenario : usageModel.getUsageScenario_UsageModel()){
 			for(AbstractUserAction action : scenario.getScenarioBehaviour_UsageScenario().getActions_ScenarioBehaviour()){
 				if(action instanceof EntryLevelSystemCall){
