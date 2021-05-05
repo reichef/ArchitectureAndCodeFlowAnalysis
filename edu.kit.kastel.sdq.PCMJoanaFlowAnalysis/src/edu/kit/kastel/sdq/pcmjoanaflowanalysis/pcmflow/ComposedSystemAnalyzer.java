@@ -19,16 +19,16 @@ import org.palladiosimulator.pcm.system.System;
 
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.AnalysisCoupler;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.FlowBasicComponent;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyComponentContext;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyConnectorRepresentation;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyRepresentationContainer;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.CompositeConnectorRepresentation;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.FlowBasicComponent;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.SystemRepresentation;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMRepositoryElementResolver;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.ModelsSubtypeResolver;
 
-
-//TODO: Only Resolve IntraComponentFlows here and calculate complete flows through fixpoint iteration
+//TODO: Only Resolve complete fixpoint iteration here
 public class ComposedSystemAnalyzer {
 
 	private AnalysisCoupler coupler;
@@ -36,20 +36,18 @@ public class ComposedSystemAnalyzer {
 	public ComposedSystemAnalyzer(Config config) {
 		this.coupler = new AnalysisCoupler(config);
 	}
-	
+
 	public ComposedSystemAnalyzer(AnalysisCoupler coupler) {
 		this.coupler = coupler;
 	}
 
-	public void flowCalculationForEntryLevelSystemCall(SystemRepresentation startingEntity,
-			EntryLevelSystemCall call) {
+	public void flowCalculationForEntryLevelSystemCall(SystemRepresentation startingEntity, EntryLevelSystemCall call) {
 		OperationSignature startingSignature = call.getOperationSignature__EntryLevelSystemCall();
 		OperationProvidedRole startingRole = call.getProvidedRole_EntryLevelSystemCall();
 
 		traverseProvidedDelegation(startingEntity, startingRole, startingSignature);
 
 	}
-	
 
 	private void traverseProvidedDelegation(AssemblyRepresentationContainer representation, OperationProvidedRole role,
 			OperationSignature operationSignature) {
@@ -70,13 +68,13 @@ public class ComposedSystemAnalyzer {
 		}
 	}
 
-	private void analyzeIntraComponentFlow(AssemblyComponentContext representation, OperationProvidedRole sourceFlowRole,
-			OperationSignature sourceSignature) {
+	private void analyzeIntraComponentFlow(AssemblyComponentContext representation,
+			OperationProvidedRole sourceFlowRole, OperationSignature sourceSignature) {
 
 		AssemblyContext representationContext = representation.getContext();
 
 		// Call JOANA via coupler
-		Collection<String> methodIDsOfFlows = coupler.analyzeIntraComponentFlow(
+		Collection<OperationSignature> methodIDsOfFlows = coupler.analyzeIntraComponentFlow(
 				representationContext.getEncapsulatedComponent__AssemblyContext(), sourceFlowRole, sourceSignature,
 				representation.getClassPath().get());
 
@@ -84,44 +82,44 @@ public class ComposedSystemAnalyzer {
 				representationContext.getEncapsulatedComponent__AssemblyContext(), sourceFlowRole, sourceSignature);
 		IntraComponentFlow intraComponentFlow = new IntraComponentFlow(sourceIdentifying);
 		representation.addIntraComponentFlow(intraComponentFlow);
-		
-		if(methodIDsOfFlows.isEmpty()) {
-			//System.out.printf("Flow Finished in Component %s, Method %s\n", sourceIdentifying.getComponent().getEntityName(), sourceIdentifying.getSignature().getEntityName());
+
+		if (methodIDsOfFlows.isEmpty()) {
+			// System.out.printf("Flow Finished in Component %s, Method %s\n",
+			// sourceIdentifying.getComponent().getEntityName(),
+			// sourceIdentifying.getSignature().getEntityName());
 		}
-		
-		
-		//System.out.println("!!!!");
-		//System.out.printf("From Source %s.%s \n", sourceIdentifying.getComponent().getEntityName(), sourceIdentifying.getSignature().getEntityName());
+
+		// System.out.println("!!!!");
+		// System.out.printf("From Source %s.%s \n",
+		// sourceIdentifying.getComponent().getEntityName(),
+		// sourceIdentifying.getSignature().getEntityName());
 
 		// fill Sinks
-		for (String id : methodIDsOfFlows) {
-			for (RequiredRole role : representationContext.getEncapsulatedComponent__AssemblyContext()
-					.getRequiredRoles_InterfaceRequiringEntity()) {
-				if (role instanceof OperationRequiredRole) {
-					OperationRequiredRole opRole = (OperationRequiredRole) role;
-					Optional<OperationSignature> requiredOpSig = PCMRepositoryElementResolver.getOperationSignatureOfInterfaceById(
-							opRole.getRequiredInterface__OperationRequiredRole(), id);
+		for (OperationSignature opSig : methodIDsOfFlows) {
+			for (OperationRequiredRole role : ModelsSubtypeResolver.filterOperationRequiredRoles(
+					representation.getComponent().getComponent().getRequiredRoles_InterfaceRequiringEntity())) {
+				if (PCMRepositoryElementResolver
+						.interfaceContainsSignature(role.getRequiredInterface__OperationRequiredRole(), opSig)) {
+					SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying = new SignatureIdentifyingRoleElement<OperationRequiredRole>(
+							representationContext.getEncapsulatedComponent__AssemblyContext(), role, opSig);
 
-					if (requiredOpSig.isPresent()) {
-						SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying = new SignatureIdentifyingRoleElement<OperationRequiredRole>(
-								representationContext.getEncapsulatedComponent__AssemblyContext(), opRole,
-								requiredOpSig.get());
-						
-						//System.out.printf("To Sink %s.%s \n", sinkIdentifying.getComponent().getEntityName(), sinkIdentifying.getSignature().getEntityName());
-						
-						intraComponentFlow.addSink(sinkIdentifying);
+					// System.out.printf("To Sink %s.%s \n",
+					// sinkIdentifying.getComponent().getEntityName(),
+					// sinkIdentifying.getSignature().getEntityName());
 
-						boolean couldMakeAssemblyStep = tryAssemblyStepFromSink(representation, sinkIdentifying,
-								requiredOpSig.get());
+					intraComponentFlow.addSink(sinkIdentifying);
 
-						boolean couldMakeRequiredDelegationSep = false;
-						if (!couldMakeAssemblyStep) {
-							 couldMakeAssemblyStep = tryDelegationStepFromSink(representation, sinkIdentifying, requiredOpSig.get());
-						}
-						
-						if(!couldMakeRequiredDelegationSep) {
-							//System.out.printf("Flow Finished in Component %s, Method %s\n", sinkIdentifying.getComponent().getEntityName(), sinkIdentifying.getSignature().getEntityName());
-						}
+					boolean couldMakeAssemblyStep = tryAssemblyStepFromSink(representation, sinkIdentifying, opSig);
+
+					boolean couldMakeRequiredDelegationSep = false;
+					if (!couldMakeAssemblyStep) {
+						couldMakeAssemblyStep = tryDelegationStepFromSink(representation, sinkIdentifying, opSig);
+					}
+
+					if (!couldMakeRequiredDelegationSep) {
+						// System.out.printf("Flow Finished in Component %s, Method %s\n",
+						// sinkIdentifying.getComponent().getEntityName(),
+						// sinkIdentifying.getSignature().getEntityName());
 					}
 				}
 			}
@@ -156,9 +154,8 @@ public class ComposedSystemAnalyzer {
 					(InterfaceProvidingRequiringEntity) requiredDelegation
 							.getOuterRequiredRole_RequiredDelegationConnector().getRequiringEntity_RequiredRole(),
 					requiredDelegation.getOuterRequiredRole_RequiredDelegationConnector(), signature);
-			
+
 			stepPossible = tryAssemblyStepFromSink(parentComponent, outerIdentifyingRoleElement, signature);
-			
 
 		}
 

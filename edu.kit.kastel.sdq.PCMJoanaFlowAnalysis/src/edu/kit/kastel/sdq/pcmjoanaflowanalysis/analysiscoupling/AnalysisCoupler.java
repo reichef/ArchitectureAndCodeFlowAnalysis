@@ -34,7 +34,7 @@ public class AnalysisCoupler {
 		sourceCodeAnalyzer = new JOANAAnalyzer(config);
 	}
 	
-	public Set<String> analyzeIntraComponentFlow(RepositoryComponent component, OperationProvidedRole sourceRole,
+	public Set<OperationSignature> analyzeIntraComponentFlow(RepositoryComponent component, OperationProvidedRole sourceRole,
 			OperationSignature sourceSignature, String classPath) {
 
 		generateSourceCodeAndJoanaModel(component.getRepository__RepositoryComponent());
@@ -45,7 +45,7 @@ public class AnalysisCoupler {
 				.generateFlowForProvidedOperationAndComponent(sourceRole, sourceSignature, component);
 
 		if(flowInformation.getFirst().getSink().isEmpty()) {
-			return new HashSet<String>();
+			return new HashSet<OperationSignature>();
 		}
 		
 		
@@ -54,9 +54,9 @@ public class AnalysisCoupler {
 
 		// transform SourceCode Analysis Results back to PCM-Information
 		// TODO: Potentially also possible to already create here SignatureIdentifying
-		Collection<OperationSignature> pcmSinkSignatures = retrieveSinkSignatureIDsFromResultFlows(joanaFlowsResults, flowInformation);
+		Set<OperationSignature> pcmSinkSignatures = retrieveSinkSignatureIDsFromResultFlows(joanaFlowsResults, flowInformation);
 		
-		return retrieveOperationSignatureIDsFromOperationSignatures(pcmSinkSignatures);
+		return pcmSinkSignatures;
 	}
 	
 	private void generateSourceCodeAndJoanaModel(Repository repository) {
@@ -67,7 +67,7 @@ public class AnalysisCoupler {
 		}
 	}
 	
-	private Collection<OperationSignature> retrieveSinkSignatureIDsFromResultFlows(Flows joanaFlowsResults, Pair<FlowSpecification, Associations> flowInformation){
+	private Set<OperationSignature> retrieveSinkSignatureIDsFromResultFlows(Flows joanaFlowsResults, Pair<FlowSpecification, Associations> flowInformation){
 		Set<OperationSignature> pcmSinks = new HashSet<OperationSignature>();
 		
 		for (Entry<ProgramPart, Set<ProgramPart>> flow : joanaFlowsResults.flows().entrySet()) {
@@ -87,7 +87,7 @@ public class AnalysisCoupler {
 		return pcmSinks;
 	}
 	
-	private Set<String> retrieveOperationSignatureIDsFromOperationSignatures(Collection<OperationSignature> signatures){
+	public Set<String> retrieveOperationSignatureIDsFromOperationSignatures(Collection<OperationSignature> signatures){
 		return signatures.stream().map(signature -> signature.getId()).collect(Collectors.toSet());
 	}
 }

@@ -8,12 +8,12 @@ import java.util.Set;
 import org.palladiosimulator.pcm.core.entity.ComposedProvidingRequiringEntity;
 
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.FlowBasicComponent;
 
 public class SystemRepresentation extends AssemblyRepresentationContainer {
 
 	private ComposedProvidingRequiringEntity entity;
 
-	
 	public SystemRepresentation(ComposedProvidingRequiringEntity topMostEntity) {
 		super(topMostEntity.getId(), topMostEntity.getEntityName());
 		this.entity = topMostEntity;

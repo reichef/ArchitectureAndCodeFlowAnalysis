@@ -4,7 +4,7 @@ import JOANA.JOANARoot;
 import JOANA.MethodTargetingSink;
 import JOANA.MethodTargetingSource;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMSubtypeResolver;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.ModelsSubtypeResolver;
 
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import JOANA.FlowSpecification;
@@ -67,7 +67,7 @@ public class PCM2JOANAModelTransformator {
 		Collection<Pair<String, Method>> joanaCLISinks = new HashSet<Pair<String, Method>>();
 
 		Class scClass = resolver.getClass(component);
-		Collection<OperationRequiredRole> opReqRoles = PCMSubtypeResolver.filterOperationRequiredRoles(component.getRequiredRoles_InterfaceRequiringEntity());
+		Collection<OperationRequiredRole> opReqRoles = ModelsSubtypeResolver.filterOperationRequiredRoles(component.getRequiredRoles_InterfaceRequiringEntity());
 		for (OperationRequiredRole requiredRole : opReqRoles) {
 				for (OperationSignature signature : requiredRole.getRequiredInterface__OperationRequiredRole().getSignatures__OperationInterface()) {
 					//MethodTargetingSink sink = JOANAFactory.eINSTANCE.createMethodTargetingSink();
