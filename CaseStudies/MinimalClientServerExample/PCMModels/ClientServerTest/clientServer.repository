@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ASCII"?>
+<repository:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" id="_2UOQQJBxEeuNUJHT8B_BFA" entityName="New Repository">
+  <components__Repository xsi:type="repository:BasicComponent" id="_6O1EoJBxEeuNUJHT8B_BFA" entityName="Client">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_qq_iUJB8EeuNUJHT8B_BFA" entityName="Client.ClientCall" providedInterface__OperationProvidedRole="_IiRmB5B7EeuNUJHT8B_BFA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_obXCAJB8EeuNUJHT8B_BFA" entityName="Client.DbCallCosts" requiredInterface__OperationRequiredRole="_AxuJ4JByEeuNUJHT8B_BFA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_qH6qcJB8EeuNUJHT8B_BFA" entityName="Client.ClientCallBack" requiredInterface__OperationRequiredRole="_QhbN55B7EeuNUJHT8B_BFA"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_qrAJYJB8EeuNUJHT8B_BFA" describedService__SEFF="_LCOaQJB7EeuNUJHT8B_BFA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_qrAwcJB8EeuNUJHT8B_BFA" successor_AbstractAction="_qrAwcZB8EeuNUJHT8B_BFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_qrAwcZB8EeuNUJHT8B_BFA" predecessor_AbstractAction="_qrAwcJB8EeuNUJHT8B_BFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_74OEUJBxEeuNUJHT8B_BFA" entityName="Server">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_dSZwkJB8EeuNUJHT8B_BFA" entityName="Server.UserCall" providedInterface__OperationProvidedRole="_YJJNN5B7EeuNUJHT8B_BFA"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_iQXfYJB8EeuNUJHT8B_BFA" entityName="Server.ClientCallBack" providedInterface__OperationProvidedRole="_QhbN55B7EeuNUJHT8B_BFA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_kCj1wJB8EeuNUJHT8B_BFA" entityName="Server.ClientCall" requiredInterface__OperationRequiredRole="_IiRmB5B7EeuNUJHT8B_BFA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_l8YeIJB8EeuNUJHT8B_BFA" entityName="Server.DbCallCredentials" requiredInterface__OperationRequiredRole="_-wVg8JBxEeuNUJHT8B_BFA"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_X4XJwJB8EeuNUJHT8B_BFA" describedService__SEFF="_LCOaQJB7EeuNUJHT8B_BFA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_X4XJwZB8EeuNUJHT8B_BFA" successor_AbstractAction="_X4XJwpB8EeuNUJHT8B_BFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_X4XJwpB8EeuNUJHT8B_BFA" predecessor_AbstractAction="_X4XJwZB8EeuNUJHT8B_BFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_dTTvgJB8EeuNUJHT8B_BFA" describedService__SEFF="_ay_kUJB7EeuNUJHT8B_BFA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_dTUWkJB8EeuNUJHT8B_BFA" successor_AbstractAction="_dTUWkZB8EeuNUJHT8B_BFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_dTUWkZB8EeuNUJHT8B_BFA" predecessor_AbstractAction="_dTUWkJB8EeuNUJHT8B_BFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_iQYGcJB8EeuNUJHT8B_BFA" describedService__SEFF="_SbcDgJB7EeuNUJHT8B_BFA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_iQYtgJB8EeuNUJHT8B_BFA" successor_AbstractAction="_iQYtgZB8EeuNUJHT8B_BFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_iQYtgZB8EeuNUJHT8B_BFA" predecessor_AbstractAction="_iQYtgJB8EeuNUJHT8B_BFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_8ksv0JBxEeuNUJHT8B_BFA" entityName="DataBase">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_nRnywJB8EeuNUJHT8B_BFA" entityName="DataBase.DbCallCredentials" providedInterface__OperationProvidedRole="_-wVg8JBxEeuNUJHT8B_BFA"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_nuhKIJB8EeuNUJHT8B_BFA" entityName="DataBase.DbCallCosts" providedInterface__OperationProvidedRole="_AxuJ4JByEeuNUJHT8B_BFA"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_nRoZ0JB8EeuNUJHT8B_BFA" describedService__SEFF="_DQgggJByEeuNUJHT8B_BFA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_nRoZ0ZB8EeuNUJHT8B_BFA" successor_AbstractAction="_nRoZ0pB8EeuNUJHT8B_BFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_nRoZ0pB8EeuNUJHT8B_BFA" predecessor_AbstractAction="_nRoZ0ZB8EeuNUJHT8B_BFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_nuhxMJB8EeuNUJHT8B_BFA" describedService__SEFF="_-SszoJB6EeuNUJHT8B_BFA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_nuhxMZB8EeuNUJHT8B_BFA" successor_AbstractAction="_nuhxMpB8EeuNUJHT8B_BFA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_nuhxMpB8EeuNUJHT8B_BFA" predecessor_AbstractAction="_nuhxMZB8EeuNUJHT8B_BFA"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_-wVg8JBxEeuNUJHT8B_BFA" entityName="DbCallCredentials">
+    <signatures__OperationInterface id="_DQgggJByEeuNUJHT8B_BFA" entityName="callCredentials">
+      <parameters__OperationSignature parameterName="id">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_AxuJ4JByEeuNUJHT8B_BFA" entityName="DbCallCosts">
+    <signatures__OperationInterface id="_-SszoJB6EeuNUJHT8B_BFA" entityName="dbCallCosts">
+      <parameters__OperationSignature parameterName="token">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_IiRmB5B7EeuNUJHT8B_BFA" entityName="ClientCall">
+    <signatures__OperationInterface id="_LCOaQJB7EeuNUJHT8B_BFA" entityName="calculateCost">
+      <parameters__OperationSignature parameterName="id">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_QhbN55B7EeuNUJHT8B_BFA" entityName="ClientCallBack">
+    <signatures__OperationInterface id="_SbcDgJB7EeuNUJHT8B_BFA" entityName="requestUserSpecs">
+      <parameters__OperationSignature parameterName="id">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_YJJNN5B7EeuNUJHT8B_BFA" entityName="UserCall">
+    <signatures__OperationInterface id="_ay_kUJB7EeuNUJHT8B_BFA" entityName="requestMyCost">
+      <parameters__OperationSignature parameterName="id">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+</repository:Repository>
