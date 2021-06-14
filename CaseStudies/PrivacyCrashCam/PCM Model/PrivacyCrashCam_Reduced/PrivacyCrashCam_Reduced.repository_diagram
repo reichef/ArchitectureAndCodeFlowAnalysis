@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff">
   <notation:Diagram xmi:id="_1SqioY4VEeqDF7FZuVpOgA" type="PCM Repository Model" name="PrivacyCrashCam_Reduced.repository_diagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_f7psUI4WEeqDF7FZuVpOgA" type="2107" fontName="Segoe UI">
       <children xmi:type="notation:DecorationNode" xmi:id="_f7psUo4WEeqDF7FZuVpOgA" type="5108"/>
@@ -266,7 +266,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_hmwkA46qEeqzwdx0zkPPFA" type="5103"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_hmwkAY6qEeqzwdx0zkPPFA" diagramLink="_5zhC8I6qEeqzwdx0zkPPFA" hint="CompositeModel"/>
       <element xmi:type="repository:CompositeComponent" href="PrivacyCrashCam_Reduced.repository#_hmihkI6qEeqzwdx0zkPPFA"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hmwkAo6qEeqzwdx0zkPPFA" x="9115" y="790"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hmwkAo6qEeqzwdx0zkPPFA" x="9135" y="805"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_ONp58I6tEeqzwdx0zkPPFA" type="2107" fontName="Segoe UI">
       <children xmi:type="notation:DecorationNode" xmi:id="_ONp58o6tEeqzwdx0zkPPFA" type="5108"/>
@@ -352,6 +352,26 @@
     <children xmi:type="notation:Shape" xmi:id="_rYT8gZUfEeq9a9_JJhpSCw" type="2102" fontName="Segoe UI">
       <children xmi:type="notation:DecorationNode" xmi:id="_rYT8g5UfEeq9a9_JJhpSCw" type="5102"/>
       <children xmi:type="notation:DecorationNode" xmi:id="_rYT8hJUfEeq9a9_JJhpSCw" type="7102">
+        <children xmi:type="notation:Node" xmi:id="_6x_JMDVlEeu7Nb1n1hf6XQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_6x_JMTVlEeu7Nb1n1hf6XQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="PrivacyCrashCam_Reduced.repository#_vpkWUZUfEeq9a9_JJhpSCw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_6x_JMjVlEeu7Nb1n1hf6XQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_6x_JMzVlEeu7Nb1n1hf6XQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_6x_JNDVlEeu7Nb1n1hf6XQ" diagramLink="_8M3y0DVlEeu7Nb1n1hf6XQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="PrivacyCrashCam_Reduced.repository#_we5b0ZUfEeq9a9_JJhpSCw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_6x_JNTVlEeu7Nb1n1hf6XQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_6x_wQDVlEeu7Nb1n1hf6XQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_6x_wQTVlEeu7Nb1n1hf6XQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="PrivacyCrashCam_Reduced.repository#_we5b1JUfEeq9a9_JJhpSCw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_6x_wQjVlEeu7Nb1n1hf6XQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_6x_wQzVlEeu7Nb1n1hf6XQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_6x_wRDVlEeu7Nb1n1hf6XQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="PrivacyCrashCam_Reduced.repository#_we5b15UfEeq9a9_JJhpSCw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_6x_wRTVlEeu7Nb1n1hf6XQ"/>
+        </children>
         <styles xmi:type="notation:SortingStyle" xmi:id="_rYT8hZUfEeq9a9_JJhpSCw"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_rYT8hpUfEeq9a9_JJhpSCw"/>
       </children>
@@ -1409,5 +1429,9 @@
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IyEopJUcEeq9a9_JJhpSCw" id="(0.08333333333333333,0.5166666666666667)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IyEopZUcEeq9a9_JJhpSCw" id="(0.1,0.4666666666666667)"/>
     </edges>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_8M3y0DVlEeu7Nb1n1hf6XQ" type="PCM SEFF Model" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_8M3y0TVlEeu7Nb1n1hf6XQ"/>
+    <element xmi:type="seff:ResourceDemandingSEFF" href="PrivacyCrashCam_Reduced.repository#_we5b0ZUfEeq9a9_JJhpSCw"/>
   </notation:Diagram>
 </xmi:XMI>
