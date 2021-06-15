@@ -1,70 +1,70 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences
 
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.Component2Class
 import org.palladiosimulator.pcm.repository.RepositoryComponent
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.ElementCorrespondences
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.CompositeDataType2Class
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.OperationSignature2Method
 import org.palladiosimulator.pcm.repository.OperationSignature
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.Interface2Interface
 import org.palladiosimulator.pcm.repository.OperationInterface
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.Parameter2Parameter
 import org.palladiosimulator.pcm.repository.Parameter
 import org.palladiosimulator.pcm.repository.CompositeDataType
 import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Interface
 import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Method
+import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.PCM2SourceCodeCorrespondenceRepository
+import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.ComponentToClass
+import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.CompositeDataTypeToClass
+import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.OperationSignatureToMethod
+import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.InterfaceToInterface
+import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.ParameterToParameter
 
 class PCM2SourceCodeCorrespondenceResolver {
 	
-	ElementCorrespondences correspondences;
+	PCM2SourceCodeCorrespondenceRepository correspondences;
 	
-	new(ElementCorrespondences correspondences){
+	new(PCM2SourceCodeCorrespondenceRepository correspondences){
 		this.correspondences = correspondences;
 	}
 	
-	def Component2Class lookupCorrespondence(
+	def ComponentToClass lookupCorrespondence(
 		RepositoryComponent component) {
 		for (correspondence : correspondences.toclasscorrespondence) {
-			if (correspondence instanceof Component2Class) {
-				if ((correspondence as Component2Class).component.id.equals(component.id)) {
+			if (correspondence instanceof ComponentToClass) {
+				if ((correspondence as ComponentToClass).component.id.equals(component.id)) {
 					return correspondence;
 				}
 			}
 		}
 	}
 	
-	def CompositeDataType2Class lookupCorrespondence(CompositeDataType dt){
+	def CompositeDataTypeToClass lookupCorrespondence(CompositeDataType dt){
 		for (correspondence : correspondences.toclasscorrespondence) {
-			if (correspondence instanceof CompositeDataType2Class) {
-				if ((correspondence as CompositeDataType2Class).compositeDataType.id.equals(dt.id)) {
+			if (correspondence instanceof CompositeDataTypeToClass) {
+				if ((correspondence as CompositeDataTypeToClass).compositeDataType.id.equals(dt.id)) {
 					return correspondence;
 				}
 			}
 		}
 	}
 	
-	def OperationSignature2Method lookupCorrespondence(OperationSignature opSig) {
-		for (correspondence : correspondences.operationsignature2method) {
+	def OperationSignatureToMethod lookupCorrespondence(OperationSignature opSig) {
+		for (correspondence : correspondences.operationsignaturetomethod) {
 			if (opSig.id.equals(correspondence.operationSignature.id)) {
 				return correspondence;
 			}
 		}
 	}
 
-	def Interface2Interface lookupCorrespondence(OperationInterface opInt) {
-		for (correspondence : correspondences.interface2interface) {
+	def InterfaceToInterface lookupCorrespondence(OperationInterface opInt) {
+		for (correspondence : correspondences.interfacetointerface) {
 			if (correspondence.operationInterface.id.equals(opInt.id)) {
 				return correspondence;
 			}
 		}
 	}
 
-	def Parameter2Parameter lookupCorrespondence(OperationSignature opSig, Parameter parameter) {
+	def ParameterToParameter lookupCorrespondence(OperationSignature opSig, Parameter parameter) {
 		lookupCorrespondence(opSig, parameter.parameterName);
 	}
 
-	def Parameter2Parameter lookupCorrespondence(OperationSignature opSig, String parameterName) {
-		for (correspondence : correspondences.parameter2parameter) {
+	def ParameterToParameter lookupCorrespondence(OperationSignature opSig, String parameterName) {
+		for (correspondence : correspondences.parametertoparameter) {
 			if (correspondence.pcmParameter.parameterName.equals(parameterName) &&
 				correspondence.pcmOperationSignature4Parameter.id.equals(opSig.id)) {
 				return correspondence
@@ -72,16 +72,16 @@ class PCM2SourceCodeCorrespondenceResolver {
 		}
 	}
 	
-	def OperationSignature2Method lookupMethodCorrespondenceById(String id){
-		for (correspondence : correspondences.operationsignature2method){
+	def OperationSignatureToMethod lookupMethodCorrespondenceById(String id){
+		for (correspondence : correspondences.operationsignaturetomethod){
 			if(correspondence.method.id.equals(id)){
 				return correspondence;
 			}
 		}
 	}
 	
-	def OperationSignature2Method lookupCorrespondence(Method method){
-		for (correspondence : correspondences.operationsignature2method){
+	def OperationSignatureToMethod lookupCorrespondence(Method method){
+		for (correspondence : correspondences.operationsignaturetomethod){
 			if(correspondence.method.id.equals(method.id)){
 				return correspondence;
 			}

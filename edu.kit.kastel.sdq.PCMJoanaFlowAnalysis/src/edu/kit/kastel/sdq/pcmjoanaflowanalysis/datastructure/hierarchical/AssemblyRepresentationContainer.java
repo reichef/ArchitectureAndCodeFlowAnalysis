@@ -113,7 +113,7 @@ public abstract class AssemblyRepresentationContainer {
 	
 	protected void collectFlowBasicComponents(Set<FlowBasicComponent> components) {
 		if(this.isComposite()) {
-			containedRepresentations.forEach(representation -> collectFlowBasicComponents(components));
+			containedRepresentations.forEach(representation -> representation.collectFlowBasicComponents(components));
 		} else {
 			components.add(((AssemblyComponentContext)this).getComponent());
 		}

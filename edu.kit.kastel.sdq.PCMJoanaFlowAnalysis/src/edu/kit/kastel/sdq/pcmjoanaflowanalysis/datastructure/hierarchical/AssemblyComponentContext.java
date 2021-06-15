@@ -63,17 +63,11 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 	}
 	
 	public Optional<String> getClassPath() {
-		String classPath = getAnnotation("ClassPath");
-		if(classPath.isEmpty()) {
-			System.err.println("No ClassPath Available for Component");
-			return Optional.empty();
-		}
-		
-		return Optional.ofNullable(classPath);
+		return component.getClassPath();
 	}
 	
 	public boolean isClassPathAvailable() {
-		return getClassPath().isPresent();
+		return component.isClassPathAvailable();
 	}
 	
 
@@ -83,12 +77,7 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 		boolean isClassPathAvailable = isClassPathAvailable();
 		
 		if(!isClassPathAvailable) {
-			if(latestClassPath.isPresent()) {
-				setAnnotation("ClassPath", latestClassPath.get());
-				isClassPathAvailable = true;
-			} else {
-				System.out.println(String.format("Component %s got no ClassPath", getName()));
-			}
+			component.fillWithClassPath(repository, latestClassPath);
 		}
 		
 		if(isComposite()) {

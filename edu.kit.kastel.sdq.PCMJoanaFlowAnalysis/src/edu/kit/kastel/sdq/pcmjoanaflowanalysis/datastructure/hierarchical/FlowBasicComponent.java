@@ -1,6 +1,7 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class FlowBasicComponent {
 	private final String id;
 	private Collection<IntraComponentFlow> componentInternalFlows;
 	private final BasicComponent component;
+	protected Map<String, String> annotations;
 	
 	
 	private FlowBasicComponent(String name, String id, BasicComponent component) {
@@ -28,15 +30,13 @@ public class FlowBasicComponent {
 		this.id = id;
 		this.component = component;
 		this.componentInternalFlows = new HashSet<IntraComponentFlow>();
+		this.annotations = new HashMap<String, String>();
 	}
 	
 	public FlowBasicComponent(BasicComponent component) {
 		this(component.getEntityName(), component.getId(), component);
 	}
 
-	
-	protected Map<String, String> annotations;
-	
 	public void fillWithClassPath(AnnotationRepository repository, Optional<String> latestClassPath) {
 		
 		boolean isClassPathAvailable = isClassPathAvailable();

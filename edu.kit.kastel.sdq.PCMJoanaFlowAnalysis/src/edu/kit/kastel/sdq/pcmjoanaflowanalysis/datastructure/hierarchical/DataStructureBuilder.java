@@ -25,7 +25,7 @@ import edu.kit.kastel.sdq.ecoreannotations.Annotation;
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
 import edu.kit.kastel.sdq.ecoreannotations.GenericTargetStringContentAnnotation;
 
-//TODO: Rapid Prototype, refaktor into visitor possible.
+//TODO: Rapid Prototype, refactor into visitor possible.
 public class DataStructureBuilder {
 
 	private Collection<AssemblyComponentContext> workingRepresentations;
@@ -34,27 +34,32 @@ public class DataStructureBuilder {
 
 	public DataStructureBuilder() {
 		workingRepresentations = new HashSet<AssemblyComponentContext>();
+		basicComponents = new HashSet<>();
 	}
 
-	public SystemRepresentation buildRepresentationsForSystem(System system, AnnotationRepository annotationRepository) {
-		
-		
+	public SystemRepresentation buildRepresentationsForSystem(System system,
+			AnnotationRepository annotationRepository) {
+
 		currentWorkingAnnotations = annotationRepository;
 		workingRepresentations.clear();
-		
 
 		SystemRepresentation systemRepresentation = new SystemRepresentation(system);
-		
+
 		Collection<AssemblyComponentContext> encapsulatedEntities = generateRepresentations(system);
-		encapsulatedEntities.forEach(representation -> systemRepresentation.addContainedComponentRepresentation(representation));
-		
+		encapsulatedEntities
+				.forEach(representation -> systemRepresentation.addContainedComponentRepresentation(representation));
+
 		fillRepresentationWithCompositeConnectors(systemRepresentation, system);
-		systemRepresentation.fillWithClassPath(annotationRepository, Optional.empty());
+
+		fillFlowBasicComponentsWithClassPath();
+
+		// systemRepresentation.fillWithClassPath(annotationRepository,
+		// Optional.empty());
 //		systemRepresentation.printRepresentation();
-		
+
 		return systemRepresentation;
 	}
-	
+
 	public Collection<AssemblyComponentContext> generateRepresentations(ComposedProvidingRequiringEntity entity) {
 		Collection<AssemblyComponentContext> representations = new HashSet<AssemblyComponentContext>();
 		// first Pass: generate representations from contexts
@@ -73,7 +78,8 @@ public class DataStructureBuilder {
 		return representations;
 	}
 
-	private Collection<AssemblyConnector> getAssemblyConnectorsForOperationRequiredRole(RequiredRole role, ComposedStructure parentContext) {
+	private Collection<AssemblyConnector> getAssemblyConnectorsForOperationRequiredRole(RequiredRole role,
+			ComposedStructure parentContext) {
 		Collection<AssemblyConnector> connectors = new HashSet<AssemblyConnector>();
 
 		if (role instanceof OperationRequiredRole) {
@@ -90,7 +96,8 @@ public class DataStructureBuilder {
 		return connectors;
 	}
 
-	private Collection<AssemblyConnector> getAssemblyConnectorsForOperationProvidedRole(ProvidedRole role, ComposedStructure parentContext) {
+	private Collection<AssemblyConnector> getAssemblyConnectorsForOperationProvidedRole(ProvidedRole role,
+			ComposedStructure parentContext) {
 		Collection<AssemblyConnector> connectors = new HashSet<AssemblyConnector>();
 		if (role instanceof OperationProvidedRole) {
 			for (Connector connector : parentContext.getConnectors__ComposedStructure()) {
@@ -118,15 +125,13 @@ public class DataStructureBuilder {
 	private AssemblyComponentContext generateRepresentations(AssemblyContext context) {
 
 		AssemblyComponentContext representation = new AssemblyComponentContext(context);
-		
+
 		if (context.getEncapsulatedComponent__AssemblyContext() instanceof BasicComponent) {
-			BasicComponent bc = (BasicComponent) context.getEncapsulatedComponent__AssemblyContext(); 
+			BasicComponent bc = (BasicComponent) context.getEncapsulatedComponent__AssemblyContext();
 			representation.setComponent(getOrCreate(bc));
 			workingRepresentations.add(representation);
 		} else if (context.getEncapsulatedComponent__AssemblyContext() instanceof CompositeComponent) {
-			
-			
-		
+
 			CompositeComponent component = (CompositeComponent) context.getEncapsulatedComponent__AssemblyContext();
 
 			Collection<AssemblyComponentContext> compositeRepresentations = generateRepresentations(component);
@@ -134,31 +139,35 @@ public class DataStructureBuilder {
 					innerRepresentation -> representation.addContainedComponentRepresentation(innerRepresentation));
 			workingRepresentations.add(representation);
 
-			fillRepresentationWithCompositeConnectors(representation, (ComposedProvidingRequiringEntity) context.getEncapsulatedComponent__AssemblyContext());
+			fillRepresentationWithCompositeConnectors(representation,
+					(ComposedProvidingRequiringEntity) context.getEncapsulatedComponent__AssemblyContext());
 
 		}
 		fillAssemblyComponentWithAnnotations(representation);
 		return representation;
 	}
-	
+
 	private FlowBasicComponent getOrCreate(BasicComponent component) {
-		
-		Optional<FlowBasicComponent> potentialFlowComponent = basicComponents.stream().filter(bc -> bc.getId().equals(component.getId())).findFirst();
-		
+
+		Optional<FlowBasicComponent> potentialFlowComponent = basicComponents.stream()
+				.filter(bc -> bc.getId().equals(component.getId())).findFirst();
+
 		return potentialFlowComponent.orElse(createBasicFlowComponent(component));
 	}
-	
+
 	private FlowBasicComponent createBasicFlowComponent(BasicComponent component) {
 		FlowBasicComponent flowComponent = new FlowBasicComponent(component);
 		basicComponents.add(flowComponent);
 		return flowComponent;
 	}
 
-	private void fillRepresentationWithAssemblyConnectors(AssemblyComponentContext representation, AssemblyContext context) {
+	private void fillRepresentationWithAssemblyConnectors(AssemblyComponentContext representation,
+			AssemblyContext context) {
 
 		for (RequiredRole role : context.getEncapsulatedComponent__AssemblyContext()
 				.getRequiredRoles_InterfaceRequiringEntity()) {
-			Collection<AssemblyConnector> connectors = getAssemblyConnectorsForOperationRequiredRole(role, context.getParentStructure__AssemblyContext());
+			Collection<AssemblyConnector> connectors = getAssemblyConnectorsForOperationRequiredRole(role,
+					context.getParentStructure__AssemblyContext());
 
 			for (AssemblyConnector connector : connectors) {
 
@@ -168,14 +177,15 @@ public class DataStructureBuilder {
 					AssemblyConnectorRepresentation connectorRepresentation = new AssemblyConnectorRepresentation(
 							connector, representation, target);
 					representation.addAssemblyConnector(connectorRepresentation);
-				
+
 				}
 			}
 		}
 
 		for (ProvidedRole role : context.getEncapsulatedComponent__AssemblyContext()
 				.getProvidedRoles_InterfaceProvidingEntity()) {
-			Collection<AssemblyConnector> connectors = getAssemblyConnectorsForOperationProvidedRole(role, context.getParentStructure__AssemblyContext());
+			Collection<AssemblyConnector> connectors = getAssemblyConnectorsForOperationProvidedRole(role,
+					context.getParentStructure__AssemblyContext());
 
 			for (AssemblyConnector connector : connectors) {
 				AssemblyComponentContext target = getEncapsulatingComponent(
@@ -185,54 +195,74 @@ public class DataStructureBuilder {
 					AssemblyConnectorRepresentation connectorRepresentation = new AssemblyConnectorRepresentation(
 							connector, representation, target);
 					representation.addAssemblyConnector(connectorRepresentation);
-					
+
 				}
 			}
 		}
 	}
 
-	private void fillRepresentationWithCompositeConnectors(AssemblyRepresentationContainer representation, ComposedProvidingRequiringEntity composedEntity) {
-	
-			for (Connector connector : composedEntity.getConnectors__ComposedStructure()) {
-				if (connector instanceof ProvidedDelegationConnector) {
-					ProvidedDelegationConnector tmp = (ProvidedDelegationConnector) connector;
-					AssemblyComponentContext innerRepresentation = getEncapsulatingComponent(
-							tmp.getAssemblyContext_ProvidedDelegationConnector()).get();
+	private void fillRepresentationWithCompositeConnectors(AssemblyRepresentationContainer representation,
+			ComposedProvidingRequiringEntity composedEntity) {
 
-					CompositeConnectorRepresentation connectorRepresentation = new CompositeConnectorRepresentation(tmp,
-							representation, innerRepresentation);
-					
-					representation.addCompositeConnector(connectorRepresentation);
-					innerRepresentation.addCompositeConnector(connectorRepresentation);
-				}
+		for (Connector connector : composedEntity.getConnectors__ComposedStructure()) {
+			if (connector instanceof ProvidedDelegationConnector) {
+				ProvidedDelegationConnector tmp = (ProvidedDelegationConnector) connector;
+				AssemblyComponentContext innerRepresentation = getEncapsulatingComponent(
+						tmp.getAssemblyContext_ProvidedDelegationConnector()).get();
 
-				if (connector instanceof RequiredDelegationConnector) {
-					RequiredDelegationConnector tmp = (RequiredDelegationConnector) connector;
-					AssemblyComponentContext innerRepresentation = getEncapsulatingComponent(
-							tmp.getAssemblyContext_RequiredDelegationConnector()).get();
+				CompositeConnectorRepresentation connectorRepresentation = new CompositeConnectorRepresentation(tmp,
+						representation, innerRepresentation);
 
-					CompositeConnectorRepresentation connectorRepresentation = new CompositeConnectorRepresentation(tmp,
-							representation, innerRepresentation);
-				
-					representation.addCompositeConnector(connectorRepresentation);
-					innerRepresentation.addCompositeConnector(connectorRepresentation);
-				}
-			
+				representation.addCompositeConnector(connectorRepresentation);
+				innerRepresentation.addCompositeConnector(connectorRepresentation);
+			}
+
+			if (connector instanceof RequiredDelegationConnector) {
+				RequiredDelegationConnector tmp = (RequiredDelegationConnector) connector;
+				AssemblyComponentContext innerRepresentation = getEncapsulatingComponent(
+						tmp.getAssemblyContext_RequiredDelegationConnector()).get();
+
+				CompositeConnectorRepresentation connectorRepresentation = new CompositeConnectorRepresentation(tmp,
+						representation, innerRepresentation);
+
+				representation.addCompositeConnector(connectorRepresentation);
+				innerRepresentation.addCompositeConnector(connectorRepresentation);
+			}
+
 		}
 	}
-	
+
 	private void fillAssemblyComponentWithAnnotations(AssemblyComponentContext representaition) {
-		
-		for(Annotation annotation : currentWorkingAnnotations.getAnnotations()) {
-			if(annotation instanceof GenericTargetStringContentAnnotation) {
-				GenericTargetStringContentAnnotation castedAnnotation = (GenericTargetStringContentAnnotation)annotation;
-				
-				if(castedAnnotation.getTarget() instanceof RepositoryComponent &&
-						((RepositoryComponent)castedAnnotation.getTarget()).getId().equals(representaition.getContext().getEncapsulatedComponent__AssemblyContext().getId())) {
-					representaition.setAnnotation(castedAnnotation.getAnnotationType(), castedAnnotation.getContent());
+
+		for (Annotation annotation : currentWorkingAnnotations.getAnnotations()) {
+			if (annotation instanceof GenericTargetStringContentAnnotation) {
+				GenericTargetStringContentAnnotation castedAnnotation = (GenericTargetStringContentAnnotation) annotation;
+				if (!castedAnnotation.getAnnotationType().equals("ClassPath")) {
+					if (castedAnnotation.getTarget() instanceof RepositoryComponent
+							&& ((RepositoryComponent) castedAnnotation.getTarget()).getId().equals(
+									representaition.getContext().getEncapsulatedComponent__AssemblyContext().getId())) {
+						representaition.setAnnotation(castedAnnotation.getAnnotationType(),
+								castedAnnotation.getContent());
+					}
 				}
 			}
 		}
-		
+	}
+
+	private void fillFlowBasicComponentsWithClassPath() {
+		for (Annotation annotation : currentWorkingAnnotations.getAnnotations()) {
+			if (annotation instanceof GenericTargetStringContentAnnotation) {
+				GenericTargetStringContentAnnotation castedAnnotation = (GenericTargetStringContentAnnotation) annotation;
+				if (castedAnnotation.getAnnotationType().equals("ClassPath")) {
+					for (FlowBasicComponent flowBasicComponent : basicComponents) {
+						if (castedAnnotation.getTarget() instanceof RepositoryComponent
+								&& ((RepositoryComponent) castedAnnotation.getTarget()).getId()
+										.equals(flowBasicComponent.getId())) {
+							flowBasicComponent.fillWithClassPath(currentWorkingAnnotations, Optional.of(((GenericTargetStringContentAnnotation) annotation).getContent()));
+						}
+					}
+				}
+			}
+		}
 	}
 }
