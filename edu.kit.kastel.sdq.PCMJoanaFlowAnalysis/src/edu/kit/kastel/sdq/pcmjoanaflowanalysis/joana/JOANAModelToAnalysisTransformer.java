@@ -3,14 +3,14 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana;
 import java.util.ArrayList;
 import java.util.List;
 
-import JOANA.FlowSpecification;
-import JOANA.MethodTargetingSink;
-import JOANA.MethodTargetingSource;
-import JOANA.ParameterTargetingSink;
-import JOANA.ParameterTargetingSource;
-import JOANA.Sink;
-import JOANA.Source;
 import edu.kit.joana.component.connector.ProgramPart;
+import edu.kit.kastel.sdq.cosa.quality.JOANA.FlowSpecification;
+import edu.kit.kastel.sdq.cosa.quality.JOANA.MethodTargetingSink;
+import edu.kit.kastel.sdq.cosa.quality.JOANA.MethodTargetingSource;
+import edu.kit.kastel.sdq.cosa.quality.JOANA.ParameterTargetingSink;
+import edu.kit.kastel.sdq.cosa.quality.JOANA.ParameterTargetingSource;
+import edu.kit.kastel.sdq.cosa.quality.JOANA.Sink;
+import edu.kit.kastel.sdq.cosa.quality.JOANA.Source;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.Associations;
 
 public class JOANAModelToAnalysisTransformer {

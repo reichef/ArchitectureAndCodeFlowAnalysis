@@ -51,6 +51,10 @@
                                  property="org.eclipse.core.resources.name"
                                  value="*.ecoreannotations">
                            </test>
+                           <test
+                                 property="org.eclipse.core.resources.name"
+                                 value="*.json">
+                           </test>
                         </or>
                      </adapt>
                   </iterate>

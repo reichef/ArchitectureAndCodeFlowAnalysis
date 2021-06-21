@@ -1,30 +1,32 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences
 
-import org.palladiosimulator.pcm.repository.RepositoryComponent
-import org.palladiosimulator.pcm.repository.OperationSignature
-import org.palladiosimulator.pcm.repository.OperationInterface
-import org.palladiosimulator.pcm.repository.Parameter
+
+
 import org.palladiosimulator.pcm.repository.CompositeDataType
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Interface
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Method
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.PCM2SourceCodeCorrespondenceRepository
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.ComponentToClass
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.CompositeDataTypeToClass
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.OperationSignatureToMethod
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.InterfaceToInterface
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.ParameterToParameter
+import org.palladiosimulator.pcm.repository.OperationInterface
+import org.palladiosimulator.pcm.repository.OperationSignature
+import org.palladiosimulator.pcm.repository.Parameter
+import org.palladiosimulator.pcm.repository.RepositoryComponent
+import edu.kit.kastel.sdq.cosa.correspondences.PCMtoSourceCode.CorrespondenceRepository
+import edu.kit.kastel.sdq.cosa.correspondences.PCMtoSourceCode.ComponentToClass
+import edu.kit.kastel.sdq.cosa.correspondences.PCMtoSourceCode.CompositeDataTypeToClass
+import edu.kit.kastel.sdq.cosa.correspondences.PCMtoSourceCode.OperationSignatureToMethod
+import edu.kit.kastel.sdq.cosa.correspondences.PCMtoSourceCode.InterfaceToInterface
+import edu.kit.kastel.sdq.cosa.correspondences.PCMtoSourceCode.ParameterToParameter
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.Interface
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.Method
 
 class PCM2SourceCodeCorrespondenceResolver {
 	
-	PCM2SourceCodeCorrespondenceRepository correspondences;
+	CorrespondenceRepository correspondences;
 	
-	new(PCM2SourceCodeCorrespondenceRepository correspondences){
+	new(CorrespondenceRepository correspondences){
 		this.correspondences = correspondences;
 	}
 	
 	def ComponentToClass lookupCorrespondence(
 		RepositoryComponent component) {
-		for (correspondence : correspondences.toclasscorrespondence) {
+		for (correspondence : correspondences.toclass) {
 			if (correspondence instanceof ComponentToClass) {
 				if ((correspondence as ComponentToClass).component.id.equals(component.id)) {
 					return correspondence;
@@ -34,7 +36,7 @@ class PCM2SourceCodeCorrespondenceResolver {
 	}
 	
 	def CompositeDataTypeToClass lookupCorrespondence(CompositeDataType dt){
-		for (correspondence : correspondences.toclasscorrespondence) {
+		for (correspondence : correspondences.toclass) {
 			if (correspondence instanceof CompositeDataTypeToClass) {
 				if ((correspondence as CompositeDataTypeToClass).compositeDataType.id.equals(dt.id)) {
 					return correspondence;
@@ -66,7 +68,7 @@ class PCM2SourceCodeCorrespondenceResolver {
 	def ParameterToParameter lookupCorrespondence(OperationSignature opSig, String parameterName) {
 		for (correspondence : correspondences.parametertoparameter) {
 			if (correspondence.pcmParameter.parameterName.equals(parameterName) &&
-				correspondence.pcmOperationSignature4Parameter.id.equals(opSig.id)) {
+				correspondence.relatedOperationSignature.id.equals(opSig.id)) {
 				return correspondence
 			}
 		}
@@ -93,7 +95,7 @@ class PCM2SourceCodeCorrespondenceResolver {
 	}
 	
 	def Interface getInterface(OperationInterface opInt){
-		return lookupCorrespondence(opInt).interface
+		return lookupCorrespondence(opInt).scInterface
 	}
 	
 	def Method getMethod(OperationSignature operationSignature){

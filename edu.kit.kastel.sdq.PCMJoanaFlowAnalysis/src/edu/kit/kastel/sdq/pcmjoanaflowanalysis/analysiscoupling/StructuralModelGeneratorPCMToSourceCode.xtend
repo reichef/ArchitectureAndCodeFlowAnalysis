@@ -1,39 +1,41 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling
 
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.SourceCodeRoot
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Package
+
 import org.palladiosimulator.pcm.repository.Repository
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.SourceCodeFactory
 import org.palladiosimulator.pcm.repository.OperationInterface
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.BuiltInTypes
 import org.palladiosimulator.pcm.repository.DataType
 import org.palladiosimulator.pcm.repository.PrimitiveTypeEnum
 import org.palladiosimulator.pcm.repository.PrimitiveDataType
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Type
 import org.palladiosimulator.pcm.repository.CompositeDataType
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.TopLevelType
 import org.palladiosimulator.pcm.repository.CollectionDataType
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.palladiosimulator.pcm.repository.OperationSignature
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Method
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Interface
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Parameter
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Class
 import org.palladiosimulator.pcm.repository.RepositoryComponent
 import org.palladiosimulator.pcm.repository.OperationProvidedRole
 import org.palladiosimulator.pcm.repository.OperationRequiredRole
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.palladiosimulator.pcm.repository.BasicComponent
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.PCM2SourceCodeCorrespondenceRepository
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.PCM2SourceCodeFactory
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.ComponentToClass
-import edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode.InterfaceToInterface
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.SourceCodeRoot
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.SourceCodeFactory
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.Class;
+import edu.kit.kastel.sdq.cosa.correspondences.PCMtoSourceCode.CorrespondenceRepository
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.BuiltInTypes
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.TopLevelType
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.Parameter
+import edu.kit.kastel.sdq.cosa.correspondences.PCMtoSourceCode.InterfaceToInterface
+import edu.kit.kastel.sdq.cosa.correspondences.PCMtoSourceCode.PCMtoSourceCodeFactory
+import edu.kit.kastel.sdq.cosa.correspondences.PCMtoSourceCode.ComponentToClass
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.Method
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.Type
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.Interface
+import edu.kit.kastel.sdq.cosa.structure.SourceCode.Package
 
 class StructuralModelGeneratorPCMToSourceCode {
 	@Accessors(PUBLIC_GETTER) SourceCodeRoot sourceCodeModel;
 	private Repository workingRepository;
 	private String workingPackageId = null;
-	@Accessors(PUBLIC_GETTER) PCM2SourceCodeCorrespondenceRepository correspondences;
+	@Accessors(PUBLIC_GETTER) CorrespondenceRepository correspondences;
+	
 
 	enum ElementType {
 		INTERFACE,
@@ -50,10 +52,10 @@ class StructuralModelGeneratorPCMToSourceCode {
 
 			workingRepository = repo;
 			sourceCodeModel = SourceCodeFactory.eINSTANCE.createSourceCodeRoot();
-			sourceCodeModel.name = repo.getEntityName() + "_SourceCode";
+			sourceCodeModel.entityName = repo.getEntityName() + "_SourceCode";
 			sourceCodeModel.id = EcoreUtil.generateUUID;
-			correspondences = PCM2SourceCodeFactory.eINSTANCE.createPCM2SourceCodeCorrespondenceRepository;
-			correspondences.name = repo.getEntityName() + "_PCM2SourceCodeCorrespondences"
+			correspondences = PCMtoSourceCodeFactory.eINSTANCE.createCorrespondenceRepository
+			correspondences.entityName = repo.getEntityName() + "_PCM2SourceCodeCorrespondences"
 			correspondences.id = EcoreUtil.generateUUID;
 			repo.processComponentsAndInterfaces;
 		}
@@ -74,7 +76,7 @@ class StructuralModelGeneratorPCMToSourceCode {
 			}
 		} else {
 			var pack = SourceCodeFactory.eINSTANCE.createPackage;
-			pack.name = workingRepository.entityName;
+			pack.entityName = workingRepository.entityName;
 			pack.id = EcoreUtil.generateUUID();
 			workingPackageId = pack.id;
 			sourceCodeModel.package.add(pack);
@@ -96,7 +98,7 @@ class StructuralModelGeneratorPCMToSourceCode {
 			if (opInt instanceof OperationInterface) {
 
 				var interf = SourceCodeFactory.eINSTANCE.createInterface;
-				interf.name = opInt.entityName;
+				interf.entityName = opInt.entityName;
 				interf.id = EcoreUtil.generateUUID;
 				addInterfaceToInterfaceCorrespondence(opInt, interf);
 				var pckg = determinePackage();
@@ -110,7 +112,7 @@ class StructuralModelGeneratorPCMToSourceCode {
 		for (component : repo.components__Repository) {
 			if (component instanceof BasicComponent) {
 				var scClass = SourceCodeFactory.eINSTANCE.createClass;
-				scClass.name = component.entityName;
+				scClass.entityName = component.entityName;
 				scClass.id = EcoreUtil.generateUUID;
 				addComponent2ClassCorrespondence(component, scClass);
 
@@ -126,7 +128,7 @@ class StructuralModelGeneratorPCMToSourceCode {
 				// currently only class without instance variables. Could improved by use every datatype and append 
 				// find inner datatype instances
 				var scClass = SourceCodeFactory.eINSTANCE.createClass;
-				scClass.name = dataType.entityName;
+				scClass.entityName = dataType.entityName;
 				scClass.id = EcoreUtil.generateUUID;
 
 				var pckg = determinePackage();
@@ -139,10 +141,10 @@ class StructuralModelGeneratorPCMToSourceCode {
 	private def addContentToInterfacesAndClasses() {
 		for (interfaceCorrespondence : correspondences.interfacetointerface) {
 			processOperationInterfaceAndAddToInterface(interfaceCorrespondence.operationInterface,
-				interfaceCorrespondence.interface);
+				interfaceCorrespondence.scInterface);
 		}
 
-		for (componentClassCorrespondence : correspondences.toclasscorrespondence) {
+		for (componentClassCorrespondence : correspondences.toclass) {
 			if (componentClassCorrespondence instanceof ComponentToClass)
 				processClassContent(componentClassCorrespondence.component, componentClassCorrespondence.class_);
 		}
@@ -158,7 +160,7 @@ class StructuralModelGeneratorPCMToSourceCode {
 			if (providedRole instanceof OperationProvidedRole) {
 				var i2i = (providedRole as OperationProvidedRole).providedInterface__OperationProvidedRole.
 					lookUpInterfaceCorrespondence;
-				scClass.implements.add(i2i.interface);
+				scClass.implements.add(i2i.scInterface)
 			}
 		}
 	}
@@ -169,23 +171,15 @@ class StructuralModelGeneratorPCMToSourceCode {
 				var i2i = (requiredRole as OperationRequiredRole).requiredInterface__OperationRequiredRole.
 					lookUpInterfaceCorrespondence;
 				var variable = SourceCodeFactory.eINSTANCE.createVariable;
-				variable.name = i2i.interface.name.toFirstLower;
+				variable.entityName = i2i.scInterface.entityName.toFirstLower;
 				variable.id = EcoreUtil.generateUUID;
 
 				var referenceType = SourceCodeFactory.eINSTANCE.createReferenceType;
-				referenceType.topleveltype = i2i.interface;
+				referenceType.topleveltype = i2i.scInterface;
 
 				variable.type = referenceType;
 
 				scClass.field.add(variable);
-			}
-		}
-	}
-
-	private def InterfaceToInterface lookUpInterfaceCorrespondence(OperationInterface opInt) {
-		for (i2i : correspondences.interfacetointerface) {
-			if (i2i.operationInterface.id.equals(opInt.id)) {
-				return i2i;
 			}
 		}
 	}
@@ -199,14 +193,14 @@ class StructuralModelGeneratorPCMToSourceCode {
 
 	private def Method generateMethodFromOperationSignature(OperationSignature signature) {
 		val op = SourceCodeFactory.eINSTANCE.createMethod;
-		op.name = signature.entityName;
+		op.entityName = signature.entityName;
 		op.id = EcoreUtil.generateUUID;
 
 		addOperationSignature2MethodCorrespondence(signature, op);
 
 		for (parameter : signature.parameters__OperationSignature) {
 			var scParam = SourceCodeFactory.eINSTANCE.createParameter;
-			scParam.name = parameter.parameterName;
+			scParam.entityName = parameter.parameterName;
 			scParam.type = parameter.dataType__Parameter.createSourceCodeModelDataTypeFromPalladioDataType
 			op.parameter.add(scParam);
 			addParameterCorrespondence(parameter, scParam);
@@ -236,7 +230,7 @@ class StructuralModelGeneratorPCMToSourceCode {
 
 		for (package : sourceCodeModel.package) {
 			for (topLevelType : package.topleveltype) {
-				if (topLevelType.name.equals((dataType as CompositeDataType).entityName)) {
+				if (topLevelType.entityName.equals((dataType as CompositeDataType).entityName)) {
 					return topLevelType;
 				}
 			}
@@ -263,7 +257,7 @@ class StructuralModelGeneratorPCMToSourceCode {
 	}
 
 	private def addOperationSignature2MethodCorrespondence(OperationSignature opSig, Method method) {
-		var o2m = PCM2SourceCodeFactory.eINSTANCE.createOperationSignatureToMethod;
+		var o2m = PCMtoSourceCodeFactory.eINSTANCE.createOperationSignatureToMethod;
 		o2m.operationSignature = opSig;
 		o2m.method = method;
 
@@ -271,25 +265,34 @@ class StructuralModelGeneratorPCMToSourceCode {
 	}
 
 	private def addInterfaceToInterfaceCorrespondence(OperationInterface opInt, Interface interf) {
-		var i2i = PCM2SourceCodeFactory.eINSTANCE.createInterfaceToInterface;
+		var i2i = PCMtoSourceCodeFactory.eINSTANCE.createInterfaceToInterface;
 		i2i.operationInterface = opInt;
-		i2i.interface = interf;
+		i2i.scInterface = interf;
 
 		correspondences.interfacetointerface.add(i2i);
 	}
 
 	private def addParameterCorrespondence(org.palladiosimulator.pcm.repository.Parameter palladioParam,
 		Parameter sourceCodeParam) {
-		var p2p = PCM2SourceCodeFactory.eINSTANCE.createParameterToParameter;
+		var p2p = PCMtoSourceCodeFactory.eINSTANCE.createParameterToParameter;
 		p2p.pcmParameter = palladioParam;
-		p2p.sourceCodeParameter = sourceCodeParam;
+		p2p.scParameter = sourceCodeParam;
 		correspondences.parametertoparameter.add(p2p);
 	}
 
 	private def addComponent2ClassCorrespondence(RepositoryComponent component, Class scClass) {
-		var c2c = PCM2SourceCodeFactory.eINSTANCE.createComponentToClass;
+		var c2c = PCMtoSourceCodeFactory.eINSTANCE.createComponentToClass;
 		c2c.component = component;
 		c2c.class = scClass;
-		correspondences.toclasscorrespondence.add(c2c);
+		correspondences.toclass.add(c2c);
 	}
+	
+		private def InterfaceToInterface lookUpInterfaceCorrespondence(OperationInterface opInt) {
+		for (i2i : correspondences.interfacetointerface) {
+			if (i2i.operationInterface.id.equals(opInt.id)) {
+				return i2i;
+			}
+		}
+	}
+	
 }

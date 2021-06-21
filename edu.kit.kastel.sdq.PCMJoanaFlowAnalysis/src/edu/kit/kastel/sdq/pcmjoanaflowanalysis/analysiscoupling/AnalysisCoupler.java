@@ -13,10 +13,10 @@ import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
-import JOANA.FlowSpecification;
 import edu.kit.joana.component.connector.Flows;
 import edu.kit.joana.component.connector.Method;
 import edu.kit.joana.component.connector.ProgramPart;
+import edu.kit.kastel.sdq.cosa.quality.JOANA.FlowSpecification;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana.JOANAAnalyzer;
@@ -77,7 +77,7 @@ public class AnalysisCoupler {
 
 				String methodId = flowInformation.getSecond().getId(joanaCLIMethod);
 				if (methodId != null) {
-					edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode.Method sourceCodeMethod = resolver
+					edu.kit.kastel.sdq.cosa.structure.SourceCode.Method sourceCodeMethod = resolver
 							.getMethodById(methodId);
 					pcmSinks.add(resolver.getOperationSignature(sourceCodeMethod));
 				}
