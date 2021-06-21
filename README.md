@@ -5,11 +5,10 @@ This project is under development to create an analyses that is able to analyse 
 ## Setting up the project
 This project uses the contents of following submodules:
 
-- MDSDBasics
-- compositionofsecurityanalyses
+- compositionofsecurityanalyses (cosa)
 - JOANAConnector
 
-Because many/all of those submodules are currently in private repositories, request access directly. 
+cosa is currently a private repository, therefore please request access.
 
 To setup the project for development, do the following steps:
 
@@ -19,10 +18,9 @@ To setup the project for development, do the following steps:
 4. Import following Projects in Eclipse for development:
     - edu.kit.kastel.sdq.PCMJoanaFlowAnalysis
     - edu.kit.kastel.sdq.ecoreannotations
-    -  edu.kit.ipd.sdq.composition.securityanalyses.basic (MDSDBasics)
-    - edu.kit.ipd.sdq.composition.securityanalyses.coupling.correspondences.PCM2SourceCode (compositionofsecurityanalyses)
-    - edu.kit.ipd.sdq.composition.securityanalyses.coupling.quality.JOANA (compositionofsecurityanalyses)
-    - edu.kit.ipd.sdq.composition.securityanalyses.coupling.structure.SourceCode (compositionofsecurityanalyses)
+    - edu.kit.kastel.sdq.cosa.correspondences.PCM2SourceCode
+    - edu.kit.kastel.sdq.cosa.quality.JOANA
+    - edu.kit.kastel.sdq.cosa.structure.SourceCode
 5. Generate model-content if necessary
 
 
