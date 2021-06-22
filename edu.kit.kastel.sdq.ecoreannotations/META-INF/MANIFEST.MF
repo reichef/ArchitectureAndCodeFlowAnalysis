@@ -12,6 +12,6 @@ Export-Package: edu.kit.kastel.sdq.ecoreannotations,
  edu.kit.kastel.sdq.ecoreannotations.impl,
  edu.kit.kastel.sdq.ecoreannotations.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
- edu.kit.ipd.sdq.composition.securityanalyses.basic;visibility:=reexport,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ tools.mdsd.modelingfoundations.identifier;bundle-version="0.1.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy

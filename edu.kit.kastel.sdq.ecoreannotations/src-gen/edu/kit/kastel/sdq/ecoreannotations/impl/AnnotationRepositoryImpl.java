@@ -2,8 +2,6 @@
  */
 package edu.kit.kastel.sdq.ecoreannotations.impl;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.impl.IdentifiedElementImpl;
-
 import edu.kit.kastel.sdq.ecoreannotations.Annotation;
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
 import edu.kit.kastel.sdq.ecoreannotations.EcoreannotationsPackage;
@@ -20,6 +18,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import tools.mdsd.modelingfoundations.identifier.impl.IdentifierImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Annotation Repository</b></em>'.
@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class AnnotationRepositoryImpl extends IdentifiedElementImpl implements AnnotationRepository {
+public class AnnotationRepositoryImpl extends IdentifierImpl implements AnnotationRepository {
 	/**
 	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

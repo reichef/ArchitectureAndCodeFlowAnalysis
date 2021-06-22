@@ -2,12 +2,12 @@
  */
 package edu.kit.kastel.sdq.ecoreannotations;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.BasicPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
+import tools.mdsd.modelingfoundations.identifier.IdentifierPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,7 +75,7 @@ public interface EcoreannotationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_REPOSITORY__ID = BasicPackage.IDENTIFIED_ELEMENT__ID;
+	int ANNOTATION_REPOSITORY__ID = IdentifierPackage.IDENTIFIER__ID;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -84,7 +84,7 @@ public interface EcoreannotationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_REPOSITORY__ANNOTATIONS = BasicPackage.IDENTIFIED_ELEMENT_FEATURE_COUNT + 0;
+	int ANNOTATION_REPOSITORY__ANNOTATIONS = IdentifierPackage.IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Annotation Repository</em>' class.
@@ -93,7 +93,7 @@ public interface EcoreannotationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_REPOSITORY_FEATURE_COUNT = BasicPackage.IDENTIFIED_ELEMENT_FEATURE_COUNT + 1;
+	int ANNOTATION_REPOSITORY_FEATURE_COUNT = IdentifierPackage.IDENTIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Annotation Repository</em>' class.
@@ -102,7 +102,7 @@ public interface EcoreannotationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_REPOSITORY_OPERATION_COUNT = BasicPackage.IDENTIFIED_ELEMENT_OPERATION_COUNT + 0;
+	int ANNOTATION_REPOSITORY_OPERATION_COUNT = IdentifierPackage.IDENTIFIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.kastel.sdq.ecoreannotations.impl.AnnotationImpl <em>Annotation</em>}' class.
@@ -121,7 +121,7 @@ public interface EcoreannotationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__ID = BasicPackage.IDENTIFIED_ELEMENT__ID;
+	int ANNOTATION__ID = IdentifierPackage.IDENTIFIER__ID;
 
 	/**
 	 * The number of structural features of the '<em>Annotation</em>' class.
@@ -130,7 +130,7 @@ public interface EcoreannotationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_FEATURE_COUNT = BasicPackage.IDENTIFIED_ELEMENT_FEATURE_COUNT + 0;
+	int ANNOTATION_FEATURE_COUNT = IdentifierPackage.IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Annotation</em>' class.
@@ -139,7 +139,7 @@ public interface EcoreannotationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_OPERATION_COUNT = BasicPackage.IDENTIFIED_ELEMENT_OPERATION_COUNT + 0;
+	int ANNOTATION_OPERATION_COUNT = IdentifierPackage.IDENTIFIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.kastel.sdq.ecoreannotations.impl.GenericTargetImpl <em>Generic Target</em>}' class.

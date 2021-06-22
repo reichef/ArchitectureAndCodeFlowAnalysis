@@ -2,11 +2,11 @@
  */
 package edu.kit.kastel.sdq.ecoreannotations.provider;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.provider.BasicEditPlugin;
-
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+
+import tools.mdsd.modelingfoundations.identifier.provider.ModelEditPlugin;
 
 /**
  * This is the central singleton for the Ecoreannotations edit plugin.
@@ -38,7 +38,7 @@ public final class EcoreannotationsEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public EcoreannotationsEditPlugin() {
-		super(new ResourceLocator[] { BasicEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { ModelEditPlugin.INSTANCE, });
 	}
 
 	/**

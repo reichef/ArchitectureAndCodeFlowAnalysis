@@ -2,13 +2,12 @@
  */
 package edu.kit.kastel.sdq.ecoreannotations.impl;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.impl.IdentifiedElementImpl;
-
 import edu.kit.kastel.sdq.ecoreannotations.Annotation;
 import edu.kit.kastel.sdq.ecoreannotations.EcoreannotationsPackage;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import tools.mdsd.modelingfoundations.identifier.impl.IdentifierImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +16,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public abstract class AnnotationImpl extends IdentifiedElementImpl implements Annotation {
+public abstract class AnnotationImpl extends IdentifierImpl implements Annotation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25,7 +24,6 @@ public abstract class AnnotationImpl extends IdentifiedElementImpl implements An
 	 */
 	protected AnnotationImpl() {
 		super();
-		setId(EcoreUtil.generateUUID());
 	}
 
 	/**

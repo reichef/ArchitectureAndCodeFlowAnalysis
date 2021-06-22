@@ -2,8 +2,6 @@
  */
 package edu.kit.kastel.sdq.ecoreannotations.impl;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.BasicPackage;
-
 import edu.kit.kastel.sdq.ecoreannotations.Annotation;
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
 import edu.kit.kastel.sdq.ecoreannotations.EcoreannotationsFactory;
@@ -19,6 +17,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import tools.mdsd.modelingfoundations.identifier.IdentifierPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,7 +120,7 @@ public class EcoreannotationsPackageImpl extends EPackageImpl implements Ecorean
 		isInited = true;
 
 		// Initialize simple dependencies
-		BasicPackage.eINSTANCE.eClass();
+		IdentifierPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theEcoreannotationsPackage.createPackageContents();
@@ -297,15 +297,16 @@ public class EcoreannotationsPackageImpl extends EPackageImpl implements Ecorean
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		BasicPackage theBasicPackage = (BasicPackage) EPackage.Registry.INSTANCE.getEPackage(BasicPackage.eNS_URI);
+		IdentifierPackage theIdentifierPackage = (IdentifierPackage) EPackage.Registry.INSTANCE
+				.getEPackage(IdentifierPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		annotationRepositoryEClass.getESuperTypes().add(theBasicPackage.getIdentifiedElement());
-		annotationEClass.getESuperTypes().add(theBasicPackage.getIdentifiedElement());
+		annotationRepositoryEClass.getESuperTypes().add(theIdentifierPackage.getIdentifier());
+		annotationEClass.getESuperTypes().add(theIdentifierPackage.getIdentifier());
 		genericTargetStringContentAnnotationEClass.getESuperTypes().add(this.getAnnotation());
 		genericTargetStringContentAnnotationEClass.getESuperTypes().add(this.getGenericTarget());
 		genericTargetStringContentAnnotationEClass.getESuperTypes().add(this.getStringContent());

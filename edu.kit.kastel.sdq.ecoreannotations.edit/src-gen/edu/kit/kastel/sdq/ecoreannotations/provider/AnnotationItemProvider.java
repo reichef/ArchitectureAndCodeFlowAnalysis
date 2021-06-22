@@ -2,8 +2,6 @@
  */
 package edu.kit.kastel.sdq.ecoreannotations.provider;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.provider.IdentifiedElementItemProvider;
-
 import edu.kit.kastel.sdq.ecoreannotations.Annotation;
 
 import java.util.Collection;
@@ -16,13 +14,15 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
+import tools.mdsd.modelingfoundations.identifier.provider.IdentifierItemProvider;
+
 /**
  * This is the item provider adapter for a {@link edu.kit.kastel.sdq.ecoreannotations.Annotation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AnnotationItemProvider extends IdentifiedElementItemProvider {
+public class AnnotationItemProvider extends IdentifierItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

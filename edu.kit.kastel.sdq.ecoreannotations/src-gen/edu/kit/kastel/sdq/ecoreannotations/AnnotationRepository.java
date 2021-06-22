@@ -2,9 +2,9 @@
  */
 package edu.kit.kastel.sdq.ecoreannotations;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.IdentifiedElement;
-
 import org.eclipse.emf.common.util.EList;
+
+import tools.mdsd.modelingfoundations.identifier.Identifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,15 +22,11 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface AnnotationRepository extends IdentifiedElement {
+public interface AnnotationRepository extends Identifier {
 	/**
 	 * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.kit.kastel.sdq.ecoreannotations.Annotation}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Annotations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Annotations</em>' containment reference list.
 	 * @see edu.kit.kastel.sdq.ecoreannotations.EcoreannotationsPackage#getAnnotationRepository_Annotations()

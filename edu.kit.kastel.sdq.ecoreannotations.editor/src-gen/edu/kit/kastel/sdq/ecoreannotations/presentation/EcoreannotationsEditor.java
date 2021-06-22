@@ -155,9 +155,9 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import edu.kit.kastel.sdq.ecoreannotations.provider.EcoreannotationsItemProviderAdapterFactory;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.provider.BasicItemProviderAdapterFactory;
-
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
+import tools.mdsd.modelingfoundations.identifier.provider.IdentifierItemProviderAdapterFactory;
 
 /**
  * This is an example of a Ecoreannotations model editor.
@@ -679,7 +679,7 @@ public class EcoreannotationsEditor extends MultiPageEditorPart
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreannotationsItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new BasicItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new IdentifierItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -702,7 +702,7 @@ public class EcoreannotationsEditor extends MultiPageEditorPart
 						}
 						for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext();) {
 							PropertySheetPage propertySheetPage = i.next();
-							if (propertySheetPage.getControl().isDisposed()) {
+							if (propertySheetPage.getControl() == null || propertySheetPage.getControl().isDisposed()) {
 								i.remove();
 							} else {
 								propertySheetPage.refresh();

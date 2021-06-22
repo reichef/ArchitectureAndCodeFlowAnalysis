@@ -2,14 +2,14 @@
  */
 package edu.kit.kastel.sdq.ecoreannotations.util;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.IdentifiedElement;
-
 import edu.kit.kastel.sdq.ecoreannotations.*;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+
+import tools.mdsd.modelingfoundations.identifier.Identifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public class EcoreannotationsSwitch<T> extends Switch<T> {
 			AnnotationRepository annotationRepository = (AnnotationRepository) theEObject;
 			T result = caseAnnotationRepository(annotationRepository);
 			if (result == null)
-				result = caseIdentifiedElement(annotationRepository);
+				result = caseIdentifier(annotationRepository);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -81,7 +81,7 @@ public class EcoreannotationsSwitch<T> extends Switch<T> {
 			Annotation annotation = (Annotation) theEObject;
 			T result = caseAnnotation(annotation);
 			if (result == null)
-				result = caseIdentifiedElement(annotation);
+				result = caseIdentifier(annotation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -105,7 +105,7 @@ public class EcoreannotationsSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseStringAnnotationType(genericTargetStringContentAnnotation);
 			if (result == null)
-				result = caseIdentifiedElement(genericTargetStringContentAnnotation);
+				result = caseIdentifier(genericTargetStringContentAnnotation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -220,17 +220,17 @@ public class EcoreannotationsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identified Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identified Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Identifier</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIdentifiedElement(IdentifiedElement object) {
+	public T caseIdentifier(Identifier object) {
 		return null;
 	}
 

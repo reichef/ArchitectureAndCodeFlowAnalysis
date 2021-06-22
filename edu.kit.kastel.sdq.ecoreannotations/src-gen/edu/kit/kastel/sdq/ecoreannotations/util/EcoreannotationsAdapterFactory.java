@@ -2,8 +2,6 @@
  */
 package edu.kit.kastel.sdq.ecoreannotations.util;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.IdentifiedElement;
-
 import edu.kit.kastel.sdq.ecoreannotations.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -12,6 +10,8 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+
+import tools.mdsd.modelingfoundations.identifier.Identifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -99,8 +99,8 @@ public class EcoreannotationsAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIdentifiedElement(IdentifiedElement object) {
-			return createIdentifiedElementAdapter();
+		public Adapter caseIdentifier(Identifier object) {
+			return createIdentifierAdapter();
 		}
 
 		@Override
@@ -207,16 +207,16 @@ public class EcoreannotationsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.kit.ipd.sdq.composition.securityanalyses.basic.IdentifiedElement <em>Identified Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link tools.mdsd.modelingfoundations.identifier.Identifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.kit.ipd.sdq.composition.securityanalyses.basic.IdentifiedElement
+	 * @see tools.mdsd.modelingfoundations.identifier.Identifier
 	 * @generated
 	 */
-	public Adapter createIdentifiedElementAdapter() {
+	public Adapter createIdentifierAdapter() {
 		return null;
 	}
 

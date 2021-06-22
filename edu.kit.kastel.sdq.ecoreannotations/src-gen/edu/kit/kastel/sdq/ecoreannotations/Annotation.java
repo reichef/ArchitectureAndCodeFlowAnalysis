@@ -2,7 +2,7 @@
  */
 package edu.kit.kastel.sdq.ecoreannotations;
 
-import edu.kit.ipd.sdq.composition.securityanalyses.basic.IdentifiedElement;
+import tools.mdsd.modelingfoundations.identifier.Identifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +14,5 @@ import edu.kit.ipd.sdq.composition.securityanalyses.basic.IdentifiedElement;
  * @model abstract="true"
  * @generated
  */
-public interface Annotation extends IdentifiedElement {
+public interface Annotation extends Identifier {
 } // Annotation

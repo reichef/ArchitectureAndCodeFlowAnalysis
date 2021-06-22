@@ -13,6 +13,6 @@ Export-Package: edu.kit.kastel.sdq.ecoreannotations.provider
 Require-Bundle: org.eclipse.core.runtime,
  edu.kit.kastel.sdq.ecoreannotations;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
- edu.kit.ipd.sdq.composition.securityanalyses.basic;visibility:=reexport,
- edu.kit.ipd.sdq.composition.securityanalyses.basic.edit;visibility:=reexport
+ tools.mdsd.modelingfoundations.identifier;visibility:=reexport,
+ tools.mdsd.modelingfoundations.identifier.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
