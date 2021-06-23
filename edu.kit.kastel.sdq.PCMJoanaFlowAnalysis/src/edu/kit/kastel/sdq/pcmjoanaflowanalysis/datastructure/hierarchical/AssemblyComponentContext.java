@@ -1,24 +1,23 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.RequiredDelegationConnector;
-import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
-import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.SignatureIdentifyingRoleElement;
 
 public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 
 	private AssemblyContext context;
-	private Collection<IntraComponentFlow> systemInducedFlows;
+	private Map<SignatureIdentifyingRoleElement, Collection<SignatureIdentifyingRoleElement>> systemInducedConnection;
 	private FlowBasicComponent component;
 	
 	public void setComponent(FlowBasicComponent component) {
@@ -28,7 +27,7 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 	public AssemblyComponentContext(AssemblyContext context) {
 		super(context.getId(), context.getEncapsulatedComponent__AssemblyContext().getEntityName());
 		this.context = context;
-		this.systemInducedFlows = new HashSet<IntraComponentFlow>();
+		this.systemInducedConnection = new HashMap<>();
 	}
 	
 	public AssemblyComponentContext(AssemblyContext context, FlowBasicComponent component) {
@@ -44,8 +43,16 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 		return context;
 	}
 	
-	public void addIntraComponentFlow(IntraComponentFlow flow) {
-		systemInducedFlows.add(flow);
+	public void addIntraComponentFlow(SignatureIdentifyingRoleElement source, SignatureIdentifyingRoleElement sink) {
+		if(!systemInducedConnection.containsKey(source)) {
+			systemInducedConnection.put(source, new HashSet<SignatureIdentifyingRoleElement>());
+		}
+		
+		systemInducedConnection.get(source).add(sink);
+	}
+	
+	public void addIntraComponentFlows(SignatureIdentifyingRoleElement source, Collection<SignatureIdentifyingRoleElement> sinks) {
+		sinks.stream().forEach(sink -> addIntraComponentFlow(source, sink));
 	}
 	
 	
@@ -92,25 +99,23 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 	}
 
 	public Collection<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentationsForSourceFromFlows(
-			SignatureIdentifyingRoleElement<OperationProvidedRole> source) {
+			SignatureIdentifyingRoleElement source) {
 		Collection<AssemblyConnectorRepresentation> assemblyConnectors = new HashSet<AssemblyConnectorRepresentation>();
 		
-		for(IntraComponentFlow flow : systemInducedFlows) {
-			if(flow.getSource().identyfyingEquals(source)) {
-				for(SignatureIdentifyingRoleElement<OperationRequiredRole> sink : flow.getSinks()) {
-					Optional<AssemblyConnectorRepresentation> sinkRepresentation = getAssemblyConnectorRepresentationForSink(sink);
-					if(sinkRepresentation.isPresent()) {
-						assemblyConnectors.add(sinkRepresentation.get());
-					}
-				}
+		Collection<SignatureIdentifyingRoleElement> operationConnectionEndpoints = systemInducedConnection.get(source);
+		
+		for(SignatureIdentifyingRoleElement sink : operationConnectionEndpoints) {
+			Optional<AssemblyConnectorRepresentation> sinkRepresentation = getAssemblyConnectorRepresentationForSink(sink);
+			if(sinkRepresentation.isPresent()) {
+				assemblyConnectors.add(sinkRepresentation.get());
 			}
 		}
-		
+
 		return assemblyConnectors;
 	}
 	
 	
-	public Optional<CompositeConnectorRepresentation> getDelegationConnectorRepresentationForRequiredRoleIdentifyingFromInnerRole(SignatureIdentifyingRoleElement<OperationRequiredRole> requiredIdentifying){
+	public Optional<CompositeConnectorRepresentation> getDelegationConnectorRepresentationForRequiredRoleIdentifyingFromInnerRole(SignatureIdentifyingRoleElement requiredIdentifying){
 		for(CompositeConnectorRepresentation connectorRepresentation : compositeConnectorRepresentation) {
 			if(requiredIdentifying.identyfyingEquals(connectorRepresentation.getInner().getContext().getEncapsulatedComponent__AssemblyContext(), ((RequiredDelegationConnector)connectorRepresentation.getConnector()).getInnerRequiredRole_RequiredDelegationConnector())) {
 				return Optional.ofNullable(connectorRepresentation);

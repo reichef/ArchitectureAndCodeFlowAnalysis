@@ -28,14 +28,9 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.System
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMRepositoryElementResolver;
 
 
-//TODO: Only Resolve IntraComponentFlows here and calculate complete flows through fixpoint iteration
 public class ComposedSystemAnalyzer {
 
 	private AnalysisCoupler coupler;
-
-	public ComposedSystemAnalyzer(Config config) {
-		this.coupler = new AnalysisCoupler(config);
-	}
 	
 	public ComposedSystemAnalyzer(AnalysisCoupler coupler) {
 		this.coupler = coupler;
@@ -47,7 +42,6 @@ public class ComposedSystemAnalyzer {
 		OperationProvidedRole startingRole = call.getProvidedRole_EntryLevelSystemCall();
 
 		traverseProvidedDelegation(startingEntity, startingRole, startingSignature);
-
 	}
 	
 
@@ -80,10 +74,8 @@ public class ComposedSystemAnalyzer {
 				representationContext.getEncapsulatedComponent__AssemblyContext(), sourceFlowRole, sourceSignature,
 				representation.getClassPath().get());
 
-		SignatureIdentifyingRoleElement<OperationProvidedRole> sourceIdentifying = new SignatureIdentifyingRoleElement<OperationProvidedRole>(
+		SignatureIdentifyingRoleElement sourceIdentifying = new SignatureIdentifyingRoleElement(
 				representationContext.getEncapsulatedComponent__AssemblyContext(), sourceFlowRole, sourceSignature);
-		IntraComponentFlow intraComponentFlow = new IntraComponentFlow(sourceIdentifying);
-		representation.addIntraComponentFlow(intraComponentFlow);
 		
 		if(methodIDsOfFlows.isEmpty()) {
 			//System.out.printf("Flow Finished in Component %s, Method %s\n", sourceIdentifying.getComponent().getEntityName(), sourceIdentifying.getSignature().getEntityName());
@@ -103,13 +95,13 @@ public class ComposedSystemAnalyzer {
 							opRole.getRequiredInterface__OperationRequiredRole(), id);
 
 					if (requiredOpSig.isPresent()) {
-						SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying = new SignatureIdentifyingRoleElement<OperationRequiredRole>(
+						SignatureIdentifyingRoleElement sinkIdentifying = new SignatureIdentifyingRoleElement(
 								representationContext.getEncapsulatedComponent__AssemblyContext(), opRole,
 								requiredOpSig.get());
 						
 						//System.out.printf("To Sink %s.%s \n", sinkIdentifying.getComponent().getEntityName(), sinkIdentifying.getSignature().getEntityName());
 						
-						intraComponentFlow.addSink(sinkIdentifying);
+						representation.addIntraComponentFlow(sourceIdentifying, sinkIdentifying);
 
 						boolean couldMakeAssemblyStep = tryAssemblyStepFromSink(representation, sinkIdentifying,
 								requiredOpSig.get());
@@ -129,7 +121,7 @@ public class ComposedSystemAnalyzer {
 	}
 
 	private boolean tryAssemblyStepFromSink(AssemblyRepresentationContainer representation,
-			SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying, OperationSignature signature) {
+			SignatureIdentifyingRoleElement sinkIdentifying, OperationSignature signature) {
 		Optional<AssemblyConnectorRepresentation> assemblyConnector = representation
 				.getAssemblyConnectorRepresentationForSink(sinkIdentifying);
 		boolean stepPossible = assemblyConnector.isPresent();
@@ -142,7 +134,7 @@ public class ComposedSystemAnalyzer {
 	}
 
 	private boolean tryDelegationStepFromSink(AssemblyComponentContext representation,
-			SignatureIdentifyingRoleElement<OperationRequiredRole> sinkIdentifying, OperationSignature signature) {
+			SignatureIdentifyingRoleElement sinkIdentifying, OperationSignature signature) {
 
 		Optional<CompositeConnectorRepresentation> compositeConnector = representation
 				.getDelegationConnectorRepresentationForRequiredRoleIdentifyingFromInnerRole(sinkIdentifying);
@@ -152,7 +144,7 @@ public class ComposedSystemAnalyzer {
 			AssemblyRepresentationContainer parentComponent = compositeConnector.get().getOuter();
 			RequiredDelegationConnector requiredDelegation = (RequiredDelegationConnector) compositeConnector.get()
 					.getConnector();
-			SignatureIdentifyingRoleElement<OperationRequiredRole> outerIdentifyingRoleElement = new SignatureIdentifyingRoleElement<OperationRequiredRole>(
+			SignatureIdentifyingRoleElement outerIdentifyingRoleElement = new SignatureIdentifyingRoleElement(
 					(InterfaceProvidingRequiringEntity) requiredDelegation
 							.getOuterRequiredRole_RequiredDelegationConnector().getRequiringEntity_RequiredRole(),
 					requiredDelegation.getOuterRequiredRole_RequiredDelegationConnector(), signature);

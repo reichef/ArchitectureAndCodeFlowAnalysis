@@ -11,16 +11,13 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import java.util.Optional;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.system.System;
 
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.AnalysisCoupler;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyComponentContext;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.DataStructureBuilder;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.SystemRepresentation;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.BasicComponentFlowAnalyzer;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.ComposedSystemAnalyzer;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -86,10 +83,6 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		SystemRepresentation systemrepresentation = buildDataStructure(models.getSystem(), models.getAnnotationRepository());
 		
 		AnalysisCoupler coupler = new AnalysisCoupler(models.getConfig());
-		
-		BasicComponentFlowAnalyzer basicAnalyzer = new BasicComponentFlowAnalyzer(coupler);
-		basicAnalyzer.analyseAllComponents(systemrepresentation.collectFlowBasicComponents());
-		
 		ComposedSystemAnalyzer pcmAnalyzer = new ComposedSystemAnalyzer(coupler);
 		analyseFlowsFromEntryLevelSystemCalls(models.getUsageModel(), pcmAnalyzer, systemrepresentation);
 		

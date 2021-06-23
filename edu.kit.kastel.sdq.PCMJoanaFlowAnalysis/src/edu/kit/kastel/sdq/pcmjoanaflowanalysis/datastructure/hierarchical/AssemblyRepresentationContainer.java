@@ -72,7 +72,7 @@ public abstract class AssemblyRepresentationContainer {
 	public abstract void fillWithClassPath(AnnotationRepository repository, Optional<String> latestClassPath);
 	
 
-	public Optional<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentationForSink(SignatureIdentifyingRoleElement<OperationRequiredRole> sink) {
+	public Optional<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentationForSink(SignatureIdentifyingRoleElement sink) {
 		for(AssemblyConnectorRepresentation connectorRepresentation : assemblyConnectorRepresentation) {
 			if(sink.identyfyingEquals(connectorRepresentation.getRequiringContext().getEncapsulatedComponent__AssemblyContext(),
 					connectorRepresentation.getRequiredRole())) {

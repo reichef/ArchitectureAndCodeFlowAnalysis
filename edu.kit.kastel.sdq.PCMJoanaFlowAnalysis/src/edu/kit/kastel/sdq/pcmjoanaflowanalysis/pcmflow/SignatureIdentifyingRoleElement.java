@@ -2,15 +2,14 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow;
 
 import org.palladiosimulator.pcm.core.entity.InterfaceProvidingRequiringEntity;
 import org.palladiosimulator.pcm.repository.OperationSignature;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Role;
 
-public class SignatureIdentifyingRoleElement<ConcreteRole extends Role> {
+public class SignatureIdentifyingRoleElement {
 	private final InterfaceProvidingRequiringEntity component;
-	private final ConcreteRole role;
+	private final Role role;
 	private final OperationSignature signature;
 	
-	public SignatureIdentifyingRoleElement(InterfaceProvidingRequiringEntity component, ConcreteRole role, OperationSignature signature){
+	public SignatureIdentifyingRoleElement(InterfaceProvidingRequiringEntity component, Role role, OperationSignature signature){
 		this.component = component;
 		this.role = role;
 		this.signature = signature;
@@ -20,7 +19,7 @@ public class SignatureIdentifyingRoleElement<ConcreteRole extends Role> {
 		return signature;
 	}
 
-	public ConcreteRole getRole() {
+	public Role getRole() {
 		return role;
 	}
 
