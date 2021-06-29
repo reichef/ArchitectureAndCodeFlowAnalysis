@@ -8,16 +8,14 @@ import java.util.Map.Entry;
 import java.util.Optional;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.core.composition.RequiredDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
-
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.SignatureIdentifyingRoleElement;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
 
 public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 
 	private AssemblyContext context;
-	private Map<SignatureIdentifyingRoleElement, Collection<SignatureIdentifyingRoleElement>> systemInducedConnection;
+	private Map<SystemOperationIdentifying, Collection<SystemOperationIdentifying>> systemInducedConnection;
 	private FlowBasicComponent component;
 	
 	public void setComponent(FlowBasicComponent component) {
@@ -43,16 +41,20 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 		return context;
 	}
 	
-	public void addIntraComponentFlow(SignatureIdentifyingRoleElement source, SignatureIdentifyingRoleElement sink) {
+	public void addIntraComponentFlow(SystemOperationIdentifying source, SystemOperationIdentifying sink) {
 		if(!systemInducedConnection.containsKey(source)) {
-			systemInducedConnection.put(source, new HashSet<SignatureIdentifyingRoleElement>());
+			systemInducedConnection.put(source, new HashSet<SystemOperationIdentifying>());
 		}
 		
 		systemInducedConnection.get(source).add(sink);
 	}
 	
-	public void addIntraComponentFlows(SignatureIdentifyingRoleElement source, Collection<SignatureIdentifyingRoleElement> sinks) {
+	public void addIntraComponentFlows(SystemOperationIdentifying source, Collection<SystemOperationIdentifying> sinks) {
 		sinks.stream().forEach(sink -> addIntraComponentFlow(source, sink));
+	}
+	
+	public Collection<SystemOperationIdentifying> getAlreadyFoundSinksForSource(SystemOperationIdentifying source){
+		return systemInducedConnection.get(source);
 	}
 	
 	
@@ -99,12 +101,12 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 	}
 
 	public Collection<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentationsForSourceFromFlows(
-			SignatureIdentifyingRoleElement source) {
+			SystemOperationIdentifying source) {
 		Collection<AssemblyConnectorRepresentation> assemblyConnectors = new HashSet<AssemblyConnectorRepresentation>();
 		
-		Collection<SignatureIdentifyingRoleElement> operationConnectionEndpoints = systemInducedConnection.get(source);
+		Collection<SystemOperationIdentifying> operationConnectionEndpoints = systemInducedConnection.get(source);
 		
-		for(SignatureIdentifyingRoleElement sink : operationConnectionEndpoints) {
+		for(SystemOperationIdentifying sink : operationConnectionEndpoints) {
 			Optional<AssemblyConnectorRepresentation> sinkRepresentation = getAssemblyConnectorRepresentationForSink(sink);
 			if(sinkRepresentation.isPresent()) {
 				assemblyConnectors.add(sinkRepresentation.get());
@@ -115,14 +117,15 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 	}
 	
 	
-	public Optional<CompositeConnectorRepresentation> getDelegationConnectorRepresentationForRequiredRoleIdentifyingFromInnerRole(SignatureIdentifyingRoleElement requiredIdentifying){
-		for(CompositeConnectorRepresentation connectorRepresentation : compositeConnectorRepresentation) {
-			if(requiredIdentifying.identyfyingEquals(connectorRepresentation.getInner().getContext().getEncapsulatedComponent__AssemblyContext(), ((RequiredDelegationConnector)connectorRepresentation.getConnector()).getInnerRequiredRole_RequiredDelegationConnector())) {
-				return Optional.ofNullable(connectorRepresentation);
-			}
-		}
-		
-		return Optional.empty();
+	public Optional<CompositeConnectorRepresentation> getDelegationConnectorRepresentationForRequiredRoleIdentifyingFromInnerRole(SystemOperationIdentifying requiredIdentifying){
+//		for(CompositeConnectorRepresentation connectorRepresentation : compositeConnectorRepresentation) {
+//			if(requiredIdentifying.identyfyingEquals(connectorRepresentation.getInner().getContext().getEncapsulatedComponent__AssemblyContext(), ((RequiredDelegationConnector)connectorRepresentation.getConnector()).getInnerRequiredRole_RequiredDelegationConnector())) {
+//				return Optional.ofNullable(connectorRepresentation);
+//			}
+//		}
+//		
+// return Optional.empty(); 
+		throw new UnsupportedOperationException("Currently not implemented due to expected flattening");
 	}
 
 	public boolean encapsulatedContextProvidesRole(OperationProvidedRole searchedRole) {

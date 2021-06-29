@@ -15,7 +15,7 @@ import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.SignatureIdentifyingRoleElement;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
 
 public abstract class AssemblyRepresentationContainer {
 	protected String id;
@@ -72,10 +72,10 @@ public abstract class AssemblyRepresentationContainer {
 	public abstract void fillWithClassPath(AnnotationRepository repository, Optional<String> latestClassPath);
 	
 
-	public Optional<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentationForSink(SignatureIdentifyingRoleElement sink) {
+	public Optional<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentationForSink(SystemOperationIdentifying sink) {
+		
 		for(AssemblyConnectorRepresentation connectorRepresentation : assemblyConnectorRepresentation) {
-			if(sink.identyfyingEquals(connectorRepresentation.getRequiringContext().getEncapsulatedComponent__AssemblyContext(),
-					connectorRepresentation.getRequiredRole())) {
+			if(sink.identyfiyingEqualsWithoutSignature(connectorRepresentation.getRequring(), connectorRepresentation.getRequiredRole().getRequiredInterface__OperationRequiredRole()) || sink.identyfiyingEqualsWithoutSignature(connectorRepresentation.getProviding(), connectorRepresentation.getProvidedRole().getProvidedInterface__OperationProvidedRole())) {
 				return Optional.ofNullable(connectorRepresentation);
 			}
 		}
@@ -109,14 +109,6 @@ public abstract class AssemblyRepresentationContainer {
 	
 	public Collection<AssemblyComponentContext> getContainedRepresentations() {
 		return containedRepresentations;
-	}
-	
-	protected void collectFlowBasicComponents(Set<FlowBasicComponent> components) {
-		if(this.isComposite()) {
-			containedRepresentations.forEach(representation -> representation.collectFlowBasicComponents(components));
-		} else {
-			components.add(((AssemblyComponentContext)this).getComponent());
-		}
 	}
 	
 	public boolean isComposite() {

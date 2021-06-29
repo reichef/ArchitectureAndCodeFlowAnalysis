@@ -9,12 +9,12 @@ import edu.kit.kastel.sdq.cosa.quality.JOANA.MethodTargetingSource;
 import edu.kit.kastel.sdq.cosa.structure.SourceCode.Interface;
 import edu.kit.kastel.sdq.cosa.structure.SourceCode.Class;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMSubtypeResolver;
 
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
 import org.palladiosimulator.pcm.repository.OperationInterface;
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -39,14 +39,14 @@ public class PCM2JOANAModelTransformator {
 	}
 
 	public Pair<FlowSpecification, Associations> generateFlowForProvidedOperationAndComponent(
-		OperationProvidedRole providedRole, OperationSignature signature, RepositoryComponent component) {
+		SystemOperationIdentifying identifying) {
 
 		Associations associations = new Associations();
 		FlowSpecification flowSpec = JOANAFactory.eINSTANCE.createFlowSpecification();
 		flowSpec.setId(EcoreUtil.generateUUID());
 
-	
-		MethodTargetingSource source = generateMethodTargetingSource(component, providedRole.getProvidedInterface__OperationProvidedRole(), signature);
+		RepositoryComponent sourcePCMComponent = identifying.getContext().getComponent().getComponent();
+		MethodTargetingSource source = generateMethodTargetingSource(sourcePCMComponent, identifying.getOpInterface(), identifying.getSignature());
 
 		Method joanaCLISource = new Method(source.getClass_().getEntityName(), source.getMethod().getEntityName());
 		associations.associate(source.getMethod().getId(), joanaCLISource);
@@ -54,7 +54,7 @@ public class PCM2JOANAModelTransformator {
 		flowSpec.getSource().add(source);
 
 		//Generate Sinks
-		Collection<Pair<String, Method>> sinks = transformBasicComponentRequiredToLocalSink(flowSpec, component);
+		Collection<Pair<String, Method>> sinks = transformBasicComponentRequiredToLocalSink(flowSpec, sourcePCMComponent);
 
 		jRoot.getFlowspecification().add(flowSpec);
 
@@ -94,11 +94,7 @@ public class PCM2JOANAModelTransformator {
 		}
 		return joanaCLISinks;
 	}
-	
-	private MethodTargetingSink generateMethodTargetingSink(RepositoryComponent component, OperationInterface iface, OperationSignature signature) {
-		return generateMethodTargetingSink(resolver.getClass(component), resolver.getInterface(iface), resolver.getMethod(signature));
-	}
-	
+
 	private MethodTargetingSink generateMethodTargetingSink(Class scClass, Interface scInterface, edu.kit.kastel.sdq.cosa.structure.SourceCode.Method scMethod) {
 		
 		MethodTargetingSink sink = JOANAFactory.eINSTANCE.createMethodTargetingSink();

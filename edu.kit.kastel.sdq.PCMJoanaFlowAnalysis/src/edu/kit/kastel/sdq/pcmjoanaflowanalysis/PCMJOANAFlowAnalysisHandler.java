@@ -12,13 +12,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import java.util.Optional;
 import java.util.ArrayList;
 
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.system.System;
 
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.AnalysisCoupler;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.DataStructureBuilder;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.SystemRepresentation;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.ComposedSystemAnalyzer;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.FixpointIteration;
+
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -51,11 +51,13 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 
 	
 	private Optional<List<IFile>> getFilteredList(ISelection selection){
+		List<IFile> files = new ArrayList<IFile>();
+		
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 			
 			Object[] filesTmp = structuredSelection.toArray();
-			List<IFile> files = new ArrayList<IFile>();
+			
 			
 			for(int i = 0; i < filesTmp.length; i++) {
 				if(filesTmp[i] instanceof IFile) {
@@ -83,11 +85,8 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		SystemRepresentation systemrepresentation = buildDataStructure(models.getSystem(), models.getAnnotationRepository());
 		
 		AnalysisCoupler coupler = new AnalysisCoupler(models.getConfig());
-		ComposedSystemAnalyzer pcmAnalyzer = new ComposedSystemAnalyzer(coupler);
+		FixpointIteration pcmAnalyzer = new FixpointIteration(coupler);
 		analyseFlowsFromEntryLevelSystemCalls(models.getUsageModel(), pcmAnalyzer, systemrepresentation);
-		
-		Repository repo = models.getRepository();
-		
 		
 		return true;
 	}
@@ -99,14 +98,13 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		return systemrepresentation;
 	}
 	
-	private void analyseFlowsFromEntryLevelSystemCalls(UsageModel usageModel, ComposedSystemAnalyzer analyser, SystemRepresentation systemrepresentation){
+	private void analyseFlowsFromEntryLevelSystemCalls(UsageModel usageModel, FixpointIteration analyser, SystemRepresentation systemrepresentation){
 		for(UsageScenario scenario : usageModel.getUsageScenario_UsageModel()){
 			for(AbstractUserAction action : scenario.getScenarioBehaviour_UsageScenario().getActions_ScenarioBehaviour()){
 				if(action instanceof EntryLevelSystemCall){
-					analyser.flowCalculationForEntryLevelSystemCall(systemrepresentation, (EntryLevelSystemCall)action);
+					analyser.analyzeIntraComponentFlow(systemrepresentation.getOperationIdentifyingOfComponentForExternalCall((EntryLevelSystemCall)action));
 				}
 			}
 		}
 	}
-
 }

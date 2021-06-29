@@ -8,10 +8,8 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.Set;
 
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import edu.kit.joana.component.connector.Flows;
 import edu.kit.joana.component.connector.Method;
@@ -20,6 +18,7 @@ import edu.kit.kastel.sdq.cosa.quality.JOANA.FlowSpecification;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana.JOANAAnalyzer;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
 
 public class AnalysisCoupler {
 
@@ -34,15 +33,14 @@ public class AnalysisCoupler {
 		sourceCodeAnalyzer = new JOANAAnalyzer(config);
 	}
 	
-	public Set<String> analyzeIntraComponentFlow(RepositoryComponent component, OperationProvidedRole sourceRole,
-			OperationSignature sourceSignature, String classPath) {
+	public Set<String> analyzeIntraComponentFlow(SystemOperationIdentifying source, String classPath) {
 
-		generateSourceCodeAndJoanaModel(component.getRepository__RepositoryComponent());
+		generateSourceCodeAndJoanaModel(source.getContext().getComponent().getComponent().getRepository__RepositoryComponent());
 
 		//TODO in Prinicple every potential sink in a component should be provided by the analyses, speaking: is there a flow from op A to op B, op C ...., 
 		//the coupler should only parse this.
 		Pair<FlowSpecification, Associations> flowInformation = pcm2Joana
-				.generateFlowForProvidedOperationAndComponent(sourceRole, sourceSignature, component);
+				.generateFlowForProvidedOperationAndComponent(source);
 
 		if(flowInformation.getFirst().getSink().isEmpty()) {
 			return new HashSet<String>();
