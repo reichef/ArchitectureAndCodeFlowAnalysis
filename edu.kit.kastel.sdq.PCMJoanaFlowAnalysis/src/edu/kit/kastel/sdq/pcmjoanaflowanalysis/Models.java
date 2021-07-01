@@ -104,7 +104,7 @@ public class Models {
 				java.lang.System.err.println("Config-File exists but was not selected properly. Start again with selected config-file.");
 				return new Models(null,null, null, null, null, false);
 			}
-			config = new Config(Paths.get(""), Paths.get(""), true, true, "");
+			config = new Config(Paths.get(""), Paths.get(""), true, "");
 			Utils.store(Paths.get(path + IPath.SEPARATOR + CONFIG_NAME), config);
 			java.lang.System.err.println("Created Config-File. Complete content and run analysis again");
 			return new Models(null,null, null, null, null, false);
