@@ -13,9 +13,7 @@ import edu.kit.joana.component.connector.JoanaCall;
 import edu.kit.joana.component.connector.JoanaCallReturn;
 import edu.kit.joana.component.connector.Lattice;
 import edu.kit.joana.component.connector.ProgramPart;
-import edu.kit.kastel.sdq.cosa.quality.JOANA.FlowSpecification;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.Associations;
 
 public class JOANAAnalyzer {
 

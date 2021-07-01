@@ -69,7 +69,7 @@ class FixpointIteration {
 		val sinks = new HashSet<SystemOperationIdentifying>;
 
 		for (String id : methodIDsOfSinks) {
-			// PCM Roles do not support a collected search for "OperationRoles" to extract the interfaces, regardless of provided or required.
+			// PCM Roles do not support a supertype for "Operation-Roles" to extract the interfaces, regardless of provided or required.
 			for (Role role : PCMSubtypeResolver.collectOperationRelatingRoles(source.context.component.component)) {
 				var sinkInterface = RepositoryFactory.eINSTANCE.createOperationInterface;
 				if (role instanceof OperationRequiredRole) {

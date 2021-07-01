@@ -40,9 +40,6 @@ public class PCMJOANACoupler {
 		generateSourceCodeAndJoanaModel(
 				source.getContext().getComponent().getComponent().getRepository__RepositoryComponent());
 
-		// TODO in Prinicple every potential sink in a component should be provided by
-		// the analyses, speaking: is there a flow from op A to op B, op C ....,
-		// the coupler should only parse this.
 		Pair<FlowSpecification, Associations> flowInformation = pcm2Joana
 				.generateFlowForProvidedOperationAndComponent(source);
 

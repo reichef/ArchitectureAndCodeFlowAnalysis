@@ -2,7 +2,6 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling
 
 import org.palladiosimulator.pcm.repository.Repository
 import org.palladiosimulator.pcm.repository.OperationInterface
-import org.palladiosimulator.pcm.repository.DataType
 import org.palladiosimulator.pcm.repository.PrimitiveTypeEnum
 import org.palladiosimulator.pcm.repository.PrimitiveDataType
 import org.palladiosimulator.pcm.repository.CompositeDataType
@@ -138,7 +137,6 @@ class StructuralModelGeneratorPCMToSourceCode {
 		}
 
 		for (componentClassCorrespondence : correspondences.toclass.filter(ComponentToClass)) {
-
 			processClassContent(componentClassCorrespondence.component, componentClassCorrespondence.class_);
 		}
 	}
@@ -229,24 +227,24 @@ class StructuralModelGeneratorPCMToSourceCode {
 		}
 	}
 
-	private def Type createSourceCodeModelDataTypeFromPalladioDataType(DataType dataType) {
-		if (dataType instanceof PrimitiveDataType) {
-			var builtInType = SourceCodeFactory.eINSTANCE.createBuiltInType();
+	private def dispatch Type createSourceCodeModelDataTypeFromPalladioDataType(PrimitiveDataType dataType){
+		var builtInType = SourceCodeFactory.eINSTANCE.createBuiltInType();
 			builtInType.builtInType = (dataType as PrimitiveDataType).translatePalladio2SourceCodeModelBuiltInTypes;
 			return builtInType;
-		} else if (dataType instanceof CompositeDataType) {
-			var referenceType = SourceCodeFactory.eINSTANCE.createReferenceType();
+	}
+	
+	private def dispatch Type createSourceCodeModelDataTypeFromPalladioDataType(CompositeDataType dataType){
+		var referenceType = SourceCodeFactory.eINSTANCE.createReferenceType();
 			referenceType.topleveltype = (dataType as CompositeDataType).
 				findTopLevelTypesInPackagesByForCompositeDataType
 			return referenceType;
-		} else if (dataType instanceof CollectionDataType) {
-			var collectionType = SourceCodeFactory.eINSTANCE.createCollectionType();
+	}
+	
+	private def dispatch Type createSourceCodeModelDataTypeFromPalladioDataType(CollectionDataType dataType){
+		var collectionType = SourceCodeFactory.eINSTANCE.createCollectionType();
 			collectionType.type = (dataType as CollectionDataType).innerType_CollectionDataType.
 				createSourceCodeModelDataTypeFromPalladioDataType;
 			return collectionType;
-		}
-
-		return null;
 	}
 
 	private def addOperationSignature2MethodCorrespondence(OperationSignature opSig, Method method) {
