@@ -54,6 +54,11 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 	}
 	
 	public Collection<SystemOperationIdentifying> getAlreadyFoundSinksForSource(SystemOperationIdentifying source){
+		
+		if(!systemInducedConnection.containsKey(source)) {
+			systemInducedConnection.put(source, new HashSet<SystemOperationIdentifying>());
+		}
+		
 		return systemInducedConnection.get(source);
 	}
 	

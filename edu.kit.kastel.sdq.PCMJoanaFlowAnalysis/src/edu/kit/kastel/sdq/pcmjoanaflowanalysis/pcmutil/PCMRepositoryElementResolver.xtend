@@ -52,7 +52,7 @@ class PCMRepositoryElementResolver {
 	}
 	
 	def static Collection<OperationSignature> getAllRequiredOperationSignaturesOfComponent(RepositoryComponent component){
-		return component.providedRoles_InterfaceProvidingEntity
+		return component.requiredRoles_InterfaceRequiringEntity
 					.filter(OperationRequiredRole)
 					.map[it.requiredInterface__OperationRequiredRole]
 					.map[it.signatures__OperationInterface]

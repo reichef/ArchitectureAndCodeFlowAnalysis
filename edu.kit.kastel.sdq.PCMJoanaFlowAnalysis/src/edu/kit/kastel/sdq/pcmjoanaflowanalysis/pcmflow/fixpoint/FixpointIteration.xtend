@@ -2,7 +2,6 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint
 
 import java.util.Queue
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyComponentContext
-import java.util.PriorityQueue
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.AnalysisCoupler
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMRepositoryElementResolver
 import org.palladiosimulator.pcm.repository.OperationRequiredRole
@@ -13,6 +12,7 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.Assemb
 import java.util.Collection
 import java.util.HashSet
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMSubtypeResolver
+import java.util.ArrayDeque
 
 //For ease of problem, we assume a flat system at the moment until fully integrating flat data structure.  
 class FixpointIteration {
@@ -20,7 +20,7 @@ class FixpointIteration {
 	private AnalysisCoupler coupler;
 
 	new(AnalysisCoupler coupler) {
-		componentPointsToProcess = new PriorityQueue;
+		componentPointsToProcess = new ArrayDeque;
 		this.coupler = coupler;
 	}
 
@@ -36,10 +36,22 @@ class FixpointIteration {
 
 			val foundSinks = analyzeIntraComponentFlow(currentComponentSource);
 			val foundSinksWithoutAlreadyFound = removeAlreadyFoundSinks(currentComponentSource, foundSinks);
-			
-			//There are found sinks, that are not yet considered
-			if(foundSinksWithoutAlreadyFound.size > 0){
-				foundSinksWithoutAlreadyFound.forEach[sink | componentPointsToProcess.add(resolveAssemblyStepFromSink(currentComponentSource.context, sink))]
+
+			// There are found sinks, that are not yet considered
+			if (foundSinksWithoutAlreadyFound.size > 0) {
+				for (sink : foundSinksWithoutAlreadyFound) {
+					sink.context.addIntraComponentFlow(currentComponentSource, sink);
+					componentPointsToProcess.add(resolveAssemblyStepFromSink(currentComponentSource.context, sink));
+
+					/*
+					 * 1. Add the sink-location as future source because we do not get the "return" as sink from JOANA for the"return-path".
+					 * 2. Do this only for operations with a return-value
+					 * TODO: Check if this approach covers all flow conditions (e.g. if 2. has to be removded)
+					 */ 
+					 if(sink.signature.returnType__OperationSignature !== null){
+						componentPointsToProcess.add(sink);
+					 }
+				}
 			}
 		}
 	}
@@ -51,13 +63,14 @@ class FixpointIteration {
 		var methodIDsOfFlows = coupler.analyzeIntraComponentFlow(source, source.context.getClassPath().get());
 
 		val sinks = resolveSinkIdsToDataStructureIdentification(source, methodIDsOfFlows);
-		
+
 		return sinks;
 	}
-	
-	def Collection<SystemOperationIdentifying> resolveSinkIdsToDataStructureIdentification(SystemOperationIdentifying source, Collection<String> methodIDsOfSinks){
+
+	def Collection<SystemOperationIdentifying> resolveSinkIdsToDataStructureIdentification(
+		SystemOperationIdentifying source, Collection<String> methodIDsOfSinks) {
 		val sinks = new HashSet<SystemOperationIdentifying>;
-		
+
 		for (String id : methodIDsOfSinks) {
 			for (Role role : PCMSubtypeResolver.collectOperationRelatingRoles(source.context.component.component)) {
 				var sinkInterface = RepositoryFactory.eINSTANCE.createOperationInterface;
@@ -73,25 +86,27 @@ class FixpointIteration {
 					var sinkIdentifying = new SystemOperationIdentifying(source.context, sinkInterface,
 						requiredOpSig.get());
 
-					source.context.addIntraComponentFlow(source, sinkIdentifying);
 					sinks.add(sinkIdentifying);
 				}
 			}
 		}
+
+		return sinks;
 	}
-	
+
 	/**
 	 * Removes elements from the sinks parameter when they already exist in the context flows for the source parameter.
 	 * @param source the startpoint of the connections in the component to be examined 
 	 * @param sinks all possible endpoints of the connections in the component coming from the source
 	 * @return all elements not already in the flows for the source 
 	 */
-	def Collection<SystemOperationIdentifying> removeAlreadyFoundSinks(SystemOperationIdentifying source, Collection<SystemOperationIdentifying> sinks) {
-		
+	def Collection<SystemOperationIdentifying> removeAlreadyFoundSinks(SystemOperationIdentifying source,
+		Collection<SystemOperationIdentifying> sinks) {
+
 		val existingSinksForSource = source.context.getAlreadyFoundSinksForSource(source);
-		return sinks.filter[sink | !existingSinksForSource.exists[existingSink | sink.identyfyingEquals(existingSink)]].toList;
+		return sinks.filter[sink|!existingSinksForSource.exists[existingSink|sink.identyfyingEquals(existingSink)]].
+			toList;
 	}
-	
 
 	def private SystemOperationIdentifying resolveAssemblyStepFromSink(AssemblyComponentContext representation,
 		SystemOperationIdentifying sinkIdentifying) {
@@ -102,10 +117,10 @@ class FixpointIteration {
 			var resolvedDirection = assemblyConnector.getDirection(sinkIdentifying);
 
 			if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.ASSEMBLY)) {
-				return new SystemOperationIdentifying(assemblyConnector.requiringContext,
-					assemblyConnector.requiredRole.requiredInterface__OperationRequiredRole, sinkIdentifying.signature);
+				return new SystemOperationIdentifying(assemblyConnector.providing,
+					assemblyConnector.providedRole.providedInterface__OperationProvidedRole, sinkIdentifying.signature);
 			} else if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.OPPOSITE)) {
-				return new SystemOperationIdentifying(assemblyConnector.providingContext,
+				return new SystemOperationIdentifying(assemblyConnector.requiringContext,
 					assemblyConnector.requiredRole.requiredInterface__OperationRequiredRole, sinkIdentifying.signature);
 			}
 		}

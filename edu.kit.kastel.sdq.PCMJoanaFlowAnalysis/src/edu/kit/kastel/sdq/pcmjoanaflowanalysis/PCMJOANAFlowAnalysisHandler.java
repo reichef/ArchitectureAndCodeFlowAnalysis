@@ -88,6 +88,8 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		FixpointIteration pcmAnalyzer = new FixpointIteration(coupler);
 		analyseFlowsFromEntryLevelSystemCalls(models.getUsageModel(), pcmAnalyzer, systemrepresentation);
 		
+		java.lang.System.out.println("Finished Execution");
+		
 		return true;
 	}
 	
@@ -102,7 +104,7 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		for(UsageScenario scenario : usageModel.getUsageScenario_UsageModel()){
 			for(AbstractUserAction action : scenario.getScenarioBehaviour_UsageScenario().getActions_ScenarioBehaviour()){
 				if(action instanceof EntryLevelSystemCall){
-					analyser.analyzeIntraComponentFlow(systemrepresentation.getOperationIdentifyingOfComponentForExternalCall((EntryLevelSystemCall)action));
+					analyser.runAnalysis(systemrepresentation.getOperationIdentifyingOfComponentForExternalCall((EntryLevelSystemCall)action));
 				}
 			}
 		}
