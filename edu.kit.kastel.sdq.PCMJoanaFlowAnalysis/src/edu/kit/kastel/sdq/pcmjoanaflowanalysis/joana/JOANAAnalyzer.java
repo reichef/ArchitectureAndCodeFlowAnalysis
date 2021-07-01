@@ -19,20 +19,16 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.Associations;
 
 public class JOANAAnalyzer {
 
-	private JOANAModelToAnalysisTransformer transformer;
+	
 	private Config config;
 	private static final String JOANA_FILE_ENDING = "json";
 	private static final String JOANA_RESULT_FILE_FORMAT = "%s_%s.%s";
 
 	public JOANAAnalyzer(Config config) {
-		this.transformer = new JOANAModelToAnalysisTransformer();
 		this.config = config;
 	}
 
-	public Flows analyzeFlow(FlowSpecification flowSpec, Associations association, String classPath) {
-
-		List<ProgramPart> sources = transformer.transformSourcesOfFlowSpecToJOANAMethods(flowSpec, association);
-		List<ProgramPart> sinks = transformer.transformSinksOfFlowSpecToJOANASourcesFormat(flowSpec, association);
+	public Flows analyzeFlow(List<ProgramPart> sources, List<ProgramPart> sinks, String classPath) {
 
 		String joanaResultFileName = String.format(JOANA_RESULT_FILE_FORMAT, sources.get(0).getOwningMethod().getClassName(),
 				sources.get(0).getOwningMethod().methodName, JOANA_FILE_ENDING);
@@ -40,8 +36,7 @@ public class JOANAAnalyzer {
 		Path joanaResultReturnPath = Paths
 				.get(config.getJoanaOutputFolderPath() + IPath.SEPARATOR + joanaResultFileName);
 
-		// if we either do not use persisted flows or the flow was not yet analyzed, we
-		// call JOANA
+		// if we either do not use persisted flows or the flow was not yet analyzed, JOANA is called
 		if (!(config.usingPersistedFlows() && joanaResultReturnPath.toFile().exists())) {
 			callJoanaRemote(classPath, joanaResultReturnPath, sources, sinks);
 		}

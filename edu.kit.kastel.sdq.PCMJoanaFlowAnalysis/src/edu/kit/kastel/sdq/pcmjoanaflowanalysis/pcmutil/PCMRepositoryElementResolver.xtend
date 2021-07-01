@@ -44,16 +44,14 @@ class PCMRepositoryElementResolver {
 	}
 		
 	def static Collection<OperationSignature> getAllProvidedOperationSignaturesOfComponent(RepositoryComponent component){
-		return component.providedRoles_InterfaceProvidingEntity
-					.filter(OperationProvidedRole)
+		return PCMSubtypeResolver.filterOperationProvidedRoles(component.providedRoles_InterfaceProvidingEntity)
 					.map[it.providedInterface__OperationProvidedRole]
 					.map[it.signatures__OperationInterface]
 					.flatten.toList;
 	}
 	
 	def static Collection<OperationSignature> getAllRequiredOperationSignaturesOfComponent(RepositoryComponent component){
-		return component.requiredRoles_InterfaceRequiringEntity
-					.filter(OperationRequiredRole)
+		return PCMSubtypeResolver.filterOperationRequiredRoles(component.requiredRoles_InterfaceRequiringEntity)
 					.map[it.requiredInterface__OperationRequiredRole]
 					.map[it.signatures__OperationInterface]
 					.flatten.toList;

@@ -2,7 +2,6 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint
 
 import java.util.Queue
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyComponentContext
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.AnalysisCoupler
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMRepositoryElementResolver
 import org.palladiosimulator.pcm.repository.OperationRequiredRole
 import org.palladiosimulator.pcm.repository.Role
@@ -13,13 +12,14 @@ import java.util.Collection
 import java.util.HashSet
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMSubtypeResolver
 import java.util.ArrayDeque
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.PCMJOANACoupler
 
-//For ease of problem, we assume a flat system at the moment until fully integrating flat data structure.  
+//For ease of problem, we assume a flat system at the moment until fully integrating flat data structure is available.  
 class FixpointIteration {
 	private Queue<SystemOperationIdentifying> componentPointsToProcess;
-	private AnalysisCoupler coupler;
+	private PCMJOANACoupler coupler;
 
-	new(AnalysisCoupler coupler) {
+	new(PCMJOANACoupler coupler) {
 		componentPointsToProcess = new ArrayDeque;
 		this.coupler = coupler;
 	}
@@ -58,10 +58,7 @@ class FixpointIteration {
 
 	def Collection<SystemOperationIdentifying> analyzeIntraComponentFlow(SystemOperationIdentifying source) {
 
-		// TODO: Temporary Solution until new datastructure replaces current one to unify roles.  
-		// Call JOANA via coupler
 		var methodIDsOfFlows = coupler.analyzeIntraComponentFlow(source, source.context.getClassPath().get());
-
 		val sinks = resolveSinkIdsToDataStructureIdentification(source, methodIDsOfFlows);
 
 		return sinks;
@@ -72,6 +69,7 @@ class FixpointIteration {
 		val sinks = new HashSet<SystemOperationIdentifying>;
 
 		for (String id : methodIDsOfSinks) {
+			// PCM Roles do not support a collected search for "OperationRoles" to extract the interfaces, regardless of provided or required.
 			for (Role role : PCMSubtypeResolver.collectOperationRelatingRoles(source.context.component.component)) {
 				var sinkInterface = RepositoryFactory.eINSTANCE.createOperationInterface;
 				if (role instanceof OperationRequiredRole) {

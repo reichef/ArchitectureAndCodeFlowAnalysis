@@ -1,7 +1,5 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences
 
-
-
 import org.palladiosimulator.pcm.repository.CompositeDataType
 import org.palladiosimulator.pcm.repository.OperationInterface
 import org.palladiosimulator.pcm.repository.OperationSignature
@@ -17,48 +15,38 @@ import edu.kit.kastel.sdq.cosa.structure.SourceCode.Interface
 import edu.kit.kastel.sdq.cosa.structure.SourceCode.Method
 
 class PCM2SourceCodeCorrespondenceResolver {
-	
+
 	CorrespondenceRepository correspondences;
-	
-	new(CorrespondenceRepository correspondences){
+
+	new(CorrespondenceRepository correspondences) {
 		this.correspondences = correspondences;
 	}
-	
-	def ComponentToClass lookupCorrespondence(
-		RepositoryComponent component) {
-		for (correspondence : correspondences.toclass) {
-			if (correspondence instanceof ComponentToClass) {
-				if ((correspondence as ComponentToClass).component.id.equals(component.id)) {
-					return correspondence;
-				}
-			}
-		}
+
+	def ComponentToClass lookupCorrespondence(RepositoryComponent component) {
+
+		return correspondences.toclass
+			.filter(ComponentToClass)
+			.findFirst [correspondence |correspondence.component.id.equals(component.id)];
+
 	}
-	
-	def CompositeDataTypeToClass lookupCorrespondence(CompositeDataType dt){
-		for (correspondence : correspondences.toclass) {
-			if (correspondence instanceof CompositeDataTypeToClass) {
-				if ((correspondence as CompositeDataTypeToClass).compositeDataType.id.equals(dt.id)) {
-					return correspondence;
-				}
-			}
-		}
+
+	def CompositeDataTypeToClass lookupCorrespondence(CompositeDataType dt) {
+		return correspondences.toclass
+			.filter(CompositeDataTypeToClass)
+			.findFirst [correspondence |correspondence.compositeDataType.id.equals(dt.id)];
 	}
-	
+
 	def OperationSignatureToMethod lookupCorrespondence(OperationSignature opSig) {
-		for (correspondence : correspondences.operationsignaturetomethod) {
-			if (opSig.id.equals(correspondence.operationSignature.id)) {
-				return correspondence;
-			}
-		}
+		
+		return correspondences.operationsignaturetomethod
+			.findFirst[correspondence | correspondence.operationSignature.id.equals(opSig.id)];
 	}
 
 	def InterfaceToInterface lookupCorrespondence(OperationInterface opInt) {
-		for (correspondence : correspondences.interfacetointerface) {
-			if (correspondence.operationInterface.id.equals(opInt.id)) {
-				return correspondence;
-			}
-		}
+		
+		return correspondences.interfacetointerface
+			.findFirst[correspondence | correspondence.operationInterface.id.equals(opInt.id)];
+			
 	}
 
 	def ParameterToParameter lookupCorrespondence(OperationSignature opSig, Parameter parameter) {
@@ -66,47 +54,43 @@ class PCM2SourceCodeCorrespondenceResolver {
 	}
 
 	def ParameterToParameter lookupCorrespondence(OperationSignature opSig, String parameterName) {
-		for (correspondence : correspondences.parametertoparameter) {
-			if (correspondence.pcmParameter.parameterName.equals(parameterName) &&
-				correspondence.relatedOperationSignature.id.equals(opSig.id)) {
-				return correspondence
-			}
-		}
+		
+		return correspondences.parametertoparameter
+			.findFirst[correspondence | correspondence.pcmParameter.parameterName.equals(parameterName) 
+										&& correspondence.relatedOperationSignature.id.equals(opSig.id)
+			];
 	}
-	
-	def OperationSignatureToMethod lookupMethodCorrespondenceById(String id){
-		for (correspondence : correspondences.operationsignaturetomethod){
-			if(correspondence.method.id.equals(id)){
-				return correspondence;
-			}
-		}
+
+	def OperationSignatureToMethod lookupMethodCorrespondenceById(String id) {
+		
+		return correspondences.operationsignaturetomethod
+			.findFirst[correspondence | correspondence.method.id.equals(id)];
 	}
-	
-	def OperationSignatureToMethod lookupCorrespondence(Method method){
-		for (correspondence : correspondences.operationsignaturetomethod){
-			if(correspondence.method.id.equals(method.id)){
-				return correspondence;
-			}
-		}
+
+	def OperationSignatureToMethod lookupCorrespondence(Method method) {
+		
+		
+		return correspondences.operationsignaturetomethod
+			.findFirst[correspondence| correspondence.method.id.equals(method.id)];
 	}
-	
-	def getClass(RepositoryComponent component){
+
+	def getClass(RepositoryComponent component) {
 		return lookupCorrespondence(component).class_;
 	}
-	
-	def Interface getInterface(OperationInterface opInt){
+
+	def Interface getInterface(OperationInterface opInt) {
 		return lookupCorrespondence(opInt).scInterface
 	}
-	
-	def Method getMethod(OperationSignature operationSignature){
+
+	def Method getMethod(OperationSignature operationSignature) {
 		return lookupCorrespondence(operationSignature).method
 	}
-	
-	def Method getMethodById(String id){
+
+	def Method getMethodById(String id) {
 		return lookupMethodCorrespondenceById(id).method;
 	}
-	
-	def OperationSignature getOperationSignature(Method method){
-		return lookupCorrespondence(method).operationSignature;		
+
+	def OperationSignature getOperationSignature(Method method) {
+		return lookupCorrespondence(method).operationSignature;
 	}
 }
