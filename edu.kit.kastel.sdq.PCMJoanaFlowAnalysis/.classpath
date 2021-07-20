@@ -8,6 +8,6 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="xtend-gen"/>
-	<classpathentry exported="true" kind="lib" path="libs/joana.ui.ifc.wala.cli.jar"/>
+	<classpathentry kind="lib" path="libs/json-io-4.12.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
