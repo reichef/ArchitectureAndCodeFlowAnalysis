@@ -1,20 +1,18 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling;
 
-
 import edu.kit.kastel.sdq.cosa.quality.JOANA.FlowSpecification;
 import edu.kit.kastel.sdq.cosa.quality.JOANA.JOANAFactory;
 import edu.kit.kastel.sdq.cosa.quality.JOANA.JOANARoot;
 import edu.kit.kastel.sdq.cosa.quality.JOANA.MethodTargetingSink;
 import edu.kit.kastel.sdq.cosa.quality.JOANA.MethodTargetingSource;
+import edu.kit.kastel.sdq.cosa.quality.JOANA.Source;
 import edu.kit.kastel.sdq.cosa.structure.SourceCode.Interface;
 import edu.kit.kastel.sdq.cosa.structure.SourceCode.Class;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMSubtypeResolver;
-
-import org.palladiosimulator.pcm.repository.OperationRequiredRole;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMRepositoryElementResolver;
 
 import org.palladiosimulator.pcm.repository.OperationInterface;
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -23,10 +21,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import edu.kit.joana.component.connector.Method;
 
-
 public class PCM2JOANAModelTransformator {
-	
+
 	private final JOANARoot jRoot;
+
 	public JOANARoot getjRoot() {
 		return jRoot;
 	}
@@ -39,22 +37,23 @@ public class PCM2JOANAModelTransformator {
 	}
 
 	public Pair<FlowSpecification, Associations> generateFlowForProvidedOperationAndComponent(
-		OperationProvidedRole providedRole, OperationSignature signature, RepositoryComponent component) {
+			SystemOperationIdentifying identifying) {
 
 		Associations associations = new Associations();
 		FlowSpecification flowSpec = JOANAFactory.eINSTANCE.createFlowSpecification();
 		flowSpec.setId(EcoreUtil.generateUUID());
 
-	
-		MethodTargetingSource source = generateMethodTargetingSource(component, providedRole.getProvidedInterface__OperationProvidedRole(), signature);
+		RepositoryComponent sourcePCMComponent = identifying.getContext().getComponent().getComponent();
+		MethodTargetingSource source = generateMethodTargetingSource(sourcePCMComponent, identifying.getOpInterface(),
+				identifying.getSignature());
 
 		Method joanaCLISource = new Method(source.getClass_().getEntityName(), source.getMethod().getEntityName());
 		associations.associate(source.getMethod().getId(), joanaCLISource);
 
 		flowSpec.getSource().add(source);
 
-		//Generate Sinks
-		Collection<Pair<String, Method>> sinks = transformBasicComponentRequiredToLocalSink(flowSpec, component);
+		// Generate Sinks
+		Collection<Pair<String, Method>> sinks = generateLocalSinksForComponent(flowSpec, sourcePCMComponent);
 
 		jRoot.getFlowspecification().add(flowSpec);
 
@@ -63,67 +62,71 @@ public class PCM2JOANAModelTransformator {
 		return new Pair<FlowSpecification, Associations>(flowSpec, associations);
 	}
 
-	private Collection<Pair<String, Method>> transformBasicComponentRequiredToLocalSink(FlowSpecification flow,
-		RepositoryComponent component) {
+	private Collection<Pair<String, Method>> generateLocalSinksForComponent(FlowSpecification flow,
+			RepositoryComponent component) {
 
 		Collection<Pair<String, Method>> joanaCLISinks = new HashSet<Pair<String, Method>>();
+		Collection<OperationSignature> operations = PCMRepositoryElementResolver
+				.getAllOperationSignaturesOfComponent(component);
 
-		Class scClass = resolver.getClass(component);
-		Collection<OperationRequiredRole> opReqRoles = PCMSubtypeResolver.filterOperationRequiredRoles(component.getRequiredRoles_InterfaceRequiringEntity());
-		for (OperationRequiredRole requiredRole : opReqRoles) {
-				for (OperationSignature signature : requiredRole.getRequiredInterface__OperationRequiredRole().getSignatures__OperationInterface()) {
-					//MethodTargetingSink sink = JOANAFactory.eINSTANCE.createMethodTargetingSink();
-					Interface scInterface = resolver.getInterface(requiredRole.getRequiredInterface__OperationRequiredRole());
-					edu.kit.kastel.sdq.cosa.structure.SourceCode.Method scMethod = resolver.getMethod(signature);
-
-					boolean isSource = flow.getSource().get(0) instanceof MethodTargetingSource;
+		for (OperationSignature signature : operations) {
+			for (Source source : flow.getSource()) {
+				// Initially we only consider methods as sources
+				if (source instanceof MethodTargetingSource) {
 					
-					if (isSource) {
-						MethodTargetingSource mtSource = ((MethodTargetingSource)flow.getSource().get(0));
-						boolean methodIdOfSourceEqualsFoundMethod = mtSource.getMethod().getId().equals(scMethod.getId());
-						if (!methodIdOfSourceEqualsFoundMethod) {
-						MethodTargetingSink sink = generateMethodTargetingSink(scClass, scInterface, scMethod);
-
+					MethodTargetingSource mtSource = ((MethodTargetingSource) source);
+					MethodTargetingSink sink = generateMethodTargetingSink(component, signature.getInterface__OperationSignature(), signature);
+					
+					if (!isSourceAndSinkEqual(mtSource, sink)) {
 						flow.getSink().add(sink);
-
-						Method joanaCLISink = new Method(scInterface.getEntityName(), scMethod.getEntityName());
+						
+						Method joanaCLISink = new Method(sink.getInterface().getEntityName(), sink.getMethod().getEntityName());
 						joanaCLISinks.add(new Pair<String, Method>(sink.getMethod().getId(), joanaCLISink));
-						}
 					}
 				}
+			}
 		}
 		return joanaCLISinks;
+	}
+
+	private MethodTargetingSink generateMethodTargetingSink(Class scClass, Interface scInterface,
+			edu.kit.kastel.sdq.cosa.structure.SourceCode.Method scMethod) {
+
+		MethodTargetingSink sink = JOANAFactory.eINSTANCE.createMethodTargetingSink();
+
+		sink.setId(EcoreUtil.generateUUID());
+		sink.setClass(scClass);
+		sink.setInterface(scInterface);
+		sink.setMethod(scMethod);
+
+		return sink;
+	}
+
+	private MethodTargetingSource generateMethodTargetingSource(RepositoryComponent component, OperationInterface iface,
+			OperationSignature signature) {
+		return generateMethodTargetingSource(resolver.getClass(component), resolver.getInterface(iface),
+				resolver.getMethod(signature));
 	}
 	
 	private MethodTargetingSink generateMethodTargetingSink(RepositoryComponent component, OperationInterface iface, OperationSignature signature) {
 		return generateMethodTargetingSink(resolver.getClass(component), resolver.getInterface(iface), resolver.getMethod(signature));
 	}
-	
-	private MethodTargetingSink generateMethodTargetingSink(Class scClass, Interface scInterface, edu.kit.kastel.sdq.cosa.structure.SourceCode.Method scMethod) {
-		
-		MethodTargetingSink sink = JOANAFactory.eINSTANCE.createMethodTargetingSink();
-		
-		sink.setId(EcoreUtil.generateUUID());
-		sink.setClass(scClass);
-		sink.setInterface(scInterface);
-		sink.setMethod(scMethod);
-		
-		return sink;
-	}
-	
-	private MethodTargetingSource generateMethodTargetingSource(RepositoryComponent component, OperationInterface iface, OperationSignature signature) {
-		return generateMethodTargetingSource(resolver.getClass(component), resolver.getInterface(iface), resolver.getMethod(signature));
-	}
-	
-	private MethodTargetingSource generateMethodTargetingSource(Class scClass, Interface scInterface, edu.kit.kastel.sdq.cosa.structure.SourceCode.Method scMethod) {
+
+	private MethodTargetingSource generateMethodTargetingSource(Class scClass, Interface scInterface,
+			edu.kit.kastel.sdq.cosa.structure.SourceCode.Method scMethod) {
 		MethodTargetingSource source = JOANAFactory.eINSTANCE.createMethodTargetingSource();
 		source.setId(EcoreUtil.generateUUID());
 		source.setClass(scClass);
 		source.setInterface(scInterface);
 		source.setMethod(scMethod);
-		
+
 		return source;
 	}
-	
-	
+
+	private boolean isSourceAndSinkEqual(MethodTargetingSource source, MethodTargetingSink sink) {
+		return source.getClass_().getId().equals(sink.getClass_().getId())
+				&& source.getInterface().getId().equals(sink.getInterface().getId())
+				&& source.getMethod().getId().equals(sink.getMethod().getId());
+	}
+
 }

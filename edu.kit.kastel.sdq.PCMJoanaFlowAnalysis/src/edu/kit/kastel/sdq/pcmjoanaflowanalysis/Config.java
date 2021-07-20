@@ -7,24 +7,19 @@ public class Config {
 	private String joanaCLIFolderPath;
 	private String joanaOutputFolderPath;
 	private boolean usePersistedFlows;
-	private boolean useLocalJOANAComputation;
 	private String joanaServerIP;
 
-	public Config(String joanaCLIFolderPath, String joanaOutputFolderPath, boolean usePersistedFlows,
-			boolean useLocalJOANAComputation, String joanaServerIP) {
+	public Config(String joanaCLIFolderPath, String joanaOutputFolderPath, boolean usePersistedFlows, String joanaServerIP) {
 		this.joanaCLIFolderPath = joanaCLIFolderPath;
 		this.joanaOutputFolderPath = joanaOutputFolderPath;
 		this.usePersistedFlows = usePersistedFlows;
-		this.useLocalJOANAComputation = useLocalJOANAComputation;
 		this.joanaServerIP = joanaServerIP;
 	}
 
-	public Config(Path joanaCLIFolderString, Path joanaOutputFolderString, boolean usePersistedFlows,
-			boolean useLocalJOANAComputation, String joanaServerIP) {
+	public Config(Path joanaCLIFolderString, Path joanaOutputFolderString, boolean usePersistedFlows, String joanaServerIP) {
 		this.setJoanaCLIFolderPath(joanaCLIFolderString);
 		this.setJoanaOutputFolderPath(joanaOutputFolderString);
 		this.setUsingPersistedFlows(usePersistedFlows);
-		this.useLocalJOANAComputation = useLocalJOANAComputation;
 		this.joanaServerIP = joanaServerIP;
 	}
 
@@ -58,14 +53,6 @@ public class Config {
 
 	public void setUsingPersistedFlows(boolean isUsingPersistedFlows) {
 		this.usePersistedFlows = isUsingPersistedFlows;
-	}
-
-	public boolean isUseLocalJOANAComputation() {
-		return useLocalJOANAComputation;
-	}
-
-	public void setUseLocalJOANAComputation(boolean useLocalJOANAComputation) {
-		this.useLocalJOANAComputation = useLocalJOANAComputation;
 	}
 
 	public String getJoanaServerIP() {

@@ -1,64 +1,67 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.Set;
 
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import edu.kit.joana.component.connector.Flows;
-import edu.kit.joana.component.connector.Method;
 import edu.kit.joana.component.connector.ProgramPart;
 import edu.kit.kastel.sdq.cosa.quality.JOANA.FlowSpecification;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana.JOANAAnalyzer;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana.JOANAModelToAnalysisTransformer;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
 
-public class AnalysisCoupler {
+//TODO: Refactor this class to only provide functionality to translate architecture-model (or datastructure) to JOANA Elements
 
+public class PCMJOANACoupler {
+
+	private JOANAModelToAnalysisTransformer transformer;
 	private JOANAAnalyzer sourceCodeAnalyzer;
 	private PCM2JOANAModelTransformator pcm2Joana;
 	private StructuralModelGeneratorPCMToSourceCode pcm2SourceCode;
 	private PCM2SourceCodeCorrespondenceResolver resolver;
 
-	public AnalysisCoupler(Config config) {
-		Map<Method, Set<Method>> flows = new HashMap<Method, Set<Method>>();
+	public PCMJOANACoupler(Config config) {
 		this.pcm2SourceCode = new StructuralModelGeneratorPCMToSourceCode();
 		sourceCodeAnalyzer = new JOANAAnalyzer(config);
+		this.transformer = new JOANAModelToAnalysisTransformer();
 	}
-	
-	public Set<String> analyzeIntraComponentFlow(RepositoryComponent component, OperationProvidedRole sourceRole,
-			OperationSignature sourceSignature, String classPath) {
 
-		generateSourceCodeAndJoanaModel(component.getRepository__RepositoryComponent());
+	public Set<String> analyzeIntraComponentFlow(SystemOperationIdentifying source, String classPath) {
 
-		//TODO in Prinicple every potential sink in a component should be provided by the analyses, speaking: is there a flow from op A to op B, op C ...., 
-		//the coupler should only parse this.
+		generateSourceCodeAndJoanaModel(
+				source.getContext().getComponent().getComponent().getRepository__RepositoryComponent());
+
 		Pair<FlowSpecification, Associations> flowInformation = pcm2Joana
-				.generateFlowForProvidedOperationAndComponent(sourceRole, sourceSignature, component);
+				.generateFlowForProvidedOperationAndComponent(source);
 
-		if(flowInformation.getFirst().getSink().isEmpty()) {
+		if (flowInformation.getFirst().getSink().isEmpty()) {
 			return new HashSet<String>();
 		}
-		
-		
-		Flows joanaFlowsResults = sourceCodeAnalyzer.analyzeFlow(flowInformation.getFirst(),
-				flowInformation.getSecond(), classPath);
+
+		List<ProgramPart> sources = transformer.transformSourcesOfFlowSpecToJOANAMethods(flowInformation.getFirst(),
+				flowInformation.getSecond());
+		List<ProgramPart> sinks = transformer.transformSinksOfFlowSpecToJOANASourcesFormat(flowInformation.getFirst(),
+				flowInformation.getSecond());
+
+		Flows joanaFlowsResults = sourceCodeAnalyzer.analyzeFlow(sources, sinks, classPath);
 
 		// transform SourceCode Analysis Results back to PCM-Information
 		// TODO: Potentially also possible to already create here SignatureIdentifying
-		Collection<OperationSignature> pcmSinkSignatures = retrieveSinkSignatureIDsFromResultFlows(joanaFlowsResults, flowInformation);
-		
+		Collection<OperationSignature> pcmSinkSignatures = retrieveSinkSignatureIDsFromResultFlows(joanaFlowsResults,
+				flowInformation);
+
 		return retrieveOperationSignatureIDsFromOperationSignatures(pcmSinkSignatures);
 	}
-	
+
 	private void generateSourceCodeAndJoanaModel(Repository repository) {
 		pcm2SourceCode.processPCMRepo(repository);
 		if (pcm2Joana == null) {
@@ -66,10 +69,11 @@ public class AnalysisCoupler {
 			this.pcm2Joana = new PCM2JOANAModelTransformator(this.resolver);
 		}
 	}
-	
-	private Collection<OperationSignature> retrieveSinkSignatureIDsFromResultFlows(Flows joanaFlowsResults, Pair<FlowSpecification, Associations> flowInformation){
+
+	private Collection<OperationSignature> retrieveSinkSignatureIDsFromResultFlows(Flows joanaFlowsResults,
+			Pair<FlowSpecification, Associations> flowInformation) {
 		Set<OperationSignature> pcmSinks = new HashSet<OperationSignature>();
-		
+
 		for (Entry<ProgramPart, Set<ProgramPart>> flow : joanaFlowsResults.flows().entrySet()) {
 
 			Collection<ProgramPart> sinks = flow.getValue();
@@ -86,8 +90,9 @@ public class AnalysisCoupler {
 		}
 		return pcmSinks;
 	}
-	
-	private Set<String> retrieveOperationSignatureIDsFromOperationSignatures(Collection<OperationSignature> signatures){
+
+	private Set<String> retrieveOperationSignatureIDsFromOperationSignatures(
+			Collection<OperationSignature> signatures) {
 		return signatures.stream().map(signature -> signature.getId()).collect(Collectors.toSet());
 	}
 }

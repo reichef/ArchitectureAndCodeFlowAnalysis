@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.xtend.lib.macro.file.Path;
 import org.palladiosimulator.pcm.PcmPackage;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
@@ -98,8 +99,12 @@ public class Models {
 		Config config = null;
 		
 		if(configPath.isEmpty()) {
-			config = new Config(Paths.get(""), Paths.get(""), true, true, "");
 			String path = systemPath.removeFileExtension().removeLastSegments(1).makeAbsolute().toString();
+			if(Paths.get(path).toFile().exists()) {
+				java.lang.System.err.println("Config-File exists but was not selected properly. Start again with selected config-file.");
+				return new Models(null,null, null, null, null, false);
+			}
+			config = new Config(Paths.get(""), Paths.get(""), true, "");
 			Utils.store(Paths.get(path + IPath.SEPARATOR + CONFIG_NAME), config);
 			java.lang.System.err.println("Created Config-File. Complete content and run analysis again");
 			return new Models(null,null, null, null, null, false);
