@@ -8,8 +8,6 @@ This project uses the contents of following submodules:
 - compositionofsecurityanalyses (cosa)
 - JOANAConnector
 
-cosa is currently a private repository, therefore please request access.
-
 To setup the project for development, do the following steps:
 
 1. Setup an [Eclipse Modeling Tools Version 2020-12](https://www.eclipse.org/downloads/packages/release/2020-12/r/eclipse-modeling-tools) including the Palladio Component Model (Release 4.3) and its Editors. For more information see [here](https://sdqweb.ipd.kit.edu/wiki/PCM_4.3).
