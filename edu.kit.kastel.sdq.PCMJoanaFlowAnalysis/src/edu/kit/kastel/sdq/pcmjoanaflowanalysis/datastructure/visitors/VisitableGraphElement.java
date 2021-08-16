@@ -1,4 +1,4 @@
-package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure;
+package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.visitors;
 
 public interface VisitableGraphElement {
 

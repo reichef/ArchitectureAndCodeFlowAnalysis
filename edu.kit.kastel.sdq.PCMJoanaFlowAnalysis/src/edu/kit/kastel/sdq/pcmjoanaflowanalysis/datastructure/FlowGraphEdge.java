@@ -2,6 +2,7 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure;
 
 import java.util.Collection;
 
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.visitors.VisitableGraphElement;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
 
 public interface FlowGraphEdge extends VisitableGraphElement {
