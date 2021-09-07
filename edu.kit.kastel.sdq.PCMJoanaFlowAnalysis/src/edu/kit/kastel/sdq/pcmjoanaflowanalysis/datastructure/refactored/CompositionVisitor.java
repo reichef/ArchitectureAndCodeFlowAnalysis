@@ -94,7 +94,9 @@ class CompositionVisitor extends CompositionSwitch<Collection<AssemblyComponentC
 		AssemblyComponentContext requiring = potentialRequiring.orElseGet(() -> findMatchingRequiredConnection(connector));
 		AssemblyComponentContext providing = potentialProviding.orElseGet(() -> findMatchingProvidedConnection(connector));
 		
-		if (!requiring.getId().equals(providing.getId())) {
+		if (requiring != null && providing != null && !requiring.getId().equals(providing.getId())) {
+			factory.setCurrentRequiringVertex(requiring);
+			factory.setCurrentProvidingVertex(providing);
 			factory.createFlowGraphEdgeRepresentation();
 		}
 		
