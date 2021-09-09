@@ -1,6 +1,7 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling;
 
 import edu.kit.joana.component.connector.Method;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.utils.Pair;
 
 /**
  * Associate ids with methods (method with name "" can represent a class)

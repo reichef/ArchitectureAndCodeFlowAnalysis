@@ -66,6 +66,8 @@ public class PCMJoanaFlowDatastructureFactory extends AbstractJoanaFlowDatastruc
 			compositionVisitor.doSwitch(connector);
 		}
 		
+		// TODO: Annotations "classpath" einfügen
+		
 		return systemRepresentation;
 	}
 

@@ -8,23 +8,20 @@ import java.util.Optional;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.core.composition.DelegationConnector;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.core.composition.RequiredDelegationConnector;
 import org.palladiosimulator.pcm.core.composition.util.CompositionSwitch;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.RequiredRole;
 
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.FlowGraphVertex;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.utils.Pair;
 
 class CompositionVisitor extends CompositionSwitch<Collection<AssemblyComponentContext>> {
 	
 	private final PCMJoanaFlowDatastructureFactory factory;
 	
-	private Collection<Connection<OperationRequiredRole, AssemblyComponentContext>> incompleteRequiredConnections;
-	private Collection<Connection<AssemblyComponentContext, OperationProvidedRole>> incompleteProvidedConnections;
+	private Collection<Pair<OperationRequiredRole, AssemblyComponentContext>> incompleteRequiredConnections;
+	private Collection<Pair<AssemblyComponentContext, OperationProvidedRole>> incompleteProvidedConnections;
 	
 	CompositionVisitor(PCMJoanaFlowDatastructureFactory factory) {
 		this.factory = factory;
@@ -40,22 +37,26 @@ class CompositionVisitor extends CompositionSwitch<Collection<AssemblyComponentC
 		if (potentialVertex.isPresent()) {
 			AssemblyComponentContext vertex = potentialVertex.get();
 			OperationProvidedRole outerProvidedRole = connector.getOuterProvidedRole_ProvidedDelegationConnector();
-			Connection<AssemblyComponentContext, OperationProvidedRole> connection = new Connection<>(vertex, outerProvidedRole);
+			Pair<AssemblyComponentContext, OperationProvidedRole> connection = new Pair<>(vertex, outerProvidedRole);
 			
 			incompleteProvidedConnections.add(connection);
 		} else {
 			OperationProvidedRole innerProvidedRole = connector.getInnerProvidedRole_ProvidedDelegationConnector();
-			for (Connection<AssemblyComponentContext, OperationProvidedRole> connection : incompleteProvidedConnections) {
-				if (connection.getEndpoint2().getId().equals(innerProvidedRole.getId())) {
-					OperationProvidedRole outerRequiredRole = connector.getOuterProvidedRole_ProvidedDelegationConnector();
-					connection.setEndpoint2(outerRequiredRole);
-					
-					break;
-				}
+			Optional<Pair<AssemblyComponentContext, OperationProvidedRole>> matchingConnection = findMatchingConnection(innerProvidedRole);
+			if (matchingConnection.isPresent()) {
+				Pair<AssemblyComponentContext, OperationProvidedRole> connection = matchingConnection.get();
+				OperationProvidedRole outerProvidedRole = connector.getOuterProvidedRole_ProvidedDelegationConnector();
+				
+				incompleteProvidedConnections.remove(connection);
+				incompleteProvidedConnections.add(new Pair<>(connection.getFirst(), outerProvidedRole));
 			}
 		}
 		
 		return Collections.emptyList();
+	}
+	
+	private Optional<Pair<AssemblyComponentContext, OperationProvidedRole>> findMatchingConnection(OperationProvidedRole role) {
+		return incompleteProvidedConnections.stream().filter(connection -> connection.getSecond().getId().equals(role.getId())).findFirst();
 	}
 
 	@Override
@@ -66,22 +67,26 @@ class CompositionVisitor extends CompositionSwitch<Collection<AssemblyComponentC
 		if (potentialVertex.isPresent()) {
 			AssemblyComponentContext vertex = potentialVertex.get();
 			OperationRequiredRole outerRequiredRole = connector.getOuterRequiredRole_RequiredDelegationConnector();
-			Connection<OperationRequiredRole, AssemblyComponentContext> connection = new Connection<>(outerRequiredRole, vertex);
+			Pair<OperationRequiredRole, AssemblyComponentContext> connection = new Pair<>(outerRequiredRole, vertex);
 			
 			incompleteRequiredConnections.add(connection);
 		} else {
 			OperationRequiredRole innerRequiredRole = connector.getInnerRequiredRole_RequiredDelegationConnector();
-			for (Connection<OperationRequiredRole, AssemblyComponentContext> connection : incompleteRequiredConnections) {
-				if (connection.getEndpoint1().getId().equals(innerRequiredRole.getId())) {
-					OperationRequiredRole outerRequiredRole = connector.getOuterRequiredRole_RequiredDelegationConnector();
-					connection.setEndpoint1(outerRequiredRole);
-					
-					break;
-				}
+			Optional<Pair<OperationRequiredRole, AssemblyComponentContext>> matchingConnection = findMatchingConnection(innerRequiredRole);
+			if (matchingConnection.isPresent()) {
+				Pair<OperationRequiredRole, AssemblyComponentContext> connection = matchingConnection.get();
+				OperationRequiredRole outerRequiredRole = connector.getOuterRequiredRole_RequiredDelegationConnector();
+				
+				incompleteRequiredConnections.remove(connection);
+				incompleteRequiredConnections.add(new Pair<>(outerRequiredRole, connection.getSecond()));
 			}
 		}
 	
 		return Collections.emptyList();
+	}
+	
+	private Optional<Pair<OperationRequiredRole, AssemblyComponentContext>> findMatchingConnection(OperationRequiredRole role) {
+		return incompleteRequiredConnections.stream().filter(connection -> connection.getFirst().getId().equals(role.getId())).findFirst();
 	}
 
 	@Override
@@ -105,30 +110,22 @@ class CompositionVisitor extends CompositionSwitch<Collection<AssemblyComponentC
 	
 	private AssemblyComponentContext findMatchingRequiredConnection(AssemblyConnector connector) {
 		OperationRequiredRole role = connector.getRequiredRole_AssemblyConnector();
-		
-		Iterator<Connection<OperationRequiredRole, AssemblyComponentContext>> iterator = incompleteRequiredConnections.iterator();
-		while (iterator.hasNext()) {
-			Connection<OperationRequiredRole, AssemblyComponentContext> connection = iterator.next();
-			OperationRequiredRole delegatedRole = connection.getEndpoint1();
-			if (role.getId().equals(delegatedRole.getId())) {
-				iterator.remove();
-				return connection.getEndpoint2();
-			}
+		Optional<Pair<OperationRequiredRole, AssemblyComponentContext>> matchingConnection = findMatchingConnection(role);
+		if (matchingConnection.isPresent()) {
+			Pair<OperationRequiredRole, AssemblyComponentContext> connection = matchingConnection.get();
+			incompleteRequiredConnections.remove(connection);
+			return connection.getSecond();
 		}
 		return null;
 	}
 	
 	private AssemblyComponentContext findMatchingProvidedConnection(AssemblyConnector connector) {
 		OperationProvidedRole role = connector.getProvidedRole_AssemblyConnector();
-		
-		Iterator<Connection<AssemblyComponentContext, OperationProvidedRole>> iterator = incompleteProvidedConnections.iterator();
-		while (iterator.hasNext()) {
-			Connection<AssemblyComponentContext, OperationProvidedRole> connection = iterator.next();
-			OperationProvidedRole delegatedRole = connection.getEndpoint2();
-			if (role.getId().equals(delegatedRole.getId())) {
-				iterator.remove();
-				return connection.getEndpoint1();
-			}
+		Optional<Pair<AssemblyComponentContext, OperationProvidedRole>> matchingConnection = findMatchingConnection(role);
+		if (matchingConnection.isPresent()) {
+			Pair<AssemblyComponentContext, OperationProvidedRole> connection = matchingConnection.get();
+			incompleteProvidedConnections.remove(connection);
+			return connection.getFirst();
 		}
 		return null;
 	}

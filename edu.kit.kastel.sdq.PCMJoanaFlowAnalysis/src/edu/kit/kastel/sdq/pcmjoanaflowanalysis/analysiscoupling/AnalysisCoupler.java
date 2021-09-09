@@ -20,6 +20,7 @@ import edu.kit.kastel.sdq.cosa.quality.JOANA.FlowSpecification;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana.JOANAAnalyzer;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.utils.Pair;
 
 public class AnalysisCoupler {
 

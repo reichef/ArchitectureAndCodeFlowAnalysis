@@ -10,6 +10,7 @@ import edu.kit.kastel.sdq.cosa.structure.SourceCode.Interface;
 import edu.kit.kastel.sdq.cosa.structure.SourceCode.Class;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMSubtypeResolver;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.utils.Pair;
 
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
