@@ -2,25 +2,15 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.core.composition.ComposedStructure;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.entity.ComposedProvidingRequiringEntity;
-import org.palladiosimulator.pcm.core.entity.InterfaceProvidingRequiringEntity;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.CompositeComponent;
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
-import org.palladiosimulator.pcm.repository.OperationRequiredRole;
-import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.util.RepositorySwitch;
-
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.FlowGraphVertex;
 
 class RepositoryVisitor extends RepositorySwitch<Collection<AssemblyComponentContext>> {
 	

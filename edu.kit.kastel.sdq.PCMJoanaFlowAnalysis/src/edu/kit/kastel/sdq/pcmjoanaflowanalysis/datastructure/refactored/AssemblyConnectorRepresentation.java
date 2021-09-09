@@ -7,8 +7,6 @@ import java.util.Objects;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.FlowGraphEdge;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.FlowGraphVertex;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored.AssemblyComponentContext;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.visitors.FlowGraphVisitor;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
 
@@ -20,8 +18,8 @@ public class AssemblyConnectorRepresentation implements FlowGraphEdge {
 	private Collection<IntraComponentFlow> interComponentFlows;
 	
 	public AssemblyConnectorRepresentation(AssemblyComponentContext requiring, AssemblyComponentContext providing, AssemblyConnector connector) {
-		//this.providing = Objects.requireNonNull(requiring);
-		//this.requiring = Objects.requireNonNull(providing);
+		this.providing = Objects.requireNonNull(requiring, "Requiring vertex must not be null");
+		this.requiring = Objects.requireNonNull(providing, "Providing vertex must not be null");
 		this.connector = Objects.requireNonNull(connector, "Connector must not be null");
 		this.interComponentFlows = new HashSet<>();
 		
@@ -49,6 +47,11 @@ public class AssemblyConnectorRepresentation implements FlowGraphEdge {
 	@Override
 	public Collection<IntraComponentFlow> getInterComponentFlows() {
 		return interComponentFlows;
+	}
+	
+	@Override
+	public void addInterComponentFlow(IntraComponentFlow flow) {
+		interComponentFlows.add(flow);
 	}
 	
 	public AssemblyConnector getConnector() {

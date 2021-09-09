@@ -8,18 +8,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
-import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
-import org.palladiosimulator.pcm.core.composition.RequiredDelegationConnector;
 import org.palladiosimulator.pcm.repository.BasicComponent;
-import org.palladiosimulator.pcm.repository.OperationRequiredRole;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.system.System;
 
+import edu.kit.kastel.sdq.ecoreannotations.Annotation;
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
+import edu.kit.kastel.sdq.ecoreannotations.GenericTargetStringContentAnnotation;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.AbstractJoanaFlowDatastructureFactory;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.FlowGraphEdge;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.FlowGraphVertex;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.utils.AnnotationHelper;
 
 public class PCMJoanaFlowDatastructureFactory extends AbstractJoanaFlowDatastructureFactory {
 	
@@ -28,7 +24,6 @@ public class PCMJoanaFlowDatastructureFactory extends AbstractJoanaFlowDatastruc
 	
 	private final RepositoryVisitor repositoryVisitor;
 	private final CompositionVisitor compositionVisitor;
-	private final AnnotationsVisitor annotationsVisitor;
 	
 	private Collection<AssemblyComponentContext> vertices;
 	
@@ -42,7 +37,6 @@ public class PCMJoanaFlowDatastructureFactory extends AbstractJoanaFlowDatastruc
 	private PCMJoanaFlowDatastructureFactory() {
 		repositoryVisitor = new RepositoryVisitor(this);
 		compositionVisitor = new CompositionVisitor(this);
-		annotationsVisitor = new AnnotationsVisitor(this);
 		vertices = new HashSet<>();
 	}
 	
@@ -66,7 +60,7 @@ public class PCMJoanaFlowDatastructureFactory extends AbstractJoanaFlowDatastruc
 			compositionVisitor.doSwitch(connector);
 		}
 		
-		// TODO: Annotations "classpath" einfügen
+		AnnotationHelper.fillFlowGraphRepresentationsWithAnnotations(vertices, currentWorkingAnnotations.getAnnotations());
 		
 		return systemRepresentation;
 	}

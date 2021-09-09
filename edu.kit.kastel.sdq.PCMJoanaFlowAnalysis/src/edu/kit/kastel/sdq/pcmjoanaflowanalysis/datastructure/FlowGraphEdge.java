@@ -23,4 +23,6 @@ public interface FlowGraphEdge extends VisitableGraphElement {
 	
 	public Collection<IntraComponentFlow> getInterComponentFlows();
 	
+	public void addInterComponentFlow(IntraComponentFlow flow);
+	
 }
