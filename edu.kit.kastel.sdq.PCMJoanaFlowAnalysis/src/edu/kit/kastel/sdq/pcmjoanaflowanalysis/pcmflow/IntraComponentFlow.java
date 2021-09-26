@@ -1,14 +1,10 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
-import org.palladiosimulator.pcm.repository.Role;
 
 import edu.kit.joana.component.connector.Flows;
 

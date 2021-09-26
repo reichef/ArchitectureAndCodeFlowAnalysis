@@ -23,4 +23,8 @@ public abstract class Annotated {
 		annotations.put(type, content);
 	}
 	
+	public boolean containsAnnotation(String type) {
+		return annotations.containsKey(type);
+	}
+	
 }

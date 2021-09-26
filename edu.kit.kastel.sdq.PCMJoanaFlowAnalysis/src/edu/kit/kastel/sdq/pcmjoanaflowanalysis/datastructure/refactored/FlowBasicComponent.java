@@ -45,11 +45,11 @@ public class FlowBasicComponent extends Annotated {
 	
 	public Optional<String> getClassPath() {
 		String classPath = getAnnotation("ClassPath");
-		if(classPath.isEmpty()) {
+		if (classPath == null || classPath.isEmpty()) {
 			System.err.println("No ClassPath available for component");
 			return Optional.empty();
 		}
-		return Optional.ofNullable(classPath);
+		return Optional.of(classPath);
 	}
 	
 	public boolean isClassPathAvailable() {

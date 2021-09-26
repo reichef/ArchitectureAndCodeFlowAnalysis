@@ -3,6 +3,7 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -76,6 +77,14 @@ public class AssemblyComponentContext extends AssemblyRepresentation implements 
 	
 	public boolean encapsulatesContext(AssemblyContext context) {
 		return this.context.equals(context);
+	}
+	
+	public Optional<String> getClassPath() {
+		return component.getClassPath();
+	}
+	
+	public boolean isClassPathAvailable() {
+		return component.isClassPathAvailable();
 	}
 	
 }

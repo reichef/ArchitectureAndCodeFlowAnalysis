@@ -16,7 +16,7 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.visitors.FlowGraphV
 public class SystemRepresentation extends AssemblyRepresentation implements FlowGraph {
 
 	private final ComposedProvidingRequiringEntity entity;
-	private final Map<FlowGraphVertex, Collection<FlowGraphEdge>> adjacencyList;
+	private final Map<FlowGraphVertex, Collection<FlowGraphVertex>> adjacencyList;
 	
 	public SystemRepresentation(ComposedProvidingRequiringEntity topMostEntity) {
 		super(topMostEntity.getId(), topMostEntity.getEntityName());
@@ -36,7 +36,7 @@ public class SystemRepresentation extends AssemblyRepresentation implements Flow
 	}
 	
 	public void addVertex(AssemblyComponentContext vertex) {
-		adjacencyList.put(vertex, vertex.getOutEdges());
+		adjacencyList.put(vertex, vertex.getSuccessors());
 	}
 	
 	public void addVertices(Collection<AssemblyComponentContext> vertices) {
@@ -44,7 +44,7 @@ public class SystemRepresentation extends AssemblyRepresentation implements Flow
 	}
 	
 	@Override
-	public Map<FlowGraphVertex, Collection<FlowGraphEdge>> getAdjacencyList() {
+	public Map<FlowGraphVertex, Collection<FlowGraphVertex>> getAdjacencyList() {
 		return adjacencyList;
 	}
 
@@ -55,7 +55,7 @@ public class SystemRepresentation extends AssemblyRepresentation implements Flow
 
 	@Override
 	public Collection<FlowGraphEdge> getEdges() {
-		return adjacencyList.values().stream().flatMap(Collection::stream).collect(Collectors.toSet());
+		return adjacencyList.keySet().stream().map(FlowGraphVertex::getOutEdges).flatMap(Collection::stream).collect(Collectors.toSet());
 	}
 
 }

@@ -2,7 +2,6 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure;
 
 import java.util.Collection;
 
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.visitors.VisitableGraphElement;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
 
 public interface FlowGraphEdge extends VisitableGraphElement {
@@ -10,14 +9,14 @@ public interface FlowGraphEdge extends VisitableGraphElement {
 	/*
 	 * (non-javadoc)
 	 * 
-	 * Tail - the endpoint vertex where the edge is directed from.
+	 * Tail - the endpoint vertex from which the edge is directed.
 	 */
 	public FlowGraphVertex getTail();
 	
 	/*
 	 * (non-javadoc)
 	 * 
-	 * Head - The endpoint vertex where the edge is directed to.
+	 * Head - The endpoint vertex to which the edge is directed.
 	 */
 	public FlowGraphVertex getHead();
 	

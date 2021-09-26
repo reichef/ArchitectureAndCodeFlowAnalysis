@@ -18,7 +18,7 @@ public class AnnotationHelper {
 	private AnnotationHelper() {
 	}
 
-	private static RepositorySwitch<Optional<RepositoryComponent>> componentFilterSwitch = new RepositorySwitch<Optional<RepositoryComponent>>() {
+	private static final RepositorySwitch<Optional<RepositoryComponent>> componentFilterSwitch = new RepositorySwitch<Optional<RepositoryComponent>>() {
 
 		@Override
 		public Optional<RepositoryComponent> caseRepositoryComponent(RepositoryComponent object) {
@@ -32,7 +32,7 @@ public class AnnotationHelper {
 		
 	};
 	
-	private static EcoreannotationsSwitch<Optional<GenericTargetStringContentAnnotation>> annotationFilterSwitch = new EcoreannotationsSwitch<Optional<GenericTargetStringContentAnnotation>>() {
+	private static final EcoreannotationsSwitch<Optional<GenericTargetStringContentAnnotation>> annotationFilterSwitch = new EcoreannotationsSwitch<Optional<GenericTargetStringContentAnnotation>>() {
 
 		@Override
 		public Optional<GenericTargetStringContentAnnotation> caseGenericTargetStringContentAnnotation(
