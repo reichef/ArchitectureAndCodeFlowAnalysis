@@ -11,9 +11,7 @@ import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.system.System;
 
-import edu.kit.kastel.sdq.ecoreannotations.Annotation;
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
-import edu.kit.kastel.sdq.ecoreannotations.GenericTargetStringContentAnnotation;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.AbstractJoanaFlowDatastructureFactory;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.utils.AnnotationHelper;
 
@@ -133,7 +131,7 @@ public class PCMJoanaFlowDatastructureFactory extends AbstractJoanaFlowDatastruc
 		return repositoryVisitor.doSwitch(object);
 	}
 	
-	Collection<AssemblyComponentContext> visitCompositionElement(EObject object) {
+	Object visitCompositionElement(EObject object) {
 		return compositionVisitor.doSwitch(object);
 	}
 	
