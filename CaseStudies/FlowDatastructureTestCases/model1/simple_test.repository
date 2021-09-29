@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repository:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" id="_ZUA2ICCMEeydUYRYOqQPJA" entityName="defaultRepository">
+  <components__Repository xsi:type="repository:BasicComponent" id="_dvwBoCCMEeydUYRYOqQPJA" entityName="BasicComponent A">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_glqCUCCNEeydUYRYOqQPJA" entityName="Provided_Interface B_BasicComponent A" providedInterface__OperationProvidedRole="_cyehECCMEeydUYRYOqQPJA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_gGh2UCCNEeydUYRYOqQPJA" entityName="Required_Interface A_BasicComponent A" requiredInterface__OperationRequiredRole="_a_YLwCCMEeydUYRYOqQPJA"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_glqCUSCNEeydUYRYOqQPJA" describedService__SEFF="__oFOACCMEeydUYRYOqQPJA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_glqCUiCNEeydUYRYOqQPJA" entityName="start" successor_AbstractAction="_glqCUyCNEeydUYRYOqQPJA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_glqCUyCNEeydUYRYOqQPJA" entityName="stop" predecessor_AbstractAction="_glqCUiCNEeydUYRYOqQPJA"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_jHfiYCCMEeydUYRYOqQPJA" entityName="BasicComponent B">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_lpl2QCCNEeydUYRYOqQPJA" entityName="Provided_Interface A_BasicComponent B" providedInterface__OperationProvidedRole="_a_YLwCCMEeydUYRYOqQPJA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_hL9NUCCNEeydUYRYOqQPJA" entityName="Required_Interface B_BasicComponent B" requiredInterface__OperationRequiredRole="_cyehECCMEeydUYRYOqQPJA"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_lpl2QSCNEeydUYRYOqQPJA" describedService__SEFF="_qMcL0CCMEeydUYRYOqQPJA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_lpl2QiCNEeydUYRYOqQPJA" entityName="start" successor_AbstractAction="_lpl2QyCNEeydUYRYOqQPJA"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_lpl2QyCNEeydUYRYOqQPJA" entityName="stop" predecessor_AbstractAction="_lpl2QiCNEeydUYRYOqQPJA"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_a_YLwCCMEeydUYRYOqQPJA" entityName="Interface A">
+    <signatures__OperationInterface id="_qMcL0CCMEeydUYRYOqQPJA" entityName="int_to_str">
+      <parameters__OperationSignature parameterName="num">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_cyehECCMEeydUYRYOqQPJA" entityName="Interface B">
+    <signatures__OperationInterface id="__oFOACCMEeydUYRYOqQPJA" entityName="str_to_int">
+      <parameters__OperationSignature parameterName="str">
+        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </parameters__OperationSignature>
+      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+    </signatures__OperationInterface>
+  </interfaces__Repository>
+</repository:Repository>
