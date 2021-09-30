@@ -17,12 +17,15 @@ public interface FlowGraphVertex extends VisitableGraphElement {
 	public Collection<FlowGraphEdge> getOutEdges();
 	
 	/**
+	 * @return All predecessing vertices directly reachable from this vertex.
+	 */
+	public Collection<FlowGraphVertex> getPredecessors();
+	
+	/**
 	 * @return All successing vertices directly reachable from this vertex.
 	 */
 	public Collection<FlowGraphVertex> getSuccessors();
 	
-	/**
-	 * @return All predecessing vertices directly reachable from this vertex.
-	 */
-	public Collection<FlowGraphVertex> getPredecessors();
+	public boolean isSource();
+	public boolean isSink();
 }

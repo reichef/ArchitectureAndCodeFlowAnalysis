@@ -1,9 +1,7 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Optional;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;

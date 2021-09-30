@@ -12,10 +12,10 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
 
 public class AssemblyConnectorRepresentation implements FlowGraphEdge {
 	
-	private AssemblyComponentContext providing;
-	private AssemblyComponentContext requiring;
-	private AssemblyConnector connector;
-	private Collection<IntraComponentFlow> interComponentFlows;
+	private final AssemblyComponentContext providing;
+	private final AssemblyComponentContext requiring;
+	private final AssemblyConnector connector;
+	private final Collection<IntraComponentFlow> interComponentFlows;
 	
 	public AssemblyConnectorRepresentation(AssemblyComponentContext requiring, AssemblyComponentContext providing, AssemblyConnector connector) {
 		this.providing = Objects.requireNonNull(requiring, "Requiring vertex must not be null");

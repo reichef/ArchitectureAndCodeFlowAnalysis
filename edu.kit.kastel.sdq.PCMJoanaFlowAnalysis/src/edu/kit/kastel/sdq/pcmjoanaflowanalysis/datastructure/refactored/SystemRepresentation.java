@@ -2,6 +2,7 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -16,12 +17,12 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.visitors.FlowGraphV
 public class SystemRepresentation extends AssemblyRepresentation implements FlowGraph {
 
 	private final ComposedProvidingRequiringEntity entity;
-	private final Map<FlowGraphVertex, Collection<FlowGraphVertex>> adjacencyList;
+	private final Collection<FlowGraphVertex> vertices;
 	
 	public SystemRepresentation(ComposedProvidingRequiringEntity topMostEntity) {
 		super(topMostEntity.getId(), topMostEntity.getEntityName());
-		this.entity = topMostEntity;
-		this.adjacencyList = new HashMap<>();
+		this.entity = Objects.requireNonNull(topMostEntity, "System must not be null");
+		this.vertices = new HashSet<>();
 	}
 	
 	public ComposedProvidingRequiringEntity getContainedEntity() {
@@ -36,26 +37,36 @@ public class SystemRepresentation extends AssemblyRepresentation implements Flow
 	}
 	
 	public void addVertex(AssemblyComponentContext vertex) {
-		adjacencyList.put(vertex, vertex.getSuccessors());
+		vertices.add(vertex);
 	}
 	
 	public void addVertices(Collection<AssemblyComponentContext> vertices) {
-		vertices.forEach(vertex -> addVertex(vertex));
+		vertices.addAll(vertices);
 	}
 	
 	@Override
 	public Map<FlowGraphVertex, Collection<FlowGraphVertex>> getAdjacencyList() {
-		return adjacencyList;
+		return vertices.stream().collect(Collectors.toMap(vertex -> vertex, vertex -> vertex.getSuccessors()));
 	}
 
 	@Override
 	public Collection<FlowGraphVertex> getVertices() {
-		return adjacencyList.keySet();
+		return new HashSet<>(vertices);
 	}
 
 	@Override
 	public Collection<FlowGraphEdge> getEdges() {
-		return adjacencyList.keySet().stream().map(FlowGraphVertex::getOutEdges).flatMap(Collection::stream).collect(Collectors.toSet());
+		return vertices.stream().map(FlowGraphVertex::getOutEdges).flatMap(Collection::stream).collect(Collectors.toSet());
+	}
+
+	@Override
+	public Collection<FlowGraphVertex> getSources() {
+		return vertices.stream().filter(FlowGraphVertex::isSource).collect(Collectors.toSet());
+	}
+
+	@Override
+	public Collection<FlowGraphVertex> getSinks() {
+		return vertices.stream().filter(FlowGraphVertex::isSink).collect(Collectors.toSet());
 	}
 
 }

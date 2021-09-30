@@ -16,13 +16,13 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
 public class AssemblyComponentContext extends AssemblyRepresentation implements FlowGraphVertex {
 
 	private final AssemblyContext context;
-	private FlowBasicComponent component;
+	private final FlowBasicComponent component;
 	private final Collection<FlowGraphEdge> edges;
 	
 	public AssemblyComponentContext(AssemblyContext context, FlowBasicComponent component) {
 		super(context.getId(), context.getEncapsulatedComponent__AssemblyContext().getEntityName());
-		this.context = context;
-		this.component = component;
+		this.context = Objects.requireNonNull(context, "Context must not be null");
+		this.component = Objects.requireNonNull(component, "Component must not be null");
 		this.edges = new HashSet<>();
 	}
 
@@ -58,15 +58,25 @@ public class AssemblyComponentContext extends AssemblyRepresentation implements 
 	}
 
 	@Override
-	public Collection<FlowGraphVertex> getSuccessors() {
-		return edges.stream().filter(edge -> edge.getTail().equals(this)).map(FlowGraphEdge::getHead).collect(Collectors.toSet());
-	}
-
-	@Override
 	public Collection<FlowGraphVertex> getPredecessors() {
 		return edges.stream().filter(edge -> edge.getHead().equals(this)).map(FlowGraphEdge::getTail).collect(Collectors.toSet());
 	}
 	
+	@Override
+	public Collection<FlowGraphVertex> getSuccessors() {
+		return edges.stream().filter(edge -> edge.getTail().equals(this)).map(FlowGraphEdge::getHead).collect(Collectors.toSet());
+	}
+	
+	@Override
+	public boolean isSource() {
+		return getInEdges().isEmpty();
+	}
+
+	@Override
+	public boolean isSink() {
+		return getOutEdges().isEmpty();
+	}
+
 	public AssemblyContext getContext() {
 		return context;
 	}
