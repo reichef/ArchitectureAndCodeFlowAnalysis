@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repository:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" id="_-MWHMDTBEey27-WaTCohQA" entityName="defaultRepository">
+  <components__Repository xsi:type="repository:BasicComponent" id="_lJ4SADTyEeyPK-lcSa_PBg" entityName="BasicComponent_A">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_rNn9IDTyEeyPK-lcSa_PBg" entityName="Provided_Interface_A_BasicComponent_A" providedInterface__OperationProvidedRole="_g9JL0DTyEeyPK-lcSa_PBg"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_qqASsDTyEeyPK-lcSa_PBg" entityName="Required_Interface_B_BasicComponent_A" requiredInterface__OperationRequiredRole="_jhIykDTyEeyPK-lcSa_PBg"/>
+  </components__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_g9JL0DTyEeyPK-lcSa_PBg" entityName="Interface_A"/>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_jhIykDTyEeyPK-lcSa_PBg" entityName="Interface_B"/>
+</repository:Repository>

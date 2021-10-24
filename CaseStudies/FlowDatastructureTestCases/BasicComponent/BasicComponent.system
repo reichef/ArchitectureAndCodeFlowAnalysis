@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2" id="_E17DQDTCEey27-WaTCohQA" entityName="defaultSystem">
+  <assemblyContexts__ComposedStructure id="_zAn_YDTyEeyPK-lcSa_PBg" entityName="Assembly_BasicComponent_A &lt;BasicComponent_A>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="BasicComponent.repository#_lJ4SADTyEeyPK-lcSa_PBg"/>
+  </assemblyContexts__ComposedStructure>
+</system:System>
