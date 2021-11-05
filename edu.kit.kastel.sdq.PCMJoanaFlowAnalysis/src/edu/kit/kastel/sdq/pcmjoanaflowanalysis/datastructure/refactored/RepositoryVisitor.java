@@ -3,6 +3,7 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.ComposedStructure;
 import org.palladiosimulator.pcm.core.composition.Connector;
@@ -63,9 +64,9 @@ class RepositoryVisitor extends RepositorySwitch<Collection<AssemblyComponentCon
 	 * <p>Processing of a the hierarchical structured {@link ComposedStructure}. Inner {@link RepositoryComponent}s are processed recursively.</p>
 	 */
 	@Override
-	public Collection<AssemblyComponentContext> caseComposedStructure(ComposedStructure entity) {
+	public Collection<AssemblyComponentContext> caseComposedStructure(ComposedStructure structure) {
 		Collection<AssemblyComponentContext> vertices = new HashSet<AssemblyComponentContext>();
-		for (AssemblyContext context : entity.getAssemblyContexts__ComposedStructure()) {
+		for (AssemblyContext context : structure.getAssemblyContexts__ComposedStructure()) {
 			factory.setCurrentAssemblyContext(context);
 			
 			RepositoryComponent component = context.getEncapsulatedComponent__AssemblyContext();
@@ -74,7 +75,12 @@ class RepositoryVisitor extends RepositorySwitch<Collection<AssemblyComponentCon
 		
 		return vertices;
 	}
-	
-	
+
+	@Override
+	public Collection<AssemblyComponentContext> defaultCase(EObject object) {
+		System.err.printf("Unhandled Repository Component: " + String.valueOf(object));
+		
+		return new HashSet<>();
+	}
 	
 }

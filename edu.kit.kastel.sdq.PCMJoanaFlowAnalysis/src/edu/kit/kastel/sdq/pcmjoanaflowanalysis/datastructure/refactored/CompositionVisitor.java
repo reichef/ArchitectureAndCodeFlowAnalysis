@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 
+import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.ComposedStructure;
@@ -196,5 +197,14 @@ class CompositionVisitor extends CompositionSwitch<Object> {
 		}
 		return null;
 	}
+
+	@Override
+	public Object defaultCase(EObject object) {
+		System.err.printf("Unhandled Composition Element: " + String.valueOf(object));
+		
+		return null;
+	}
+	
+	
 
 }

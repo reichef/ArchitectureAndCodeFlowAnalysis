@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.system.System;
 
@@ -20,6 +19,7 @@ public class PCMJoanaFlowDatastructureFactory extends AbstractJoanaFlowDatastruc
 	private System system;
 	private AnnotationRepository currentWorkingAnnotations;
 	
+	private final SystemVisitor systemVisitor;
 	private final RepositoryVisitor repositoryVisitor;
 	private final CompositionVisitor compositionVisitor;
 	
@@ -33,6 +33,7 @@ public class PCMJoanaFlowDatastructureFactory extends AbstractJoanaFlowDatastruc
 	private AssemblyComponentContext currentProvidingVertex;
 	
 	private PCMJoanaFlowDatastructureFactory() {
+		systemVisitor = new SystemVisitor(this);
 		repositoryVisitor = new RepositoryVisitor(this);
 		compositionVisitor = new CompositionVisitor(this);
 		vertices = new HashSet<>();
@@ -49,16 +50,10 @@ public class PCMJoanaFlowDatastructureFactory extends AbstractJoanaFlowDatastruc
 		vertices.clear();
 		SystemRepresentation systemRepresentation = new SystemRepresentation(system);
 	
-		Collection<AssemblyComponentContext> vertices = repositoryVisitor.doSwitch(system);	
-		systemRepresentation.addVertices(vertices);
-		
-		// Could be done in RepositoryVisitor.caseComposedProvidingRequiringEntity() as well.
-		// However, doing it this way provides option to treat system connectors specifically.
-		for (Connector connector : system.getConnectors__ComposedStructure()) {
-			compositionVisitor.doSwitch(connector);
-		}
-		
+		Collection<AssemblyComponentContext> vertices = systemVisitor.doSwitch(system);	
 		AnnotationHelper.fillFlowGraphRepresentationsWithAnnotations(vertices, currentWorkingAnnotations.getAnnotations());
+		
+		systemRepresentation.addVertices(vertices);
 		
 		return systemRepresentation;
 	}

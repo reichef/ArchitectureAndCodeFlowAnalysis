@@ -1,7 +1,6 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -41,7 +40,7 @@ public class SystemRepresentation extends AssemblyRepresentation implements Flow
 	}
 	
 	public void addVertices(Collection<AssemblyComponentContext> vertices) {
-		vertices.addAll(vertices);
+		this.vertices.addAll(vertices);
 	}
 	
 	@Override
