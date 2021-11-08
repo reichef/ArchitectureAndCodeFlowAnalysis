@@ -1,4 +1,5 @@
-package edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow;
+package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +8,9 @@ import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
 import edu.kit.joana.component.connector.Flows;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored.SignatureIdentifyingRoleElement;
+
 
 public class IntraComponentFlow {
-	
 	private final SignatureIdentifyingRoleElement<OperationProvidedRole> source;
 	private List<SignatureIdentifyingRoleElement<OperationRequiredRole>> sinks;
 	private Flows joanaFlow;
@@ -39,5 +39,4 @@ public class IntraComponentFlow {
 	public Flows getFlows() {
 		return joanaFlow;
 	}
-	
 }

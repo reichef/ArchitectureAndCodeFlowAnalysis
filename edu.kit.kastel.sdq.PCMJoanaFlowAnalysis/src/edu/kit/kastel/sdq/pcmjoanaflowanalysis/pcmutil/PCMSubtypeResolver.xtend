@@ -6,7 +6,6 @@ import java.util.Collection
 import org.palladiosimulator.pcm.repository.ProvidedRole
 import org.palladiosimulator.pcm.repository.OperationProvidedRole
 import org.palladiosimulator.pcm.repository.RepositoryComponent
-<<<<<<< HEAD
 import org.palladiosimulator.pcm.repository.Role
 import java.util.HashSet
 import org.palladiosimulator.pcm.repository.OperationInterface
@@ -16,12 +15,10 @@ import org.palladiosimulator.pcm.repository.CompositeDataType
 import org.palladiosimulator.pcm.repository.DataType
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall
 import org.palladiosimulator.pcm.usagemodel.AbstractUserAction
-=======
 import org.palladiosimulator.pcm.core.composition.Connector
-import org.palladiosimulator.pcm.repository.BasicComponent
 import org.palladiosimulator.pcm.repository.CompositeComponent
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector
->>>>>>> ISE-datastructure-refactoring
+
 
 class PCMSubtypeResolver {
 	private new(){}
@@ -42,12 +39,20 @@ class PCMSubtypeResolver {
 		return components.filter(BasicComponent).toList;
 	}
 	
+	def static Collection<CompositeComponent> filterCompositeComponents(Collection<RepositoryComponent> repositoryComponents){
+		return repositoryComponents.filter(CompositeComponent).toList;
+	}
+	
 	def static Collection<CompositeDataType> filterCompositeDataTypes(Collection<DataType> datatypes){
 		return datatypes.filter(CompositeDataType).toList;
 	}
 	
 	def static Collection<EntryLevelSystemCall> filterEntryLevelSystemCalls(Collection<AbstractUserAction> actions){
 		return actions.filter(EntryLevelSystemCall).toList;
+	}
+	
+	def static Collection<AssemblyConnector> filterAssemblyConnectors(Collection<Connector> connectors){
+		return connectors.filter(AssemblyConnector).toList;
 	}
 	
 	def static Collection<Role> collectOperationRelatingRoles(RepositoryComponent component){
