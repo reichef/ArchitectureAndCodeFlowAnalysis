@@ -1,43 +1,38 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
+import java.util.HashMap;
 import java.util.Optional;
 
 import org.palladiosimulator.pcm.repository.BasicComponent;
 
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
-
 public class FlowBasicComponent extends Annotated {
 
+	private final String name;
+	private final String id;
 	private final BasicComponent component;
-	private Collection<IntraComponentFlow> componentInternalFlows;
+
+	
+	private FlowBasicComponent(String name, String id, BasicComponent component) {
+		this.name = name;
+		this.id = id;
+		this.component = component;
+		this.annotations = new HashMap<String, String>();
+	}
 	
 	public FlowBasicComponent(BasicComponent component) {
-		super();
-		this.component = Objects.requireNonNull(component, "Component must not be null");
-		this.componentInternalFlows = new HashSet<>();
+		this(component.getEntityName(), component.getId(), component);
 	}
 	
 	public String getName() {
-		return component.getEntityName();
+		return name;
 	}
 	
 	public String getId() {
-		return component.getId();
+		return id;
 	}
 
 	public BasicComponent getComponent() {
 		return component;
-	}
-	
-	public Collection<IntraComponentFlow> getComponentInternalFlows() {
-		return componentInternalFlows;
-	}
-	
-	public void addComponentInternalFlow(IntraComponentFlow flow) {
-		componentInternalFlows.add(flow);
 	}
 	
 	public Optional<String> getClassPath() {

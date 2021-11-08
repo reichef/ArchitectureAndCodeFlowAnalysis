@@ -41,7 +41,8 @@ class FixpointIteration {
 			if (foundSinksWithoutAlreadyFound.size > 0) {
 				for (sink : foundSinksWithoutAlreadyFound) {
 					sink.context.addIntraComponentFlow(currentComponentSource, sink);
-					componentPointsToProcess.add(resolveAssemblyStepFromSink(currentComponentSource.context, sink));
+					var nextOperation = resolveAssemblyStepFromSink(currentComponentSource.context, sink);
+					componentPointsToProcess.add(nextOperation);
 
 					/*
 					 * 1. Add the sink-location as future source because we do not get the "return" as sink from JOANA for the"return-path".
@@ -114,12 +115,21 @@ class FixpointIteration {
 			val assemblyConnector = assemblyConnectorOptional.get();
 			var resolvedDirection = assemblyConnector.getDirection(sinkIdentifying);
 
+			
 			if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.ASSEMBLY)) {
-				return new SystemOperationIdentifying(assemblyConnector.providing,
+				var nextEndPoint = new SystemOperationIdentifying(assemblyConnector.providing,
 					assemblyConnector.providedRole.providedInterface__OperationProvidedRole, sinkIdentifying.signature);
+					
+				assemblyConnector.addFlow(sinkIdentifying, nextEndPoint);
+
+				return nextEndPoint;
 			} else if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.OPPOSITE)) {
-				return new SystemOperationIdentifying(assemblyConnector.requiringContext,
+				var nextEndPoint = new SystemOperationIdentifying(assemblyConnector.requiringContext,
 					assemblyConnector.requiredRole.requiredInterface__OperationRequiredRole, sinkIdentifying.signature);
+					
+				assemblyConnector.addFlow(sinkIdentifying, nextEndPoint);
+				
+				return nextEndPoint;
 			}
 		}
 		return null;

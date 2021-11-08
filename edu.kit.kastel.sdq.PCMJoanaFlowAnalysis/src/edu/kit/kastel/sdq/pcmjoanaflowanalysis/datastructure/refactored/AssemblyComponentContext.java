@@ -2,6 +2,7 @@ package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.refactored;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,11 +12,12 @@ import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.FlowGraphEdge;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.FlowGraphVertex;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.visitors.FlowGraphVisitor;
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
 
 public class AssemblyComponentContext extends AssemblyRepresentation implements FlowGraphVertex {
 
 	private final AssemblyContext context;
+	private Map<SystemOperationIdentifying, Collection<SystemOperationIdentifying>> intraComponentFlows;
 	private final FlowBasicComponent component;
 	private final Collection<FlowGraphEdge> edges;
 	
@@ -34,8 +36,8 @@ public class AssemblyComponentContext extends AssemblyRepresentation implements 
 	}
 
 	@Override
-	public Collection<IntraComponentFlow> getIntraComponentFlows() {
-		return component.getComponentInternalFlows();
+	public Map<SystemOperationIdentifying, Collection<SystemOperationIdentifying>> getIntraComponentFlows() {
+		return intraComponentFlows;
 	}
 
 	@Override

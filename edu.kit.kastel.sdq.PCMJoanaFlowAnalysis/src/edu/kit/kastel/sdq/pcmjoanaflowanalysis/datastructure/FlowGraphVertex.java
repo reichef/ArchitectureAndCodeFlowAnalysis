@@ -1,8 +1,9 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure;
 
 import java.util.Collection;
+import java.util.Map;
 
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.IntraComponentFlow;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
 
 public interface FlowGraphVertex extends VisitableGraphElement {
 	
@@ -10,7 +11,7 @@ public interface FlowGraphVertex extends VisitableGraphElement {
 	
 	public String getName();
 	
-	public Collection<IntraComponentFlow> getIntraComponentFlows();
+	public Map<SystemOperationIdentifying, Collection<SystemOperationIdentifying>> getIntraComponentFlows();
 	
 	public Collection<FlowGraphEdge> getEdges();
 	public Collection<FlowGraphEdge> getInEdges();

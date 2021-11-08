@@ -6,7 +6,6 @@ import java.util.Collection
 import org.palladiosimulator.pcm.repository.ProvidedRole
 import org.palladiosimulator.pcm.repository.OperationProvidedRole
 import org.palladiosimulator.pcm.repository.RepositoryComponent
-<<<<<<< HEAD
 import org.palladiosimulator.pcm.repository.Role
 import java.util.HashSet
 import org.palladiosimulator.pcm.repository.OperationInterface
@@ -16,12 +15,6 @@ import org.palladiosimulator.pcm.repository.CompositeDataType
 import org.palladiosimulator.pcm.repository.DataType
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall
 import org.palladiosimulator.pcm.usagemodel.AbstractUserAction
-=======
-import org.palladiosimulator.pcm.core.composition.Connector
-import org.palladiosimulator.pcm.repository.BasicComponent
-import org.palladiosimulator.pcm.repository.CompositeComponent
-import org.palladiosimulator.pcm.core.composition.AssemblyConnector
->>>>>>> ISE-datastructure-refactoring
 
 class PCMSubtypeResolver {
 	private new(){}

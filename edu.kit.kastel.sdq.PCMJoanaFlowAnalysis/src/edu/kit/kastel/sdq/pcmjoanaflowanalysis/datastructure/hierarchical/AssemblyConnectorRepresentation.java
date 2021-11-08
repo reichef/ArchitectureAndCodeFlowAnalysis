@@ -1,5 +1,8 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -14,13 +17,14 @@ public class AssemblyConnectorRepresentation {
 	private AssemblyComponentContext providing;
 	private AssemblyComponentContext requiring;
 	private AssemblyConnector assemblyConnector;
+	private Map<SystemOperationIdentifying, SystemOperationIdentifying> flowsForOperations;
 
 	
 	public AssemblyConnectorRepresentation(AssemblyConnector connector, AssemblyComponentContext requiring,AssemblyComponentContext providing) {
 		this.assemblyConnector = connector;
 		this.providing = providing;
 		this.requiring = requiring;
-	
+		this.flowsForOperations = new HashMap<>();
 	}
 	
 	public AssemblyConnector getConnector() {
@@ -74,6 +78,18 @@ public class AssemblyConnectorRepresentation {
 	
 	public String connectorRepresentation() {
 		return String.format(" %s.%s -( -> O- %s.%s", requiring.getName(), assemblyConnector.getRequiredRole_AssemblyConnector().getRequiredInterface__OperationRequiredRole().getEntityName(), providing.getName(), assemblyConnector.getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole().getEntityName());
+	}
+	
+	public void addFlow(SystemOperationIdentifying source, SystemOperationIdentifying sink) {
+		flowsForOperations.put(source, sink);
+	}
+	
+	public SystemOperationIdentifying getFlow(SystemOperationIdentifying source) {
+		return flowsForOperations.get(source);
+	}
+	
+	public Map<SystemOperationIdentifying, SystemOperationIdentifying> getFlows(){
+		return flowsForOperations;
 	}
 
 }
