@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" type="CompositeModel" name="BasicComponent.system_diagram" measurementUnit="Pixel">
+  <children xsi:type="notation:Shape" type="2002" fontName="Segoe UI">
+    <children xsi:type="notation:DecorationNode" type="5012"/>
+    <children xsi:type="notation:DecorationNode" type="7002">
+      <children xsi:type="notation:Shape" type="3006" fontName="Segoe UI">
+        <children xsi:type="notation:DecorationNode" type="5009"/>
+        <children xsi:type="notation:Shape" type="3007" fontName="Segoe UI">
+          <children xsi:type="notation:DecorationNode" type="5007">
+            <layoutConstraint xsi:type="notation:Location" y="5"/>
+          </children>
+          <element href="BasicComponent.repository#_rNn9IDTyEeyPK-lcSa_PBg"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <children xsi:type="notation:Shape" type="3008" fontName="Segoe UI">
+          <children xsi:type="notation:DecorationNode" type="5008">
+            <layoutConstraint xsi:type="notation:Location" y="5"/>
+          </children>
+          <element href="BasicComponent.repository#_qqASsDTyEeyPK-lcSa_PBg"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <element href="BasicComponent.system#_zAn_YDTyEeyPK-lcSa_PBg"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="143" y="102"/>
+      </children>
+    </children>
+    <element href="BasicComponent.system#_E17DQDTCEey27-WaTCohQA"/>
+    <layoutConstraint xsi:type="notation:Bounds"/>
+  </children>
+  <styles xsi:type="notation:DiagramStyle"/>
+  <element href="BasicComponent.system#_E17DQDTCEey27-WaTCohQA"/>
+</notation:Diagram>

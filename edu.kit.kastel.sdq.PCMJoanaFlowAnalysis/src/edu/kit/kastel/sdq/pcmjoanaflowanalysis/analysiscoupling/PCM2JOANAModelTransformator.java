@@ -11,6 +11,10 @@ import edu.kit.kastel.sdq.cosa.structure.SourceCode.Class;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCorrespondenceResolver;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMRepositoryElementResolver;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMSubtypeResolver;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.utils.Pair;
+
+import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.eclipse.emf.ecore.util.EcoreUtil;

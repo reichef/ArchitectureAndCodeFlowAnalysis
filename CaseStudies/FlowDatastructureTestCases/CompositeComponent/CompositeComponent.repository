@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repository:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" id="_P3wjkDTDEey27-WaTCohQA" entityName="defaultRepository">
+  <components__Repository xsi:type="repository:CompositeComponent" id="_OSWrMDTzEeyPK-lcSa_PBg" entityName="CompositeComponent_A">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_Sj_fgDTzEeyPK-lcSa_PBg" entityName="Provided_Interface_A_CompositeComponent_A" providedInterface__OperationProvidedRole="_I_qpkDTzEeyPK-lcSa_PBg"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_SBrcoDTzEeyPK-lcSa_PBg" entityName="Required_Interface_B_CompositeComponent_A" requiredInterface__OperationRequiredRole="_KIZzQDTzEeyPK-lcSa_PBg"/>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_krpBYDTzEeyPK-lcSa_PBg" entityName="BasicComponent_A">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_pH-p0DTzEeyPK-lcSa_PBg" entityName="Provided_Interface_A_BasicComponent_A" providedInterface__OperationProvidedRole="_I_qpkDTzEeyPK-lcSa_PBg"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_ovcOADTzEeyPK-lcSa_PBg" entityName="Required_Interface_B_BasicComponent_A" requiredInterface__OperationRequiredRole="_KIZzQDTzEeyPK-lcSa_PBg"/>
+  </components__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_I_qpkDTzEeyPK-lcSa_PBg" entityName="Interface_A"/>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_KIZzQDTzEeyPK-lcSa_PBg" entityName="Interface_B"/>
+</repository:Repository>

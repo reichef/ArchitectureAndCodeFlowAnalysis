@@ -18,6 +18,7 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.correspondences.PCM2SourceCodeCor
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana.JOANAAnalyzer;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.joana.JOANAModelToAnalysisTransformer;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.utils.Pair;
 
 //TODO: Refactor this class to only provide functionality to translate architecture-model (or datastructure) to JOANA Elements
 
