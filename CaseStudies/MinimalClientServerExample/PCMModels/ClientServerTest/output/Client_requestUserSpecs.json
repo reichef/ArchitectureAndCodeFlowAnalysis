@@ -1,0 +1,8 @@
+{
+  "@type":"edu.kit.joana.component.connector.JoanaCallReturnFlows",
+  "flows":{
+    "flows":{
+      "@type":"java.util.HashMap"
+    }
+  }
+}

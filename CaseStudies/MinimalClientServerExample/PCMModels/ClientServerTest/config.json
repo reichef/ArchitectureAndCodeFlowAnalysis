@@ -1,7 +1,7 @@
 {
   "@type":"edu.kit.kastel.sdq.pcmjoanaflowanalysis.Config",
   "joanaCLIFolderPath":"C:\\Users\\Freddy\\Arbeitsplatz\\eclipse\\DissEclipse\\eclipse",
-  "joanaOutputFolderPath":"C:\\Users\\Freddy\\git\\git_work\\Diss\\ArchitectureAndCodeFlowAnalysis\\CaseStudies\\MinimalClientServerExample\\PCMModels\\ClientServerTest\\output",
+  "joanaOutputFolderPath":"C:\\Users\\Frederik Reiche\\git\\Diss\\ArchitectureAndCodeFlowAnalysis\\CaseStudies\\MinimalClientServerExample\\PCMModels\\ClientServerTest\\output",
   "usePersistedFlows":false,
   "useLocalJOANAComputation":false,
   "joanaServerIP":"141.3.52.136"

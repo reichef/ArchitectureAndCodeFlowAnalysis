@@ -27,7 +27,7 @@
       <steps_Behaviour xsi:type="seff:StopAction" id="_iQYtgZB8EeuNUJHT8B_BFA" predecessor_AbstractAction="_iQYtgJB8EeuNUJHT8B_BFA"/>
     </serviceEffectSpecifications__BasicComponent>
   </components__Repository>
-  <components__Repository xsi:type="repository:BasicComponent" id="_8ksv0JBxEeuNUJHT8B_BFA" entityName="DataBase">
+  <components__Repository xsi:type="repository:BasicComponent" id="_8ksv0JBxEeuNUJHT8B_BFA" entityName="Database">
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_nRnywJB8EeuNUJHT8B_BFA" entityName="DataBase.DbCallCredentials" providedInterface__OperationProvidedRole="_-wVg8JBxEeuNUJHT8B_BFA"/>
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_nuhKIJB8EeuNUJHT8B_BFA" entityName="DataBase.DbCallCosts" providedInterface__OperationProvidedRole="_AxuJ4JByEeuNUJHT8B_BFA"/>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_nRoZ0JB8EeuNUJHT8B_BFA" describedService__SEFF="_DQgggJByEeuNUJHT8B_BFA">
