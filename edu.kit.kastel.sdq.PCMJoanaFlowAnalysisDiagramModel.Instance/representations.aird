@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PCMJoanaFlowAnalysisDiagramModel="http://www.example.org/PCMJoanaFlowAnalysisDiagramModel" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+  <viewpoint:DAnalysis uid="_pPHXgFndEeyY1qWMompo3w" selectedViews="_L94coFneEeyY1qWMompo3w" version="14.5.1.202106111100">
+    <semanticResources>My.pcmjoanaflowanalysisdiagrammodel</semanticResources>
+    <ownedViews xmi:type="viewpoint:DView" uid="_L94coFneEeyY1qWMompo3w">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_MOr4wFneEeyY1qWMompo3w" name="new Joana Flow Analysis" repPath="#_MOfrgFneEeyY1qWMompo3w" changeId="0c5bf76f-0b0e-4b43-afb1-a8d6a6c39135">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']"/>
+        <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:JOANAFlowAnalysisDiagram" href="My.pcmjoanaflowanalysisdiagrammodel#/"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+  </viewpoint:DAnalysis>
+  <diagram:DSemanticDiagram uid="_MOfrgFneEeyY1qWMompo3w">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_MO9lkFneEeyY1qWMompo3w" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_MO9lkVneEeyY1qWMompo3w" type="Sirius" element="_MOfrgFneEeyY1qWMompo3w" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_kI6FMGzBEeyUQ-uoq4J6hg" type="2002" element="_kI2a0GzBEeyUQ-uoq4J6hg">
+          <children xmi:type="notation:Node" xmi:id="_kI9vkGzBEeyUQ-uoq4J6hg" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_kI9vkWzBEeyUQ-uoq4J6hg" type="7001">
+            <children xmi:type="notation:Node" xmi:id="_TAQFsGzCEeyUQ-uoq4J6hg" type="3008" element="_TAOQgmzCEeyUQ-uoq4J6hg">
+              <children xmi:type="notation:Node" xmi:id="_TAQswGzCEeyUQ-uoq4J6hg" type="5005"/>
+              <children xmi:type="notation:Node" xmi:id="_TAQswWzCEeyUQ-uoq4J6hg" type="7002">
+                <children xmi:type="notation:Node" xmi:id="_g_3LAG1NEeyas9DOLD-rVw" type="3007" element="_g-YkVG1NEeyas9DOLD-rVw">
+                  <children xmi:type="notation:Node" xmi:id="_g_6OUG1NEeyas9DOLD-rVw" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_g_6OUW1NEeyas9DOLD-rVw" x="-9" y="-17"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_g__G0G1NEeyas9DOLD-rVw" type="3003" element="_g-ZLYG1NEeyas9DOLD-rVw">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_g__G0W1NEeyas9DOLD-rVw" fontName=".AppleSystemUIFont"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g__G0m1NEeyas9DOLD-rVw"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_g_3LAW1NEeyas9DOLD-rVw" fontName=".AppleSystemUIFont" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g_3LAm1NEeyas9DOLD-rVw" x="23" y="234" width="50" height="50"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_g_94sG1NEeyas9DOLD-rVw" type="3007" element="_g-ZLYm1NEeyas9DOLD-rVw">
+                  <children xmi:type="notation:Node" xmi:id="_g_94s21NEeyas9DOLD-rVw" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_g_94tG1NEeyas9DOLD-rVw" x="-10" y="-17"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_g__G021NEeyas9DOLD-rVw" type="3003" element="_g-ZLY21NEeyas9DOLD-rVw">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_g__G1G1NEeyas9DOLD-rVw" fontName=".AppleSystemUIFont"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g__G1W1NEeyas9DOLD-rVw"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_g_94sW1NEeyas9DOLD-rVw" fontName=".AppleSystemUIFont" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g_94sm1NEeyas9DOLD-rVw" x="31" y="31" width="50" height="50"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_g_-fwG1NEeyas9DOLD-rVw" type="3007" element="_g-ZycG1NEeyas9DOLD-rVw">
+                  <children xmi:type="notation:Node" xmi:id="_g_-fw21NEeyas9DOLD-rVw" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_g_-fxG1NEeyas9DOLD-rVw" x="-10" y="-17"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_g__t4G1NEeyas9DOLD-rVw" type="3003" element="_g-ZycW1NEeyas9DOLD-rVw">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_g__t4W1NEeyas9DOLD-rVw" fontName=".AppleSystemUIFont"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g__t4m1NEeyas9DOLD-rVw"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_g_-fwW1NEeyas9DOLD-rVw" fontName=".AppleSystemUIFont" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g_-fwm1NEeyas9DOLD-rVw" x="163" y="232" width="50" height="50"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_6KpYcG1NEeyas9DOLD-rVw" type="3007" element="_6KluEG1NEeyas9DOLD-rVw">
+                  <children xmi:type="notation:Node" xmi:id="_6Kp_gG1NEeyas9DOLD-rVw" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_6Kp_gW1NEeyas9DOLD-rVw" x="-1"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_6KqmkG1NEeyas9DOLD-rVw" type="3003" element="_6KmVIG1NEeyas9DOLD-rVw">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_6KqmkW1NEeyas9DOLD-rVw" fontName=".AppleSystemUIFont"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6Kqmkm1NEeyas9DOLD-rVw"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_6KpYcW1NEeyas9DOLD-rVw" fontName=".AppleSystemUIFont" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6KpYcm1NEeyas9DOLD-rVw" x="287" y="42" width="50" height="50"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_HBtKcG1OEeyas9DOLD-rVw" type="3007" element="_HBqHIG1OEeyas9DOLD-rVw">
+                  <children xmi:type="notation:Node" xmi:id="_HBtKc21OEeyas9DOLD-rVw" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_HBtKdG1OEeyas9DOLD-rVw" x="-1"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_HBtxgG1OEeyas9DOLD-rVw" type="3003" element="_HBquMG1OEeyas9DOLD-rVw">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_HBtxgW1OEeyas9DOLD-rVw" fontName=".AppleSystemUIFont"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HBtxgm1OEeyas9DOLD-rVw"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_HBtKcW1OEeyas9DOLD-rVw" fontName=".AppleSystemUIFont" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HBtKcm1OEeyas9DOLD-rVw" x="287" y="218" width="50" height="50"/>
+                </children>
+                <styles xmi:type="notation:SortingStyle" xmi:id="_TAQswmzCEeyUQ-uoq4J6hg"/>
+                <styles xmi:type="notation:FilteringStyle" xmi:id="_TAQsw2zCEeyUQ-uoq4J6hg"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_TAQFsWzCEeyUQ-uoq4J6hg" fontName=".AppleSystemUIFont"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TAQFsmzCEeyUQ-uoq4J6hg" x="27" y="38" width="379" height="355"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_kI9vkmzBEeyUQ-uoq4J6hg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_kI9vk2zBEeyUQ-uoq4J6hg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_kI6FMWzBEeyUQ-uoq4J6hg" fontName=".AppleSystemUIFont"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kI6FMmzBEeyUQ-uoq4J6hg" x="48" y="44" height="407"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_Kq1NQG1OEeyas9DOLD-rVw" type="2002" element="_Kqxi4G1OEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_Kq10UG1OEeyas9DOLD-rVw" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_Kq10UW1OEeyas9DOLD-rVw" type="7001">
+            <children xmi:type="notation:Node" xmi:id="__ULBkG1OEeyas9DOLD-rVw" type="3008" element="__UHXMG1OEeyas9DOLD-rVw">
+              <children xmi:type="notation:Node" xmi:id="__ULBk21OEeyas9DOLD-rVw" type="5005"/>
+              <children xmi:type="notation:Node" xmi:id="__ULooG1OEeyas9DOLD-rVw" type="7002">
+                <children xmi:type="notation:Node" xmi:id="_BrnaEG1PEeyas9DOLD-rVw" type="3007" element="_BrkWwG1PEeyas9DOLD-rVw">
+                  <children xmi:type="notation:Node" xmi:id="_BrnaE21PEeyas9DOLD-rVw" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_BrnaFG1PEeyas9DOLD-rVw" x="-1"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_BroBIG1PEeyas9DOLD-rVw" type="3003" element="_BrkWwW1PEeyas9DOLD-rVw">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_BroBIW1PEeyas9DOLD-rVw" fontName=".AppleSystemUIFont"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BroBIm1PEeyas9DOLD-rVw"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_BrnaEW1PEeyas9DOLD-rVw" fontName=".AppleSystemUIFont" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BrnaEm1PEeyas9DOLD-rVw" x="75" y="53" width="50" height="50"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_ttBcUG1cEey7cYNEvZwRjg" type="3007" element="_ts78wG1cEey7cYNEvZwRjg">
+                  <children xmi:type="notation:Node" xmi:id="_ttCDYG1cEey7cYNEvZwRjg" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_ttCDYW1cEey7cYNEvZwRjg" x="-1"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_ttEfoG1cEey7cYNEvZwRjg" type="3003" element="_ts8j0G1cEey7cYNEvZwRjg">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_ttEfoW1cEey7cYNEvZwRjg" fontName=".AppleSystemUIFont"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ttEfom1cEey7cYNEvZwRjg"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_ttBcUW1cEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ttBcUm1cEey7cYNEvZwRjg" x="63" y="128" width="50" height="50"/>
+                </children>
+                <styles xmi:type="notation:SortingStyle" xmi:id="__ULooW1OEeyas9DOLD-rVw"/>
+                <styles xmi:type="notation:FilteringStyle" xmi:id="__ULoom1OEeyas9DOLD-rVw"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="__ULBkW1OEeyas9DOLD-rVw" fontName=".AppleSystemUIFont" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="__ULBkm1OEeyas9DOLD-rVw" x="31" y="30"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_Kq10Um1OEeyas9DOLD-rVw"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_Kq10U21OEeyas9DOLD-rVw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_Kq1NQW1OEeyas9DOLD-rVw" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Kq1NQm1OEeyas9DOLD-rVw" x="684" y="20" width="335" height="387"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_MO9lklneEeyY1qWMompo3w"/>
+        <edges xmi:type="notation:Edge" xmi:id="_kC5LQG1aEey7cYNEvZwRjg" type="4001" element="_kBLUAG1aEey7cYNEvZwRjg" source="_g_3LAG1NEeyas9DOLD-rVw" target="_g_94sG1NEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC5yUG1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC5yUW1aEey7cYNEvZwRjg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC5yUm1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC5yU21aEey7cYNEvZwRjg" x="-19" y="-1"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC5yVG1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC5yVW1aEey7cYNEvZwRjg" x="-15"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC5LQW1aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC5LQm1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC5LQ21aEey7cYNEvZwRjg" points="[0, 0, -98, 60]$[98, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC5yVm1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC5yV21aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_kC5yWG1aEey7cYNEvZwRjg" type="4001" element="_kBL7FG1aEey7cYNEvZwRjg" source="_g_-fwG1NEeyas9DOLD-rVw" target="_g_94sG1NEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC5yXG1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC5yXW1aEey7cYNEvZwRjg" x="8" y="7"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC5yXm1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC5yX21aEey7cYNEvZwRjg" x="-8" y="-7"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC5yYG1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC5yYW1aEey7cYNEvZwRjg" x="-8" y="-7"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC5yWW1aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC5yWm1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC5yW21aEey7cYNEvZwRjg" points="[0, 0, 132, 151]$[-132, -151, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC6ZYG1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC6ZYW1aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_kC6ZYm1aEey7cYNEvZwRjg" type="4001" element="_kBL7GW1aEey7cYNEvZwRjg" source="_g_-fwG1NEeyas9DOLD-rVw" target="_g_3LAG1NEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC6ZZm1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC6ZZ21aEey7cYNEvZwRjg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC6ZaG1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC6ZaW1aEey7cYNEvZwRjg" x="15" y="2"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC6Zam1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC6Za21aEey7cYNEvZwRjg" x="4" y="-8"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC6ZY21aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC6ZZG1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC6ZZW1aEey7cYNEvZwRjg" points="[0, 0, 242, 60]$[-242, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC6ZbG1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC6ZbW1aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_kC6Zbm1aEey7cYNEvZwRjg" type="4001" element="_kBL7Hm1aEey7cYNEvZwRjg" source="_g_-fwG1NEeyas9DOLD-rVw" target="_HBtKcG1OEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC6Zcm1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC6Zc21aEey7cYNEvZwRjg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC6ZdG1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC6ZdW1aEey7cYNEvZwRjg" x="12" y="8"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC6Zdm1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC6Zd21aEey7cYNEvZwRjg" x="4" y="4"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC6Zb21aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC6ZcG1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC6ZcW1aEey7cYNEvZwRjg" points="[0, 0, 0, 170]$[0, -170, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC6ZeG1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC6ZeW1aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_kC7AcG1aEey7cYNEvZwRjg" type="4001" element="_kBMiJG1aEey7cYNEvZwRjg" source="_6KpYcG1NEeyas9DOLD-rVw" target="_g_94sG1NEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC7AdG1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC7AdW1aEey7cYNEvZwRjg" x="-7" y="9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC7ngG1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC7ngW1aEey7cYNEvZwRjg" x="54" y="1"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC7ngm1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC7ng21aEey7cYNEvZwRjg" x="32" y="1"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC7AcW1aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC7Acm1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC7Ac21aEey7cYNEvZwRjg" points="[-25, 3, 231, -36]$[-256, 39, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC7nhG1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC7nhW1aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_kC7nhm1aEey7cYNEvZwRjg" type="4001" element="_kBMiKW1aEey7cYNEvZwRjg" source="_6KpYcG1NEeyas9DOLD-rVw" target="_g_94sG1NEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC8OkG1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC8OkW1aEey7cYNEvZwRjg" x="43"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC8Okm1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC8Ok21aEey7cYNEvZwRjg" x="-14" y="2"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC8OlG1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC8OlW1aEey7cYNEvZwRjg" x="10" y="9"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC7nh21aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC7niG1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC7niW1aEey7cYNEvZwRjg" points="[-25, 2, 231, -37]$[-158, 13, 98, -26]$[-231, 32, 25, -7]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC8Olm1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC8Ol21aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_kC8OmG1aEey7cYNEvZwRjg" type="4001" element="_kBNJMG1aEey7cYNEvZwRjg" source="_6KpYcG1NEeyas9DOLD-rVw" target="_g_94sG1NEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC8OnG1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC8OnW1aEey7cYNEvZwRjg" x="32" y="3"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC8Onm1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC8On21aEey7cYNEvZwRjg" x="18" y="6"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC8OoG1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC8OoW1aEey7cYNEvZwRjg" x="13" y="-11"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC8OmW1aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC8Omm1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC8Om21aEey7cYNEvZwRjg" points="[-25, 6, 231, -33]$[-155, 42, 101, 3]$[-231, 20, 25, -19]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC8Oom1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC8Oo21aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_kC8OpG1aEey7cYNEvZwRjg" type="4001" element="_kBNJNW1aEey7cYNEvZwRjg" source="_6KpYcG1NEeyas9DOLD-rVw" target="_HBtKcG1OEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC8OqG1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC8OqW1aEey7cYNEvZwRjg" x="-77" y="1"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC8Oqm1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC8Oq21aEey7cYNEvZwRjg" x="-8" y="2"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC8OrG1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC8OrW1aEey7cYNEvZwRjg" x="-28" y="1"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC8OpW1aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC8Opm1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC8Op21aEey7cYNEvZwRjg" points="[0, 50, 0, -176]$[0, 226, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC81oG1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC81oW1aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_kC81om1aEey7cYNEvZwRjg" type="4001" element="_kBNJOm1aEey7cYNEvZwRjg" source="_6KpYcG1NEeyas9DOLD-rVw" target="_BrnaEG1PEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC81pm1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC81p21aEey7cYNEvZwRjg" x="-10" y="-16"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC81qG1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC81qW1aEey7cYNEvZwRjg" x="-4" y="2"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC81qm1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC81q21aEey7cYNEvZwRjg" x="-3" y="-1"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC81o21aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC81pG1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC81pW1aEey7cYNEvZwRjg" points="[25, -2, -403, 19]$[403, -20, -25, 1]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC81rG1aEey7cYNEvZwRjg" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC81rW1aEey7cYNEvZwRjg" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_kC81rm1aEey7cYNEvZwRjg" type="4001" element="_kBNJP21aEey7cYNEvZwRjg" source="_HBtKcG1OEeyas9DOLD-rVw" target="_g_-fwG1NEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC81sm1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC81s21aEey7cYNEvZwRjg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC81tG1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC81tW1aEey7cYNEvZwRjg" x="14" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC81tm1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC81t21aEey7cYNEvZwRjg" x="-4" y="2"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC81r21aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC81sG1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC81sW1aEey7cYNEvZwRjg" points="[0, 0, 0, -170]$[60, 60, 60, -110]$[60, 109, 60, -61]$[0, 170, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC9csG1aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC9csW1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_kC9csm1aEey7cYNEvZwRjg" type="4001" element="_kBNwQm1aEey7cYNEvZwRjg" source="_BrnaEG1PEeyas9DOLD-rVw" target="_6KpYcG1NEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_kC9ctm1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC9ct21aEey7cYNEvZwRjg" x="59" y="-9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC9cuG1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC9cuW1aEey7cYNEvZwRjg" x="20" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_kC9cum1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kC9cu21aEey7cYNEvZwRjg" x="29" y="8"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_kC9cs21aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_kC9ctG1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kC9ctW1aEey7cYNEvZwRjg" points="[-25, 4, 403, -17]$[-277, 52, 151, 31]$[-403, 26, 25, 5]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC9cvG1aEey7cYNEvZwRjg" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kC9cvW1aEey7cYNEvZwRjg" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_1RPGkG1aEey7cYNEvZwRjg" type="4001" element="_1RK1PG1aEey7cYNEvZwRjg" source="_6KpYcG1NEeyas9DOLD-rVw" target="_g_94sG1NEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_1RPGlG1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1RPGlW1aEey7cYNEvZwRjg" x="28" y="-7"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_1RPGlm1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1RPGl21aEey7cYNEvZwRjg" x="26" y="8"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_1RPGmG1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1RPGmW1aEey7cYNEvZwRjg" x="-5" y="-5"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_1RPGkW1aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_1RPGkm1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1RPGk21aEey7cYNEvZwRjg" points="[-25, -1, 231, -40]$[-160, -2, 96, -41]$[-231, 28, 25, -11]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1RPGmm1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1RPGm21aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_3mjYIG1aEey7cYNEvZwRjg" type="4001" element="_3mg76G1aEey7cYNEvZwRjg" source="_g_3LAG1NEeyas9DOLD-rVw" target="_g_94sG1NEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_3mjYJG1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3mjYJW1aEey7cYNEvZwRjg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_3mj_MG1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3mj_MW1aEey7cYNEvZwRjg" x="-27" y="4"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_3mj_Mm1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3mj_M21aEey7cYNEvZwRjg" x="13" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_3mjYIW1aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_3mjYIm1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3mjYI21aEey7cYNEvZwRjg" points="[0, 0, -98, 60]$[98, -60, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3mj_NG1aEey7cYNEvZwRjg" id="(0.5,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3mj_NW1aEey7cYNEvZwRjg" id="(0.5,1.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_4juLAG1aEey7cYNEvZwRjg" type="4001" element="_4jp5qG1aEey7cYNEvZwRjg" source="_6KpYcG1NEeyas9DOLD-rVw" target="_BrnaEG1PEeyas9DOLD-rVw">
+          <children xmi:type="notation:Node" xmi:id="_4juLBG1aEey7cYNEvZwRjg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4juLBW1aEey7cYNEvZwRjg" x="-4" y="-18"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_4juLBm1aEey7cYNEvZwRjg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4juLB21aEey7cYNEvZwRjg" x="-3" y="5"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_4juLCG1aEey7cYNEvZwRjg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4juLCW1aEey7cYNEvZwRjg" x="-4" y="5"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_4juLAW1aEey7cYNEvZwRjg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_4juLAm1aEey7cYNEvZwRjg" fontName=".AppleSystemUIFont" fontHeight="12"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4juLA21aEey7cYNEvZwRjg" points="[2, -1, -378, 17]$[380, -18, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4juyEG1aEey7cYNEvZwRjg" id="(0.96,0.24)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4juyEW1aEey7cYNEvZwRjg" id="(0.0,0.3)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_MQGOAFneEeyY1qWMompo3w" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_MQGOAVneEeyY1qWMompo3w"/>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_kI2a0GzBEeyUQ-uoq4J6hg" name="ClientServer">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Assembly" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Assembly" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_TAOQgGzCEeyUQ-uoq4J6hg" labelSize="12" borderSize="1" borderSizeComputationExpression="1">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']"/>
+      <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_TAOQgmzCEeyUQ-uoq4J6hg" name="Client">
+        <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Class" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0"/>
+        <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Class" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0"/>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_V0lOgWzCEeyUQ-uoq4J6hg" labelSize="12" borderSize="1" borderSizeComputationExpression="1">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']"/>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_g-YkVG1NEeyas9DOLD-rVw" name="method1(2)" outgoingEdges="_kBLUAG1aEey7cYNEvZwRjg _3mg76G1aEey7cYNEvZwRjg" incomingEdges="_kBL7GW1aEey7cYNEvZwRjg" width="5" height="5" resizeKind="NSEW">
+          <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.0"/>
+          <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.0"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:Square" uid="_g-ZLYG1NEeyas9DOLD-rVw" labelSize="12" showIcon="false" width="5" height="5" color="214,197,66">
+            <description xmi:type="style:SquareDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_g-ZLYm1NEeyas9DOLD-rVw" name="method2(0)" incomingEdges="_kBLUAG1aEey7cYNEvZwRjg _kBL7FG1aEey7cYNEvZwRjg _kBMiJG1aEey7cYNEvZwRjg _kBMiKW1aEey7cYNEvZwRjg _kBNJMG1aEey7cYNEvZwRjg _1RK1PG1aEey7cYNEvZwRjg _3mg76G1aEey7cYNEvZwRjg" width="5" height="5" resizeKind="NSEW">
+          <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.1"/>
+          <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.1"/>
+          <ownedStyle xmi:type="diagram:Square" uid="_g-ZLY21NEeyas9DOLD-rVw" labelSize="12" showIcon="false" width="5" height="5" color="214,197,66">
+            <description xmi:type="style:SquareDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_g-ZycG1NEeyas9DOLD-rVw" name="method3(3)" outgoingEdges="_kBL7FG1aEey7cYNEvZwRjg _kBL7GW1aEey7cYNEvZwRjg _kBL7Hm1aEey7cYNEvZwRjg" incomingEdges="_kBNJP21aEey7cYNEvZwRjg" width="5" height="5" resizeKind="NSEW">
+          <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.2"/>
+          <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.2"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:Square" uid="_g-ZycW1NEeyas9DOLD-rVw" labelSize="12" showIcon="false" width="5" height="5" color="214,197,66">
+            <description xmi:type="style:SquareDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_6KluEG1NEeyas9DOLD-rVw" name="method4(7)" outgoingEdges="_kBMiJG1aEey7cYNEvZwRjg _kBMiKW1aEey7cYNEvZwRjg _kBNJMG1aEey7cYNEvZwRjg _kBNJNW1aEey7cYNEvZwRjg _kBNJOm1aEey7cYNEvZwRjg _1RK1PG1aEey7cYNEvZwRjg _4jp5qG1aEey7cYNEvZwRjg" incomingEdges="_kBNwQm1aEey7cYNEvZwRjg" width="5" height="5" resizeKind="NSEW">
+          <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3"/>
+          <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:Square" uid="_6KmVIG1NEeyas9DOLD-rVw" labelSize="12" showIcon="false" width="5" height="5" color="214,197,66">
+            <description xmi:type="style:SquareDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_HBqHIG1OEeyas9DOLD-rVw" name="method5(1)" outgoingEdges="_kBNJP21aEey7cYNEvZwRjg" incomingEdges="_kBL7Hm1aEey7cYNEvZwRjg _kBNJNW1aEey7cYNEvZwRjg" width="5" height="5" resizeKind="NSEW">
+          <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.4"/>
+          <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.4"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:Square" uid="_HBquMG1OEeyas9DOLD-rVw" labelSize="12" showIcon="false" width="5" height="5" color="214,197,66">
+            <description xmi:type="style:SquareDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']"/>
+        </ownedDiagramElements>
+      </ownedDiagramElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_Kqxi4G1OEeyas9DOLD-rVw" name="Database">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Assembly" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.1"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Assembly" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.1"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_KqyJ8G1OEeyas9DOLD-rVw" labelSize="12" borderSize="1" borderSizeComputationExpression="1">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']"/>
+      <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="__UHXMG1OEeyas9DOLD-rVw" name="Database">
+        <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Class" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.1/@class.0"/>
+        <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Class" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.1/@class.0"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="__UHXMW1OEeyas9DOLD-rVw" labelSize="12" borderSize="1" borderSizeComputationExpression="1">
+          <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']"/>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_BrkWwG1PEeyas9DOLD-rVw" name="method1(1)" outgoingEdges="_kBNwQm1aEey7cYNEvZwRjg" incomingEdges="_kBNJOm1aEey7cYNEvZwRjg _4jp5qG1aEey7cYNEvZwRjg" width="5" height="5" resizeKind="NSEW">
+          <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.1/@class.0/@method.0"/>
+          <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.1/@class.0/@method.0"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:Square" uid="_BrkWwW1PEeyas9DOLD-rVw" labelSize="12" showIcon="false" width="5" height="5" color="214,197,66">
+            <description xmi:type="style:SquareDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_ts78wG1cEey7cYNEvZwRjg" name="method2(0)" width="5" height="5" resizeKind="NSEW">
+          <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.1/@class.0/@method.1"/>
+          <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Method" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.1/@class.0/@method.1"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:Square" uid="_ts8j0G1cEey7cYNEvZwRjg" labelSize="12" showIcon="false" width="5" height="5" color="214,197,66">
+            <description xmi:type="style:SquareDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']"/>
+        </ownedDiagramElements>
+      </ownedDiagramElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBLUAG1aEey7cYNEvZwRjg" name="01" sourceNode="_g-YkVG1NEeyas9DOLD-rVw" targetNode="_g-ZLYm1NEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.0/@flow.0"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.0/@flow.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBL7EG1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBL7EW1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBL7FG1aEey7cYNEvZwRjg" name="01" sourceNode="_g-ZycG1NEeyas9DOLD-rVw" targetNode="_g-ZLYm1NEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.2/@flow.0"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.2/@flow.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBL7FW1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBL7Fm1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBL7GW1aEey7cYNEvZwRjg" name="02" sourceNode="_g-ZycG1NEeyas9DOLD-rVw" targetNode="_g-YkVG1NEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.2/@flow.1"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.2/@flow.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBL7Gm1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBL7G21aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBL7Hm1aEey7cYNEvZwRjg" name="'01'" sourceNode="_g-ZycG1NEeyas9DOLD-rVw" targetNode="_HBqHIG1OEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.2/@flow.2"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.2/@flow.2"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBMiIG1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBMiIW1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBMiJG1aEey7cYNEvZwRjg" sourceNode="_6KluEG1NEeyas9DOLD-rVw" targetNode="_g-ZLYm1NEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.0"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBMiJW1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBMiJm1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBMiKW1aEey7cYNEvZwRjg" sourceNode="_6KluEG1NEeyas9DOLD-rVw" targetNode="_g-ZLYm1NEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.1"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBMiKm1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBMiK21aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBNJMG1aEey7cYNEvZwRjg" sourceNode="_6KluEG1NEeyas9DOLD-rVw" targetNode="_g-ZLYm1NEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.2"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.2"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBNJMW1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBNJMm1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBNJNW1aEey7cYNEvZwRjg" sourceNode="_6KluEG1NEeyas9DOLD-rVw" targetNode="_HBqHIG1OEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.3"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.3"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBNJNm1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBNJN21aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBNJOm1aEey7cYNEvZwRjg" sourceNode="_6KluEG1NEeyas9DOLD-rVw" targetNode="_BrkWwG1PEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.4"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.4"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBNJO21aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBNJPG1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBNJP21aEey7cYNEvZwRjg" name="'01'" sourceNode="_HBqHIG1OEeyas9DOLD-rVw" targetNode="_g-ZycG1NEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.4/@flow.0"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.4/@flow.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBNJQG1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBNJQW1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_kBNwQm1aEey7cYNEvZwRjg" name="01" sourceNode="_BrkWwG1PEeyas9DOLD-rVw" targetNode="_6KluEG1NEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.1/@class.0/@method.0/@flow.0"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.1/@class.0/@method.0/@flow.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_kBNwQ21aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_kBNwRG1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_1RK1PG1aEey7cYNEvZwRjg" name="'01'" sourceNode="_6KluEG1NEeyas9DOLD-rVw" targetNode="_g-ZLYm1NEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.5"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.5"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_1RK1PW1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_1RK1Pm1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_3mg76G1aEey7cYNEvZwRjg" name="'01'" sourceNode="_g-YkVG1NEeyas9DOLD-rVw" targetNode="_g-ZLYm1NEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.0/@flow.1"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.0/@flow.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_3mg76W1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_3mg76m1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_4jp5qG1aEey7cYNEvZwRjg" name="'01'" sourceNode="_6KluEG1NEeyas9DOLD-rVw" targetNode="_BrkWwG1PEeyas9DOLD-rVw">
+      <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.6"/>
+      <semanticElements xmi:type="PCMJoanaFlowAnalysisDiagramModel:Flow" href="My.pcmjoanaflowanalysisdiagrammodel#//@assembly.0/@class.0/@method.3/@flow.6"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_4jp5qW1aEey7cYNEvZwRjg" size="2" strokeColor="252,175,62">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_4jp5qm1aEey7cYNEvZwRjg" labelSize="12" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_MOlLEFneEeyY1qWMompo3w"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer"/>
+    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram/description/PCMJoanaFlowAnalysisDiagram.odesign#//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@additionalLayers[name='JoanaFlowAnalysisResult']"/>
+    <target xmi:type="PCMJoanaFlowAnalysisDiagramModel:JOANAFlowAnalysisDiagram" href="My.pcmjoanaflowanalysisdiagrammodel#/"/>
+  </diagram:DSemanticDiagram>
+</xmi:XMI>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PCMJoanaFlowAnalysisDiagramModel:JOANAFlowAnalysisDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:PCMJoanaFlowAnalysisDiagramModel="http://www.example.org/PCMJoanaFlowAnalysisDiagramModel" name="diagram">
+  <assembly name="ClientServer">
+    <class name="Client">
+      <method name="method1">
+        <flow method="//@assembly.0/@class.0/@method.1" id="01"/>
+        <flow method="//@assembly.0/@class.0/@method.1" id="'01'"/>
+      </method>
+      <method name="method2"/>
+      <method name="method3">
+        <flow method="//@assembly.0/@class.0/@method.1" id="01"/>
+        <flow method="//@assembly.0/@class.0/@method.0" id="02"/>
+        <flow method="//@assembly.0/@class.0/@method.4" id="'01'"/>
+      </method>
+      <method name="method4">
+        <flow method="//@assembly.0/@class.0/@method.1"/>
+        <flow method="//@assembly.0/@class.0/@method.1"/>
+        <flow method="//@assembly.0/@class.0/@method.1"/>
+        <flow method="//@assembly.0/@class.0/@method.4"/>
+        <flow method="//@assembly.1/@class.0/@method.0"/>
+        <flow method="//@assembly.0/@class.0/@method.1" id="'01'"/>
+        <flow method="//@assembly.1/@class.0/@method.0" id="'01'"/>
+      </method>
+      <method name="method5">
+        <flow method="//@assembly.0/@class.0/@method.2" id="'01'"/>
+      </method>
+    </class>
+  </assembly>
+  <assembly name="Database">
+    <class name="Database">
+      <method name="method1">
+        <flow method="//@assembly.0/@class.0/@method.3" id="01"/>
+      </method>
+      <method name="method2"/>
+    </class>
+  </assembly>
+</PCMJoanaFlowAnalysisDiagramModel:JOANAFlowAnalysisDiagram>

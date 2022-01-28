@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Generate
+Bundle-SymbolicName: edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Generate
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-15
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.23.0",
+ edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel;bundle-version="0.1.0"
+Import-Package: org.eclipse.emf.ecore.xmi.impl

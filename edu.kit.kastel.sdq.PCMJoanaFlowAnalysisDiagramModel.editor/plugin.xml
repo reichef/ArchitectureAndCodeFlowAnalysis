@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated PCMJoanaFlowAnalysisDiagramModel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.presentation.PCMJoanaFlowAnalysisDiagramModelModelWizardID"
+            name="%_UI_PCMJoanaFlowAnalysisDiagramModelModelWizard_label"
+            class="edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.presentation.PCMJoanaFlowAnalysisDiagramModelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PCMJoanaFlowAnalysisDiagramModelModelFile.gif">
+         <description>%_UI_PCMJoanaFlowAnalysisDiagramModelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated PCMJoanaFlowAnalysisDiagramModel -->
+      <editor
+            id="edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.presentation.PCMJoanaFlowAnalysisDiagramModelEditorID"
+            name="%_UI_PCMJoanaFlowAnalysisDiagramModelEditor_label"
+            icon="icons/full/obj16/PCMJoanaFlowAnalysisDiagramModelModelFile.gif"
+            extensions="pcmjoanaflowanalysisdiagrammodel"
+            class="edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.presentation.PCMJoanaFlowAnalysisDiagramModelEditor"
+            contributorClass="edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.presentation.PCMJoanaFlowAnalysisDiagramModelActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="PCMJoanaFlowAnalysisDiagram" version="12.0.0.2017041100">
+  <ownedViewpoints name="JoanaFlowAnalysisViewpoint" label="Joana Flow Analysis" modelFileExtension="pcmjoanaflowanalysisdiagrammodel">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="JoanaFlowAnalysisDiagram" label="Joana Flow Analysis" domainClass="PCMJoanaFlowAnalysisDiagramModel::JOANAFlowAnalysisDiagram">
+      <metamodel href="http://www.example.org/PCMJoanaFlowAnalysisDiagramModel#/"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="flow" sourceMapping="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']" targetMapping="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']" targetFinderExpression="aql:self.method" sourceFinderExpression="aql:self.ancestors()" domainClass="PCMJoanaFlowAnalysisDiagramModel::Flow" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+            <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="aql:self.id">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="JoanaAssembly" semanticCandidatesExpression="feature:assembly" domainClass="PCMJoanaFlowAnalysisDiagramModel::Assembly">
+          <subContainerMappings name="JoanaClass" semanticCandidatesExpression="feature:class" domainClass="PCMJoanaFlowAnalysisDiagramModel::Class">
+            <subNodeMappings name="Method" semanticCandidatesExpression="feature:method" domainClass="PCMJoanaFlowAnalysisDiagramModel::Method">
+              <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="service:getflowsNumber()" resizeKind="NSEW" width="5" height="5">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_yellow']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="JoanaNodeCreation" label="JoanaNodeCreation">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="JoanaMethod" nodeMappings="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="PCMJoanaFlowAnalysisDiagramModel::Method" referenceName="method"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="JoanaAssemblyCreation" containerMappings="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="PCMJoanaFlowAnalysisDiagramModel::Assembly" referenceName="assembly"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="JoanaClassCreation" containerMappings="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="PCMJoanaFlowAnalysisDiagramModel::Class" referenceName="class"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="setFlow" edgeMappings="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@edgeMappings[name='flow']" extraSourceMappings="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']" extraTargetMappings="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="PCMJoanaFlowAnalysisDiagramModel::Flow" referenceName="flow">
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="method" valueExpression="var:target"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="id" valueExpression="'01'"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram.Services"/>
+  </ownedViewpoints>
+</description:Group>
