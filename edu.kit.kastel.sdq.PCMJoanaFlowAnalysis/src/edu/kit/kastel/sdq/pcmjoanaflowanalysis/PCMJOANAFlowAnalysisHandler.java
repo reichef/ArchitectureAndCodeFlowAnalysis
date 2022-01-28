@@ -30,13 +30,15 @@ import org.palladiosimulator.pcm.usagemodel.AbstractUserAction;
 
 import java.io.IOException;
 
+//import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram.*;
+import org.eclipse.emf.common.util.URI;
+
 public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		Optional<List<IFile>> list = getFilteredList(selection);
-
 		if (list.isPresent()) {
 			try {
 				executeFlowAnalysis(list.get());
@@ -84,7 +86,12 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		PCMJOANACoupler coupler = new PCMJOANACoupler(models.getConfig());
 		FixpointIteration pcmAnalyzer = new FixpointIteration(coupler);
 		analyseFlowsFromEntryLevelSystemCalls(models.getUsageModel(), pcmAnalyzer, systemrepresentation);
-
+		
+		//TODO: Generate the diagram model
+		GenerateDiagramModelInstance diagram = new GenerateDiagramModelInstance();
+		diagram.setupAndSaveEMFSampleInstanceResource(systemrepresentation);
+		//end TODO
+		
 		java.lang.System.out.println("Finished Execution");
 
 		return true;

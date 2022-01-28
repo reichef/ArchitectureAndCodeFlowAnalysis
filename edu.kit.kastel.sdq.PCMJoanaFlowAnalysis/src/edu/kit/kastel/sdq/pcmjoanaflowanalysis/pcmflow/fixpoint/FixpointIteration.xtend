@@ -13,6 +13,8 @@ import java.util.HashSet
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMSubtypeResolver
 import java.util.ArrayDeque
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.PCMJOANACoupler
+import java.util.Map
+import java.util.HashMap
 
 //For ease of problem, we assume a flat system at the moment until fully integrating flat data structure is available.  
 class FixpointIteration {
@@ -113,6 +115,14 @@ class FixpointIteration {
 		if (stepPossible) {
 			val assemblyConnector = assemblyConnectorOptional.get();
 			var resolvedDirection = assemblyConnector.getDirection(sinkIdentifying);
+			
+			/*TODO: Include the methods information assemblyconnectors*/
+			if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.ASSEMBLY)) {
+				assemblyConnector.getMethodHistory().put(sinkIdentifying,assemblyConnector.providing);
+			} else if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.OPPOSITE)) {
+				assemblyConnector.getMethodHistory().put(sinkIdentifying,assemblyConnector.requiringContext);
+			}
+			/*End of change */
 
 			if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.ASSEMBLY)) {
 				return new SystemOperationIdentifying(assemblyConnector.providing,

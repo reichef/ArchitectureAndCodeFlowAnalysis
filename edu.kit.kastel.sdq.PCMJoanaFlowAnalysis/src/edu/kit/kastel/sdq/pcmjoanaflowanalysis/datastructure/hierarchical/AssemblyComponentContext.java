@@ -18,6 +18,14 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 	private Map<SystemOperationIdentifying, Collection<SystemOperationIdentifying>> systemInducedConnection;
 	private FlowBasicComponent component;
 	
+	
+	/**TODO Include the methods information assemblyconnectors */
+	public Map<SystemOperationIdentifying, Collection<SystemOperationIdentifying>> getSystemInducedConnection() {
+		return systemInducedConnection;
+	}
+	/*End of change
+	 */
+	
 	public void setComponent(FlowBasicComponent component) {
 		this.component = component;
 	}

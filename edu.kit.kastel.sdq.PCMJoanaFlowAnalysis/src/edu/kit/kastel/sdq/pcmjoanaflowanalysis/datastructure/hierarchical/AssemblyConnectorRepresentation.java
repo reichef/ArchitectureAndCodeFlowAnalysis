@@ -6,6 +6,14 @@ import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
+/**TODO: include the methods in the analysis*/
+import edu.kit.joana.component.connector.Method;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 
 public class AssemblyConnectorRepresentation {
 	
@@ -14,13 +22,25 @@ public class AssemblyConnectorRepresentation {
 	private AssemblyComponentContext providing;
 	private AssemblyComponentContext requiring;
 	private AssemblyConnector assemblyConnector;
+	private HashMap<SystemOperationIdentifying, AssemblyComponentContext> methodHistory; /*TODO: include the methods in the analysis*/
 
 	
 	public AssemblyConnectorRepresentation(AssemblyConnector connector, AssemblyComponentContext requiring,AssemblyComponentContext providing) {
 		this.assemblyConnector = connector;
 		this.providing = providing;
 		this.requiring = requiring;
+		methodHistory = new HashMap<SystemOperationIdentifying, AssemblyComponentContext>();
 	
+	}
+	
+	/*TODO: include the methods in the analysis*/
+	public Map<SystemOperationIdentifying, AssemblyComponentContext> getMethodHistory() {
+		return methodHistory;
+	}
+	
+	/*TODO: include the methods in the analysis*/
+	public void setMethodHistory(Map<SystemOperationIdentifying, AssemblyComponentContext> methodHistory) {
+		this.methodHistory = (HashMap<SystemOperationIdentifying, AssemblyComponentContext>)methodHistory;
 	}
 	
 	public AssemblyConnector getConnector() {
