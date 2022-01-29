@@ -5,12 +5,20 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.Assemb
 import org.palladiosimulator.pcm.repository.OperationSignature
 import org.eclipse.xtend.lib.annotations.Data
 import org.palladiosimulator.pcm.repository.OperationInterface
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyConnectorRepresentation
+import java.util.HashMap
+import java.util.ArrayList
 
 @Data class SystemOperationIdentifying {
 		AssemblyComponentContext context;
 		OperationInterface opInterface;
 		OperationSignature signature;
+		/*TODO: include the methods in the analysis*/
+		ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>> methodHistory; /*TODO: include the methods in the analysis*/
 		
+	def ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>> getMethodHistory() {
+		return methodHistory;
+	}
 	
 	def boolean identyfyingEquals(AssemblyComponentContext context, OperationInterface opInt, OperationSignature signature) {
 		return this.context.id.equals(context.id) && this.opInterface.id.equals(opInt.id) &&this.signature.getId().equals(signature.getId());

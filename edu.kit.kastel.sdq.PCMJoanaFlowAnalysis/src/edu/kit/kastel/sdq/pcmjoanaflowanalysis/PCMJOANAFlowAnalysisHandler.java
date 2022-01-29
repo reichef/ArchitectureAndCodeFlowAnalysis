@@ -9,6 +9,11 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
+
 import java.util.Optional;
 import java.util.ArrayList;
 
@@ -37,16 +42,28 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		
+		  Display display = Display.getDefault();
+		  Shell shell = new Shell(display);
+		  
+		MessageBox dialog =
+			    new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
+			dialog.setText("My info");
+			dialog.setMessage("Do you really want to do this?");
+			
+		// open dialog and await user selection
+		int returnCode = dialog.open();
+			
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		Optional<List<IFile>> list = getFilteredList(selection);
-		if (list.isPresent()) {
-			try {
-				executeFlowAnalysis(list.get());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+//		if (list.isPresent()) {
+//			try {
+//				executeFlowAnalysis(list.get());
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 		return list;
 	}
 

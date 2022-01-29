@@ -15,6 +15,8 @@ import java.util.ArrayDeque
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.analysiscoupling.PCMJOANACoupler
 import java.util.Map
 import java.util.HashMap
+import org.eclipse.ocl.util.Tuple
+import java.util.ArrayList
 
 //For ease of problem, we assume a flat system at the moment until fully integrating flat data structure is available.  
 class FixpointIteration {
@@ -84,7 +86,7 @@ class FixpointIteration {
 					sinkInterface, id);
 				if (requiredOpSig.isPresent()) {
 					var sinkIdentifying = new SystemOperationIdentifying(source.context, sinkInterface,
-						requiredOpSig.get());
+						requiredOpSig.get(),null);
 
 					sinks.add(sinkIdentifying);
 				}
@@ -116,20 +118,42 @@ class FixpointIteration {
 			val assemblyConnector = assemblyConnectorOptional.get();
 			var resolvedDirection = assemblyConnector.getDirection(sinkIdentifying);
 			
+			
 			/*TODO: Include the methods information assemblyconnectors*/
+			var method_history = assemblyConnector.getMethodHistory();
+			var method_history2 = new ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>>();
+
 			if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.ASSEMBLY)) {
-				assemblyConnector.getMethodHistory().put(sinkIdentifying,assemblyConnector.providing);
+//				var assembly_connector_rep_method_history = assemblyConnector.providing.getAssemblyConnectorRepresentation();
+//				for (element :assembly_connector_rep_method_history) {
+//					var method_history = element.getMethodHistory();
+					var pair = new HashMap<SystemOperationIdentifying, AssemblyComponentContext>();
+					pair.put(sinkIdentifying,assemblyConnector.requiringContext);
+					method_history.add(pair);
+					method_history2.add(pair);
+//				}
 			} else if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.OPPOSITE)) {
-				assemblyConnector.getMethodHistory().put(sinkIdentifying,assemblyConnector.requiringContext);
+//				var assembly_connector_rep_method_history = assemblyConnector.providing.getAssemblyConnectorRepresentation();
+//				for (element :assembly_connector_rep_method_history) {
+//					var method_history = element.getMethodHistory();
+					var pair = new HashMap<SystemOperationIdentifying, AssemblyComponentContext>();
+					pair.put(sinkIdentifying,assemblyConnector.providing);
+					method_history.add(pair);
+					method_history2.add(pair);
+				//}
 			}
+			
+			//assemblyConnector.setMethodHistory(method_history);
 			/*End of change */
 
 			if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.ASSEMBLY)) {
 				return new SystemOperationIdentifying(assemblyConnector.providing,
-					assemblyConnector.providedRole.providedInterface__OperationProvidedRole, sinkIdentifying.signature);
+					assemblyConnector.providedRole.providedInterface__OperationProvidedRole, sinkIdentifying.signature,
+					method_history2);
 			} else if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.OPPOSITE)) {
 				return new SystemOperationIdentifying(assemblyConnector.requiringContext,
-					assemblyConnector.requiredRole.requiredInterface__OperationRequiredRole, sinkIdentifying.signature);
+					assemblyConnector.requiredRole.requiredInterface__OperationRequiredRole, sinkIdentifying.signature,
+					method_history2);
 			}
 		}
 		return null;

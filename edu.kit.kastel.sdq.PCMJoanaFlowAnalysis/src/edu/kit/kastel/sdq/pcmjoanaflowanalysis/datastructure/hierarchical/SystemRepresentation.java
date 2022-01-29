@@ -27,7 +27,7 @@ public class SystemRepresentation extends AssemblyRepresentationContainer {
 				call.getProvidedRole_EntryLevelSystemCall()).get();
 		return new SystemOperationIdentifying(connector.getInner(),
 				call.getProvidedRole_EntryLevelSystemCall().getProvidedInterface__OperationProvidedRole(),
-				call.getOperationSignature__EntryLevelSystemCall());
+				call.getOperationSignature__EntryLevelSystemCall(),null);
 
 	}
 

@@ -1,5 +1,6 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical;
 
+import org.eclipse.ocl.util.Tuple;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -9,6 +10,7 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationI
 /**TODO: include the methods in the analysis*/
 import edu.kit.joana.component.connector.Method;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,25 +24,25 @@ public class AssemblyConnectorRepresentation {
 	private AssemblyComponentContext providing;
 	private AssemblyComponentContext requiring;
 	private AssemblyConnector assemblyConnector;
-	private HashMap<SystemOperationIdentifying, AssemblyComponentContext> methodHistory; /*TODO: include the methods in the analysis*/
+	private ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>> methodHistory; /*TODO: include the methods in the analysis*/
 
 	
 	public AssemblyConnectorRepresentation(AssemblyConnector connector, AssemblyComponentContext requiring,AssemblyComponentContext providing) {
 		this.assemblyConnector = connector;
 		this.providing = providing;
 		this.requiring = requiring;
-		methodHistory = new HashMap<SystemOperationIdentifying, AssemblyComponentContext>();
+		methodHistory = new ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>>();
 	
 	}
 	
 	/*TODO: include the methods in the analysis*/
-	public Map<SystemOperationIdentifying, AssemblyComponentContext> getMethodHistory() {
+	public ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>> getMethodHistory() {
 		return methodHistory;
 	}
 	
 	/*TODO: include the methods in the analysis*/
-	public void setMethodHistory(Map<SystemOperationIdentifying, AssemblyComponentContext> methodHistory) {
-		this.methodHistory = (HashMap<SystemOperationIdentifying, AssemblyComponentContext>)methodHistory;
+	public void setMethodHistory(ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>> methodHistory) {
+		this.methodHistory = methodHistory;
 	}
 	
 	public AssemblyConnector getConnector() {

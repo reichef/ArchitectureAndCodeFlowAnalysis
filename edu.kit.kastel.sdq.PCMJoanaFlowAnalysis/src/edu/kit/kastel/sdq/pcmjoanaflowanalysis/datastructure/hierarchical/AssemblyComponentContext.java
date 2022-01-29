@@ -23,6 +23,10 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 	public Map<SystemOperationIdentifying, Collection<SystemOperationIdentifying>> getSystemInducedConnection() {
 		return systemInducedConnection;
 	}
+	
+	public Collection<AssemblyConnectorRepresentation> getAssemblyConnectorRepresentation() {
+		return assemblyConnectorRepresentation;
+	}
 	/*End of change
 	 */
 	
