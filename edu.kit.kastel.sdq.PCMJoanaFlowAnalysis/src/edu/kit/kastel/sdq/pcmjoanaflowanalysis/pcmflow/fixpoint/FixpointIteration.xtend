@@ -17,6 +17,8 @@ import java.util.Map
 import java.util.HashMap
 import org.eclipse.ocl.util.Tuple
 import java.util.ArrayList
+import org.palladiosimulator.pcm.core.composition.AssemblyContext
+import org.eclipse.emf.ecore.EStructuralFeature
 
 //For ease of problem, we assume a flat system at the moment until fully integrating flat data structure is available.  
 class FixpointIteration {
@@ -51,10 +53,10 @@ class FixpointIteration {
 					 * 1. Add the sink-location as future source because we do not get the "return" as sink from JOANA for the"return-path".
 					 * 2. Do this only for operations with a return-value
 					 * TODO: Check if this approach covers all flow conditions (e.g. if 2. has to be removded)
-					 */ 
-					 if(sink.signature.returnType__OperationSignature !== null){
+					 */
+					if (sink.signature.returnType__OperationSignature !== null) {
 						componentPointsToProcess.add(sink);
-					 }
+					}
 				}
 			}
 		}
@@ -86,7 +88,7 @@ class FixpointIteration {
 					sinkInterface, id);
 				if (requiredOpSig.isPresent()) {
 					var sinkIdentifying = new SystemOperationIdentifying(source.context, sinkInterface,
-						requiredOpSig.get(),null);
+						requiredOpSig.get(), null);
 
 					sinks.add(sinkIdentifying);
 				}
@@ -117,35 +119,50 @@ class FixpointIteration {
 		if (stepPossible) {
 			val assemblyConnector = assemblyConnectorOptional.get();
 			var resolvedDirection = assemblyConnector.getDirection(sinkIdentifying);
-			
-			
+
 			/*TODO: Include the methods information assemblyconnectors*/
 			var method_history = assemblyConnector.getMethodHistory();
 			var method_history2 = new ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>>();
 
 			if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.ASSEMBLY)) {
-//				var assembly_connector_rep_method_history = assemblyConnector.providing.getAssemblyConnectorRepresentation();
-//				for (element :assembly_connector_rep_method_history) {
-//					var method_history = element.getMethodHistory();
-					var pair = new HashMap<SystemOperationIdentifying, AssemblyComponentContext>();
-					pair.put(sinkIdentifying,assemblyConnector.requiringContext);
-					method_history.add(pair);
-					method_history2.add(pair);
-//				}
-			} else if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.OPPOSITE)) {
-//				var assembly_connector_rep_method_history = assemblyConnector.providing.getAssemblyConnectorRepresentation();
-//				for (element :assembly_connector_rep_method_history) {
-//					var method_history = element.getMethodHistory();
-					var pair = new HashMap<SystemOperationIdentifying, AssemblyComponentContext>();
-					pair.put(sinkIdentifying,assemblyConnector.providing);
-					method_history.add(pair);
-					method_history2.add(pair);
-				//}
-			}
-			
-			//assemblyConnector.setMethodHistory(method_history);
-			/*End of change */
+				// Get the interface method
+				method_history.add(sinkIdentifying.context.context.entityName);
+				method_history.add(sinkIdentifying.context.name);
+				method_history.add(sinkIdentifying.signature.entityName);
+				// method_history.add(sinkIdentifying.opInterface.entityName);
+				method_history.add(assemblyConnector.connector.providingAssemblyContext_AssemblyConnector.entityName);
+				var String component_origin = assemblyConnector.connector.providedRole_AssemblyConnector.entityName;
+				component_origin = component_origin.split("\\.").get(0);
+				method_history.add(component_origin);
+				method_history.add(sinkIdentifying.opInterface.signatures__OperationInterface.get(0).entityName);
 
+				var pair = new HashMap<SystemOperationIdentifying, AssemblyComponentContext>();
+				var assemblyContext_ = assemblyConnector.providing;
+				var AssemblyComponentContext new_context = new AssemblyComponentContext(assemblyContext_);
+				pair.put(sinkIdentifying, new_context);
+				method_history2.add(pair);
+			} else if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.OPPOSITE)) {
+				// Get the interface method
+				method_history.add(sinkIdentifying.context.context.entityName);
+				method_history.add(sinkIdentifying.context.name);
+				method_history.add(sinkIdentifying.signature.entityName);
+				// method_history.add(sinkIdentifying.opInterface.entityName);
+				method_history.add(assemblyConnector.connector.requiringAssemblyContext_AssemblyConnector.entityName);
+				var String component_origin = assemblyConnector.connector.requiredRole_AssemblyConnector.entityName;
+				component_origin = component_origin.split("\\.").get(0);
+				method_history.add(component_origin);
+				method_history.add(sinkIdentifying.opInterface.signatures__OperationInterface.get(0).entityName);
+
+				var pair = new HashMap<SystemOperationIdentifying, AssemblyComponentContext>();
+				var assemblyContext_ = assemblyConnector.requiringContext;
+				var AssemblyComponentContext new_context = new AssemblyComponentContext(assemblyContext_);
+				pair.put(sinkIdentifying, new_context);
+				// Include it in assemblyconnectorrepresentation
+				method_history2.add(pair);
+			}
+
+			// assemblyConnector.setMethodHistory(method_history);
+			/*End of change */
 			if (resolvedDirection.equals(AssemblyConnectorRepresentation.Direction.ASSEMBLY)) {
 				return new SystemOperationIdentifying(assemblyConnector.providing,
 					assemblyConnector.providedRole.providedInterface__OperationProvidedRole, sinkIdentifying.signature,

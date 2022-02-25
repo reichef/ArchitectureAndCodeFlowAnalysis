@@ -45,6 +45,34 @@ public class AssemblyComponentContext extends AssemblyRepresentationContainer {
 		this.component = component;
 	}
 	
+	/*TODO: Copy constructor 
+	 * 
+	 */
+	public AssemblyComponentContext(AssemblyComponentContext assemblyComponentContext_) {
+		super(assemblyComponentContext_.context.getId(), assemblyComponentContext_.context.getEncapsulatedComponent__AssemblyContext().getEntityName());
+		this.context = assemblyComponentContext_.context;
+		this.systemInducedConnection = assemblyComponentContext_.systemInducedConnection;
+		this.component = assemblyComponentContext_.component;
+		//Super
+		this.assemblyConnectorRepresentation = new HashSet<AssemblyConnectorRepresentation>(assemblyComponentContext_.assemblyConnectorRepresentation);
+		this.compositeConnectorRepresentation = new HashSet<CompositeConnectorRepresentation>(assemblyComponentContext_.compositeConnectorRepresentation);
+		this.containedRepresentations = new HashSet<AssemblyComponentContext> (assemblyComponentContext_.containedRepresentations);
+		this.annotations = new HashMap<String, String>(assemblyComponentContext_.annotations);
+	}
+	
+	public AssemblyComponentContext(AssemblyComponentContext assemblyComponentContext_, AssemblyConnectorRepresentation assemblyConnectorRepresentation_) {
+		super(assemblyComponentContext_.context.getId(), assemblyComponentContext_.context.getEncapsulatedComponent__AssemblyContext().getEntityName());
+		this.context = assemblyComponentContext_.context;
+		this.systemInducedConnection = assemblyComponentContext_.systemInducedConnection;
+		this.component = assemblyComponentContext_.component;
+		//Super
+		this.assemblyConnectorRepresentation = new HashSet<AssemblyConnectorRepresentation>();
+		this.assemblyConnectorRepresentation.add(assemblyConnectorRepresentation_);
+		this.compositeConnectorRepresentation = new HashSet<CompositeConnectorRepresentation>(assemblyComponentContext_.compositeConnectorRepresentation);
+		this.containedRepresentations = new HashSet<AssemblyComponentContext> (assemblyComponentContext_.containedRepresentations);
+		this.annotations = new HashMap<String, String>(assemblyComponentContext_.annotations);
+	}
+	
 	public boolean encapsulatesContext(AssemblyContext context) {
 		return this.context.getId().equals(context.getId());
 	}

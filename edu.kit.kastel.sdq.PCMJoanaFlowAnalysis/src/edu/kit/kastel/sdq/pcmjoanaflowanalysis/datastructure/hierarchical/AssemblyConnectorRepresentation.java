@@ -24,24 +24,24 @@ public class AssemblyConnectorRepresentation {
 	private AssemblyComponentContext providing;
 	private AssemblyComponentContext requiring;
 	private AssemblyConnector assemblyConnector;
-	private ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>> methodHistory; /*TODO: include the methods in the analysis*/
+	private ArrayList<String> methodHistory; /*TODO: include the methods in the analysis*/
 
 	
 	public AssemblyConnectorRepresentation(AssemblyConnector connector, AssemblyComponentContext requiring,AssemblyComponentContext providing) {
 		this.assemblyConnector = connector;
 		this.providing = providing;
 		this.requiring = requiring;
-		methodHistory = new ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>>();
+		methodHistory = new ArrayList<String>();
 	
 	}
 	
 	/*TODO: include the methods in the analysis*/
-	public ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>> getMethodHistory() {
+	public ArrayList<String> getMethodHistory() {
 		return methodHistory;
 	}
 	
 	/*TODO: include the methods in the analysis*/
-	public void setMethodHistory(ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>> methodHistory) {
+	public void setMethodHistory(ArrayList<String> methodHistory) {
 		this.methodHistory = methodHistory;
 	}
 	
