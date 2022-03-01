@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
@@ -34,12 +37,16 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.sirius.business.api.componentization.ViewpointRegistry;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
+import org.eclipse.sirius.business.api.session.DefaultLocalSessionCreationOperation;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.business.api.session.factory.SessionFactory;
 import org.eclipse.sirius.tools.api.command.semantic.AddSemanticResourceCommand;
+import org.eclipse.sirius.ui.tools.internal.actions.creation.CreateRepresentationAction;
+import org.eclipse.sirius.ui.tools.internal.wizards.CreateRepresentationWizard;
 import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
 
@@ -72,36 +79,81 @@ public class GenerateDiagramModelInstance {
 		saveOptions.put(XMLResourceImpl.OPTION_USE_CACHED_LOOKUP_TABLE, new ArrayList<>());
 		try {
 			resource.save(saveOptions);
-
+			
 			//Include it in the aird specs
 			NullProgressMonitor monitor = new NullProgressMonitor();
-			URI uri = URI.createFileURI("/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/PCMModels/ClientServerTest/representations.aird");
-			Session session = SessionManager.INSTANCE.getSession(uri, monitor);
-			session.open(monitor);
+			URI uri = URI.createPlatformResourceURI("/edu.kit.kastel.dsis.msflow.casestudy.simple.ClientServerTest/representations.aird",true); 
+//			URI uri = URI.createFileURI("/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/PCMModels/ClientServerTest/representations.aird");
+			var o = new DefaultLocalSessionCreationOperation(uri, monitor);
+			o.execute();
+			Session session = o.getCreatedSession();
+			//Session session = SessionManager.INSTANCE.getSession(uri, monitor);
+			//Session session = SessionFactory.INSTANCE.createSession(uri, new NullProgressMonitor());
+			//session.open(monitor);
 			
 			org.eclipse.emf.common.util.URI semanticResourcesURI = resource.getURI();
 			session.getTransactionalEditingDomain().getCommandStack().execute(new AddSemanticResourceCommand(session, semanticResourcesURI, monitor));
-			session.save(monitor);
-			//Activate the diagram
-			org.eclipse.sirius.ui.business.api.session.UserSession.from(session).selectViewpoint("JoanaFlowAnalysisViewpoint");
-			var viewpoints_ = session.getSelectedViewpoints(true);
-			RepresentationDescription representation_ = null;
-			for (var viewpoint_ : viewpoints_ ) {
-				if (viewpoint_.getName().equals("JoanaFlowAnalysisViewpoint"))
-					for (var representationDescription_ : viewpoint_.getOwnedRepresentations()) {
-						representation_ = representationDescription_;
-					}
-			}
-			//var viewpointregistry_ = ViewpointRegistry.getInstance();
 			
-			DRepresentation representation = DialectManager.INSTANCE.createRepresentation("Joana Flow Analyis", null, representation_, session, monitor);
 			session.save(monitor);
+			session.close(monitor);
+			
+			//Activate the viewpoint
+			
+			o = new DefaultLocalSessionCreationOperation(uri, monitor);
+			o.execute();
+			session = o.getCreatedSession();
+			
+			var session2 = org.eclipse.sirius.ui.business.api.session.UserSession.from(session).selectViewpoint("JoanaFlowAnalysisViewpoint");
+			
+			org.eclipse.sirius.ui.business.api.session.UserSession.from(session).selectViewpoint("JoanaFlowAnalysisViewpoint");
+			
+			session.save(monitor);
+			session.close(monitor);
+			
+			//Refresh the project
+			for(IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()){
+			    project.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+			}
+			
+			//Generate the diagram
+//			monitor = new NullProgressMonitor();
+//			URI platform_uri = URI.createPlatformResourceURI("/edu.kit.kastel.dsis.msflow.casestudy.simple.ClientServerTest/representations.aird",true); 
+//			o = new DefaultLocalSessionCreationOperation(platform_uri, monitor);
+//			o.execute();
+//			session = o.getCreatedSession();
+//			
+//			EObject eDiagram = resource.getContents().get(0);
+////			var viewpoints_ = session.getSelectedViewpoints(true);
+////			for (var viewpoint_ : viewpoints_ ) {
+////				if (viewpoint_.getName().equals("JoanaFlowAnalysisViewpoint"))
+////					for (var representationDescription_ : viewpoint_.getOwnedRepresentations()) {
+////						DRepresentation representation = DialectManager.INSTANCE.createRepresentation("new FDiagram", eDiagram, representationDescription_, session, monitor);
+////					}
+////			}
+//			Collection<RepresentationDescription> descs = DialectManager.INSTANCE.getAvailableRepresentationDescriptions(session.getSelectedViewpoints(false), eDiagram);
+//			for (var representationDescription_ : descs) {
+//				DRepresentation representation = DialectManager.INSTANCE.createRepresentation("new FDiagram", eDiagram, representationDescription_, session, monitor);
+//			}
+//			
+//			
+//			session.save(monitor);
+//			session.close(monitor);
+			
+			//Refresh the project
+			for(IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()){
+			    project.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+			}
+			
+
 			
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 //		} catch (CoreException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

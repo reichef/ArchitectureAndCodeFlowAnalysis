@@ -5,7 +5,6 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.Assemb
 import org.palladiosimulator.pcm.repository.OperationSignature
 import org.eclipse.xtend.lib.annotations.Data
 import org.palladiosimulator.pcm.repository.OperationInterface
-import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyConnectorRepresentation
 import java.util.HashMap
 import java.util.ArrayList
 
@@ -13,8 +12,6 @@ import java.util.ArrayList
 		AssemblyComponentContext context;
 		OperationInterface opInterface;
 		OperationSignature signature;
-		/*TODO: include the methods in the analysis*/
-		ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>> methodHistory; /*TODO: include the methods in the analysis*/
 		
 	def ArrayList<HashMap<SystemOperationIdentifying, AssemblyComponentContext>> getMethodHistory() {
 		return methodHistory;
