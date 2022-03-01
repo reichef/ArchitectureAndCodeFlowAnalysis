@@ -97,7 +97,7 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		
 		//TODO: Generate the diagram model
 		GenerateDiagramModelInstance diagram = new GenerateDiagramModelInstance();
-		diagram.setupAndSaveEMFSampleInstanceResource(systemrepresentation);
+		diagram.setupAndSaveEMFSampleInstanceResource(systemrepresentation,false);
 		//end TODO
 		
 		java.lang.System.out.println("Finished Execution");
