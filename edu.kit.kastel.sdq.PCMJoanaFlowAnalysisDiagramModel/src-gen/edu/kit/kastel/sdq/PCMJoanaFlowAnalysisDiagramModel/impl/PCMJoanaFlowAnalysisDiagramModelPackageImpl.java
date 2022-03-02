@@ -10,6 +10,7 @@ import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelFactory;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelPackage;
 
+import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -66,6 +67,13 @@ public class PCMJoanaFlowAnalysisDiagramModelPackageImpl extends EPackageImpl
 	 * @generated
 	 */
 	private EClass flowEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass parameterEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -219,6 +227,15 @@ public class PCMJoanaFlowAnalysisDiagramModelPackageImpl extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMethod_Parameter() {
+		return (EReference) methodEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFlowAnalysisDiagram() {
 		return flowAnalysisDiagramEClass;
 	}
@@ -282,6 +299,42 @@ public class PCMJoanaFlowAnalysisDiagramModelPackageImpl extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFlow_Parameter() {
+		return (EReference) flowEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getParameter() {
+		return parameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParameter_Name() {
+		return (EAttribute) parameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getParameter_Flow() {
+		return (EReference) parameterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PCMJoanaFlowAnalysisDiagramModelFactory getPCMJoanaFlowAnalysisDiagramModelFactory() {
 		return (PCMJoanaFlowAnalysisDiagramModelFactory) getEFactoryInstance();
 	}
@@ -317,6 +370,7 @@ public class PCMJoanaFlowAnalysisDiagramModelPackageImpl extends EPackageImpl
 		methodEClass = createEClass(METHOD);
 		createEAttribute(methodEClass, METHOD__NAME);
 		createEReference(methodEClass, METHOD__FLOW);
+		createEReference(methodEClass, METHOD__PARAMETER);
 
 		flowAnalysisDiagramEClass = createEClass(FLOW_ANALYSIS_DIAGRAM);
 		createEAttribute(flowAnalysisDiagramEClass, FLOW_ANALYSIS_DIAGRAM__NAME);
@@ -327,6 +381,11 @@ public class PCMJoanaFlowAnalysisDiagramModelPackageImpl extends EPackageImpl
 		flowEClass = createEClass(FLOW);
 		createEReference(flowEClass, FLOW__METHOD);
 		createEAttribute(flowEClass, FLOW__ID);
+		createEReference(flowEClass, FLOW__PARAMETER);
+
+		parameterEClass = createEClass(PARAMETER);
+		createEAttribute(parameterEClass, PARAMETER__NAME);
+		createEReference(parameterEClass, PARAMETER__FLOW);
 	}
 
 	/**
@@ -384,6 +443,9 @@ public class PCMJoanaFlowAnalysisDiagramModelPackageImpl extends EPackageImpl
 		initEReference(getMethod_Flow(), this.getFlow(), null, "flow", null, 0, -1, Method.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEReference(getMethod_Parameter(), this.getParameter(), null, "parameter", null, 0, -1, Method.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(flowAnalysisDiagramEClass, FlowAnalysisDiagram.class, "FlowAnalysisDiagram", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -398,11 +460,22 @@ public class PCMJoanaFlowAnalysisDiagramModelPackageImpl extends EPackageImpl
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(flowEClass, Flow.class, "Flow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFlow_Method(), this.getMethod(), null, "method", null, 1, 1, Flow.class, !IS_TRANSIENT,
+		initEReference(getFlow_Method(), this.getMethod(), null, "method", null, 0, 1, Flow.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEAttribute(getFlow_Id(), ecorePackage.getEString(), "id", null, 0, 1, Flow.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFlow_Parameter(), this.getParameter(), null, "parameter", null, 0, 1, Flow.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 0, 1, Parameter.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParameter_Flow(), this.getFlow(), null, "flow", null, 0, -1, Parameter.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -12,10 +12,25 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
+        <edgeMappings name="parameter_flow" sourceMapping="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@borderedNodeMappings[name='Parameter']" targetMapping="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@borderedNodeMappings[name='Parameter']" targetFinderExpression="aql:self.parameter" sourceFinderExpression="aql:self.ancestors()" domainClass="PCMJoanaFlowAnalysisDiagramModel::Flow" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="aql:self.id">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
         <containerMappings name="JoanaAssembly" semanticCandidatesExpression="feature:assembly" domainClass="PCMJoanaFlowAnalysisDiagramModel::Assembly">
           <subContainerMappings name="JoanaClass" semanticCandidatesExpression="feature:class" domainClass="PCMJoanaFlowAnalysisDiagramModel::Class">
             <subNodeMappings name="Method" semanticCandidatesExpression="feature:method" domainClass="PCMJoanaFlowAnalysisDiagramModel::Method">
-              <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="service:getflowsNumber()" resizeKind="NSEW" width="5" height="5">
+              <borderedNodeMappings name="Parameter" semanticCandidatesExpression="feature:parameter" domainClass="PCMJoanaFlowAnalysisDiagramModel::Parameter">
+                <style xsi:type="style:SquareDescription" labelSize="10" showIcon="false" labelPosition="node" resizeKind="NSEW" width="5" height="2">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+                </style>
+              </borderedNodeMappings>
+              <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="service:getflowsNumber()" labelPosition="node" resizeKind="NSEW" width="5" height="5">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_yellow']"/>
@@ -80,6 +95,14 @@
             </initialOperation>
           </ownedTools>
         </toolSections>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@style" attributeName="width" value="service:getMethodWidth()"/>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='JoanaFlowAnalysisViewpoint']/@ownedRepresentations[name='JoanaFlowAnalysisDiagram']/@defaultLayer/@containerMappings[name='JoanaAssembly']/@subContainerMappings[name='JoanaClass']/@subNodeMappings[name='Method']/@borderedNodeMappings[name='Parameter']/@style" attributeName="width" value="service:getParameterWidth()"/>
+          </vsmElementCustomizations>
+        </customization>
       </defaultLayer>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagram.Services"/>

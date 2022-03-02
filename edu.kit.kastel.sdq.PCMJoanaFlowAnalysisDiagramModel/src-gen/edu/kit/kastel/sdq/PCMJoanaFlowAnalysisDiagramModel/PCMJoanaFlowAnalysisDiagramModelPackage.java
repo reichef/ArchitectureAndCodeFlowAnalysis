@@ -178,13 +178,22 @@ public interface PCMJoanaFlowAnalysisDiagramModelPackage extends EPackage {
 	int METHOD__FLOW = 1;
 
 	/**
+	 * The feature id for the '<em><b>Parameter</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__PARAMETER = 2;
+
+	/**
 	 * The number of structural features of the '<em>Method</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METHOD_FEATURE_COUNT = 2;
+	int METHOD_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Method</em>' class.
@@ -307,13 +316,22 @@ public interface PCMJoanaFlowAnalysisDiagramModelPackage extends EPackage {
 	int FLOW__ID = 1;
 
 	/**
+	 * The feature id for the '<em><b>Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW__PARAMETER = 2;
+
+	/**
 	 * The number of structural features of the '<em>Flow</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_FEATURE_COUNT = 2;
+	int FLOW_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Flow</em>' class.
@@ -323,6 +341,52 @@ public interface PCMJoanaFlowAnalysisDiagramModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int FLOW_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.ParameterImpl <em>Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.ParameterImpl
+	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.PCMJoanaFlowAnalysisDiagramModelPackageImpl#getParameter()
+	 * @generated
+	 */
+	int PARAMETER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Flow</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__FLOW = 1;
+
+	/**
+	 * The number of structural features of the '<em>Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Assembly <em>Assembly</em>}'.
@@ -421,6 +485,17 @@ public interface PCMJoanaFlowAnalysisDiagramModelPackage extends EPackage {
 	EReference getMethod_Flow();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method#getParameter <em>Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Parameter</em>'.
+	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method#getParameter()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EReference getMethod_Parameter();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.FlowAnalysisDiagram <em>Flow Analysis Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -493,6 +568,49 @@ public interface PCMJoanaFlowAnalysisDiagramModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFlow_Id();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow#getParameter <em>Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Parameter</em>'.
+	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow#getParameter()
+	 * @see #getFlow()
+	 * @generated
+	 */
+	EReference getFlow_Parameter();
+
+	/**
+	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter <em>Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Parameter</em>'.
+	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter
+	 * @generated
+	 */
+	EClass getParameter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter#getName()
+	 * @see #getParameter()
+	 * @generated
+	 */
+	EAttribute getParameter_Name();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter#getFlow <em>Flow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Flow</em>'.
+	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter#getFlow()
+	 * @see #getParameter()
+	 * @generated
+	 */
+	EReference getParameter_Flow();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -596,6 +714,14 @@ public interface PCMJoanaFlowAnalysisDiagramModelPackage extends EPackage {
 		EReference METHOD__FLOW = eINSTANCE.getMethod_Flow();
 
 		/**
+		 * The meta object literal for the '<em><b>Parameter</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD__PARAMETER = eINSTANCE.getMethod_Parameter();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.FlowAnalysisDiagramImpl <em>Flow Analysis Diagram</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -656,6 +782,40 @@ public interface PCMJoanaFlowAnalysisDiagramModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FLOW__ID = eINSTANCE.getFlow_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FLOW__PARAMETER = eINSTANCE.getFlow_Parameter();
+
+		/**
+		 * The meta object literal for the '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.ParameterImpl <em>Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.ParameterImpl
+		 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.PCMJoanaFlowAnalysisDiagramModelPackageImpl#getParameter()
+		 * @generated
+		 */
+		EClass PARAMETER = eINSTANCE.getParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER__NAME = eINSTANCE.getParameter_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Flow</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER__FLOW = eINSTANCE.getParameter_Flow();
 
 	}
 

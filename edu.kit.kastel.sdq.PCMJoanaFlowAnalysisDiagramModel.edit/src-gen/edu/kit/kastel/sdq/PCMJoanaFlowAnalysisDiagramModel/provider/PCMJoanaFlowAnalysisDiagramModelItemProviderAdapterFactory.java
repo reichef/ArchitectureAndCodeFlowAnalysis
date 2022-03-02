@@ -189,6 +189,29 @@ public class PCMJoanaFlowAnalysisDiagramModelItemProviderAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ParameterItemProvider parameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createParameterAdapter() {
+		if (parameterItemProvider == null) {
+			parameterItemProvider = new ParameterItemProvider(this);
+		}
+
+		return parameterItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,6 +320,8 @@ public class PCMJoanaFlowAnalysisDiagramModelItemProviderAdapterFactory
 			joanaFlowAnalysisDiagramItemProvider.dispose();
 		if (flowItemProvider != null)
 			flowItemProvider.dispose();
+		if (parameterItemProvider != null)
+			parameterItemProvider.dispose();
 	}
 
 }

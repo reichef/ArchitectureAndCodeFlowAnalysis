@@ -23,6 +23,7 @@
     <genClasses ecoreClass="PCMJoanaFlowAnalysisDiagramModel.ecore#//Method">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PCMJoanaFlowAnalysisDiagramModel.ecore#//Method/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PCMJoanaFlowAnalysisDiagramModel.ecore#//Method/flow"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PCMJoanaFlowAnalysisDiagramModel.ecore#//Method/parameter"/>
     </genClasses>
     <genClasses image="false" ecoreClass="PCMJoanaFlowAnalysisDiagramModel.ecore#//FlowAnalysisDiagram">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PCMJoanaFlowAnalysisDiagramModel.ecore#//FlowAnalysisDiagram/name"/>
@@ -33,6 +34,11 @@
     <genClasses ecoreClass="PCMJoanaFlowAnalysisDiagramModel.ecore#//Flow">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PCMJoanaFlowAnalysisDiagramModel.ecore#//Flow/method"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PCMJoanaFlowAnalysisDiagramModel.ecore#//Flow/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PCMJoanaFlowAnalysisDiagramModel.ecore#//Flow/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="PCMJoanaFlowAnalysisDiagramModel.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PCMJoanaFlowAnalysisDiagramModel.ecore#//Parameter/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PCMJoanaFlowAnalysisDiagramModel.ecore#//Parameter/flow"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

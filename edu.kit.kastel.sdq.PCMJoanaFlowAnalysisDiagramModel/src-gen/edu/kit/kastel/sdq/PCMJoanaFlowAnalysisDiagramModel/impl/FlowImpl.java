@@ -6,6 +6,7 @@ import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelPackage;
 
+import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.FlowImpl#getMethod <em>Method</em>}</li>
  *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.FlowImpl#getId <em>Id</em>}</li>
+ *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.FlowImpl#getParameter <em>Parameter</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,6 +60,16 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected Parameter parameter;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -145,6 +157,46 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Parameter getParameter() {
+		if (parameter != null && parameter.eIsProxy()) {
+			InternalEObject oldParameter = (InternalEObject) parameter;
+			parameter = (Parameter) eResolveProxy(oldParameter);
+			if (parameter != oldParameter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							PCMJoanaFlowAnalysisDiagramModelPackage.FLOW__PARAMETER, oldParameter, parameter));
+			}
+		}
+		return parameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Parameter basicGetParameter() {
+		return parameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParameter(Parameter newParameter) {
+		Parameter oldParameter = parameter;
+		parameter = newParameter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					PCMJoanaFlowAnalysisDiagramModelPackage.FLOW__PARAMETER, oldParameter, parameter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -154,6 +206,10 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 			return basicGetMethod();
 		case PCMJoanaFlowAnalysisDiagramModelPackage.FLOW__ID:
 			return getId();
+		case PCMJoanaFlowAnalysisDiagramModelPackage.FLOW__PARAMETER:
+			if (resolve)
+				return getParameter();
+			return basicGetParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -171,6 +227,9 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 			return;
 		case PCMJoanaFlowAnalysisDiagramModelPackage.FLOW__ID:
 			setId((String) newValue);
+			return;
+		case PCMJoanaFlowAnalysisDiagramModelPackage.FLOW__PARAMETER:
+			setParameter((Parameter) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -190,6 +249,9 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 		case PCMJoanaFlowAnalysisDiagramModelPackage.FLOW__ID:
 			setId(ID_EDEFAULT);
 			return;
+		case PCMJoanaFlowAnalysisDiagramModelPackage.FLOW__PARAMETER:
+			setParameter((Parameter) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -206,6 +268,8 @@ public class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
 			return method != null;
 		case PCMJoanaFlowAnalysisDiagramModelPackage.FLOW__ID:
 			return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+		case PCMJoanaFlowAnalysisDiagramModelPackage.FLOW__PARAMETER:
+			return parameter != null;
 		}
 		return super.eIsSet(featureID);
 	}

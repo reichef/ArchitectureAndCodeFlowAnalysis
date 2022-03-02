@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method#getName <em>Name</em>}</li>
  *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method#getFlow <em>Flow</em>}</li>
+ *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method#getParameter <em>Parameter</em>}</li>
  * </ul>
  *
  * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelPackage#getMethod()
@@ -57,5 +58,17 @@ public interface Method extends EObject {
 	 * @generated
 	 */
 	EList<Flow> getFlow();
+
+	/**
+	 * Returns the value of the '<em><b>Parameter</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameter</em>' containment reference list.
+	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelPackage#getMethod_Parameter()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Parameter> getParameter();
 
 } // Method

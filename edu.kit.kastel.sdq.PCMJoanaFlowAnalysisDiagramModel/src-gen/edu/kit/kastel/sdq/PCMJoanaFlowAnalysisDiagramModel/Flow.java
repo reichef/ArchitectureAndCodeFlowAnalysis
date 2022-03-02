@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow#getMethod <em>Method</em>}</li>
  *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow#getId <em>Id</em>}</li>
+ *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow#getParameter <em>Parameter</em>}</li>
  * </ul>
  *
  * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelPackage#getFlow()
@@ -29,7 +30,7 @@ public interface Flow extends EObject {
 	 * @return the value of the '<em>Method</em>' reference.
 	 * @see #setMethod(Method)
 	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelPackage#getFlow_Method()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Method getMethod();
@@ -65,5 +66,27 @@ public interface Flow extends EObject {
 	 * @generated
 	 */
 	void setId(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameter</em>' reference.
+	 * @see #setParameter(Parameter)
+	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelPackage#getFlow_Parameter()
+	 * @model
+	 * @generated
+	 */
+	Parameter getParameter();
+
+	/**
+	 * Sets the value of the '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow#getParameter <em>Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parameter</em>' reference.
+	 * @see #getParameter()
+	 * @generated
+	 */
+	void setParameter(Parameter value);
 
 } // Flow

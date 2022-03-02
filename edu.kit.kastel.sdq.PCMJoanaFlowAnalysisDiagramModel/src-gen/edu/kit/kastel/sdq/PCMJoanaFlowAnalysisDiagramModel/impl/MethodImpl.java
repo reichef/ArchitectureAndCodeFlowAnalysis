@@ -6,6 +6,7 @@ import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelPackage;
 
+import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.MethodImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.MethodImpl#getFlow <em>Flow</em>}</li>
+ *   <li>{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.impl.MethodImpl#getParameter <em>Parameter</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,6 +68,16 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method {
 	 * @ordered
 	 */
 	protected EList<Flow> flow;
+
+	/**
+	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Parameter> parameter;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,11 +138,26 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Parameter> getParameter() {
+		if (parameter == null) {
+			parameter = new EObjectContainmentEList<Parameter>(Parameter.class, this,
+					PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__PARAMETER);
+		}
+		return parameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__FLOW:
 			return ((InternalEList<?>) getFlow()).basicRemove(otherEnd, msgs);
+		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__PARAMETER:
+			return ((InternalEList<?>) getParameter()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -147,6 +174,8 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method {
 			return getName();
 		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__FLOW:
 			return getFlow();
+		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__PARAMETER:
+			return getParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,6 +196,10 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method {
 			getFlow().clear();
 			getFlow().addAll((Collection<? extends Flow>) newValue);
 			return;
+		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__PARAMETER:
+			getParameter().clear();
+			getParameter().addAll((Collection<? extends Parameter>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -185,6 +218,9 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method {
 		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__FLOW:
 			getFlow().clear();
 			return;
+		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__PARAMETER:
+			getParameter().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -201,6 +237,8 @@ public class MethodImpl extends MinimalEObjectImpl.Container implements Method {
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__FLOW:
 			return flow != null && !flow.isEmpty();
+		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__PARAMETER:
+			return parameter != null && !parameter.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -55,6 +55,7 @@ public class FlowItemProvider extends ItemProviderAdapter implements IEditingDom
 
 			addMethodPropertyDescriptor(object);
 			addIdPropertyDescriptor(object);
+			addParameterPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +87,20 @@ public class FlowItemProvider extends ItemProviderAdapter implements IEditingDom
 						getString("_UI_PropertyDescriptor_description", "_UI_Flow_id_feature", "_UI_Flow_type"),
 						PCMJoanaFlowAnalysisDiagramModelPackage.Literals.FLOW__ID, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Parameter feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParameterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Flow_parameter_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Flow_parameter_feature", "_UI_Flow_type"),
+				PCMJoanaFlowAnalysisDiagramModelPackage.Literals.FLOW__PARAMETER, true, false, true, null, null, null));
 	}
 
 	/**

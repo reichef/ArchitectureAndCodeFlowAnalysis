@@ -9,6 +9,7 @@ import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.JOANAFlowAnalysisDiag
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelPackage;
 
+import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -99,6 +100,11 @@ public class PCMJoanaFlowAnalysisDiagramModelAdapterFactory extends AdapterFacto
 		@Override
 		public Adapter caseFlow(Flow object) {
 			return createFlowAdapter();
+		}
+
+		@Override
+		public Adapter caseParameter(Parameter object) {
+			return createParameterAdapter();
 		}
 
 		@Override
@@ -201,6 +207,20 @@ public class PCMJoanaFlowAnalysisDiagramModelAdapterFactory extends AdapterFacto
 	 * @generated
 	 */
 	public Adapter createFlowAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter <em>Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter
+	 * @generated
+	 */
+	public Adapter createParameterAdapter() {
 		return null;
 	}
 

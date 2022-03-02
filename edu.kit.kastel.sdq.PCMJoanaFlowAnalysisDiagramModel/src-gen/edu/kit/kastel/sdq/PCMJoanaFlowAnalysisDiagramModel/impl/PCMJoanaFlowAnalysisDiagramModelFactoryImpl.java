@@ -9,6 +9,7 @@ import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelFactory;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelPackage;
 
+import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Parameter;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -72,6 +73,8 @@ public class PCMJoanaFlowAnalysisDiagramModelFactoryImpl extends EFactoryImpl
 			return createJOANAFlowAnalysisDiagram();
 		case PCMJoanaFlowAnalysisDiagramModelPackage.FLOW:
 			return createFlow();
+		case PCMJoanaFlowAnalysisDiagramModelPackage.PARAMETER:
+			return createParameter();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -125,6 +128,16 @@ public class PCMJoanaFlowAnalysisDiagramModelFactoryImpl extends EFactoryImpl
 	public Flow createFlow() {
 		FlowImpl flow = new FlowImpl();
 		return flow;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Parameter createParameter() {
+		ParameterImpl parameter = new ParameterImpl();
+		return parameter;
 	}
 
 	/**

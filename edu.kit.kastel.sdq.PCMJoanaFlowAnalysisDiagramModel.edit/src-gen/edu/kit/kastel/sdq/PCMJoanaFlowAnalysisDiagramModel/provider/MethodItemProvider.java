@@ -89,6 +89,7 @@ public class MethodItemProvider extends ItemProviderAdapter implements IEditingD
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(PCMJoanaFlowAnalysisDiagramModelPackage.Literals.METHOD__FLOW);
+			childrenFeatures.add(PCMJoanaFlowAnalysisDiagramModelPackage.Literals.METHOD__PARAMETER);
 		}
 		return childrenFeatures;
 	}
@@ -156,6 +157,7 @@ public class MethodItemProvider extends ItemProviderAdapter implements IEditingD
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__FLOW:
+		case PCMJoanaFlowAnalysisDiagramModelPackage.METHOD__PARAMETER:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -175,6 +177,9 @@ public class MethodItemProvider extends ItemProviderAdapter implements IEditingD
 
 		newChildDescriptors.add(createChildParameter(PCMJoanaFlowAnalysisDiagramModelPackage.Literals.METHOD__FLOW,
 				PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createFlow()));
+
+		newChildDescriptors.add(createChildParameter(PCMJoanaFlowAnalysisDiagramModelPackage.Literals.METHOD__PARAMETER,
+				PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createParameter()));
 	}
 
 	/**
