@@ -1,12 +1,18 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis;
 
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.internal.resources.File;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Display;
@@ -24,6 +30,8 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.FixpointIteratio
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmutil.PCMSubtypeResolver;
 
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
@@ -37,14 +45,23 @@ import org.eclipse.emf.common.util.URI;
 
 public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHandler {
 
+	private PCMJOANAFlowAnalysisView diagram = null;
+	private PCMJOANAFlowAnalysisViewFactory view_factory = null;
+	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-//		Display display = Display.getDefault();
-//		Shell shell = new Shell(display);
-//		var dialog = new PCMJOANAStartDialog(shell);
-//		// open dialog and await user selection
-//		int returnCode = dialog.open();
-			
+		
+		view_factory = new PCMJOANAFlowAnalysisViewFactory();
+		
+		diagram = view_factory.getFlowAnalysisView("/edu.kit.kastel.dsis.msflow.casestudy.simple.ClientServerTest/");
+		
+		Display display = Display.getDefault();
+		Shell shell = new Shell(display);
+		var dialog = view_factory.getStartDialog(shell);
+		// open dialog and await user selection
+		dialog.setBlockOnOpen(true);
+		int returnCode = dialog.open();
+
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		Optional<List<IFile>> list = getFilteredList(selection);
 		if (list.isPresent()) {
@@ -96,9 +113,32 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		analyseFlowsFromEntryLevelSystemCalls(models.getUsageModel(), pcmAnalyzer, systemrepresentation);
 		
 		//TODO: Generate the diagram model
-		GenerateDiagramModelInstance diagram = new GenerateDiagramModelInstance();
-		diagram.setupAndSaveEMFSampleInstanceResource(systemrepresentation,false);
-		//end TODO
+		
+		if (diagram != null) {
+			
+			//get object which represents the workspace  
+//			IWorkspace workspace = ResourcesPlugin.getWorkspace();  
+
+			//get location of workspace (java.io.File)  
+//			IWorkbenchPart workbenchPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart(); 
+//		    IFile file = (IFile) workbenchPart.getSite().getPage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+////		    if (file == null)
+////		        try {
+////		            throw new FileNotFoundException();
+////		        } catch (FileNotFoundException e) {
+////		            // TODO Auto-generated catch block
+////		            e.printStackTrace();
+////		        }
+//		    String path = file.getRawLocation().toOSString();
+		    
+//			IPath workspaceDirectory = workspace.getRoot().getLocation();
+			
+			diagram.drawDiagramInstance(systemrepresentation, false);
+		}
+		else {
+			java.lang.System.out.println("Error during View Creation");
+			return false;
+		}
 		
 		java.lang.System.out.println("Finished Execution");
 

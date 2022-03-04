@@ -17,9 +17,11 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
@@ -46,15 +48,20 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.Assemb
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.SystemRepresentation;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationIdentifying;
 
-public class GenerateDiagramModelInstance {
+public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 
-	private String diagram_path;
+	private static String project_path;
+	
+	public PCMJOANAFlowAnalysisViewImpl(String project_path) {
+		this.project_path = project_path;
+	}
 
 	public static Resource createAndAddResource(String outputFile, String[] fileextensions, ResourceSet rs) {
 		for (String fileext : fileextensions) {
 			rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put(fileext, new XMLResourceFactoryImpl());
 		}
-		URI uri = URI.createFileURI(outputFile);
+		URI uri = URI.createPlatformResourceURI(outputFile,true);
+		//URI uri = URI.createFileURI(outputFile);
 		Resource resource = rs.createResource(uri);
 		((ResourceImpl) resource).setIntrinsicIDToEObjectMap(new HashMap<>());
 		return resource;
@@ -69,7 +76,7 @@ public class GenerateDiagramModelInstance {
 			
 			//Include it in the aird specs
 			NullProgressMonitor monitor = new NullProgressMonitor();
-			URI uri = URI.createPlatformResourceURI("/edu.kit.kastel.dsis.msflow.casestudy.simple.ClientServerTest/representations.aird",true); 
+			URI uri = URI.createPlatformResourceURI(project_path + "representations.aird",true); 
 //			URI uri = URI.createFileURI("/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/PCMModels/ClientServerTest/representations.aird");
 			var o = new DefaultLocalSessionCreationOperation(uri, monitor);
 			o.execute();
@@ -103,12 +110,12 @@ public class GenerateDiagramModelInstance {
 			}
 			
 			//Generate the diagram
-			monitor = new NullProgressMonitor();
-			URI platform_uri = URI.createPlatformResourceURI("/edu.kit.kastel.dsis.msflow.casestudy.simple.ClientServerTest/representations.aird",true); 
-			o = new DefaultLocalSessionCreationOperation(platform_uri, monitor);
-			o.execute();
-			session = o.getCreatedSession();
-			
+//			monitor = new NullProgressMonitor();
+//			URI platform_uri = URI.createPlatformResourceURI(project_path + "representations.aird",true); 
+//			o = new DefaultLocalSessionCreationOperation(platform_uri, monitor);
+//			o.execute();
+//			session = o.getCreatedSession();
+//			
 //			EObject eDiagram = resource.getContents().get(0);
 ////			var viewpoints_ = session.getSelectedViewpoints(true);
 ////			for (var viewpoint_ : viewpoints_ ) {
@@ -390,8 +397,11 @@ public class GenerateDiagramModelInstance {
 		ResourceSet rs = new ResourceSetImpl();
 		// Here the resource is created, with fileextensions "gast" and "xml" (adapt
 		// this to use your own file extension).
-		Resource gastResource = createAndAddResource(
-				"/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/PCMModels/ClientServerTest/file.pcmjoanaflowanalysisdiagrammodel",
+//		Resource gastResource = createAndAddResource(
+//				"/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/PCMModels/ClientServerTest/file.pcmjoanaflowanalysisdiagrammodel",
+//				new String[] { "pcmjoanaflowanalysisdiagrammodel", "xml" }, rs);
+		//URI uri = URI.createPlatformResourceURI(project_path + "file.pcmjoanaflowanalysisdiagrammodel",true);
+		Resource gastResource = createAndAddResource(project_path + "file.pcmjoanaflowanalysisdiagrammodel",
 				new String[] { "pcmjoanaflowanalysisdiagrammodel", "xml" }, rs);
 		// The root object is created by using (adapt this to create your own root
 		// object)
@@ -416,6 +426,12 @@ public class GenerateDiagramModelInstance {
 
 		gastResource.getContents().add(root);
 		saveResource(gastResource);
+	}
+
+	@Override
+	public void drawDiagramInstance(Object systemrepresentation, boolean intra_componend_end_point) {
+		// TODO Auto-generated method stub
+		setupAndSaveEMFSampleInstanceResource((SystemRepresentation)systemrepresentation, intra_componend_end_point);
 	}
 
 
