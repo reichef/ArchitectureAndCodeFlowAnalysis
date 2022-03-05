@@ -23,13 +23,36 @@ import org.eclipse.swt.widgets.Text;
 public class PCMJOANAFlowAnalysisStartDialog extends ApplicationWindow {
 
 	private boolean selection = false;
+	private String joanaOutputPath = "";
+	private String joanaServerIP = "";
+	private boolean joanaIntraComponentEndPoint_selected = false;
 	private Shell s;
 	
     public PCMJOANAFlowAnalysisStartDialog(Shell parentShell) {
         super(parentShell);
         s = parentShell;
     }
-
+    
+    public PCMJOANAFlowAnalysisStartDialog(Shell parentShell, String joanaOutputPath, String joanaServerIP, 
+    		boolean intra_componend_end_point) {
+        super(parentShell);
+        s = parentShell;
+        this.joanaOutputPath = joanaOutputPath;
+        this.joanaServerIP = joanaServerIP;
+        this.joanaIntraComponentEndPoint_selected = intra_componend_end_point;
+    }
+    
+    public String getJoanaOutputPath() {
+    	return joanaOutputPath;
+    }
+    public String getJoanaServerIP() {
+    	return joanaServerIP;
+    }
+    
+    public boolean getjoanaIntraComponentEndPoint_selected() {
+    	return joanaIntraComponentEndPoint_selected;
+    }
+    
     @Override
     protected Control createContents(Composite parent) {
         Composite container = new Composite(parent, SWT.NULL);
@@ -42,6 +65,7 @@ public class PCMJOANAFlowAnalysisStartDialog extends ApplicationWindow {
         var joanaOutputPath_label = new Label(container_joanaOutputPath, SWT.RIGHT);
         joanaOutputPath_label.setText("Output folder path: ");
         var joanaOutputPath_text = new Text(container_joanaOutputPath, SWT.LEFT | SWT.BORDER);
+        joanaOutputPath_text.setText(joanaOutputPath);
         Button joanaOutputPath_button = new Button(container_joanaOutputPath, SWT.CENTER);
         joanaOutputPath_button.setText("...");
         joanaOutputPath_button.addSelectionListener(new SelectionAdapter() {
@@ -49,10 +73,11 @@ public class PCMJOANAFlowAnalysisStartDialog extends ApplicationWindow {
           public void widgetSelected(SelectionEvent e) {
               var fileDialog = new DirectoryDialog(s, SWT.OPEN);
               fileDialog.setText("Select Output folder path ...");
-              fileDialog.setFilterPath("/");
+              fileDialog.setFilterPath(joanaOutputPath);
               //String[] filterExt = { "*.*" };
               //fileDialog.setFilterExtensions(filterExt);
               String selected = fileDialog.open();
+              joanaOutputPath_text.setText(selected);
               System.out.println(selected);
           }
         });
@@ -62,46 +87,62 @@ public class PCMJOANAFlowAnalysisStartDialog extends ApplicationWindow {
         var joanaServerIP_label = new Label(container_joanaServerIP, SWT.RIGHT);
         joanaServerIP_label.setText("JOANA Server (IP address): ");
         var joanaServerIP_text = new Text(container_joanaServerIP, SWT.LEFT | SWT.BORDER);
+        joanaServerIP_text.setText(joanaServerIP);
         
-        var container_joanaJarsPath = new Composite(container,SWT.PUSH);
-        container_joanaJarsPath.setLayout(new GridLayout());
-        var joanaJarsPath_label = new Label(container_joanaJarsPath, SWT.RIGHT);
-        joanaJarsPath_label.setText("JOANA Analysis classes (jar files): ");
-        var joanaJarsPath_text = new Text(container_joanaJarsPath, SWT.LEFT | SWT.BORDER );
-        Button joanaJarsPath_button = new Button(container_joanaJarsPath, SWT.CENTER);
-        joanaJarsPath_button.setText("...");
-        joanaJarsPath_button.addSelectionListener(new SelectionAdapter() {
-          @Override
-          public void widgetSelected(SelectionEvent e) {
-              var fileDialog = new FileDialog(s, SWT.MULTI);
-              fileDialog.setText("Select Model folder path ...");
-              fileDialog.setFilterPath("/");
-              String[] filterExt = { "*.jar" };
-              fileDialog.setFilterExtensions(filterExt);
-              String selected = fileDialog.open();
-              System.out.println(selected);
-          }
-        });
+        var container_joanaIntraComponentEndPoint = new Composite(container,SWT.PUSH);
+        container_joanaIntraComponentEndPoint.setLayout(new RowLayout());
+        var joanaIntraComponentEndPoint_label = new Label(container_joanaIntraComponentEndPoint, SWT.RIGHT);
+        joanaIntraComponentEndPoint_label.setText("Ignore Intra-Component End-Points");
+        var joanaIntraComponentEndPoint_checkbox = new Button(container_joanaIntraComponentEndPoint, 
+        		SWT.LEFT | SWT.BORDER | SWT.CHECK);
+        joanaIntraComponentEndPoint_checkbox.setSelection(joanaIntraComponentEndPoint_selected);
+//        joanaIntraComponentEndPoint_checkbox.addSelectionListener(new SelectionAdapter() {
+//            @Override
+//            public void widgetSelected(SelectionEvent e) {
+//            	selection = true;
+//                System.out.println("Intra-Component End-Point check pressed");
+//            }
+//        });
         
-        var container_joanaModelPath = new Composite(container,SWT.PUSH);
-        container_joanaModelPath.setLayout(new RowLayout());
-        var joanaModelPath_label = new Label(container_joanaModelPath, SWT.RIGHT);
-        joanaModelPath_label.setText("JOANA Model path (.repository/.system/.usagemodel): ");
-        var joanaModelPath_text = new Text(container_joanaModelPath, SWT.LEFT | SWT.BORDER);
-        Button joanaModelPath_button = new Button(container_joanaModelPath, SWT.CENTER);
-        joanaModelPath_button.setText("...");
-        joanaModelPath_button.addSelectionListener(new SelectionAdapter() {
-          @Override
-          public void widgetSelected(SelectionEvent e) {
-              var fileDialog = new DirectoryDialog(s, SWT.OPEN);
-              fileDialog.setText("Select Model folder path ...");
-              fileDialog.setFilterPath("/");
-              //String[] filterExt = { "*.*" };
-              //fileDialog.setFilterExtensions(filterExt);
-              String selected = fileDialog.open();
-              System.out.println(selected);
-          }
-        });
+//        var container_joanaJarsPath = new Composite(container,SWT.PUSH);
+//        container_joanaJarsPath.setLayout(new GridLayout());
+//        var joanaJarsPath_label = new Label(container_joanaJarsPath, SWT.RIGHT);
+//        joanaJarsPath_label.setText("JOANA Analysis classes (jar files): ");
+//        var joanaJarsPath_text = new Text(container_joanaJarsPath, SWT.LEFT | SWT.BORDER );
+//        Button joanaJarsPath_button = new Button(container_joanaJarsPath, SWT.CENTER);
+//        joanaJarsPath_button.setText("...");
+//        joanaJarsPath_button.addSelectionListener(new SelectionAdapter() {
+//          @Override
+//          public void widgetSelected(SelectionEvent e) {
+//              var fileDialog = new FileDialog(s, SWT.MULTI);
+//              fileDialog.setText("Select Model folder path ...");
+//              fileDialog.setFilterPath("/");
+//              String[] filterExt = { "*.jar" };
+//              fileDialog.setFilterExtensions(filterExt);
+//              String selected = fileDialog.open();
+//              System.out.println(selected);
+//          }
+//        });
+//        
+//        var container_joanaModelPath = new Composite(container,SWT.PUSH);
+//        container_joanaModelPath.setLayout(new RowLayout());
+//        var joanaModelPath_label = new Label(container_joanaModelPath, SWT.RIGHT);
+//        joanaModelPath_label.setText("JOANA Model path (.repository/.system/.usagemodel): ");
+//        var joanaModelPath_text = new Text(container_joanaModelPath, SWT.LEFT | SWT.BORDER);
+//        Button joanaModelPath_button = new Button(container_joanaModelPath, SWT.CENTER);
+//        joanaModelPath_button.setText("...");
+//        joanaModelPath_button.addSelectionListener(new SelectionAdapter() {
+//          @Override
+//          public void widgetSelected(SelectionEvent e) {
+//              var fileDialog = new DirectoryDialog(s, SWT.OPEN);
+//              fileDialog.setText("Select Model folder path ...");
+//              fileDialog.setFilterPath("/");
+//              //String[] filterExt = { "*.*" };
+//              //fileDialog.setFilterExtensions(filterExt);
+//              String selected = fileDialog.open();
+//              System.out.println(selected);
+//          }
+//        });
         
         //Create buttons
         var container_buttons = new Composite(container,SWT.PUSH);
@@ -113,18 +154,23 @@ public class PCMJOANAFlowAnalysisStartDialog extends ApplicationWindow {
         exit_button.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
+            	setReturnCode(CANCEL);
+            	close();
             	selection = false;
                 System.out.println("Exit Pressed");
             }
         });
         
         Button start_button = new Button(container_buttons, SWT.RIGHT);
-//        start_button.setLayoutData(new GridData(SWT.END, SWT.DOWN, false,
-//                false));
         start_button.setText("Run Analysis");
         start_button.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
+            	setReturnCode(OK);
+            	joanaOutputPath = joanaOutputPath_text.getText();
+            	joanaServerIP = joanaServerIP_text.getText();
+            	joanaIntraComponentEndPoint_selected = joanaIntraComponentEndPoint_checkbox.getSelection();
+            	close();
             	selection = true;
                 System.out.println("Run Analysis Pressed");
             }
@@ -147,4 +193,9 @@ public class PCMJOANAFlowAnalysisStartDialog extends ApplicationWindow {
         return new Point(450, 300);
     }
 
+    @Override
+    public boolean close() {
+    	// TODO Auto-generated method stub
+    	return super.close();
+    }
 }

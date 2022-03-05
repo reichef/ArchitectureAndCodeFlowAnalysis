@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -51,16 +52,7 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
-		view_factory = new PCMJOANAFlowAnalysisViewFactory();
-		
-		diagram = view_factory.getFlowAnalysisView("/edu.kit.kastel.dsis.msflow.casestudy.simple.ClientServerTest/");
-		
-		Display display = Display.getDefault();
-		Shell shell = new Shell(display);
-		var dialog = view_factory.getStartDialog(shell);
-		// open dialog and await user selection
-		dialog.setBlockOnOpen(true);
-		int returnCode = dialog.open();
+		//var test = HandlerUtil.getShowInSelection(event);
 
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		Optional<List<IFile>> list = getFilteredList(selection);
@@ -73,6 +65,7 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 			}
 		}
 		return list;
+
 	}
 
 	private Optional<List<IFile>> getFilteredList(ISelection selection) {
@@ -104,45 +97,50 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 		if (!models.isSuccess()) {
 			return false;
 		}
-
-		SystemRepresentation systemrepresentation = buildDataStructure(models.getSystem(),
-				models.getAnnotationRepository());
-
-		PCMJOANACoupler coupler = new PCMJOANACoupler(models.getConfig());
-		FixpointIteration pcmAnalyzer = new FixpointIteration(coupler);
-		analyseFlowsFromEntryLevelSystemCalls(models.getUsageModel(), pcmAnalyzer, systemrepresentation);
 		
-		//TODO: Generate the diagram model
+		/**TODO: Start the JOANA Analysis Dialog*/
+		view_factory = new PCMJOANAFlowAnalysisViewFactory();
+		Display display = Display.getDefault();
+		Shell shell = new Shell(display);
+		var dialog = view_factory.getStartDialog(shell,models.getConfig().getJoanaOutputFolderPath(),
+				models.getConfig().getJoanaServerIP(),models.getConfig().getJoanaIntraComponentEndPoint());
+		// open dialog and await user selection
+		dialog.setBlockOnOpen(true);
+		int returnCode = dialog.open();
+		//Set the values accordingly got from the dialog interaction
+		models.getConfig().setJoanaOutputFolderPath(dialog.getJoanaOutputPath());
+		models.getConfig().setJoanaServerIP(dialog.getJoanaServerIP());
+		models.getConfig().setJoanaIntraComponentEndPoint(dialog.getjoanaIntraComponentEndPoint_selected());
 		
-		if (diagram != null) {
+		if (returnCode == org.eclipse.jface.window.Window.OK ) {
+			diagram = view_factory.getFlowAnalysisView(models.getProjectPath());
+	
+			SystemRepresentation systemrepresentation = buildDataStructure(models.getSystem(),
+					models.getAnnotationRepository());
+	
+			PCMJOANACoupler coupler = new PCMJOANACoupler(models.getConfig());
+			FixpointIteration pcmAnalyzer = new FixpointIteration(coupler);
+			analyseFlowsFromEntryLevelSystemCalls(models.getUsageModel(), pcmAnalyzer, systemrepresentation);
 			
-			//get object which represents the workspace  
-//			IWorkspace workspace = ResourcesPlugin.getWorkspace();  
-
-			//get location of workspace (java.io.File)  
-//			IWorkbenchPart workbenchPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart(); 
-//		    IFile file = (IFile) workbenchPart.getSite().getPage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
-////		    if (file == null)
-////		        try {
-////		            throw new FileNotFoundException();
-////		        } catch (FileNotFoundException e) {
-////		            // TODO Auto-generated catch block
-////		            e.printStackTrace();
-////		        }
-//		    String path = file.getRawLocation().toOSString();
-		    
-//			IPath workspaceDirectory = workspace.getRoot().getLocation();
+			//TODO: Generate the diagram model
+			if (diagram != null) {
+				diagram.drawDiagramInstance(systemrepresentation, dialog.getjoanaIntraComponentEndPoint_selected());
+			}
+			else {
+				java.lang.System.out.println("Error during View Creation");
+				return false;
+			}
 			
-			diagram.drawDiagramInstance(systemrepresentation, false);
+			//Save the configuration in the config.json file
+			Models.saveToFiles(models);
+			
+			java.lang.System.out.println("Finished Execution");
+	
+			return true;
 		}
 		else {
-			java.lang.System.out.println("Error during View Creation");
 			return false;
 		}
-		
-		java.lang.System.out.println("Finished Execution");
-
-		return true;
 	}
 
 	private SystemRepresentation buildDataStructure(System system, AnnotationRepository annotationRepository) {

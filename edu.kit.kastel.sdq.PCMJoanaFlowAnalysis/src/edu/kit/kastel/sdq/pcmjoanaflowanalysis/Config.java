@@ -8,6 +8,9 @@ public class Config {
 	private String joanaOutputFolderPath;
 	private boolean usePersistedFlows;
 	private String joanaServerIP;
+	//TODO: Save the intra_component_end_point flag
+	private boolean joanaIntraComponentEndPoint;
+	//End TODO
 
 	public Config(String joanaCLIFolderPath, String joanaOutputFolderPath, boolean usePersistedFlows, String joanaServerIP) {
 		this.joanaCLIFolderPath = joanaCLIFolderPath;
@@ -22,6 +25,16 @@ public class Config {
 		this.setUsingPersistedFlows(usePersistedFlows);
 		this.joanaServerIP = joanaServerIP;
 	}
+	
+	//TODO: Save the intra_component_end_point flag
+	public boolean getJoanaIntraComponentEndPoint() {
+		return joanaIntraComponentEndPoint;
+	}
+	
+	public void setJoanaIntraComponentEndPoint(boolean joanaIntraComponentEndPoint) {
+		this.joanaIntraComponentEndPoint = joanaIntraComponentEndPoint;
+	}
+	//End TODO
 
 	public String getJoanaCLIFolderPath() {
 		return joanaCLIFolderPath;

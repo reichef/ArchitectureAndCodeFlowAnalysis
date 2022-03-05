@@ -50,10 +50,10 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationI
 
 public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 
-	private static String project_path;
+	private static String PROJECT_PATH;
 	
 	public PCMJOANAFlowAnalysisViewImpl(String project_path) {
-		this.project_path = project_path;
+		PCMJOANAFlowAnalysisViewImpl.PROJECT_PATH = project_path;
 	}
 
 	public static Resource createAndAddResource(String outputFile, String[] fileextensions, ResourceSet rs) {
@@ -76,7 +76,7 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 			
 			//Include it in the aird specs
 			NullProgressMonitor monitor = new NullProgressMonitor();
-			URI uri = URI.createPlatformResourceURI(project_path + "representations.aird",true); 
+			URI uri = URI.createPlatformResourceURI(PROJECT_PATH + "/"  + "representations.aird",true); 
 //			URI uri = URI.createFileURI("/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/PCMModels/ClientServerTest/representations.aird");
 			var o = new DefaultLocalSessionCreationOperation(uri, monitor);
 			o.execute();
@@ -401,7 +401,7 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 //				"/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/PCMModels/ClientServerTest/file.pcmjoanaflowanalysisdiagrammodel",
 //				new String[] { "pcmjoanaflowanalysisdiagrammodel", "xml" }, rs);
 		//URI uri = URI.createPlatformResourceURI(project_path + "file.pcmjoanaflowanalysisdiagrammodel",true);
-		Resource gastResource = createAndAddResource(project_path + "file.pcmjoanaflowanalysisdiagrammodel",
+		Resource gastResource = createAndAddResource(PROJECT_PATH + "/" + "file.pcmjoanaflowanalysisdiagrammodel",
 				new String[] { "pcmjoanaflowanalysisdiagrammodel", "xml" }, rs);
 		// The root object is created by using (adapt this to create your own root
 		// object)

@@ -11,4 +11,10 @@ public class PCMJOANAFlowAnalysisViewFactory {
 	public PCMJOANAFlowAnalysisStartDialog getStartDialog(Shell parentShell) {
 		return new PCMJOANAFlowAnalysisStartDialog(parentShell);
 	}
+	
+	public PCMJOANAFlowAnalysisStartDialog getStartDialog(Shell parentShell, String joanaOutputPath, 
+			String joanaServerIP, boolean intra_componend_end_point) {
+		return new PCMJOANAFlowAnalysisStartDialog(parentShell, joanaOutputPath, joanaServerIP, 
+				intra_componend_end_point);
+	}
 }

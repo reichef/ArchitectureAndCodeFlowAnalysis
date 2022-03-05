@@ -1,8 +1,11 @@
 package edu.kit.kastel.sdq.pcmjoanaflowanalysis;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +23,8 @@ import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 
 import com.cedarsoftware.util.io.JsonReader;
+import com.cedarsoftware.util.io.JsonWriter;
+
 import edu.kit.joana.component.connector.Utils;
 
 import org.palladiosimulator.pcm.system.System;
@@ -32,6 +37,9 @@ public class Models {
 	private static final String PCM_USAGEMODEL_FILE_ENDING = "usagemodel";
 	private static final String ECORE_ANNOTATIONS_FILE_ENDING = "ecoreannotations";
 	private static final String CONFIG_NAME = "config.json";
+	
+	private static String PROJECT_PATH = "";
+	private static String PROJECT_PATH_ABSOLUTE = "";
 	
 	private System system;
 	private UsageModel usageModel;
@@ -66,6 +74,25 @@ public class Models {
 		return config;
 	}
 	
+	//TODO: Changes done to save the project path (Needed for the graphical interface)
+	public String getProjectPath() {
+		return PROJECT_PATH;
+	}
+	
+	public String getProjectPathAbsolute() {
+		return PROJECT_PATH_ABSOLUTE;
+	}
+	//end TODO
+	
+	//TODO: Save changes done in Joana startup dialog
+	public static void saveToFiles(Models model) throws IOException {
+		PrintWriter out = new PrintWriter(new File(PROJECT_PATH_ABSOLUTE + "/" + "config.json"));
+		String output = JsonWriter.objectToJson(model.getConfig(), Collections.singletonMap(JsonWriter.PRETTY_PRINT, true));
+		out.write(output);
+		out.flush();
+		out.close();
+	}
+	//End TODO
 	
 	public static Models extractFromFiles(List<IFile> files) throws IOException {
 		//TODO: Using this to ease testing with only 3 models, potentially 2 systems at once are strange 
@@ -76,6 +103,13 @@ public class Models {
 		IPath usageModelPath = null;
 		IPath ecoreAnnotationsPath= null; 
 		String configPath = "";
+		
+		//TODO: Get the project paths for the interface
+		var project_path = files.get(0).getFullPath();
+		PROJECT_PATH = "/" + project_path.segment(0);
+		var project_path_abs = files.get(0).getLocation();
+		PROJECT_PATH_ABSOLUTE = project_path_abs.removeFileExtension().removeLastSegments(1).makeAbsolute().toString();
+		//End TODO
 		
 		for(IFile file : files){
 			switch (file.getFileExtension()) {
