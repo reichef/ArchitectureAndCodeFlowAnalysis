@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecoreannotations:AnnotationRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecoreannotations="http://www.example.org/ecoreannotations" id="_QnqUcEklEeyIHYhVG9Jukg">
+  <Annotations xsi:type="ecoreannotations:GenericTargetStringContentAnnotation" id="0" content="/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/Client/target/Client-0.0.1-SNAPSHOT.jar" AnnotationType="ClassPath">
+    <Target href="clientServer.repository#_6O1EoJBxEeuNUJHT8B_BFA"/>
+  </Annotations>
+  <Annotations xsi:type="ecoreannotations:GenericTargetStringContentAnnotation" id="1" content="/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/Server/target/Server-0.0.1-SNAPSHOT.jar" AnnotationType="ClassPath">
+    <Target href="clientServer.repository#_74OEUJBxEeuNUJHT8B_BFA"/>
+  </Annotations>
+  <Annotations xsi:type="ecoreannotations:GenericTargetStringContentAnnotation" id="2" content="/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/Database/target/Database-0.0.1-SNAPSHOT.jar" AnnotationType="ClassPath">
+    <Target href="clientServer.repository#_8ksv0JBxEeuNUJHT8B_BFA"/>
+  </Annotations>
+</ecoreannotations:AnnotationRepository>

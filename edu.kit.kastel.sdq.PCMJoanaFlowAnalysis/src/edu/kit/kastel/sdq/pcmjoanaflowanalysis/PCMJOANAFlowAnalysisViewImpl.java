@@ -40,6 +40,7 @@ import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
 
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Assembly;
+import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.JOANAFlowAnalysisDiagram;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.PCMJoanaFlowAnalysisDiagramModelFactory;
@@ -50,13 +51,20 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationI
 
 public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 
-	private static String PROJECT_PATH;
+	public static String PROJECT_PATH;
 	
 	public PCMJOANAFlowAnalysisViewImpl(String project_path) {
 		PCMJOANAFlowAnalysisViewImpl.PROJECT_PATH = project_path;
 	}
 
-	public static Resource createAndAddResource(String outputFile, String[] fileextensions, ResourceSet rs) {
+	/**
+	 * Generates the Resource based for the file.pcmjoanaflowanalysisdiagrammodel
+	 * @param outputFile
+	 * @param fileextensions
+	 * @param rs
+	 * @return Resource created
+	 */
+	private static Resource createAndAddResource(String outputFile, String[] fileextensions, ResourceSet rs) {
 		for (String fileext : fileextensions) {
 			rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put(fileext, new XMLResourceFactoryImpl());
 		}
@@ -67,11 +75,17 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 		return resource;
 	}
 
-	public static void saveResource(Resource resource) {
+	/**
+	 * Saves the results of the analysis in the file.pcmjoanaflowanalysisdiagrammodel file
+	 * and generates the link to the representations.aird file of the project; the result is saved
+	 * in the project root folder
+	 * @param resource
+	 */
+	private static void saveResource(Resource resource) throws CoreException, IOException {
 		var saveOptions = ((XMLResourceImpl) resource).getDefaultSaveOptions();
 		saveOptions.put(XMLResourceImpl.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
 		saveOptions.put(XMLResourceImpl.OPTION_USE_CACHED_LOOKUP_TABLE, new ArrayList<>());
-		try {
+
 			resource.save(saveOptions);
 			
 			//Include it in the aird specs
@@ -138,14 +152,6 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 			    project.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 			}
 			
-
-			
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (CoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	/**
@@ -155,41 +161,38 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 	 * @param class_name
 	 * @return method_list
 	 */
-	public EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> generateClassObject(EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Class> class_list,
+	public edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Class generateClassObject(EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Class> class_list,
 			String class_name) {
-		edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Class class_var, class_contained = null;
-		EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list = null;
-		if (class_list.isEmpty()) {
-			// Create class of the method
-			class_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createClass();
-			class_var.setName(class_name);
-			class_list.add(class_var);
-			// Get the methods list in the classes' collection
-			method_list = class_var.getMethod();
-		} else {
-			// Check if the class is already contained
-			for (var class_element : class_list) {
-				if (class_element.getName().equalsIgnoreCase(class_name)) {
-					// Keep the class object
-					class_contained = class_element;
-				}
-			}
-			if (class_contained != null) {
-				// take the class instance of the method
-				class_var = class_contained;
-				// Get the methods list in the classes' collection
-				method_list = class_var.getMethod();
-			} else {
+		if (class_list != null || class_name != "") {
+			edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Class class_var, class_contained = null;
+			if (class_list.isEmpty()) {
 				// Create class of the method
 				class_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createClass();
 				class_var.setName(class_name);
 				class_list.add(class_var);
-				// Get the methods list in the classes' collection
-				method_list = class_var.getMethod();
+			} else {
+				// Check if the class is already contained
+				for (var class_element : class_list) {
+					if (class_element.getName().equalsIgnoreCase(class_name)) {
+						// Keep the class object
+						class_contained = class_element;
+					}
+				}
+				if (class_contained != null) {
+					// take the class instance of the method
+					class_var = class_contained;
+				} else {
+					// Create class of the method
+					class_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createClass();
+					class_var.setName(class_name);
+					class_list.add(class_var);
+				}
 			}
+			
+			return class_var;
 		}
-		
-		return method_list;
+		else 
+			return null;
 	}
 	
 	/**
@@ -199,7 +202,7 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 	 * @param method_name
 	 * @return method_var
 	 */
-	Method generateMethodObject(EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list,String method_name) {
+	public Method generateMethodObject(EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list,String method_name) {
 		Method method_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createMethod();
 		method_var.setName(method_name);
 		
@@ -222,23 +225,24 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 				else
 					method_list.add(method_var);
 			}
-
+			return method_var;
 		}
-		return method_var;
+		else
+			return null;
 	}
 	
 	/**
 	 * Generates the flow from method_origin to method_destination; increments the flow count 
 	 * by the flow created and returns the result in flow_id
-	 * @param method_var
-	 * @param method_var2
+	 * @param method_origin
+	 * @param method_destination
 	 * @param flow_id
-	 * @return flow_id
+	 * @return flow_id + 1
 	 */
-	int createFlows(Method method_origin,Method method_destination, int flow_id) {
-		
+	public Flow createFlows(Method method_origin,Method method_destination, int flow_id) {
+		Flow flow_var = null;
 		if (method_destination.getName() != null && method_origin.getName() != null) {
-			var flow_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createFlow();
+			flow_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createFlow();
 			flow_var.setId(String.valueOf(flow_id));
 			flow_var.setMethod(method_destination);
 			// Add each of the objects in the respective collections
@@ -247,12 +251,21 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 			flow_list.add(flow_var);
 			// Increment the flow id
 			flow_id++;
+			
 		}
-		
-		return flow_id;
+		return flow_var;
 	}
 	
-	public int createIntraComponentFlows(Collection<AssemblyComponentContext> diagram_assemblies,EList<Assembly> assembly_list, int flow_id) {
+	/**
+	 * Creates Intra-Component flows based on the palladio structure 
+	 * (AssemblyComponentContext); the results is reflected in the assembly_list structure
+	 * @param diagram_assemblies
+	 * @param assembly_list
+	 * @param flow_id
+	 * @return flow_id + 1
+	 */
+	public int createIntraComponentFlows(Collection<AssemblyComponentContext> diagram_assemblies,
+			EList<Assembly> assembly_list, int flow_id) {
 
 		for (var assembly : diagram_assemblies) {
 			// Create the assembly
@@ -272,7 +285,8 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 				// Add the class in the assemblies' collection
 				var class_list = assembly_var.getClass_();
 				// Generate the class object
-				EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list = generateClassObject(class_list, class_name);
+				EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list = 
+						generateClassObject(class_list, class_name).getMethod();
 
 				// Create Method1 
 				String method_name = start_method.getSignature().getEntityName();
@@ -281,16 +295,20 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 				// Get end method
 				var end_methods = flow.getValue();
 
+
 				for (var end_method : end_methods) {
 					// Generate the class
-					EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list2 = generateClassObject(class_list, class_name);
+					String end_class_name = end_method.getContext().getName();
+					EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list2 = 
+							generateClassObject(class_list, end_class_name).getMethod();
 
 					// Create Method2
 					String method_name2 = end_method.getSignature().getEntityName();
 					Method method_var2 = generateMethodObject(method_list2, method_name2); /*TODO: Same as line 223??*/
 
 					// Create intra-component Flows
-					flow_id = createFlows(method_var,method_var2,flow_id);
+					Flow flow_var = createFlows(method_var,method_var2,flow_id);
+					flow_id = Integer.parseInt(flow_var.getId()) + 1;
 
 				}
 
@@ -300,7 +318,15 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 		return flow_id;
 	}
 
-	
+	/**
+	 * Creates the inter-component flows of the analysis; 
+	 * the results is reflected in the assembly_list structure
+	 * @param diagram_assemblies
+	 * @param assembly_list
+	 * @param flow_id
+	 * @param intra_componend_end_point
+	 * @return flows + 1
+	 */
 	public int createInterComponentFlows(Collection<AssemblyComponentContext> diagram_assemblies,EList<Assembly> assembly_list,
 			int flow_id, boolean intra_componend_end_point) {
 		// Create inter-component flows
@@ -313,78 +339,88 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 			for (var flow : flows_collection) {
 				// Create inter-component flows
 				var key_history = flow.getMethodHistory();
-
-				// Get the context (Get the necessary parameters)
-				String end_method_assembly = key_history.get(3);
-				String end_method_class = key_history.get(4);
-				String end_method_name = key_history.get(5);
-				String start_method_name = key_history.get(2);
-				String start_method_assembly = key_history.get(0);
-				String start_method_class = key_history.get(1);
-
-				// Search for the assembly
-				edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Assembly assembly_var = null;
-				for (var ass_list_elem : assembly_list) {
-					if (ass_list_elem.getName().equalsIgnoreCase(end_method_assembly)) {
-						assembly_var = ass_list_elem;
-					}
-				}
-
-				if (key_history != null) {
-					// Add the class in the assemblies' collection
-					var class_list = assembly_var.getClass_();
-
-					// Generate the end class object
-					EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list = generateClassObject(class_list, end_method_class);
-
-					// Create Method1
-					Method method_var = generateMethodObject(method_list, end_method_name); 
-					
+				
+				if (!key_history.isEmpty()) {
+					// Get the context (Get the necessary parameters)
+					String end_method_assembly = key_history.get(3);
+					String end_method_class = key_history.get(4);
+					String end_method_name = key_history.get(5);
+					String start_method_name = key_history.get(2);
+					String start_method_assembly = key_history.get(0);
+					String start_method_class = key_history.get(1);
+	
 					// Search for the assembly
-					edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Assembly inter_assembly = null;
+					edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Assembly assembly_var = null;
 					for (var ass_list_elem : assembly_list) {
-						if (ass_list_elem.getName().equalsIgnoreCase(start_method_assembly)) {
-							inter_assembly = ass_list_elem;
+						if (ass_list_elem.getName().equalsIgnoreCase(end_method_assembly)) {
+							assembly_var = ass_list_elem;
 						}
 					}
-					if (inter_assembly != null) {
+					if (assembly_var == null) {
+						assembly_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createAssembly();
+						assembly_var.setName(assembly.getContext().getEntityName());
+						
+					}
+	
+					if (key_history != null) {
 						// Add the class in the assemblies' collection
-						class_list = inter_assembly.getClass_();
-
-					}
-					
-					// Generate the class object
-					EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list2 = generateClassObject(class_list, start_method_class);
-
-					//Generate the start method
-					Method method_var2 = generateMethodObject(method_list2, start_method_name);
-					
-					if (intra_componend_end_point) {
-						//Find if start method exists in as flow in the
-						Method new_method = null;
-						for (var method:method_list2) {
-							//Get the flows
-							edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow del_flow = null;
-							for (var flow_iter:method.getFlow()) {
-								if (flow_iter.getMethod() == method_var2) {
-									//Add it directly to the new flow
-									new_method = method;
-									del_flow = flow_iter;
-								}
+						var class_list = assembly_var.getClass_();
+	
+						// Generate the end class object
+						EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list = 
+								generateClassObject(class_list, end_method_class).getMethod();
+	
+						// Create Method1
+						Method method_var = generateMethodObject(method_list, end_method_name); 
+						
+						// Search for the assembly
+						edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Assembly inter_assembly = null;
+						for (var ass_list_elem : assembly_list) {
+							if (ass_list_elem.getName().equalsIgnoreCase(start_method_assembly)) {
+								inter_assembly = ass_list_elem;
 							}
-							//Remove the intra-flow to the end-point
-							if (del_flow != null)
-								method.getFlow().remove(del_flow);
 						}
-						//Remove the end-point method from the analysis
-						method_list2.remove(method_var2);
-						//Sets the new start method
-						method_var2 = new_method;
-					}
-
-					if (method_var2.getName() != null && method_var.getName() != null) {
-						// Create intra-component Flows
-						flow_id = createFlows(method_var2,method_var,flow_id);
+						if (inter_assembly != null) {
+							// Add the class in the assemblies' collection
+							class_list = inter_assembly.getClass_();
+	
+						}
+						
+						// Generate the class object
+						EList<edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Method> method_list2 = 
+								generateClassObject(class_list, start_method_class).getMethod();
+	
+						//Generate the start method
+						Method method_var2 = generateMethodObject(method_list2, start_method_name);
+						
+						if (intra_componend_end_point) {
+							//Find if start method exists in as flow in the
+							Method new_method = null;
+							for (var method:method_list2) {
+								//Get the flows
+								edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Flow del_flow = null;
+								for (var flow_iter:method.getFlow()) {
+									if (flow_iter.getMethod() == method_var2) {
+										//Add it directly to the new flow
+										new_method = method;
+										del_flow = flow_iter;
+									}
+								}
+								//Remove the intra-flow to the end-point
+								if (del_flow != null && new_method != null)
+									method.getFlow().remove(del_flow);
+							}
+							if (new_method != null) { /*The intra-component method exist*/
+								//Remove the end-point method from the analysis
+								method_list2.remove(method_var2);
+								//Sets the new start method
+								method_var2 = new_method;
+							}
+						}
+	
+							// Create inter-component Flows
+							Flow flow_var = createFlows(method_var2,method_var,flow_id);
+							flow_id = Integer.parseInt(flow_var.getId()) + 1;
 					}
 				}
 			}
@@ -393,14 +429,20 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 	}
 	
 	
-	public void setupAndSaveEMFSampleInstanceResource(SystemRepresentation systemrepresentation,boolean intra_componend_end_point) {
+	/**
+	 * 
+	 * Generates the Resource and saves the result of the dataflow analysis
+	 *  as a model file (file.pcmjoanaflowanalysisdiagrammodel); this method is the
+	 *  interface implementation, mainly used to draw the diagram instance
+	 * @param systemrepresentation
+	 * @param intra_componend_end_point
+	 * @return JOANAFlowAnalysisDiagram instance
+	 */
+	@Override
+	public JOANAFlowAnalysisDiagram drawDiagramInstance(Collection<AssemblyComponentContext> diagram_assemblies, boolean intra_componend_end_point) throws CoreException, IOException {
 		ResourceSet rs = new ResourceSetImpl();
 		// Here the resource is created, with fileextensions "gast" and "xml" (adapt
 		// this to use your own file extension).
-//		Resource gastResource = createAndAddResource(
-//				"/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/PCMModels/ClientServerTest/file.pcmjoanaflowanalysisdiagrammodel",
-//				new String[] { "pcmjoanaflowanalysisdiagrammodel", "xml" }, rs);
-		//URI uri = URI.createPlatformResourceURI(project_path + "file.pcmjoanaflowanalysisdiagrammodel",true);
 		Resource gastResource = createAndAddResource(PROJECT_PATH + "/" + "file.pcmjoanaflowanalysisdiagrammodel",
 				new String[] { "pcmjoanaflowanalysisdiagrammodel", "xml" }, rs);
 		// The root object is created by using (adapt this to create your own root
@@ -414,7 +456,7 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 		var assembly_list = root.getAssembly();
 
 		// Create assembly
-		Collection<AssemblyComponentContext> diagram_assemblies = systemrepresentation.getContainedRepresentations();
+		//Collection<AssemblyComponentContext> diagram_assemblies = systemrepresentation.getContainedRepresentations();
 
 		//Create the flow_id_counter
 		int flow_id = 0;
@@ -426,59 +468,7 @@ public class PCMJOANAFlowAnalysisViewImpl implements PCMJOANAFlowAnalysisView {
 
 		gastResource.getContents().add(root);
 		saveResource(gastResource);
+		return root;
 	}
-
-	@Override
-	public void drawDiagramInstance(Object systemrepresentation, boolean intra_componend_end_point) {
-		// TODO Auto-generated method stub
-		setupAndSaveEMFSampleInstanceResource((SystemRepresentation)systemrepresentation, intra_componend_end_point);
-	}
-
-
-//	public void setupAndSaveEMFInstanceResource() {
-//		ResourceSet rs = new ResourceSetImpl();
-//		// Here the resource is created, with fileextensions "gast" and "xml" (adapt this to use your own file extension).
-//		Resource gastResource = createAndAddResource("/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/PCMModels/ClientServerTest/file.pcmjoanaflowanalysisdiagrammodel", new String[] {"pcmjoanaflowanalysisdiagrammodel", "xml"}, rs);
-//		// The root object is created by using (adapt this to create your own root object)
-//		
-//		// Create model
-//		JOANAFlowAnalysisDiagram root = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createJOANAFlowAnalysisDiagram();
-//		root.setName("Analysis Test");
-//		
-//		//Create assembly
-//		var assembly_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createAssembly();
-//		assembly_var.setName("Server");
-//		//Create class
-//		var class_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createClass();
-//		class_var.setName("Class1");
-//		//Create Method1
-//		var method_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createMethod();
-//		method_var.setName("method1");
-//		//Create Method2
-//		var method_var2 = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createMethod();
-//		method_var2.setName("method2");
-//		//Create Flow
-//		var flow_var = PCMJoanaFlowAnalysisDiagramModelFactory.eINSTANCE.createFlow();
-//		flow_var.setId("01");
-//		flow_var.setMethod(method_var2);
-//		
-//		//Add each of the objects in the respective collections		
-//		//Add the flow in the method1 flows' collection
-//		var flow_list = method_var.getFlow();
-//		flow_list.add(flow_var);
-//		//Add the methods in the classes' collection
-//		var method_list = class_var.getMethod();
-//		method_list.add(method_var);
-//		method_list.add(method_var2);
-//		//Add the class in the assemblies' collection
-//		var class_list = assembly_var.getClass_();
-//		class_list.add(class_var);
-//		//Add the assembly in the model assemblies' collection
-//		var assembly_list = root.getAssembly();
-//		assembly_list.add(assembly_var);
-//		
-//		gastResource.getContents().add(root);
-//		saveResource(gastResource);
-//	}
 
 }

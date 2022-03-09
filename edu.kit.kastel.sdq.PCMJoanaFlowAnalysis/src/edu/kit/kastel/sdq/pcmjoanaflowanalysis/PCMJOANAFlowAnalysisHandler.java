@@ -11,6 +11,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.ISelection;
@@ -21,6 +22,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.palladiosimulator.pcm.system.System;
 
@@ -38,9 +40,13 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
+
+import com.cedarsoftware.util.io.JsonWriter;
+
 import org.palladiosimulator.pcm.usagemodel.AbstractUserAction;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.eclipse.emf.common.util.URI;
 
@@ -124,7 +130,14 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 			
 			//TODO: Generate the diagram model
 			if (diagram != null) {
-				diagram.drawDiagramInstance(systemrepresentation, dialog.getjoanaIntraComponentEndPoint_selected());
+				try {
+					diagram.drawDiagramInstance(systemrepresentation.getContainedRepresentations(),
+							dialog.getjoanaIntraComponentEndPoint_selected());
+				} catch (CoreException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return false;
+				}
 			}
 			else {
 				java.lang.System.out.println("Error during View Creation");
