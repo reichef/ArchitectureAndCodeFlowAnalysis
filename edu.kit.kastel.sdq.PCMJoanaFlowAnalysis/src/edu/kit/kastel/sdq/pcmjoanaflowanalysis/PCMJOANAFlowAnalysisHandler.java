@@ -136,19 +136,28 @@ public class PCMJOANAFlowAnalysisHandler extends AbstractHandler implements IHan
 				} catch (CoreException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					dialog.showFinishedErrorDialog();
 					return false;
 				}
 			}
 			else {
 				java.lang.System.out.println("Error during View Creation");
+				dialog.showFinishedErrorDialog();
 				return false;
 			}
 			
-			//Save the configuration in the config.json file
-			Models.saveToFiles(models);
+			try {
+				//Save the configuration in the config.json file
+				Models.saveToFiles(models);
+			}
+			catch (IOException e) {
+				// TODO: handle exception
+				java.lang.System.out.println("Error saving parameters");
+				dialog.showFinishedErrorDialog();
+			}
 			
 			java.lang.System.out.println("Finished Execution");
-	
+			dialog.showFinishedDialog();
 			return true;
 		}
 		else {

@@ -25,6 +25,7 @@ import org.palladiosimulator.pcm.system.System;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.*;
 import edu.kit.kastel.sdq.PCMJoanaFlowAnalysisDiagramModel.Class;
 import edu.kit.kastel.sdq.ecoreannotations.AnnotationRepository;
+import edu.kit.kastel.sdq.pcmjoanaflowanalysis.PCMJOANAFlowAnalysisView;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.PCMJOANAFlowAnalysisViewImpl;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.AssemblyComponentContext;
 import edu.kit.kastel.sdq.pcmjoanaflowanalysis.datastructure.hierarchical.DataStructureBuilder;
@@ -34,6 +35,7 @@ import edu.kit.kastel.sdq.pcmjoanaflowanalysis.pcmflow.fixpoint.SystemOperationI
 class PCMJOANAFlowAnalyisViewImplTest {
 
 	static SystemRepresentation SYSTEM_REPRESENTATION;
+	static String TEST_CASE_PATH = "/Users/isairoman/eclipse-workspace_122020/ArchitectureAndCodeFlowAnalysis/CaseStudies/MinimalClientServerExample/PCMModels/ClientServerTest/";
 	
 	
 	@BeforeAll
@@ -54,17 +56,15 @@ class PCMJOANAFlowAnalyisViewImplTest {
         project.create(description, new NullProgressMonitor());
         project.open(new NullProgressMonitor());
 
-        ClassLoader loader = PCMJOANAFlowAnalyisViewImplTest.class.getClassLoader();
-        var pack = PCMJOANAFlowAnalyisViewImplTest.class.getPackageName().replace(".","/");
-        
-		URI systemUri = URI.createURI(loader.getResource(pack + "/clientServer.system").toURI().toString());
+      
+		URI systemUri = URI.createFileURI(TEST_CASE_PATH + "clientServer.system");
 		ResourceSetImpl resSet = new ResourceSetImpl();
 		Resource resourceSystem = resSet.getResource(systemUri, true);
 		EcoreUtil.resolveAll(resourceSystem);
 		resourceSystem.load(null);
 		System system = (System) resourceSystem.getContents().get(0);
 		
-		URI annotationsUri = URI.createURI(loader.getResource(pack + "/clientServer.ecoreannotations").toURI().toString());
+		URI annotationsUri = URI.createFileURI(TEST_CASE_PATH + "clientServer.ecoreannotations");
 		Resource resourceAnnotations = resSet.getResource(annotationsUri, true);
 		EcoreUtil.resolveAll(resourceAnnotations);
 		resourceAnnotations.load(null);
@@ -226,6 +226,18 @@ class PCMJOANAFlowAnalyisViewImplTest {
 		assert(case2 != null);
 		assert(!case2.getAssembly().isEmpty());
 		java.lang.System.out.println(case2.toString());
+	}
+	
+	@Test
+	final void testDrawDiagramInstance_Interface() throws CoreException, IOException  {
+
+		//Test with intra_componend_end_point = true)
+		PCMJOANAFlowAnalysisView view_interface = new PCMJOANAFlowAnalysisViewImpl("/edu.kit.kastel.dsis.msflow.casestudy.simple.ClientServerTest");
+		JOANAFlowAnalysisDiagram case1 = view_interface.drawDiagramInstance(SYSTEM_REPRESENTATION.getContainedRepresentations(),true);
+		assert(case1 != null);
+		assert(!case1.getAssembly().isEmpty());
+		java.lang.System.out.println(case1.toString());
+		
 	}
 
 }
